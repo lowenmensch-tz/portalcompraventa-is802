@@ -1,4 +1,4 @@
-# portalcompraventa-is802
+# Proyecto IS802
 Portal web de compra y venta de productos.
 
 Proyecto correspondiente a la clase de Ingeniería de Software de la carrera Ingeniería en Sistemas de la Universidad Nacional Autónoma de Honduras. 
