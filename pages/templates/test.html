@@ -1,0 +1,12 @@
+{% block content %}
+
+{% load static %} <!-- Static carga la ruta en donde se encuentran los archivos estáticos (css, imágenes, javascript) -->
+<script src="{% static "js/ajax.js" %}" type="text/javascript"></script> <!-- Ejemplo de como cargar un archivo estático javascript -->
+<script src="{% static "js/test.js" %}" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="{% static "css/test.css" %}"> <!-- Ejemplo de como cargar un archivo estático css -->
+
+<label>Enter name: </label>
+<input id="name" type="text" name="name_field" placeholder="Insert your Name">
+<input type="submit" value="Click me" onclick="testFunc();">
+
+{% endblock %}
