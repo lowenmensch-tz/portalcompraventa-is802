@@ -26,3 +26,15 @@ def gatherData(request):
             json.dumps({"status": "Kill me Please"}),
             content_type="application/json"
         )
+
+@csrf_exempt # No es una solución
+def login(request):
+    return render(request,'login.html',)
+
+@csrf_exempt # No es una solución
+def register(request):
+    return render(request,'register.html',)
+
+@csrf_exempt # No es una solución
+def index(request):
+    return render(request,'index.html',)
