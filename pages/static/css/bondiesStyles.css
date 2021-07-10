@@ -1,0 +1,11 @@
+.navButton {
+	margin-top: 1em;
+}
+
+.error {
+	color: red;
+	font-size: 1rem;
+	position: relative;
+	line-height: 1;
+	width: 100%;
+}
