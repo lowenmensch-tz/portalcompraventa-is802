@@ -18,13 +18,14 @@ $(function() {
 		var lastname = $("#rlastname").val();
 		var email = $("#remail").val();
 		var password = $("#rpassword").val();
-        var passwordr = $("#rpasswordr").val();
-        
+    var passwordr = $("#rpasswordr").val();
+    var data = { firstname : firstname, lastname : lastname, email: email, password: password, passwordr: passwordr };
+
         //peticion que espera una variable text
         $.ajax({
             type: "POST",
             url: "",
-            data: "firstname=" + firstname + "&lastname=" + lastname + "email=" + email + "&password=" + password + "&passwordr=" + passwordr, 
+            data: data,
             success: function(text) {
                 if (text == "success") {
                     sformSuccess();
@@ -76,11 +77,12 @@ $(function() {
 		var email = $("#lemail").val();
 		var password = $("#lpassword").val();
 		var remember = $("#customCheck").val();
-        
+    var data = { email: email, password: password, remember: remember };
+
         $.ajax({
             type: "POST",
             url: "",
-            data: "email=" + email + "&password=" + password + "&remember=" + remember, 
+            data: data,
             success: function(text) {
                 if (text == "success") {
                     lformSuccess();
