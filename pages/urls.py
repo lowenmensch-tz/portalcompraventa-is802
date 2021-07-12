@@ -1,12 +1,12 @@
-from pages.views import gatherData
+from pages.views import loginValidation, registerUser
 from django.urls import path
 from django.conf.urls import include, url
 from .views import *
 
 urlpatterns = [
-path('', testPage, name='test'), # Página Principal
-path('ajax/gatherData', gatherData, name='gather_data'),
+path('', index, name='index_page'),
 path('login', login, name='login_page'),
+path('ajax/loginValidation', loginValidation, name='login_validation'),
 path('register', register, name='register_page'),
-path('index', index, name='index_page'),
+path('ajax/registerUser', registerUser, name='register_user'),
 ]
