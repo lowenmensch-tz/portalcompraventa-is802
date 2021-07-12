@@ -9,3 +9,9 @@
 	line-height: 1;
 	width: 100%;
 }
+
+.form-control-select {
+	font-size: .8rem;
+    border-radius: 10rem;
+    height: 3rem;
+}

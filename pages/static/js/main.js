@@ -19,7 +19,11 @@ $(function() {
 		var email = $("#remail").val();
 		var password = $("#rpassword").val();
     var passwordr = $("#rpasswordr").val();
-    var data = { firstname : firstname, lastname : lastname, email: email, password: password, passwordr: passwordr };
+    var phone = $("#rphone").val();
+    var address = $("#raddress").val();
+    var state = $("#rstate").val();
+    var terms = $('#rcustomCheck').is(':checked');
+    var data = { firstname : firstname, lastname : lastname, email: email, password: password, passwordr: passwordr, phone: phone, address: address, state: state, terms: terms };
 
         //peticion que espera una variable text
         $.ajax({
@@ -76,7 +80,7 @@ $(function() {
         // initiate variables with form content
 		var email = $("#lemail").val();
 		var password = $("#lpassword").val();
-		var remember = $("#customCheck").val();
+    var remember = $('#customCheck').is(':checked');
     var data = { email: email, password: password, remember: remember };
 
         $.ajax({
