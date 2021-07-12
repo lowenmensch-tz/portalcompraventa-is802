@@ -28,11 +28,12 @@ $(function() {
         //peticion que espera una variable text
         $.ajax({
             type: "POST",
-            url: "",
+            url: "ajax/registerUser",
             data: data,
             success: function(text) {
-                if (text == "success") {
-                    sformSuccess();
+                if (text.status == "Success") {
+                    //sformSuccess();
+                    window.location.replace("/login");
                 } else {
                     sformError();
                     ssubmitMSG(false, text);
@@ -85,13 +86,15 @@ $(function() {
 
         $.ajax({
             type: "POST",
-            url: "",
+            url: "ajax/loginValidation",
             data: data,
             success: function(text) {
-                if (text == "success") {
-                    lformSuccess();
+                if (text.status == "Success") {
+                    //lformSuccess();
+                    window.location.replace("/");
                 } else {
                     lformError();
+                    console.error(text)
                     lsubmitMSG(false, text);
                 }
             }
