@@ -67,24 +67,59 @@
                                             <div class="help-block with-errors" required></div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="rphone"
+                                        placeholder="Phone Number" required>
+                                        <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="raddress"
+                                        placeholder="Address" required>
+                                        <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <select id="rstate" class="form-control form-control-select dropdown-toggle" required>
+                                        <option selected>Departamento...</option>
+                                        <option value="Atlántida">Atlántida</option>
+                                        <option value="Colón">Colón</option>
+                                        <option value="Comayagua">Comayagua</option>
+                                        <option value="Copán">Copán</option>
+                                        <option value="Cortés">Cortés</option>
+                                        <option value="Choluteca">Choluteca</option>
+                                        <option value="El Paraíso">El Paraíso</option>
+                                        <option value="Francisco Morazán">Francisco Morazán</option>
+                                        <option value="Gracias a Dios">Gracias a Dios</option>
+                                        <option value="Intibucá">Intibucá</option>
+                                        <option value="Islas de la Bahía">Islas de la Bahía</option>
+                                        <option value="La Paz">La Paz</option>
+                                        <option value="Lempira Gracias">Lempira Gracias</option>
+                                        <option value="Ocotepeque">Ocotepeque</option>
+                                        <option value="Olancho">Olancho</option>
+                                        <option value="Santa Bárbara">Santa Bárbara</option>
+                                        <option value="Valle">Valle</option>
+                                        <option value="Yoro">Yoro</option>
+                                    </select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox small">
+                                        <input type="checkbox" class="custom-control-input" id="rcustomCheck" name="rcustomCheck" required>
+                                        <label class="custom-control-label" for="rcustomCheck">Está de acuerdo con nuestros <a href="#">términos y condiciones</a></label>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">Registrarme</button>
                                 <div class="form-message">
                                     <div id="smsgSubmit" class="h3 text-center hidden"></div>
                                 </div>
                                 <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
                             </form>
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" href="login">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
