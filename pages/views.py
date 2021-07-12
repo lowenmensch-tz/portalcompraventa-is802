@@ -8,8 +8,16 @@ import pages.conexion as conexion
 
 # Create your views here.
 
+"""
+    Vista principal de la página.
+    
+    @param request
+    @return render
+"""
 @csrf_exempt
 def index(request):
+    if request.session.get('email'):
+        print(request.session['email'])
     return render(request,'index.html',)
 
 """
@@ -39,12 +47,13 @@ def loginValidation (request):
         email, password, remember = request.POST.get('email'), request.POST.get('password'), request.POST.get('remember')
         database, cursor = conexion.conectar()
         query = "SELECT COUNT(*) FROM USUARIO WHERE correo = '%s' AND contrasenia='%s';" % (email,password)
+
         try:
             cursor.execute(query)
             result = cursor.fetchall()
             cursor.close()
             if result[0][0] == 1:
-                if remember == 1:
+                if remember:
                     request.session['email'] = email
                 return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
             else:
