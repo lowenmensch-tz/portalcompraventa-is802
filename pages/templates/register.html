@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Portal Compra - Venta | Register</title>
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/sb-admin-2.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bondiesStyles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/errorMessages.css' %}">
 
 </head>
 
@@ -35,49 +36,50 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">¡Crea tu Cuenta!</h1>
                             </div>
                             <form class="user" id="registerForm" name="registerForm" data-toggle="validator" data-focus="false">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="rfirstname"
-                                            placeholder="First Name" required>
+                                            placeholder="Nombre" required>
                                             <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="rlastname"
-                                            placeholder="Last Name" required>
+                                            placeholder="Apellido" required>
                                     </div>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="remail"
-                                        placeholder="Email Address" required>
+                                        placeholder="Correo" required>
                                         <div class="help-block with-errors"></div>
                                 </div>
+                                <div class="errorMessage" id="registerCatchError" style="display: none;"></div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="rpassword" placeholder="Password" required>
+                                            id="rpassword" placeholder="Contraseña" required>
                                             <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="rpasswordr" placeholder="Repeat Password">
+                                            id="rpasswordr" placeholder="Repita la Contraseña">
                                             <div class="help-block with-errors" required></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="rphone"
-                                        placeholder="Phone Number" required>
+                                        placeholder="Número de Teléfono" required>
                                         <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="raddress"
-                                        placeholder="Address" required>
+                                        placeholder="Dirección" required>
                                         <div class="help-block with-errors"></div>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <select id="rstate" class="form-control form-control-select dropdown-toggle" required>
                                         <option selected>Departamento...</option>
                                         <option value="Atlántida">Atlántida</option>
@@ -100,7 +102,7 @@
                                         <option value="Yoro">Yoro</option>
                                     </select>
                                     <div class="help-block with-errors"></div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
                                         <input type="checkbox" class="custom-control-input" id="rcustomCheck" name="rcustomCheck" required>
@@ -115,11 +117,11 @@
                                 <hr>
                             </form>
                             <hr>
-                            <div class="text-center">
+                            <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
+                            </div> -->
                             <div class="text-center">
-                                <a class="small" href="login">Already have an account? Login!</a>
+                                <a class="small" href="/login">¿Ya tienes una cuenta? ¡Ingresa!</a>
                             </div>
                         </div>
                     </div>

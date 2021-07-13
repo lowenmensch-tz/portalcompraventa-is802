@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bondies - Login</title>
+    <title>Porta Compra - Venta | Login</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -20,6 +20,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/errorMessages.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/sb-admin-2.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bondiesStyles.css' %}">
 
@@ -42,40 +43,40 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de Vuelta!</h1>
                                     </div>
                                     <form class="user" id="loginForm" name="loginForm" data-toggle="validator" data-focus="false">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="lemail" name="lemail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." required>
+                                                placeholder="Ingresa tu Correo..." required>
                                                 <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="lpassword" name="lpassword" placeholder="Password" required>
+                                                id="lpassword" name="lpassword" placeholder="Contraseña" required>
                                                 <div class="help-block with-errors"></div>
                                         </div>
+                                        <div class="errorMessage" id="loginCatchError" style="display: none;"></div> 
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck" name="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                                <label class="custom-control-label" for="customCheck">Recuerdame</label>
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Ingresar</button>
                                         <hr>
-                                        <div class="form-message">
+                                        <!-- <div class="form-message">
                                             <div id="lmsgSubmit" class="h3 text-center hidden"></div>
-                                        </div>
+                                        </div> -->
                                     </form>
                                     <hr>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a class="small" href="#">Forgot Password?</a>
-                                    </div>
+                                    </div> -->
                                     <div class="text-center">
-                                        <a class="small" href="register">Create an Account!</a>
+                                        <a class="small" href="/register">Crea tu Cuenta!</a>
                                     </div>
                                 </div>
                             </div>

@@ -18,12 +18,12 @@ $(function() {
 		var lastname = $("#rlastname").val();
 		var email = $("#remail").val();
 		var password = $("#rpassword").val();
-    var passwordr = $("#rpasswordr").val();
-    var phone = $("#rphone").val();
-    var address = $("#raddress").val();
-    var state = $("#rstate").val();
-    var terms = $('#rcustomCheck').is(':checked');
-    var data = { firstname : firstname, lastname : lastname, email: email, password: password, passwordr: passwordr, phone: phone, address: address, state: state, terms: terms };
+        var passwordr = $("#rpasswordr").val();
+        var phone = $("#rphone").val();
+        var address = $("#raddress").val();
+        //var state = $("#rstate").val();
+        var terms = $('#rcustomCheck').is(':checked');
+        var data = { firstname : firstname, lastname : lastname, email: email, password: password, passwordr: passwordr, phone: phone, address: address, terms: terms };
 
         //peticion que espera una variable text
         $.ajax({
@@ -31,9 +31,25 @@ $(function() {
             url: "ajax/registerUser",
             data: data,
             success: function(text) {
+                console.log(text);
                 if (text.status == "Success") {
                     //sformSuccess();
                     window.location.replace("/login");
+                } else if (text.status == "userFailed"){
+                    document.getElementById("registerCatchError").innerHTML = "Ya existe un usuario con este Correo";
+                    document.getElementById("registerCatchError").style.display = "block";
+                    $("#remail").val('');
+                    setTimeout(function() {
+                        document.getElementById("registerCatchError").style.display = "none";
+                    }, 3000);
+                } else if (text.status == "passwordFailed"){
+                    document.getElementById("registerCatchError").innerHTML = "Las Contraseñas no Coinciden";
+                    document.getElementById("registerCatchError").style.display = "block";
+                    $("#rpassword").val('');
+                    $("#rpasswordr").val('');
+                    setTimeout(function() {
+                        document.getElementById("registerCatchError").style.display = "none";
+                    }, 3000);
                 } else {
                     sformError();
                     ssubmitMSG(false, text);
@@ -92,6 +108,12 @@ $(function() {
                 if (text.status == "Success") {
                     //lformSuccess();
                     window.location.replace("/");
+                } else if (text.status == "Failed"){
+                    document.getElementById("loginCatchError").innerHTML = "Usuario o Contraseña no Válida";
+                    document.getElementById("loginCatchError").style.display = "block";
+                    setTimeout(function() {
+                        document.getElementById("loginCatchError").style.display = "none";
+                    }, 3000);
                 } else {
                     lformError();
                     console.error(text)
