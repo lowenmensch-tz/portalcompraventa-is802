@@ -97,8 +97,8 @@ $(function() {
         // initiate variables with form content
 		var email = $("#lemail").val();
 		var password = $("#lpassword").val();
-    var remember = $('#customCheck').is(':checked');
-    var data = { email: email, password: password, remember: remember };
+        var remember = $('#customCheck').is(':checked');
+        var data = { email: email, password: password, remember: remember };
 
         $.ajax({
             type: "POST",
