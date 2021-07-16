@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+{% block content %}
+{% load static %}
+
 <html lang="en">
 
 <head>
@@ -12,20 +16,20 @@
 <title>Portal Compra - Ventas</title>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/marazo-css/bootstrap.min.css' %}">
 
 <!-- Customizable CSS -->
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/blue.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.css">
-<link rel="stylesheet" href="assets/css/owl.transitions.css">
-<link rel="stylesheet" href="assets/css/animate.min.css">
-<link rel="stylesheet" href="assets/css/rateit.css">
-<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
-<link href="assets/css/lightbox.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/marazo-css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/marazo-css/blue.css' %}">
+<link rel="stylesheet" href="{% static 'css/marazo-css/owl.carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/marazo-css/owl.transitions.css' %}">
+<link rel="stylesheet" href="{% static 'css/marazo-css/animate.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/marazo-css/rateit.css' %}">
+<link rel="stylesheet" href="{% static 'css/marazo-css/bootstrap-select.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/marazo-css/lightbox.css' %}">
 
 <!-- Icons/Glyphs -->
-<link rel="stylesheet" href="assets/css/font-awesome.css">
+<link rel="stylesheet" href="{% static 'css/marazo-css/font-awesome.css' %}">
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Barlow:200,300,300i,400,400i,500,500i,600,700,800" rel="stylesheet">
@@ -639,7 +643,7 @@
 
             <div class="single-product-gallery-item" id="slide1">
                 <a data-lightbox="image-1" data-title="Galeria" href="https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg"> 
-                    <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg" /> 
+                  <img class="img-responsive" alt="" src="{% static 'img/marazo-img/blank.gif' %} " data-echo="https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg" /> 
                 </a>
             </div>
             <!-- /.single-product-gallery-item -->
@@ -710,7 +714,7 @@
 
               <div class="item">
                 <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
-                  <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg" />
+                  <img class="img-responsive" alt="" src="{% static 'img/marazo-img/blank.gif' %}" data-echo="https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg" />
                 </a>
               </div>
               <!--
@@ -1010,7 +1014,7 @@
 														</div><!-- /.row -->
 
 														<div class="action text-right">
-															<button onclick="updateReviews();" class="btn btn-primary btn-upper">Enviar</button>
+															<button type="button" onclick="updateReviews();" class="btn btn-primary btn-upper">Enviar</button>
 														</div><!-- /.action -->
 
 													</form><!-- /.cnt-form -->
@@ -1576,23 +1580,26 @@
 <!-- For demo purposes – can be removed on production : End -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="{% static 'js/marazo-js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/bootstrap.min.js' %}"></script>
 
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="{% static 'js/marazo-js/bootstrap-hover-dropdown.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/owl.carousel.min.js' %}"></script>
 
-<script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
+<script src="{% static 'js/marazo-js/echo.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/jquery.easing-1.3.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/bootstrap-slider.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/jquery.rateit.min.js' %}"></script>
 
-<script src="assets/js/echo.min.js"></script>
-<script src="assets/js/jquery.easing-1.3.min.js"></script>
-<script src="assets/js/bootstrap-slider.min.js"></script>
-<script src="assets/js/jquery.rateit.min.js"></script>
-<script src="assets/js/lightbox.min.js"></script>
-<script src="assets/js/bootstrap-select.min.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/scripts.js"></script>
-<script src="assets/js/detail.js"></script>
+
+<script src="{% static 'js/marazo-js/lightbox.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/bootstrap-select.min.js' %}"></script>
+
+<script src="{% static 'js/marazo-js/wow.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/scripts.js' %}"></script>
+<script src="{% static 'js/marazo-js/detail.js' %}"></script>
 </div>
 </body>
 
 </html>
+{% endblock %}

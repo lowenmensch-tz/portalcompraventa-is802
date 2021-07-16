@@ -112,3 +112,23 @@ def registerUser (request):
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
+"""
+    Devuelve la vista de Busqueda General .
+    
+    @param request
+    @return render
+"""
+@csrf_exempt
+def productCategories(request):
+    return render(request,'category.html',)
+
+"""
+    Devuelve la vista de Detalles del Producto.
+    
+    @param request
+    @return render
+"""
+@csrf_exempt
+def productDetails(request):
+    return render(request,'detail.html',)
+

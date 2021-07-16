@@ -1,8 +1,8 @@
 window.onload = function(){
     sessionCheck();
     loadData();
-    loadComments();
-    showComments();
+    // loadComments();
+    // showComments();
 };
 
 var comentarios;
@@ -120,18 +120,12 @@ function updateReviews(){
         <div class="blog-comments inner-bottom-xs outer-bottom-xs">
             <h4>Lisa</h4>
             <span class="review-action pull-right">
-    <div class="rating rateit-small"></div>
-                <!-- <a href="#"> Repost</a> &sol;
-                <a href="#"> Reply</a> -->
+                <div class="rating rateit-small"></div>
             </span>
             <p>${comment}</p>
         </div>
     </div>
     `+oldComments);
-    
-
-    
-
 }
 
 function loadComments(){

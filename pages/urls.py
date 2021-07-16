@@ -1,4 +1,4 @@
-from pages.views import loginValidation, registerUser
+from pages.views import loginValidation, productCategories, productDetails, registerUser
 from django.urls import path
 from django.conf.urls import include, url
 from .views import *
@@ -9,4 +9,6 @@ path('login', login, name='login_page'),
 path('ajax/loginValidation', loginValidation, name='login_validation'),
 path('register', register, name='register_page'),
 path('ajax/registerUser', registerUser, name='register_user'),
+path('categories', productCategories, name='categories_page'),
+path('details', productDetails, name='details_page'), #Aqui debe ir una expresión regular ya que se envian métodos GET
 ]

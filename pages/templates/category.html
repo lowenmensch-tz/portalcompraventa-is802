@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+{% block content %}
+{% load static %}
+
 <html lang="en">
 
 <head>
@@ -10,19 +14,21 @@
 <title>Portal Compra - Ventas | Productos</title>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="{% static 'css/marazo-css/bootstrap.min.css' %}">
 
 <!-- Customizable CSS -->
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/blue.css">
+<link rel="stylesheet" href="{% static 'css/marazo-css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/marazo-css/blue.css' %}">
 <!-- <link rel="stylesheet" href="assets/css/owl.carousel.css"> -->
 <!-- <link rel="stylesheet" href="assets/css/owl.transitions.css"> -->
 <!-- <link rel="stylesheet" href="assets/css/animate.min.css"> -->
-<link rel="stylesheet" href="assets/css/rateit.css">
+<link rel="stylesheet" href="{% static 'css/marazo-css/rateit.css' %}">
+
 <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.min.css"> -->
 
 <!-- Icons/Glyphs -->
-<link rel="stylesheet" href="assets/css/font-awesome.css">
+<link rel="stylesheet" href="{% static 'css/marazo-css/font-awesome.css' %}">
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Barlow:200,300,300i,400,400i,500,500i,600,700,800" rel="stylesheet">
@@ -272,8 +278,9 @@
                         <div class="product-image">
                           <div class="image">
                           <a href="detail.html">
-                             <img src="assets/images/products/p1.jpg" alt="">
-                              <img src="assets/images/products/p1_hover.jpg" alt="" class="hover-image">
+                            
+                             <img src="{% static 'img/marazo-img/products/p1.jpg' %}" alt="">
+                             <img src="{% static 'img/marazo-img/products/p1_hover.jpg' %}" alt="" class="hover-image">
                           </a>
                        </div>
                           <!-- /.image -->
@@ -283,7 +290,7 @@
                         <!-- /.product-image -->
 
                         <div class="product-info text-left">
-                          <h3 class="name"><a href="detail.html">Aquí va el nombre del producto</a></h3>
+                          <h3 class="name"><a href="details">Aquí va el nombre del producto</a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description">Aquí va la descripción del Producto</div>
                           <div class="product-price"> <span class="price"> HNL 5,000.00 </span> <span class="price-before-discount">HNL 7,000.00</span> </div>
@@ -298,7 +305,7 @@
                                 <button style="display: none;" class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
                                 <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                               </li> -->
-                              <li style="margin-left:100%;" class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                              <li style="margin-left:100%;" class="lnk wishlist"> <a class="add-to-cart" href="details.html" title="Agregar a Favoritos"> <i class="icon fa fa-heart"></i> </a> </li>
                               <!-- <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li> -->
                             </ul>
                           </div>
@@ -354,22 +361,23 @@
 </div>
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="assets/js/jquery-1.11.1.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/bootstrap-hover-dropdown.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/echo.min.js"></script>
-<script src="assets/js/jquery.easing-1.3.min.js"></script>
-<script src="assets/js/bootstrap-slider.min.js"></script>
-<script src="assets/js/jquery.rateit.min.js"></script>
+
+<script src="{% static 'js/marazo-js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/bootstrap-hover-dropdown.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/echo.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/jquery.easing-1.3.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/bootstrap-slider.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/jquery.rateit.min.js' %}"></script>
 
 <!-- Quitar -->
 <!-- <script src="assets/js/lightbox.min.js"></script> 
 <script src="assets/js/bootstrap-select.min.js"></script> -->
 
-
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/scripts.js"></script>
+<script src="{% static 'js/marazo-js/wow.min.js' %}"></script>
+<script src="{% static 'js/marazo-js/scripts.js' %}"></script>
 </body>
 
 </html>
+{% endblock %}
