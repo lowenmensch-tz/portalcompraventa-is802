@@ -1,4 +1,7 @@
+currentDateOrder = 'DESC';
+
 jQuery(document).ready(function() {
+    gatherProducts();
     "use strict";
 
 /*===================================================================================*/
@@ -348,18 +351,18 @@ function mostrarMunicipios(){
         $('#municipioDropdown').html('');
         $('#municipioDropdown').append(`
             <option value="00" selected> Munucipio</option>
-            <option value="01">San Pedro Sula</option>
-            <option value="02">Choloma</option>
-            <option value="03">Lima</option>
-            <option value="04">Omoa</option>
-            <option value="05">Pimienta</option>
-            <option value="06">Potrerillos</option>
-            <option value="07">Puerto Cortés</option>
-            <option value="08">San Antonio de Córtes</option>
-            <option value="09">San Francisco de Yojoa</option>
-            <option value="10">San Manuel</option>
-            <option value="11">Santa Cruz de Yojoa</option>
-            <option value="12">Villanueva</option>
+            <option value="29">San Pedro Sula</option>
+            <option value="30">Choloma</option>
+            <option value="31">La Lima</option>
+            <option value="32">Omoa</option>
+            <option value="33">Pimienta</option>
+            <option value="34">Potrerillos</option>
+            <option value="35">Puerto Cortés</option>
+            <option value="36">San Antonio de Córtes</option>
+            <option value="37">San Francisco de Yojoa</option>
+            <option value="38">San Manuel</option>
+            <option value="39">Santa Cruz de Yojoa</option>
+            <option value="40">Villanueva</option>
         `);
         $('#municipioDropdown').show();
     }else if(municipio==08){
@@ -393,21 +396,25 @@ function mostrarMunicipios(){
             <option value="25">Tatumbla</option>
             <option value="26">Valle de Ángeles</option>
             <option value="27">Vallecillo</option>
-            <option value="28">San Francisco</option>
+            <option value="28">Villa de San Francisco</option>
         `);
         $('#municipioDropdown').show();
     }else{
         $('#municipioDropdown').hide(); 
     }
+    gatherProducts();
 }
 
 function changeCategory(category){
     $('#msjCategoria').html("<strong>"+category.text+"</strong>");
+    $('#msjCategoria').data('category',category.dataset.category)
+    gatherProducts();
 
     //Función Ajax para Pedir los productos a mostrar por categoría
 }
 
-function gatherProducts(data){
+function gatherProducts(){
+
     /*
         Aquí se pedirán los productos al backend enviando un JSON con distintos filtros.
         Filtros:
@@ -419,10 +426,108 @@ function gatherProducts(data){
                 Fecha de Publicación
                     Mas Reciente a Mas antiguo o viceversa
     */
+    category = $('#msjCategoria').data('category');
+    department = $('#deptoDropdown').val();
+    console.log(department);
+    town = $('#municipioDropdown').val();
+    min = $('#minValue').val();
+    max = $('#maxValue').val();
+
+
+    category == "" ? category = '%' : category = category.replaceAll(/(<strong>)|(<\/strong>)/ig,'');
+    department == 00 ? department = '%' : department = department;
+    town == 00 ? town = '%' : town = town;
+
+    $.ajax({
+        url : "ajax/findProducts",
+        type : "POST", 
+        data : {
+            categoria : category, 
+            departamento: department, 
+            municipio : town,
+            preciomin : min, 
+            preciomax: max, 
+            fechaPublicacion : currentDateOrder.replaceAll(/'/ig,'')
+            },
+
+        // Success
+        success : function(data) {
+            if (data.data == undefined){
+                $('#prodcutsShowcase').html('NO SE ENCONTRARON PRODUCTOS');
+            }else{
+                showProducts(data.data);
+            }
+        },
+
+        // Non-Success
+        error : function() {
+            console.error("An error Ocurred");
+        }
+    });
+
+}
+
+function dateOrder(){
+    currentDateOrder == 'DESC' ? currentDateOrder = 'ASC' : currentDateOrder = 'DESC';
+    gatherProducts();
 }
 
 function showProducts(data){
+
     //Aquí se mostrarán los productos obtenidos de la consulta a la base de datos
+
+    /**
+     *  0 = id articulo
+     *  1 = nombre
+     *  2 = precio
+     *  3 = descripción
+     *  4 = fecha
+     *  5 = departamento
+     *  6 = municipio
+     *  7 = cantidad disponible
+     *  8 = usuario
+     *  9 = imagen
+     */
+    $('#prodcutsShowcase').html('');
+    for (i=0; i<data.length;i++){
+        $('#prodcutsShowcase').append(`
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="item">
+                    <div class="products">
+                        <div class="product">
+                            <div class="product-image">
+                                <div class="image">
+
+                                    <a href="detail.html"> <!-- Aquí va la url del detalle del producto -->
+
+                                    <img src="${data[i][9]}" alt="">
+                                    <img src="${data[i][9]}" alt="" class="hover-image">
+                                    </a>
+                                </div>
+                            </div>
+        
+                            <div class="product-info text-left">
+                                <h3 class="name"><a href="details">${data[i][1]}</a></h3>
+                                <div class="rating rateit-small"></div>
+                                <div class="description">${data[i][3]}</div>
+                                <div class="product-price"> <span class="price"> HNL ${data[i][2]} </span> </div>
+                            </div>
+
+                            <div class="cart clearfix animate-effect">
+                                <div class="action">
+                                    <ul class="list-unstyled">
+                                        <li style="margin-left:100%;" class="lnk wishlist"> <a class="add-to-cart" href="details.html" title="Agregar a Favoritos"> <i class="icon fa fa-heart"></i> </a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+    }
+
 }
 
 function priceRange(){

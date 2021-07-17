@@ -145,14 +145,14 @@ def findProducts(request):
                             ON ARTICULO.id_articulo = IMAGEN.fk_articulo
                             WHERE (fk_categoria like '%s' AND precio BETWEEN '%s' AND '%s')
                             AND (fk_departamento  like '%s' AND fk_municipio like '%s') AND publicado = 1
-                            ORDER BY fecha_publicacion '%s';""" % (categoria, preciomin, preciomax, departamento, municipio, fechaPublicacion)
+                            ORDER BY fecha_publicacion %s;""" % (categoria, preciomin, preciomax, departamento, municipio, fechaPublicacion)
         try:
             cursor.execute(articulosQuery)
             result = cursor.fetchall()
             cursor.close()
             if result != []:
-                articulos = json.dumps(result)
-                return HttpResponse(json.dumps({'status':'Success', 'data':articulos}),content_type="application/json")
+                #articulos = json.dumps(result)
+                return HttpResponse(json.dumps({'status':'Success', 'data':result}),content_type="application/json")
             else:
                 return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
         except Exception as e:
