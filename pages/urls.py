@@ -10,5 +10,6 @@ path('ajax/loginValidation', loginValidation, name='login_validation'),
 path('register', register, name='register_page'),
 path('ajax/registerUser', registerUser, name='register_user'),
 path('categories', productCategories, name='categories_page'),
+path('ajax/findProducts', findProducts, name='find_products'),
 path('details', productDetails, name='details_page'), #Aqui debe ir una expresión regular ya que se envian métodos GET
 ]
