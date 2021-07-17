@@ -45,7 +45,8 @@ CREATE TABLE ARTICULO(
     descripcion VARCHAR(250),
     publicado BOOL NOT NULL,
     fecha_publicacion DATETIME NOT NULL DEFAULT NOW(),
-    fk_direccion INT NOT NULL,
+    fk_departamento INT NOT NULL,
+    fk_municipio INT NOT NULL,
     cantidad_disponible INT DEFAULT 1,
     fk_categoria INT NOT NULL,
     fk_usuario INT NOT NULL,
@@ -55,7 +56,7 @@ CREATE TABLE ARTICULO(
 /*Creacion de la tabla de imágenes.*/
 CREATE TABLE IMAGEN(
 	id_imagen INT NOT NULL AUTO_INCREMENT UNIQUE,
-    enlace_imagen VARCHAR(100) NOT NULL,
+    enlace_imagen VARCHAR(400) NOT NULL,
     fk_articulo INT NOT NULL,
     PRIMARY KEY (id_imagen)
 );
@@ -128,7 +129,8 @@ ALTER TABLE COMENTARIO ADD FOREIGN KEY (fk_dirigidoA) REFERENCES ARTICULO (id_ar
 ALTER TABLE COMENTARIO ADD FOREIGN KEY (fk_dirigidoA) REFERENCES DENUNCIA (id_denuncia);
 ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_categoria) REFERENCES CATEGORIA (id_categoria);
 ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_usuario) REFERENCES USUARIO (id_usuario);
-ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_direccion) REFERENCES DIRECCION (id_direccion);
+ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_departamento) REFERENCES DEPARTAMENTO (id_departamento);
+ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_municipio) REFERENCES MUNICIPIO (id_municipio);
 ALTER TABLE IMAGEN ADD FOREIGN KEY (fk_articulo) REFERENCES ARTICULO (id_articulo);
 ALTER TABLE COMENTARIO ADD FOREIGN KEY (fk_usuarioComentador) REFERENCES USUARIO (id_usuario);
 ALTER TABLE SUSCRIPCION ADD FOREIGN KEY (fk_usuario) REFERENCES USUARIO (id_usuario);
@@ -139,8 +141,6 @@ ALTER TABLE CALIFICACION ADD FOREIGN KEY (fk_usuarioCalificador) REFERENCES USUA
 ALTER TABLE CALIFICACION ADD FOREIGN KEY (fk_usuarioCalificado) REFERENCES USUARIO (id_usuario);
 ALTER TABLE FAVORITO ADD FOREIGN KEY (fk_usuario) REFERENCES USUARIO (id_usuario);
 ALTER TABLE FAVORITO ADD FOREIGN KEY (fk_articulo) REFERENCES ARTICULO (id_articulo);
-ALTER TABLE DIRECCION ADD FOREIGN KEY (fk_departamento) REFERENCES DEPARTAMENTO (id_departamento);
-ALTER TABLE DIRECCION ADD FOREIGN KEY (fk_municipio) REFERENCES MUNICIPIO (id_municipio);
 ALTER TABLE USUARIO ADD INDEX in_contra (contrasenia);
 CREATE UNIQUE INDEX in_correo ON USUARIO(correo);
 /*
@@ -209,38 +209,46 @@ INSERT INTO MUNICIPIO (nombre) VALUES
 ("San Francisco de Yojoa"),
 ("San Manuel"),
 ("Santa Cruz de Yojoa"),
-("Villanueva");
+("Villanueva"),
+("Ninguno"); /* En caso de que no se indique un municipio por defecto el id_municipio debe de asignarse con valor 41 */
 
-INSERT INTO DIRECCION (fk_departamento, fk_municipio) VALUES
-(1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (1,8), (1,9),
-(1,10), (1,11), (1,12), (1,13), (1,14), (1,15), (1,16), (1,17),
-(1,18), (1,19), (1,20), (1,21), (1,22), (1,23), (1,24), (1,25),
-(1,26), (1,27), (1,28), (2,NULL), (3,NULL), (4,NULL), (5,NULL),
-(6,NULL), (7,29), (7,30), (7,31), (7,32), (7,33), (7,34), (7,35), 
-(7,36), (7,37), (7,38), (7,39), (7,40), (8,NULL), (9,NULL), (10,NULL),
-(11,NULL), (12,NULL), (13,NULL), (14,NULL), (15,NULL), (16,NULL),
-(17,NULL), (18,NULL);
+INSERT INTO CATEGORIA (nombre) VALUES
+("Inmuebles"),
+("Vehículos"),
+("Hogar"),
+("Moda"),
+("Futuros Padres"),
+("Mascotas"),
+("Electrónica"),
+("Servicios"),
+("Negocios"),
+("Empleo");
 
 /*
 	Introduccion de datos de prueba.
 	Por defecto se dejan como comentario, por si no es necesario su uso para hacer evaluaciones.
 */
-
 /*
-INSERT INTO CATEGORIA (nombre) VALUES
-("Belleza"),
-("Tecnología"),
-("Hogar");
-
 INSERT INTO USUARIO (nombre_completo,correo,telefono,direccion,estado, contrasenia) VALUES
 ("Josue Padilla","josuepadilla_13@outlook.com","+504 9687-7077","Colonia Víctor F. Ardon",1,"Josue"),
 ("Yefri Ramos","yefriyefriyefri@yefri.com","+504 2222-2222","CA-5 KM 86",1,"Yefri"),
-("Juan Orlando","quebonitoesrobar@joh.com","+504 0666-6969","Casa presidencial",1,"Juan");
+("Juan Orlando","quebonitoesrobar@joh.com","+504 0666-6969","Casa presidencial",1,"Juan"),
+("Daniel Caceres","daniel@daniel.com","+504 2222-4477","Col. Kennedy",1,"daniel"),
+("Marta Nielsen","marta@marta.com","+504 2225-4474","Winden",1,"marta"),
+("Anatoly Dyatlov","Anatoly@anatoly.com","+504 2569-4477","Col. 21 de Octubre",1,"anatoly");
 
-INSERT INTO ARTICULO (nombre,precio,descripcion,publicado,fecha_publicacion,fk_direccion,cantidad_disponible,fk_categoria,fk_usuario) VALUES
-("Plancha",100.5,"Plancha para el pelo.",0,NOW(),1,4,1,1),
-("Teclado",123.6,"Teclado de computadora.",0,NOW(),1,1,2,2),
-("Juego de platos",500.0,"Juego de platos de porcelana.",0,NOW(),18,6,3,3);
+INSERT INTO ARTICULO (nombre,precio,descripcion,publicado,fecha_publicacion,fk_departamento,
+fk_municipio, cantidad_disponible,fk_categoria,fk_usuario) VALUES
+("Plancha",100.5,"Plancha para el pelo.",0,NOW(),1,1,4,1,1),
+("Teclado",123.6,"Teclado de computadora.",0,NOW(),1,1,1,7,2),
+("Juego de platos",500.0,"Juego de platos de porcelana.",0,NOW(),18,41,6,3,3),
+("Smart TV",8000.00,"Smart TV de 32 pulg. marca Samsung",1,STR_TO_DATE('2021-09-14 10:53:00', '%Y-%c-%d %H:%i:%s'),1,1,4,7,1),
+("Monitor gamer",7000.00,"Monitor 4K 60FPS marca ASUS",1,STR_TO_DATE('2021-08-14 10:53:00', '%Y-%c-%d %H:%i:%s'),1,1,4,7,1),
+("Casa",100000,"Casa de dos plantas y 4 cuartos",1,STR_TO_DATE('2021-07-22 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,1,1,2),
+("Laptop toshiba",8500.00,"Laptop estado 9/10 con procesador i7 4th generacion",1,STR_TO_DATE('2021-05-14 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,7,7,6),
+("Telefono C115",50000,"Telefono C115 de alta resistencia a golpes",1,STR_TO_DATE('2005-08-14 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,1,7,5),
+("Mochila para laptop",650.00,"Mochila para laptop de 15 pulg",1,STR_TO_DATE('2021-08-14 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,1,7,6),
+("Moto Ninja",80000.00,"Moto ninja marca ninja",1,STR_TO_DATE('2007-08-14 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,1,2,5);
 
 INSERT INTO SUSCRIPCION (fk_usuario,fk_categoria) VALUES
 (1,2),
@@ -262,8 +270,18 @@ INSERT INTO FAVORITO (fk_usuario,fk_articulo) VALUES
 (1,2),
 (2,3);
 
+INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
+("Usuario", "Excelente, es un vendedor responsable", 1, 2);
+
 INSERT INTO IMAGEN (enlace_imagen,fk_articulo) VALUES
 ("https://i.pinimg.com/736x/38/df/d6/38dfd62e9e00f715c574d2bb48e6c511.jpg",1),
 ("https://img-9gag-fun.9cache.com/photo/aMx66Bx_460s.jpg",2),
-("http://images7.memedroid.com/images/UPLOADED616/5a57a2efcef03.jpeg",3);
+("http://images7.memedroid.com/images/UPLOADED616/5a57a2efcef03.jpeg",3),
+("https://media.istockphoto.com/photos/samsung-smart-tv-and-social-media-picture-id483575898",4),
+("https://media.istockphoto.com/photos/streaming-live-esport-event-on-computer-at-home-picture-id1190641416",5),
+("https://media.istockphoto.com/photos/beautiful-modern-home-with-various-materials-used-on-the-facade-picture-id1263902259",6),
+("https://media.istockphoto.com/photos/toshiba-laptop-picture-id458939833",7),
+("https://http2.mlstatic.com/D_NQ_NP_783970-MCO43970880790_112020-O.webp",8),
+("https://http2.mlstatic.com/D_NQ_NP_2X_850278-MCO43243494755_082020-F.webp",9),
+("https://http2.mlstatic.com/D_NQ_NP_2X_640863-MCO43374253675_092020-F.webp",10);
 */
