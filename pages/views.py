@@ -159,6 +159,8 @@ def findProducts(request):
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+
 """
     Devuelve la vista de Detalles del Producto.
     
@@ -169,3 +171,112 @@ def findProducts(request):
 def productDetails(request):
     return render(request,'detail.html',)
 
+
+"""
+    Devuelve un JSON con la información de los artículos publicados. 
+    @url idProducto-titulo-del-producto
+
+    Por medio de la url se sustrae el id del producto y se busca en la base de datos.
+"""
+@csrf_exempt
+def productDetailsDescription(request, url):
+    
+    #if request.method == 'POST':
+
+        idProduct = int( url.split('-')[0] ) 
+
+        sqlProduct = """
+        SELECT 
+            a.nombre AS Title, 
+            a.descripcion AS Description,
+            CAST(FORMAT(a.precio, 2) AS CHAR) AS Price, 
+            a.fk_usuario AS User
+        FROM 
+            ARTICULO AS a
+        INNER JOIN 
+            CATEGORIA AS c ON a.fk_categoria = c.id_categoria
+        INNER JOIN 
+            DEPARTAMENTO AS d ON a.fk_departamento = d.id_departamento
+        WHERE 
+            a.id_articulo = %s;
+            """ % (idProduct)
+
+        sqlImage = """
+        SELECT
+            enlace_imagen AS Image
+        FROM    
+            IMAGEN
+        WHERE   
+            fk_articulo = %s;
+        """ % (idProduct)
+
+        try:
+            resultProduct = transaction(sqlProduct)
+            resultImage = transaction(sqlImage)
+
+            if resultProduct != []:
+
+                #Calificación (promedio) que tiene un vendedor
+                sqlAVG = """
+                SELECT 
+                    CAST(AVG(calificacion) AS CHAR) AS AVG_Rating
+                FROM 
+                    CALIFICACION 
+                WHERE 
+                    fk_usuarioCalificado = %s;
+                """ % (resultProduct[0][-1]) # id user 
+
+                resultAVG = transaction(sqlAVG)
+                print( resultAVG )
+
+                return HttpResponse(json.dumps(
+                    { 
+                        'status':'Success', 
+                        **{
+                            'title':resultProduct[0][0], 
+                            'description':resultProduct[0][1], 
+                            'price':resultProduct[0][2], 
+                        }, 
+                        **{ 
+                            'rating': 0 if resultAVG[0][0] is None else float(resultAVG[0][0])
+                        }, 
+                        **urlphoto(resultImage) 
+                    
+                    }), content_type="application/json")
+            else:
+                return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    #else:
+    #    return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+    
+
+"""
+    Devuelve un JSON con la información de los comentarios de los artículos publicados.
+"""
+@csrf_exempt
+def productDetailsComments(request):
+    pass
+
+
+"""
+    Devuelve el resultado de la ejecución de una consulta a la base de datos.
+"""
+def transaction(sql): 
+    
+    database, cursor = conexion.conectar()
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    cursor.close()
+
+    return result
+
+
+def urlphoto(data):
+    
+    if data: 
+        jso = {}
+        for i in range(len(data)):
+            jso['photo' + str(i)] = data[i][0]
+
+    return jso
