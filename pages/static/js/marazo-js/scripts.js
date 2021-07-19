@@ -498,7 +498,8 @@ function showProducts(data){
                             <div class="product-image">
                                 <div class="image">
 
-                                    <a href="detail.html"> <!-- Aquí va la url del detalle del producto -->
+                                <!-- <a href="detail.html">  Aquí va la url del detalle del producto -->
+                                    <a href="details/${convertURL(data[i][1], data[i][0])}"> <!-- Aquí va la url del detalle del producto -->
 
                                     <img src="${data[i][9]}" alt="">
                                     <img src="${data[i][9]}" alt="" class="hover-image">
@@ -507,7 +508,7 @@ function showProducts(data){
                             </div>
         
                             <div class="product-info text-left">
-                                <h3 class="name"><a href="details">${data[i][1]}</a></h3>
+                                <h3 class="name"><a href="details/${convertURL(data[i][1], data[i][0])}">${data[i][1]}</a></h3>
                                 <div class="rating rateit-small"></div>
                                 <div class="description">${data[i][3]}</div>
                                 <div class="product-price"> <span class="price"> HNL ${data[i][2]} </span> </div>
@@ -528,6 +529,10 @@ function showProducts(data){
         `);
     }
 
+}
+
+function convertURL(nameProduct, idProduct){
+    return  idProduct.toString() + '-' + nameProduct.toLowerCase().replaceAll(/ /g,'-').replaceAll(/[^\w-]+/g,'');
 }
 
 function priceRange(){

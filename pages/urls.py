@@ -12,5 +12,5 @@ path('ajax/registerUser', registerUser, name='register_user'),
 path('categories', productCategories, name='categories_page'),
 path('ajax/findProducts', findProducts, name='find_products'),
 path('details', productDetails, name='details_page'), #Aqui debe ir una expresión regular ya que se envian métodos GET
-url(r'^details\/(\d{1,4}\-[a-zA-Z-]+)/$', productDetailsDescription), # esta cosa solo es de prueba uwu
+url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/$', productDetailsDescription), # esta cosa solo es de prueba uwu
 ]
