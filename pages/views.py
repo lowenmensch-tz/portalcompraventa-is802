@@ -171,6 +171,56 @@ def findProducts(request):
 def productDetails(request):
     return render(request,'detail.html',)
 
+"""
+    Petición para postear un nuevo artículo.
+
+    @param request: JSON con la información del nuevo articulo a publicar.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion:
+        
+        Success: La ejecución fue exitosa y se encontraron registros.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def almacenarArticulo(request):
+    if request.method == 'POST':
+        nombre, precio, descripcion = request.POST.get('nombre'), request.POST.get('precio'), request.POST.get('descripcion')
+        fk_departamento, fk_municipio, = request.POST.get('fk_departamento'), request.POST.get('fk_municipio')
+        cantidad_disponible, fk_categoria, fk_usuario = request.POST.get('cantidad_disponible'), request.POST.get('fk_categoria'), request.POST.get('fk_usuario')
+        link_imagen1,link_imagen2,link_imagen3  = request.POST.get('link_imagen1'), request.POST.get('link_imagen2'), request.POST.get('link_imagen3')
+        link_imagen4, link_imagen5 = request.POST.get('link_imagen4'), request.POST.get('link_imagen5')
+
+        listaImagenes = [link_imagen1, link_imagen2, link_imagen3, link_imagen4, link_imagen5]
+        listaImagenesContenido = []
+        for i in range(5):
+            if listaImagenes[i] != 0:
+                listaImagenesContenido.append(listaImagenes[i])
+
+        database, cursor = conexion.conectar()
+        postQuery = """INSERT INTO ARTICULO (nombre,precio,descripcion,publicado,fecha_publicacion,fk_departamento,
+                        fk_municipio,cantidad_disponible,fk_categoria,fk_usuario) VALUES ('%s', CAST('%s' AS DECIMAL(13,4)), 
+                        '%s', 1, NOW(), %s, %s, %s, %s, %s)""" % (nombre,precio,descripcion,fk_departamento,fk_municipio,cantidad_disponible,fk_categoria,fk_usuario)
+
+        fkArticuloQuery = "SELECT LAST_INSERT_ID();"
+        
+        try:
+            cursor.execute(postQuery)
+            database.comit()
+            cursor.execute(fkArticuloQuery)
+            result = cursor.fetchone()
+
+            for i in range(len(listaImagenesContenido)):
+                insertImageQuery = """INSERT INTO IMAGEN (enlace_imagen,fk_articulo) VALUES
+                                    ('%s',%s);""" % (listaImagenesContenido[i],result[0])
+                cursor.execute(insertImageQuery)
+            database.comit()
+            cursor.close()
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
 
 """
     Devuelve un JSON con la información de los artículos publicados. 
