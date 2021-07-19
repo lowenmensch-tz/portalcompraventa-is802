@@ -29,13 +29,6 @@ CREATE TABLE MUNICIPIO(
     PRIMARY KEY (id_municipio)
 );
 
-/*Creacion de la tabla de municipios.*/
-CREATE TABLE DIRECCION(
-	id_direccion INT NOT NULL AUTO_INCREMENT UNIQUE,
-    fk_departamento INT NOT NULL,
-    fk_municipio INT,
-    PRIMARY KEY (id_direccion)
-);
 
 /*Creacion de la tabla de artículos.*/
 CREATE TABLE ARTICULO(
@@ -124,9 +117,6 @@ CREATE TABLE FAVORITO(
 );
 
 /*Creacion, por aparte, de las llaves foráneas, relaciones entre las tablas e indices.*/
-ALTER TABLE COMENTARIO ADD FOREIGN KEY (fk_dirigidoA) REFERENCES USUARIO (id_usuario);
-ALTER TABLE COMENTARIO ADD FOREIGN KEY (fk_dirigidoA) REFERENCES ARTICULO (id_articulo);
-ALTER TABLE COMENTARIO ADD FOREIGN KEY (fk_dirigidoA) REFERENCES DENUNCIA (id_denuncia);
 ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_categoria) REFERENCES CATEGORIA (id_categoria);
 ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_usuario) REFERENCES USUARIO (id_usuario);
 ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_departamento) REFERENCES DEPARTAMENTO (id_departamento);
@@ -224,18 +214,26 @@ INSERT INTO CATEGORIA (nombre) VALUES
 ("Negocios"),
 ("Empleo");
 
+/*
+	Introduccion de datos de prueba.
+	Por defecto se dejan como comentario, por si no es necesario su uso para hacer evaluaciones.
+*/
 
-	-- Introduccion de datos de prueba.
-	-- Por defecto se dejan como comentario, por si no es necesario su uso para hacer evaluaciones.
-
-
+/*
 INSERT INTO USUARIO (nombre_completo,correo,telefono,direccion,estado, contrasenia) VALUES
 ("Josue Padilla","josuepadilla_13@outlook.com","+504 9687-7077","Colonia Víctor F. Ardon",1,"Josue"),
 ("Yefri Ramos","yefriyefriyefri@yefri.com","+504 2222-2222","CA-5 KM 86",1,"Yefri"),
 ("Juan Orlando","quebonitoesrobar@joh.com","+504 0666-6969","Casa presidencial",1,"Juan"),
 ("Daniel Caceres","daniel@daniel.com","+504 2222-4477","Col. Kennedy",1,"daniel"),
 ("Marta Nielsen","marta@marta.com","+504 2225-4474","Winden",1,"marta"),
-("Anatoly Dyatlov","Anatoly@anatoly.com","+504 2569-4477","Col. 21 de Octubre",1,"anatoly");
+("Anatoly Dyatlov","Anatoly@anatoly.com","+504 2569-4477","Col. 21 de Octubre",1,"anatoly"),
+("Francisco Maradiaga","francisco@francisco.com","+504 2225-4474","Calle policarpo Paz",1,"francisco"),
+("Mery Pinoth","mery@mery.com","+504 2225-4474","Col. Los Pinos",1,"mery"),
+("Luis Moncada","luis@luis.com","+504 2225-4474","Col. Los Llanos",1,"luis"),
+("Martin Mondragos","martin@martin.com","+504 2225-4474","Col. Los estados unidos",1,"martin"),
+("Mario Martinez","mario@mario.com","+504 2225-4474","Codradia Cortez",1,"mario"),
+("Enriquie Marquez","enrique@enrique.com","+504 2225-4474","Col. La Honduras",1,"Enrique"),
+("Anibal Garcia","anibal@anibal.com","+504 2225-4474","Zona 4 las Uvas",1,"anibal");
 
 INSERT INTO ARTICULO (nombre,precio,descripcion,publicado,fecha_publicacion,fk_departamento,
 fk_municipio, cantidad_disponible,fk_categoria,fk_usuario) VALUES
@@ -248,7 +246,8 @@ fk_municipio, cantidad_disponible,fk_categoria,fk_usuario) VALUES
 ("Laptop toshiba",8500.00,"Laptop estado 9/10 con procesador i7 4th generacion",1,STR_TO_DATE('2021-05-14 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,7,7,6),
 ("Telefono C115",50000,"Telefono C115 de alta resistencia a golpes",1,STR_TO_DATE('2005-08-14 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,1,7,5),
 ("Mochila para laptop",650.00,"Mochila para laptop de 15 pulg",1,STR_TO_DATE('2021-08-14 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,1,7,6),
-("Moto Ninja",80000.00,"Moto ninja marca ninja",1,STR_TO_DATE('2007-08-14 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,1,2,5);
+("Moto Ninja",80000.00,"Moto ninja marca ninja",1,STR_TO_DATE('2007-08-14 10:53:00', '%Y-%c-%d %H:%i:%s'),2,41,1,2,5),
+("Samsung note 20",18000.00,"Smartphone samsung año 2020",1,STR_TO_DATE('2021-08-14 10:53:00', '%Y-%c-%d %H:%i:%s'),1,2,1,7,7);
 
 INSERT INTO SUSCRIPCION (fk_usuario,fk_categoria) VALUES
 (1,2),
@@ -284,3 +283,4 @@ INSERT INTO IMAGEN (enlace_imagen,fk_articulo) VALUES
 ("https://http2.mlstatic.com/D_NQ_NP_783970-MCO43970880790_112020-O.webp",8),
 ("https://http2.mlstatic.com/D_NQ_NP_2X_850278-MCO43243494755_082020-F.webp",9),
 ("https://http2.mlstatic.com/D_NQ_NP_2X_640863-MCO43374253675_092020-F.webp",10);
+*/
