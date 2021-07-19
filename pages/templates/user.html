@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="% static 'css/sb-admin-2.min.css'" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{ static 'css/bondiesStyles.css'}">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Nombre de la Empresa<sup></sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Usuario</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading 
+            <div class="sidebar-heading">
+                Interfaz
+            </div> -->
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Mis productos</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Cerrar Sesion</span></a>
+            </li>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="/login" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="/login" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Tienda</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="/login" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Acerca de Nosotros</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="/login" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Terminos y condiciones</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="/register" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Registrate</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- <a class="small" href="forgot-password.html">Forgot Password?</a> -->
+                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Usuario</span>
+                                <!-- <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg"> -->
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Configuración
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Mis Articulos en Venta
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Salir
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Mi Perfil</h1>
+                            <a data-toggle="modal" data-target="#logoutModal" href="#logoutModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Agregar Nuevo Producto
+                        </a>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card shadow h-100 py-2">
+                                <img class="card-img-top" src="img/undraw_posting_photo.svg" style="padding-top:2rem;">
+                                <div class="card-body">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="col-lg-12 text-center">
+                                                <div class="">
+                                                    <form class="user" id="SocialNetwoksForm" name="SocialNetwoksForm" data-toggle="validator" data-focus="false">
+                                                        <div class="form-group">
+                                                            <label class="custom-label" >Facebook</label>
+                                                            <input type="email" class="form-control form-control-user"
+                                                                id="SNfacebook" name="lemail" aria-describedby="emailHelp"
+                                                                placeholder="Enter Facebook..." required="">
+                                                                <div class="help-block with-errors"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="custom-label" >Twitter</label>
+                                                            <input type="password" class="form-control form-control-user"
+                                                                id="SNtwitter" name="lpassword" placeholder="Enter Twitter..." required="">
+                                                                <div class="help-block with-errors"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="custom-label" >Instagram</label>
+                                                            <input type="password" class="form-control form-control-user"
+                                                                id="SNinstagram" name="lpassword" placeholder="Enter Instagram..." required="">
+                                                                <div class="help-block with-errors"></div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card shadow h-100 py-2">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4" style="padding-top:2rem;">Mis Datos</h1>
+                                </div>
+                                <div class="card-body">
+                                    <form class="user" id="UpdateForm" name="UpdateForm" data-toggle="validator" data-focus="false">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="Ufirstname"
+                                            placeholder="First Name">
+                                            <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="Ulastname"
+                                            placeholder="Last Name">
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="Uemail"
+                                        placeholder="Email Address">
+                                        <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user" id="Upassword"
+                                        placeholder="Password">
+                                        <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="Uphone"
+                                        placeholder="Phone Number">
+                                        <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="Uaddress"
+                                        placeholder="Address">
+                                        <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <select id="Ustate" class="form-control form-control-select dropdown-toggle">
+                                        <option selected>Departamento...</option>
+                                        <option value="Atlántida">Atlántida</option>
+                                        <option value="Colón">Colón</option>
+                                        <option value="Comayagua">Comayagua</option>
+                                        <option value="Copán">Copán</option>
+                                        <option value="Cortés">Cortés</option>
+                                        <option value="Choluteca">Choluteca</option>
+                                        <option value="El Paraíso">El Paraíso</option>
+                                        <option value="Francisco Morazán">Francisco Morazán</option>
+                                        <option value="Gracias a Dios">Gracias a Dios</option>
+                                        <option value="Intibucá">Intibucá</option>
+                                        <option value="Islas de la Bahía">Islas de la Bahía</option>
+                                        <option value="La Paz">La Paz</option>
+                                        <option value="Lempira Gracias">Lempira Gracias</option>
+                                        <option value="Ocotepeque">Ocotepeque</option>
+                                        <option value="Olancho">Olancho</option>
+                                        <option value="Santa Bárbara">Santa Bárbara</option>
+                                        <option value="Valle">Valle</option>
+                                        <option value="Yoro">Yoro</option>
+                                    </select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">Registrarme</button>
+                                <div class="form-message">
+                                    <div id="smsgSubmit" class="h3 text-center hidden"></div>
+                                </div>
+                            </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card shadow h-100 py-2">
+                                
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Productos</h1>
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Estufa de gas
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <img class="card-img-top" src="img/undraw_posting_photo.svg" style="padding-top:2rem;">
+                                                    </div>
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <ul>
+                                                            <li>Categoria</li>
+                                                            <li>Departamento</li>
+                                                            <li>Municipio</li>
+                                                            <li>Precio</li>
+                                                        </ul>
+                                                        <button type="submit" class="btn btn-primary btn-user btn-block">Ver Mas</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <hr>
+
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Estufa de gas
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <img class="card-img-top" src="img/undraw_posting_photo.svg" style="padding-top:2rem;">
+                                                    </div>
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <ul>
+                                                            <li>Categoria</li>
+                                                            <li>Departamento</li>
+                                                            <li>Municipio</li>
+                                                            <li>Precio</li>
+                                                        </ul>
+                                                        <button type="submit" class="btn btn-primary btn-user btn-block">Ver Mas</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <a href="#" class="text-center">Ver mas</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Portal Compra Ventas 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ingresar Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="user" id="ProductForm" name="ProductForm" data-toggle="validator" data-focus="false">
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-user" id="Pname"
+                            placeholder="Nombre">
+                            <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-user" id="Pprice"
+                            placeholder="Precio">
+                            <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="Pdescription" rows="3" placeholder="Descripcion"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <select id="Pstate" class="form-control form-control-select dropdown-toggle">
+                            <option selected>Departamento...</option>
+                            <option value="Atlántida">Atlántida</option>
+                            <option value="Colón">Colón</option>
+                            <option value="Comayagua">Comayagua</option>
+                            <option value="Copán">Copán</option>
+                            <option value="Cortés">Cortés</option>
+                            <option value="Choluteca">Choluteca</option>
+                            <option value="El Paraíso">El Paraíso</option>
+                            <option value="Francisco Morazán">Francisco Morazán</option>
+                            <option value="Gracias a Dios">Gracias a Dios</option>
+                            <option value="Intibucá">Intibucá</option>
+                            <option value="Islas de la Bahía">Islas de la Bahía</option>
+                            <option value="La Paz">La Paz</option>
+                            <option value="Lempira Gracias">Lempira Gracias</option>
+                            <option value="Ocotepeque">Ocotepeque</option>
+                            <option value="Olancho">Olancho</option>
+                            <option value="Santa Bárbara">Santa Bárbara</option>
+                            <option value="Valle">Valle</option>
+                            <option value="Yoro">Yoro</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <select id="Pmunicipio" class="form-control form-control-select dropdown-toggle">
+                            <option selected>Municipio...</option>
+                            <option value="Atlántida">Atlántida</option>
+                            <option value="Colón">Colón</option>
+                            <option value="Comayagua">Comayagua</option>
+                            <option value="Copán">Copán</option>
+                            <option value="Cortés">Cortés</option>
+                            <option value="Choluteca">Choluteca</option>
+                            <option value="El Paraíso">El Paraíso</option>
+                            <option value="Francisco Morazán">Francisco Morazán</option>
+                            <option value="Gracias a Dios">Gracias a Dios</option>
+                            <option value="Intibucá">Intibucá</option>
+                            <option value="Islas de la Bahía">Islas de la Bahía</option>
+                            <option value="La Paz">La Paz</option>
+                            <option value="Lempira Gracias">Lempira Gracias</option>
+                            <option value="Ocotepeque">Ocotepeque</option>
+                            <option value="Olancho">Olancho</option>
+                            <option value="Santa Bárbara">Santa Bárbara</option>
+                            <option value="Valle">Valle</option>
+                            <option value="Yoro">Yoro</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">Guardar Producto</button>
+                    <div class="form-message">
+                        <div id="smsgSubmit" class="h3 text-center hidden"></div>
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'js/jquery/jquery.min.js'}"></script>
+    <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js'}"></script>
+
+</body>
+
+</html>
+{% endblock %}

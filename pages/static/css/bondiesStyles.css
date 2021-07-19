@@ -15,3 +15,12 @@
     border-radius: 10rem;
     height: 3rem;
 }
+
+.blueBondies{
+	color: #224abe;
+}
+
+.blueBondies:hover {
+  color: #0d3bbf;
+  text-decoration: underline;
+}
