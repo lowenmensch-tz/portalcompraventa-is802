@@ -145,6 +145,7 @@ def findProducts(request):
                             ON ARTICULO.id_articulo = IMAGEN.fk_articulo
                             WHERE (fk_categoria like '%s' AND precio BETWEEN '%s' AND '%s')
                             AND (fk_departamento  like '%s' AND fk_municipio like '%s') AND publicado = 1
+                            AND id_imagen IN (SELECT min(id_imagen) FROM IMAGEN group by fk_articulo)
                             ORDER BY fecha_publicacion %s;""" % (categoria, preciomin, preciomax, departamento, municipio, fechaPublicacion)
         try:
             cursor.execute(articulosQuery)
