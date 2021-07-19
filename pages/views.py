@@ -238,6 +238,59 @@ def almacenarArticulo(request):
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
+"""
+    Retorna un JSON con la información del usuario.
+
+    @param request: JSON con el correo del usuario a mostrar.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la petición dentro del mismo JSON se envia
+                          una lista de tuplas que contiene la información del usuario ademas de la calificación y comentarios que este
+                          ha recibido:
+        
+        Success: La ejecución fue exitosa y se encontraron registros.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+
+@csrf_exempt
+def userProfile(request):
+    if request.method == 'POST':
+        id_usuario, calificacion, comentario = request.POST.get('id_usuario'),  request.POST.get('calificacion'), request.POST.get('comentario') #Puede ser el del id_usuario o el id_de cualquier otro usuario que ha publicado un artículo
+
+        database, cursor = conexion.conectar()
+
+        userQuery = """SELECT nombre_completo,correo,telefono,direccion FROM USUARIO
+                       WHERE id_usuario=%s;""" % (id_usuario)
+
+        estrellitasQuery = """SELECT SUM(calificacion) / COUNT(fk_usuarioCalificado) as promedio_estrellas FROM CALIFICACION
+                              WHERE fk_usuarioCalificado = %s;""" % (id_usuario)
+
+        comentariosQuery = """SELECT comentario FROM COMENTARIO WHERE tipo = 'Usuario' AND fk_dirigidoA = %s;""" % (id_usuario)
+
+        try:
+            if calificacion != 0:
+                insertCalificacionQuery = """INSERT INTO CALIFICACION (fk_usuarioCalificador,fk_usuarioCalificado,calificacion) VALUES
+                                             (%s,%s,%s);""" % (request.session['userId'], id_usuario, calificacion)
+                cursor.execute(insertCalificacionQuery)
+            if comentario != 0:
+                insertComentarioQuery = """INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
+                                           ("Usuario",'%s',%s,%s);""" % (comentario, request.session['userId'], id_usuario) # El valor de tipo por defecto va en Usuario
+                cursor.execute(insertComentarioQuery)
+            database.commit()
+
+            cursor.execute(userQuery)
+            resultUser = [cursor.fetchone()]
+            cursor.execute(estrellitasQuery)
+            resultEstrellitas = [cursor.fetchone()]
+            cursor.execute(comentariosQuery)
+            resultComentarios = [cursor.fetchall()]
+            datosUser = resultUser + resultEstrellitas + resultComentarios # Lista de tuplas con los datos del usuario, calificacion y comentarios
+
+            return HttpResponse(json.dumps({'status':'Success', 'data':datosUser}),content_type="application/json")
+        except Exception as e:
+             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
 
 """
     Devuelve un JSON con la información de los artículos publicados. 
