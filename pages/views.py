@@ -20,6 +20,15 @@ def index(request):
         print(request.session['email'])
     return render(request,'index.html',)
 
+@csrf_exempt
+def loggedInValidator(request):
+    if request.session.get('email'):
+
+        request.session.pop('email')
+        return  HttpResponse(json.dumps({'status':'Success','logged':'true'}),content_type="application/json")
+    else:
+        return  HttpResponse(json.dumps({'status':'Success','logged':'false'}),content_type="application/json")
+
 """
     Devuelve la vista de login.
     
@@ -47,14 +56,21 @@ def loginValidation (request):
         email, password, remember = request.POST.get('email'), request.POST.get('password'), request.POST.get('remember')
         database, cursor = conexion.conectar()
         query = "SELECT COUNT(*) FROM USUARIO WHERE correo = '%s' AND contrasenia='%s';" % (email,password)
+        id = "SELECT id_usuario FROM USUARIO WHERE correo = '%s';" % (email)
 
         try:
             cursor.execute(query)
             result = cursor.fetchall()
+
             cursor.close()
             if result[0][0] == 1:
-                if remember:
-                    request.session['email'] = email
+
+                cursor.execute(q)
+                result = cursor.fetchone()
+
+                request.session['email'] = email
+                request.session['userId'] = result[0]
+
                 return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
             else:
                 return HttpResponse(json.dumps({'status':'Failed'}),content_type="application/json")

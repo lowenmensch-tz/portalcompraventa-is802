@@ -43,7 +43,7 @@ function loadData(){
             $('#productName').html(data.title); //Nombre del producto
 
             // El promedio de valoraciones se calcula en el backend
-            $('#productDetailRating').rateit({max: 5, step: 1, value : parseInt(data.rating), resetable : false , readonly : true}); // Promedio de Valoraciones
+            $('#productDetailRating').rateit({max: 5, step: 1, value : parseFloat(data.rating), resetable : false , readonly : true}); // Promedio de Valoraciones
             
             // data.comment.length == undefined ? rate = 0 : rate = data.comment.length;
 
@@ -81,8 +81,6 @@ function loadData(){
             // $('#commentsRow').html('');
 
             for (i=0; i<Object.keys(data.comment).length/2; i++){
-                console.log(data.comment[`userCommenting${i}`]);
-                console.log(data.comment[`comment${i}`]);
 
                 $('#commentsRow').append(`
                     <div class="col-md-2 col-sm-2">
