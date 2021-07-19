@@ -258,20 +258,34 @@ def productDetailsDescription(request, url):
 
             if resultProduct != []:
 
-                return HttpResponse(json.dumps(
-                    { 
-                        'status':'Success', 
-                        **{
-                            'title':resultProduct[0][0], 
-                            'description':resultProduct[0][1], 
-                            'price':resultProduct[0][2], 
-                        }, 
-                        **productDetailsRating(resultProduct[0][-1]), # Calificación (promedio) del vendedor
-                        **productDetailsImage(idProduct=idProduct),    # Imagen del producto
-                        **productDetailsComments(idProduct=idProduct)  # Comentarios del producto
+                #return HttpResponse(json.dumps(
+                #    { 
+                #        'status':'Success', 
+                #        **{
+                #            'title':resultProduct[0][0], 
+                #            'description':resultProduct[0][1], 
+                #            'price':resultProduct[0][2], 
+                #        }, 
+                #        **productDetailsRating(resultProduct[0][-1]), # Calificación (promedio) del vendedor
+                #        **productDetailsImage(idProduct=idProduct),    # Imagen del producto
+                #        **productDetailsComments(idProduct=idProduct)  # Comentarios del producto
+                #    
+                #    }), content_type="application/json")
 
-                    
-                    }), content_type="application/json")
+                return render(request, 
+                        'detail.html', 
+                            { 
+                                'status':'Success', 
+                                **{
+                                    'title':resultProduct[0][0], 
+                                    'description':resultProduct[0][1], 
+                                    'price':resultProduct[0][2], 
+                                }, 
+                                **productDetailsRating(resultProduct[0][-1]), # Calificación (promedio) del vendedor
+                                'image': productDetailsImage(idProduct=idProduct),    # Imagen del producto
+                                'comment': productDetailsComments(idProduct=idProduct)  # Comentarios del producto
+                            }
+                    )
             else:
                 return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
         except Exception as e:
@@ -385,6 +399,6 @@ def convertToDictionary(data, key):
             for i in range(len(key)):
                 jso[key[i]] = ''
         else:
-            jso[key] = ''
+            jso[key + '0'] = ''
                 
     return jso
