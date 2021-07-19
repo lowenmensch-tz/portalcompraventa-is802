@@ -219,7 +219,6 @@ INSERT INTO CATEGORIA (nombre) VALUES
 	Por defecto se dejan como comentario, por si no es necesario su uso para hacer evaluaciones.
 */
 
-/*
 INSERT INTO USUARIO (nombre_completo,correo,telefono,direccion,estado, contrasenia) VALUES
 ("Josue Padilla","josuepadilla_13@outlook.com","+504 9687-7077","Colonia Víctor F. Ardon",1,"Josue"),
 ("Yefri Ramos","yefriyefriyefri@yefri.com","+504 2222-2222","CA-5 KM 86",1,"Yefri"),
@@ -283,4 +282,3 @@ INSERT INTO IMAGEN (enlace_imagen,fk_articulo) VALUES
 ("https://http2.mlstatic.com/D_NQ_NP_783970-MCO43970880790_112020-O.webp",8),
 ("https://http2.mlstatic.com/D_NQ_NP_2X_850278-MCO43243494755_082020-F.webp",9),
 ("https://http2.mlstatic.com/D_NQ_NP_2X_640863-MCO43374253675_092020-F.webp",10);
-*/
