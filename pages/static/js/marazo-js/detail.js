@@ -45,9 +45,9 @@ function loadData(){
             // El promedio de valoraciones se calcula en el backend
             $('#productDetailRating').rateit({max: 5, step: 1, value : parseInt(data.rating), resetable : false , readonly : true}); // Promedio de Valoraciones
             
-            data.comment.length == undefined ? rate = 0 : rate = data.comment.length;
+            // data.comment.length == undefined ? rate = 0 : rate = data.comment.length;
 
-            $('#reviewCount').html(`(${rate} Reseñas)`); // Cantidad de Reseñas recibidas
+            // $('#reviewCount').html(`(${rate} Reseñas)`); // Cantidad de Reseñas recibidas
         
             $('#productDescription').html(`<p>${data.description}</p>
             `); //Descripción del Producto
@@ -59,66 +59,56 @@ function loadData(){
             $('#publisherPhone').val('PHONE NUMBER');
             $('#publisherAddress').val('ADDRESS');
 
+            // $('#owl-single-product').html('');
+            // $('#owl-single-product-thumbnails').html('');
+            // console.log(data.image.photo0);
+            // $('#productImage1').data('echo',data.image.photo0);
+            // $('#imagenProducto1').attr('href',data.image.photo0);
+
             $('#owl-single-product').html('');
             $('#owl-single-product-thumbnails').html('');
-            
-            // for (i=1;i<data.image.length;i++){
-            //     $('#owl-single-product').append(`
-            //         <div class="single-product-gallery-item" id="slide${i+1}">
-            //             <a data-lightbox="image-1" data-title="Galeria" href="${data.image[i]}">
-            //                 <img class="img-responsive" alt="" src="{% static 'img/marazo-img/blank.gif' %}" data-echo="${data.image[i]}">
-            //             </a>
-            //         </div>
-            //     `);
-        
-            //     $('#owl-single-product-thumbnails').append(`
-            //         <div class="item">
-            //             <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="${i+1}" href="#slide${i+1}">
-            //                 <img class="img-responsive" alt="" src="{% static 'img/marazo-img/blank.gif' %}" data-echo="${data.image[i]}">
-            //             </a>
-            //         </div>
-            //     `);
-            // }
+
+            $('#owl-single-product').append(`
+                <div class="single-product-gallery-item" id="slide1">
+                    <a data-lightbox="image-1" data-title="Galeria" href="${data.image.photo0}">
+                        <img class="img-responsive" alt="" src="https://drive.google.com/uc?export=view&id=1kWdiW6kBydwbjkmhzdLtcfq0YsbvmmWT" data-echo="${data.image.photo0}">
+                    </a>
+                </div>
+            `);
+
+            // console.log(Object.keys(data.comment).length);
+            // console.log(data.comment);
+            // $('#commentsRow').html('');
+
+            for (i=0; i<Object.keys(data.comment).length/2; i++){
+                console.log(data.comment[`userCommenting${i}`]);
+                console.log(data.comment[`comment${i}`]);
+
+                $('#commentsRow').append(`
+                    <div class="col-md-2 col-sm-2">
+                        <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="Responsive image" class="img-rounded img-responsive">
+                    </div>
+                    <div class="col-md-10 col-sm-10 blog-comments outer-bottom-xs">
+                        <div class="blog-comments inner-bottom-xs">
+                            <h4>${data.comment[`userCommenting${i}`]}</h4>
+                            <span class="review-action pull-right">
+                                <div class="rating rateit-small"></div>
+                                <!-- <a href="#"> Repost</a> &sol;
+                                <a href="#"> Reply</a> -->
+                            </span>
+                            <p>${data.comment[`comment${i}`]}</p>
+                        </div>
+                    </div>
+                `);
+
+                $('#commentsRow').append(`<div class="post-load-more col-md-12"><a class="btn btn-upper btn-primary" onclick="" >Cargar más Comentarios</a></div>`)
+
+                
+            }
+
         }
     });
 
-    // Con los datos obtenidos se colocarán los datos en sus respectivos lugares
-
-    //Galería de Imágenes 
-
-    // imagenes = [
-    //     'https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg',
-    //     'https://wallpapercave.com/wp/wp7648650.jpg',
-    //     'https://images2.alphacoders.com/111/thumb-1920-1110623.png',
-    //     'https://i2.wp.com/www.gameoverla.com/wp-content/uploads/2021/06/E2stFIqVIAAbrVi.jpg?fit=2048%2C945&ssl=1',
-    //     'https://wallpapersmug.com/download/2248x2248/fb20d9/xiao-enshin-impact.jpeg'
-    // ]
-
-    // "Cargar" las imágenes dentro del div
-
-    // for (i=1;i<imagenes.length;i++){
-    //     $('#owl-single-product').append(`
-    //         <div class="single-product-gallery-item" id="slide${i+1}">
-    //             <a data-lightbox="image-1" data-title="Galeria" href="${imagenes[i]}">
-    //                 <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="${imagenes[i]}">
-    //             </a>
-    //         </div>
-    //     `);
-
-        // $('#owl-single-product').append(`<p>Hola</p>`);
-        // $('#owl-single-product-thumbnails').append(`<p>Hola</p>`);
-
-    //     $('#owl-single-product-thumbnails').append(`
-    //         <div class="item">
-    //             <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="${i+1}" href="#slide${i+1}">
-    //                 <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="${imagenes[i]}">
-    //             </a>
-    //         </div>
-    //     `);
-    // }
-
-
-    
     
     
 }
