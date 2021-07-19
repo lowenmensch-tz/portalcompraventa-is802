@@ -216,7 +216,7 @@ def almacenarArticulo(request):
             database.comit()
             cursor.close()
             return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
-        except:
+        except Exception as e:
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
