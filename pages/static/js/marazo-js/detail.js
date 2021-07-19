@@ -31,27 +31,68 @@ function sessionCheck(){
 function loadData(){
 
     // Esta petición es del tipo GET ya que se pasan los parámetros por URL para saber la información del Artículo y del Vendedor
+    rate = 0;
 
-    // $.ajax({
-    //     type: "GET",
-    //     url: "",
-    //     data: data,
-    //     success: function(data) {
-    //        console.log('success');
-    //     }
-    // });
+    $.ajax({
+        type: "POST",
+        url:  `ajax/productDetailsDescription`,
+        data: {
+            url: window.location.pathname.replaceAll(/(\/details\/)|(\/)/g,"")
+        },
+        success: function(data) {
+            $('#productName').html(data.title); //Nombre del producto
+
+            // El promedio de valoraciones se calcula en el backend
+            $('#productDetailRating').rateit({max: 5, step: 1, value : parseInt(data.rating), resetable : false , readonly : true}); // Promedio de Valoraciones
+            
+            data.comment.length == undefined ? rate = 0 : rate = data.comment.length;
+
+            $('#reviewCount').html(`(${rate} Reseñas)`); // Cantidad de Reseñas recibidas
+        
+            $('#productDescription').html(`<p>${data.description}</p>
+            `); //Descripción del Producto
+        
+            $('#productPrice').html(`HNL ${data.price}`);
+        
+            $('#publisher').val('USER');
+            $('#publisherEmail').val('EMAIL');
+            $('#publisherPhone').val('PHONE NUMBER');
+            $('#publisherAddress').val('ADDRESS');
+
+            $('#owl-single-product').html('');
+            $('#owl-single-product-thumbnails').html('');
+            
+            // for (i=1;i<data.image.length;i++){
+            //     $('#owl-single-product').append(`
+            //         <div class="single-product-gallery-item" id="slide${i+1}">
+            //             <a data-lightbox="image-1" data-title="Galeria" href="${data.image[i]}">
+            //                 <img class="img-responsive" alt="" src="{% static 'img/marazo-img/blank.gif' %}" data-echo="${data.image[i]}">
+            //             </a>
+            //         </div>
+            //     `);
+        
+            //     $('#owl-single-product-thumbnails').append(`
+            //         <div class="item">
+            //             <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="${i+1}" href="#slide${i+1}">
+            //                 <img class="img-responsive" alt="" src="{% static 'img/marazo-img/blank.gif' %}" data-echo="${data.image[i]}">
+            //             </a>
+            //         </div>
+            //     `);
+            // }
+        }
+    });
 
     // Con los datos obtenidos se colocarán los datos en sus respectivos lugares
 
     //Galería de Imágenes 
 
-    imagenes = [
-        'https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg',
-        'https://wallpapercave.com/wp/wp7648650.jpg',
-        'https://images2.alphacoders.com/111/thumb-1920-1110623.png',
-        'https://i2.wp.com/www.gameoverla.com/wp-content/uploads/2021/06/E2stFIqVIAAbrVi.jpg?fit=2048%2C945&ssl=1',
-        'https://wallpapersmug.com/download/2248x2248/fb20d9/xiao-enshin-impact.jpeg'
-    ]
+    // imagenes = [
+    //     'https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg',
+    //     'https://wallpapercave.com/wp/wp7648650.jpg',
+    //     'https://images2.alphacoders.com/111/thumb-1920-1110623.png',
+    //     'https://i2.wp.com/www.gameoverla.com/wp-content/uploads/2021/06/E2stFIqVIAAbrVi.jpg?fit=2048%2C945&ssl=1',
+    //     'https://wallpapersmug.com/download/2248x2248/fb20d9/xiao-enshin-impact.jpeg'
+    // ]
 
     // "Cargar" las imágenes dentro del div
 
@@ -77,23 +118,7 @@ function loadData(){
     // }
 
 
-    $('#productName').html('Este es el nombre del producto'); //Nombre del producto
-
-    // El promedio de valoraciones se calcula en el backend
-    $('#productDetailRating').rateit({max: 5, step: 1, value : 5, resetable : false , readonly : true}); // Promedio de Valoraciones
-
-    $('#reviewCount').html('(4 Reseñas)'); // Cantidad de Reseñas recibidas
-
-    $('#productDescription').html(`<p>Aquí va la descripción del Producto</p>
-    <p>Id tempor dolor velit culpa exercitation et occaecat quis aute id. Amet eu dolor ut Lorem fugiat cupidatat adipisicing consequat cillum officia pariatur esse. Reprehenderit duis ullamco aliqua irure reprehenderit ea ea mollit aliquip.</p>
-    `); //Descripción del Producto
-
-    $('#productPrice').html('HNL 900.00');
-
-    $('#publisher').val('USER');
-    $('#publisherEmail').val('EMAIL');
-    $('#publisherPhone').val('PHONE NUMBER');
-    $('#publisherAddress').val('ADDRESS');
+    
     
     
 }

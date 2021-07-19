@@ -169,7 +169,7 @@ def findProducts(request):
     @return render
 """
 @csrf_exempt
-def productDetails(request):
+def productDetails(request,url):
     return render(request,'detail.html',)
 
 """
@@ -235,7 +235,7 @@ def almacenarArticulo(request):
 def productDetailsDescription(request, url):
     
     #if request.method == 'POST':
-
+        print(url)
         idProduct = int( url.split('-')[0] ) 
 
         sqlProduct = """
@@ -273,8 +273,8 @@ def productDetailsDescription(request, url):
                 #    
                 #    }), content_type="application/json")
 
-                return render(request, 
-                        'detail.html', 
+                return HttpResponse(
+                    json.dumps(  
                             { 
                                 'status':'Success', 
                                 **{
@@ -285,7 +285,7 @@ def productDetailsDescription(request, url):
                                 **productDetailsRating(resultProduct[0][-1]), # Calificación (promedio) del vendedor
                                 'image': productDetailsImage(idProduct=idProduct),    # Imagen del producto
                                 'comment': productDetailsComments(idProduct=idProduct)  # Comentarios del producto
-                            }
+                            }),content_type="application/json"
                     )
             else:
                 return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
