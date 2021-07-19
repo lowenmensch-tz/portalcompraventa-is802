@@ -174,7 +174,9 @@ def productDetails(request):
 
 """
     Devuelve un JSON con la información de los artículos publicados. 
-    @url idProducto-titulo-del-producto
+    @param url: ejemplo de la url que se espera
+                        12-dell-laptop-xps-15
+                        idProducto-titulo-del-producto
 
     Por medio de la url se sustrae el id del producto y se busca en la base de datos.
 """
@@ -201,33 +203,10 @@ def productDetailsDescription(request, url):
             a.id_articulo = %s;
             """ % (idProduct)
 
-        sqlImage = """
-        SELECT
-            enlace_imagen AS Image
-        FROM    
-            IMAGEN
-        WHERE   
-            fk_articulo = %s;
-        """ % (idProduct)
-
         try:
             resultProduct = transaction(sqlProduct)
-            resultImage = transaction(sqlImage)
 
             if resultProduct != []:
-
-                #Calificación (promedio) que tiene un vendedor
-                sqlAVG = """
-                SELECT 
-                    CAST(AVG(calificacion) AS CHAR) AS AVG_Rating
-                FROM 
-                    CALIFICACION 
-                WHERE 
-                    fk_usuarioCalificado = %s;
-                """ % (resultProduct[0][-1]) # id user 
-
-                resultAVG = transaction(sqlAVG)
-                print( resultAVG )
 
                 return HttpResponse(json.dumps(
                     { 
@@ -237,10 +216,10 @@ def productDetailsDescription(request, url):
                             'description':resultProduct[0][1], 
                             'price':resultProduct[0][2], 
                         }, 
-                        **{ 
-                            'rating': 0 if resultAVG[0][0] is None else float(resultAVG[0][0])
-                        }, 
-                        **urlphoto(resultImage) 
+                        **productDetailsRating(resultProduct[0][-1]), # Calificación (promedio) del vendedor
+                        **productDetailsImage(idProduct=idProduct),    # Imagen del producto
+                        **productDetailsComments(idProduct=idProduct)  # Comentarios del producto
+
                     
                     }), content_type="application/json")
             else:
@@ -252,12 +231,68 @@ def productDetailsDescription(request, url):
     
 
 """
-    Devuelve un JSON con la información de los comentarios de los artículos publicados.
+    Devuelve un diccionario con la información de los comentarios, nombre de los usuarios de los artículos publicados.
+    @param idProducto: Id del producto que se busca.
 """
-@csrf_exempt
-def productDetailsComments(request):
-    pass
+def productDetailsComments(idProduct):
 
+    sql = """
+    SELECT
+        u.nombre_completo AS User,
+        c.comentario AS Comment
+    FROM
+        COMENTARIO AS c
+    INNER JOIN 
+        USUARIO AS u ON c.fk_usuarioComentador = u.id_usuario
+    WHERE
+        tipo = 1 AND fk_dirigidoA = %s 
+    """ % (idProduct) # REVISAR
+
+    result = transaction(sql)
+
+    return convertToDictionary(data=result, key=['userCommenting', 'comment'])
+
+
+"""
+    Devuelve un diccionario con la información de las url de las imagénes asociadas al artículo publicado.
+"""
+def productDetailsImage(idProduct):
+
+    sql = """
+    SELECT
+        enlace_imagen AS Image
+    FROM
+        IMAGEN
+    WHERE
+        fk_articulo = %s
+    """ % (idProduct)
+
+    result = transaction(sql)
+
+    return convertToDictionary(data=result, key='photo')
+
+
+"""
+    Calificación (promedio) que tiene un vendedor
+    @param idUsuario 
+"""
+def productDetailsRating(idUser):
+
+    sql = """
+    SELECT
+        CAST(AVG(calificacion) AS CHAR) AS AVG_Rating
+    FROM
+        CALIFICACION
+    WHERE
+        fk_usuarioCalificado  = %s
+    """ % (idUser)
+
+    result = transaction(sql)
+
+    return {   
+            'rating': 0 if result[0][0] is None else float(result[0][0])
+        }
+    
 
 """
     Devuelve el resultado de la ejecución de una consulta a la base de datos.
@@ -272,11 +307,34 @@ def transaction(sql):
     return result
 
 
-def urlphoto(data):
-    
-    if data: 
-        jso = {}
-        for i in range(len(data)):
-            jso['photo' + str(i)] = data[i][0]
+"""
+    Convierte una lista de tuplas en un diccionario.
+    @param data: Lista con los datos de las filas.
+    @param key: Lista con los nombres de las columnas. Puede ser un dato o una lista con los nombres de las columnas.
 
+    # data = [('a', 'b'), ('c', 'd'), ('e', 'f'), ('g', 'h')]
+"""
+def convertToDictionary(data, key):
+    
+    jso = {}
+    if data: 
+
+        if len(data[0]) == 1:     
+
+            for i in range(len(data)):
+                jso[key + str(i)] = data[i][0]
+
+        else: 
+
+            for i in range(len(data)):
+                for j in range(len(key)):
+                    jso[key[j] + str(i)] = data[i][j]
+
+    else:   
+        if type(key) is  list and len(key) > 1:
+            for i in range(len(key)):
+                jso[key[i]] = ''
+        else:
+            jso[key] = ''
+                
     return jso
