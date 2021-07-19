@@ -1,4 +1,158 @@
 currentDateOrder = 'DESC';
+currentPage = 1;
+
+
+/* * * * * * * * * * * * * * * * *
+ * Pagination
+ * javascript page navigation
+ * * * * * * * * * * * * * * * * */
+
+var Pagination = {
+
+    code: '',
+
+    // --------------------
+    // Utility
+    // --------------------
+
+    // converting initialize data
+    Extend: function(data) {
+        data = data || {};
+        Pagination.size = data.size || 90;
+        Pagination.page = data.page || 1; 
+        Pagination.step = data.step || 20;
+    },
+
+    // add pages by number (from [s] to [f])
+    Add: function(s, f) {
+        for (var i = s; i < f; i++) {
+            Pagination.code += '<a>' + i + '</a>';
+        }
+    },
+
+    // add last page with separator
+    Last: function() {
+        Pagination.code += '<i>...</i><a>' + Pagination.size + '</a>';
+    },
+
+    // add first page with separator
+    First: function() {
+        Pagination.code += '<a>1</a><i>...</i>';
+    },
+
+
+
+    // --------------------
+    // Handlers
+    // --------------------
+
+    // change page
+    Click: function() {
+        Pagination.page = +this.innerHTML;
+        Pagination.Start();
+        gatherProducts();
+    },
+
+    // previous page
+    Prev: function() {
+        Pagination.page--;
+        if (Pagination.page < 1) {
+            Pagination.page = 1;
+        }
+        Pagination.Start();
+        gatherProducts();
+    },
+
+    // next page
+    Next: function() {
+        Pagination.page++;
+        if (Pagination.page > Pagination.size) {
+            Pagination.page = Pagination.size;
+        }
+        Pagination.Start();
+        gatherProducts();
+    },
+
+
+
+    // --------------------
+    // Script
+    // --------------------
+
+    // binding pages
+    Bind: function() {
+        var a = Pagination.e.getElementsByTagName('a');
+        for (var i = 0; i < a.length; i++) {
+            if (+a[i].innerHTML === Pagination.page) a[i].className = 'current';
+            a[i].addEventListener('click', Pagination.Click, false);
+        }
+    },
+
+    // write pagination
+    Finish: function() {
+        Pagination.e.innerHTML = Pagination.code;
+        Pagination.code = '';
+        Pagination.Bind();
+    },
+
+    // find pagination type
+    Start: function() {
+        if (Pagination.size < Pagination.step * 2 + 6) {
+            Pagination.Add(1, Pagination.size + 1);
+        }
+        else if (Pagination.page < Pagination.step * 2 + 1) {
+            Pagination.Add(1, Pagination.step * 2 + 4);
+            Pagination.Last();
+        }
+        else if (Pagination.page > Pagination.size - Pagination.step * 2) {
+            Pagination.First();
+            Pagination.Add(Pagination.size - Pagination.step * 2 - 2, Pagination.size + 1);
+        }
+        else {
+            Pagination.First();
+            Pagination.Add(Pagination.page - Pagination.step, Pagination.page + Pagination.step + 1);
+            Pagination.Last();
+        }
+        Pagination.Finish();
+    },
+
+
+
+    // --------------------
+    // Initialization
+    // --------------------
+
+    // binding buttons
+    Buttons: function(e) {
+        var nav = e.getElementsByTagName('a');
+        nav[0].addEventListener('click', Pagination.Prev, false);
+        nav[1].addEventListener('click', Pagination.Next, false);
+    },
+
+    // create skeleton
+    Create: function(e) {
+
+        var html = [
+            '<a>&#9668;</a>', // previous button
+            '<span></span>',  // pagination container
+            '<a>&#9658;</a>'  // next button
+        ];
+
+        e.innerHTML = html.join('');
+        Pagination.e = e.getElementsByTagName('span')[0];
+        Pagination.Buttons(e);
+    },
+
+    // init
+    Init: function(e, data) {
+        Pagination.Extend(data);
+        Pagination.Create(e);
+        Pagination.Start();
+    }
+};
+
+// document.addEventListener('DOMContentLoaded', init, false);
+
 
 jQuery(document).ready(function() {
     gatherProducts();
@@ -346,7 +500,7 @@ jQuery("[data-toggle='tooltip']").tooltip();
 
 function mostrarMunicipios(){
     var municipio = $('#deptoDropdown').val();
-
+    Pagination.page = 1;
     if (municipio==06){
         $('#municipioDropdown').html('');
         $('#municipioDropdown').append(`
@@ -407,7 +561,8 @@ function mostrarMunicipios(){
 
 function changeCategory(category){
     $('#msjCategoria').html("<strong>"+category.text+"</strong>");
-    $('#msjCategoria').data('category',category.dataset.category)
+    $('#msjCategoria').data('category',category.dataset.category);
+    Pagination.page = 1;
     gatherProducts();
 
     //Función Ajax para Pedir los productos a mostrar por categoría
@@ -428,7 +583,6 @@ function gatherProducts(){
     */
     category = $('#msjCategoria').data('category');
     department = $('#deptoDropdown').val();
-    console.log(department);
     town = $('#municipioDropdown').val();
     min = $('#minValue').val();
     max = $('#maxValue').val();
@@ -472,64 +626,6 @@ function dateOrder(){
     gatherProducts();
 }
 
-function showProducts(data){
-
-    //Aquí se mostrarán los productos obtenidos de la consulta a la base de datos
-
-    /**
-     *  0 = id articulo
-     *  1 = nombre
-     *  2 = precio
-     *  3 = descripción
-     *  4 = fecha
-     *  5 = departamento
-     *  6 = municipio
-     *  7 = cantidad disponible
-     *  8 = usuario
-     *  9 = imagen
-     */
-    $('#prodcutsShowcase').html('');
-    for (i=0; i<data.length;i++){
-        $('#prodcutsShowcase').append(`
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="item">
-                    <div class="products">
-                        <div class="product">
-                            <div class="product-image">
-                                <div class="image">
-
-                                <!-- <a href="detail.html">  Aquí va la url del detalle del producto -->
-                                    <a href="details/${convertURL(data[i][1], data[i][0])}"> <!-- Aquí va la url del detalle del producto -->
-
-                                    <img src="${data[i][9]}" alt="">
-                                    <img src="${data[i][9]}" alt="" class="hover-image">
-                                    </a>
-                                </div>
-                            </div>
-        
-                            <div class="product-info text-left">
-                                <h3 class="name"><a href="details/${convertURL(data[i][1], data[i][0])}">${data[i][1]}</a></h3>
-                                <div class="rating rateit-small"></div>
-                                <div class="description">${data[i][3]}</div>
-                                <div class="product-price"> <span class="price"> HNL ${data[i][2]} </span> </div>
-                            </div>
-
-                            <div class="cart clearfix animate-effect">
-                                <div class="action">
-                                    <ul class="list-unstyled">
-                                        <li style="margin-left:100%;" class="lnk wishlist"> <a class="add-to-cart" href="details.html" title="Agregar a Favoritos"> <i class="icon fa fa-heart"></i> </a> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                                
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `);
-    }
-
-}
 
 function convertURL(nameProduct, idProduct){
     return  idProduct.toString() + '-' + nameProduct.toLowerCase().replaceAll(/ /g,'-').replaceAll(/[^\w-]+/g,'');
@@ -593,3 +689,93 @@ function sortPriceButton(){
 		};
 	});
 })();
+
+
+// *****************************************************************************
+
+
+
+
+/* * * * * * * * * * * * * * * * *
+* Initialization
+* * * * * * * * * * * * * * * * */
+
+// var init = function() {
+//     Pagination.Init(document.getElementById('pagination'), {
+//         size: 30,
+//         page: 1, 
+//         step: 3   
+//     });
+// };
+
+
+function showProducts(data){
+
+    //Aquí se mostrarán los productos obtenidos de la consulta a la base de datos
+
+    /**
+     *  0 = id articulo
+     *  1 = nombre
+     *  2 = precio
+     *  3 = descripción
+     *  4 = fecha
+     *  5 = departamento
+     *  6 = municipio
+     *  7 = cantidad disponible
+     *  8 = usuario
+     *  9 = imagen
+     */
+
+    productsPerPage = 12;
+    len = 0;
+
+    Pagination.Init(document.getElementById('pagination'), {
+        size: Math.ceil(data.length/productsPerPage) , // pages size
+        page: Pagination.page,  // selected page
+        step: 3   // pages before and after current
+    });
+
+    data.length < productsPerPage*Pagination.page ? len = data.length : len = productsPerPage*(Pagination.page);
+
+    $('#prodcutsShowcase').html('');
+    for (i=(productsPerPage*(Pagination.page-1)); i<len;i++){
+        $('#prodcutsShowcase').append(`
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="item">
+                    <div class="products">
+                        <div class="product">
+                            <div class="product-image">
+                                <div class="image">
+
+                                <!-- <a href="detail.html">  Aquí va la url del detalle del producto -->
+                                    <a href="details/${convertURL(data[i][1], data[i][0])}"> <!-- Aquí va la url del detalle del producto -->
+
+                                    <img src="${data[i][9]}" alt="">
+                                    <img src="${data[i][9]}" alt="" class="hover-image">
+                                    </a>
+                                </div>
+                            </div>
+        
+                            <div class="product-info text-left">
+                                <h3 class="name"><a href="details/${convertURL(data[i][1], data[i][0])}">${data[i][1]}</a></h3>
+                                <div class="rating rateit-small"></div>
+                                <div class="description">${data[i][3]}</div>
+                                <div class="product-price"> <span class="price"> HNL ${data[i][2]} </span> </div>
+                            </div>
+
+                            <div class="cart clearfix animate-effect">
+                                <div class="action">
+                                    <ul class="list-unstyled">
+                                        <li style="margin-left:100%;" class="lnk wishlist"> <a class="add-to-cart" href="details.html" title="Agregar a Favoritos"> <i class="icon fa fa-heart"></i> </a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+    }
+
+}
