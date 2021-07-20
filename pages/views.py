@@ -21,6 +21,10 @@ def index(request):
     return render(request,'index.html',)
 
 @csrf_exempt
+def user(request):
+    return render(request,'user.html')
+
+@csrf_exempt
 def loggedInValidator(request):
     if request.session.get('email'):
 
