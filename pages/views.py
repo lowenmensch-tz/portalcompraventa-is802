@@ -263,43 +263,65 @@ def almacenarArticulo(request):
 @csrf_exempt
 def userProfile(request):
     if request.method == 'POST':
-        id_usuario, calificacion, comentario = request.POST.get('id_usuario'),  request.POST.get('calificacion'), request.POST.get('comentario') #Puede ser el del id_usuario o el id_de cualquier otro usuario que ha publicado un artículo
+        correo_usuario,calificacion, comentario = request.POST.get('correo_usuario'), request.POST.get('calificacion'), request.POST.get('comentario') #Puede ser el del id_usuario o el id_de cualquier otro usuario que ha publicado un artículo
+        #id_usuario = request.POST.get('id_usuario')
+        id_usuario = getIdUser(correo_usuario)
 
-        database, cursor = conexion.conectar()
+        if id_usuario != 0:
+            database, cursor = conexion.conectar()
 
-        userQuery = """SELECT nombre_completo,correo,telefono,direccion FROM USUARIO
-                       WHERE id_usuario=%s;""" % (id_usuario)
+            userQuery = """SELECT nombre_completo,correo,telefono,direccion FROM USUARIO
+                        WHERE id_usuario=%s;""" % (id_usuario)
 
-        estrellitasQuery = """SELECT SUM(calificacion) / COUNT(fk_usuarioCalificado) as promedio_estrellas FROM CALIFICACION
-                              WHERE fk_usuarioCalificado = %s;""" % (id_usuario)
+            estrellitasQuery = """SELECT SUM(calificacion) / COUNT(fk_usuarioCalificado) as promedio_estrellas FROM CALIFICACION
+                                WHERE fk_usuarioCalificado = %s;""" % (id_usuario)
 
-        comentariosQuery = """SELECT comentario FROM COMENTARIO WHERE tipo = 'Usuario' AND fk_dirigidoA = %s;""" % (id_usuario)
+            comentariosQuery = """SELECT comentario FROM COMENTARIO WHERE tipo = 'Usuario' AND fk_dirigidoA = %s;""" % (id_usuario)
 
-        try:
-            if calificacion != 0:
-                insertCalificacionQuery = """INSERT INTO CALIFICACION (fk_usuarioCalificador,fk_usuarioCalificado,calificacion) VALUES
-                                             (%s,%s,%s);""" % (request.session['userId'], id_usuario, calificacion)
-                cursor.execute(insertCalificacionQuery)
-            if comentario != 0:
-                insertComentarioQuery = """INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
-                                           ("Usuario",'%s',%s,%s);""" % (comentario, request.session['userId'], id_usuario) # El valor de tipo por defecto va en Usuario
-                cursor.execute(insertComentarioQuery)
-            database.commit()
+            try:
+                if calificacion != 0:
+                    insertCalificacionQuery = """INSERT INTO CALIFICACION (fk_usuarioCalificador,fk_usuarioCalificado,calificacion) VALUES
+                                                (%s,%s,%s);""" % (request.session['userId'], id_usuario, calificacion)
+                    cursor.execute(insertCalificacionQuery)
+                if comentario != 0:
+                    insertComentarioQuery = """INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
+                                            ("Usuario",'%s',%s,%s);""" % (comentario, request.session['userId'], id_usuario) # El valor de tipo por defecto va en Usuario
+                    cursor.execute(insertComentarioQuery)
+                database.commit()
 
-            cursor.execute(userQuery)
-            resultUser = [cursor.fetchone()]
-            cursor.execute(estrellitasQuery)
-            resultEstrellitas = [cursor.fetchone()]
-            cursor.execute(comentariosQuery)
-            resultComentarios = [cursor.fetchall()]
-            datosUser = resultUser + resultEstrellitas + resultComentarios # Lista de tuplas con los datos del usuario, calificacion y comentarios
+                cursor.execute(userQuery)
+                resultUser = [cursor.fetchone()]
+                cursor.execute(estrellitasQuery)
+                resultEstrellitas = [cursor.fetchone()]
+                cursor.execute(comentariosQuery)
+                resultComentarios = [cursor.fetchall()]
+                datosUser = resultUser + resultEstrellitas + resultComentarios # Lista de tuplas con los datos del usuario, calificacion y comentarios
 
-            return HttpResponse(json.dumps({'status':'Success', 'data':datosUser}),content_type="application/json")
-        except Exception as e:
-             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+                return HttpResponse(json.dumps({'status':'Success', 'data':datosUser}),content_type="application/json")
+            except Exception as e:
+                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
+        return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
+"""
+    Función utilizada por userProfile para obtener el id del usuario 
+
+    @param correo: correo del usuario que publicó el artículo
+    @return resultId[0]: Devuelve el id del usuario a partir de su correo en caso de no encontrarlo devuelve una variable booleana
+                         donde 0 indica que no encontró el id usuario
+"""
+def getIdUser(correo):
+    database, cursor = conexion.conectar()
+    idUserQuery = """SELECT id_usuario FROM USUARIO WHERE correo = '%s'""" % (correo)
+    errorConexion = 1
+    try:
+        cursor.execute(idUserQuery)
+        resultId = cursor.fetchone()
+        return resultId[0]
+    except:
+        errorConexion = 0
+        return errorConexion
 
 """
     Devuelve un JSON con la información de los artículos publicados. 
