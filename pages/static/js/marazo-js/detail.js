@@ -53,16 +53,12 @@ function loadData(){
         
             $('#productPrice').html(`HNL ${data.price}`);
         
-            $('#publisher').val('USER');
-            $('#publisherEmail').val('EMAIL');
-            $('#publisherPhone').val('PHONE NUMBER');
-            $('#publisherAddress').val('ADDRESS');
+            $('#publisher').val(`${data.name}`);
+            $('#publisherEmail').val(`${data.email}`);
+            $('#publisherPhone').val(`${data.phone}`);
+            $('#publisherAddress').val(`${data.address}`);
 
-            // $('#owl-single-product').html('');
-            // $('#owl-single-product-thumbnails').html('');
-            // console.log(data.image.photo0);
-            // $('#productImage1').data('echo',data.image.photo0);
-            // $('#imagenProducto1').attr('href',data.image.photo0);
+
 
             $('#owl-single-product').html('');
             $('#owl-single-product-thumbnails').html('');
@@ -75,10 +71,6 @@ function loadData(){
                 </div>
             `);
 
-            // console.log(Object.keys(data.comment).length);
-            // console.log(data.comment);
-            // $('#commentsRow').html('');
-            // $('#commentsRow').html('');
             for (i=0; i<Object.keys(data.comment).length/2; i++){
 
                 $('#commentsRow').append(`

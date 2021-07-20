@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, resolve_url
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt # Este decorador solo es de prueba y no una solución para la cookie csrf
 
@@ -18,8 +18,13 @@ import pages.conexion as conexion
 def index(request):
     if request.session.get('email'):
         print(request.session['email'])
-    return render(request,'index.html',)
+    return render(request,'index.html')
 
+@csrf_exempt
+def logout(request):
+    del request.session['email']
+    return render(request,'index.html')
+    
 @csrf_exempt
 def user(request):
     return render(request,'user.html')
@@ -354,9 +359,10 @@ def productDetailsDescription(request, url):
                                     'description':resultProduct[0][1], 
                                     'price':resultProduct[0][2], 
                                 }, 
-                                **productDetailsRating(resultProduct[0][-1]), # Calificación (promedio) del vendedor
-                                'image': productDetailsImage(idProduct=idProduct),    # Imagen del producto
-                                'comment': productDetailsComments(idProduct=idProduct)  # Comentarios del producto
+                                **productDetailsRating(resultProduct[0][-1]),          # Calificación (promedio) del vendedor
+                                'image': productDetailsImage(idProduct=idProduct),      # Imagen del producto
+                                'comment': productDetailsComments(idProduct=idProduct),  # Comentarios del producto
+                                **userInformation(resultProduct[0][-1])                   # Información del usuario     
                             }),content_type="application/json"
                     )
             else:
@@ -366,6 +372,42 @@ def productDetailsDescription(request, url):
     #else:
     #    return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
     
+
+""""
+    Información del usuario
+"""
+def userInformation(idUser):
+    sql = """
+        SELECT
+            u.nombre_completo AS Name,
+            u.correo AS Email,
+            u.telefono AS Phone,
+            u.direccion AS Address
+        FROM 
+            USUARIO AS u
+        WHERE id_usuario = %s;
+        """ % (idUser)
+
+    result = transaction(sql)
+
+    if result: 
+
+        return {
+            'name': result[0][0],
+            'email': result[0][1],
+            'phone': result[0][2],
+            'address': result[0][3]
+        }
+    else:
+        
+        return {
+            'name':  '',
+            'email':  '',
+            'phone':  '',
+            'address': ''
+        }
+
+
 
 """
     Devuelve un diccionario con la información de los comentarios, nombre de los usuarios de los artículos publicados.
