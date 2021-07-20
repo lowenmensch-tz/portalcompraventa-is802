@@ -9,23 +9,22 @@ var comentarios;
 var count = 1;
 
 function sessionCheck(){
+    var response;
 
-    var response = true;
-    // Petición para saber si el usuario está logueado
-    // $.ajax({
-    //     type: "POST",
-    //     url: "",
-    //     data: data,
-    //     success: function(data) {
-    //        console.log('success');
-    //     }
-    // });
+    $.ajax({
+        type: "GET",
+        url: "ajax/loggedValidator",
+        success: function(data) {
+            response = data.logged;
+            console.log(response);
 
-    if (response == true){
-        $('#contact-review-forms').show();
-    }else{
-        $('#contact-review-forms').hide();
-    }
+            if (response == 'true'){
+                $('#contact-review-forms').show();
+            }else{
+                $('#contact-review-forms').hide();
+            }
+        }
+    });
 }
 
 function loadData(){
@@ -54,16 +53,12 @@ function loadData(){
         
             $('#productPrice').html(`HNL ${data.price}`);
         
-            $('#publisher').val('USER');
-            $('#publisherEmail').val('EMAIL');
-            $('#publisherPhone').val('PHONE NUMBER');
-            $('#publisherAddress').val('ADDRESS');
+            $('#publisher').val(`${data.name}`);
+            $('#publisherEmail').val(`${data.email}`);
+            $('#publisherPhone').val(`${data.phone}`);
+            $('#publisherAddress').val(`${data.address}`);
 
-            // $('#owl-single-product').html('');
-            // $('#owl-single-product-thumbnails').html('');
-            // console.log(data.image.photo0);
-            // $('#productImage1').data('echo',data.image.photo0);
-            // $('#imagenProducto1').attr('href',data.image.photo0);
+
 
             $('#owl-single-product').html('');
             $('#owl-single-product-thumbnails').html('');
@@ -75,10 +70,6 @@ function loadData(){
                     </a>
                 </div>
             `);
-
-            // console.log(Object.keys(data.comment).length);
-            // console.log(data.comment);
-            // $('#commentsRow').html('');
 
             for (i=0; i<Object.keys(data.comment).length/2; i++){
 
@@ -98,11 +89,9 @@ function loadData(){
                         </div>
                     </div>
                 `);
-
-                $('#commentsRow').append(`<div class="post-load-more col-md-12"><a class="btn btn-upper btn-primary" onclick="" >Cargar más Comentarios</a></div>`)
-
                 
             }
+            $('#commentsRow').append(`<div style="background-color: white;" class="post-load-more col-md-12"><a style="background-color: white;" class="btn btn-upper btn-primary" onclick="" >&nbsp;</a></div>`);
 
         }
     });

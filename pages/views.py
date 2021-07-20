@@ -18,17 +18,22 @@ import pages.conexion as conexion
 def index(request):
     if request.session.get('email'):
         print(request.session['email'])
-    return render(request,'index.html',)
+    return render(request,'index.html')
 
+@csrf_exempt
+def logout(request):
+    del request.session['email']
+    return render(request,'index.html')
+    
 @csrf_exempt
 def user(request):
     return render(request,'user.html')
 
 @csrf_exempt
-def loggedInValidator(request):
+def loggedInValidator(request,url):
+    # print(request.session['email'])
+    #del request.session['email']
     if request.session.get('email'):
-
-        request.session.pop('email')
         return  HttpResponse(json.dumps({'status':'Success','logged':'true'}),content_type="application/json")
     else:
         return  HttpResponse(json.dumps({'status':'Success','logged':'false'}),content_type="application/json")
@@ -60,20 +65,20 @@ def loginValidation (request):
         email, password, remember = request.POST.get('email'), request.POST.get('password'), request.POST.get('remember')
         database, cursor = conexion.conectar()
         query = "SELECT COUNT(*) FROM USUARIO WHERE correo = '%s' AND contrasenia='%s';" % (email,password)
-        id = "SELECT id_usuario FROM USUARIO WHERE correo = '%s';" % (email)
+        #id = "SELECT id_usuario FROM USUARIO WHERE correo = '%s';" % (email)
 
         try:
             cursor.execute(query)
             result = cursor.fetchall()
-
             cursor.close()
+
             if result[0][0] == 1:
 
-                cursor.execute(id)
-                result = cursor.fetchone()
+                # cursor.execute(id)
+                # result = cursor.fetchone()
 
                 request.session['email'] = email
-                request.session['userId'] = result[0]
+                # request.session['userId'] = result[0]
 
                 return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
             else:
@@ -308,7 +313,6 @@ def userProfile(request):
 def productDetailsDescription(request, url):
     
     #if request.method == 'POST':
-        print(url)
         idProduct = int( url.split('-')[0] ) 
 
         sqlProduct = """
