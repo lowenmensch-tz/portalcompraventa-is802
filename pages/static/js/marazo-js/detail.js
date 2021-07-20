@@ -9,23 +9,22 @@ var comentarios;
 var count = 1;
 
 function sessionCheck(){
+    var response;
 
-    var response = true;
-    // Petición para saber si el usuario está logueado
-    // $.ajax({
-    //     type: "POST",
-    //     url: "",
-    //     data: data,
-    //     success: function(data) {
-    //        console.log('success');
-    //     }
-    // });
+    $.ajax({
+        type: "GET",
+        url: "ajax/loggedValidator",
+        success: function(data) {
+            response = data.logged;
+            console.log(response);
 
-    if (response == true){
-        $('#contact-review-forms').show();
-    }else{
-        $('#contact-review-forms').hide();
-    }
+            if (response == 'true'){
+                $('#contact-review-forms').show();
+            }else{
+                $('#contact-review-forms').hide();
+            }
+        }
+    });
 }
 
 function loadData(){
@@ -79,7 +78,7 @@ function loadData(){
             // console.log(Object.keys(data.comment).length);
             // console.log(data.comment);
             // $('#commentsRow').html('');
-
+            // $('#commentsRow').html('');
             for (i=0; i<Object.keys(data.comment).length/2; i++){
 
                 $('#commentsRow').append(`
@@ -98,11 +97,9 @@ function loadData(){
                         </div>
                     </div>
                 `);
-
-                $('#commentsRow').append(`<div class="post-load-more col-md-12"><a class="btn btn-upper btn-primary" onclick="" >Cargar más Comentarios</a></div>`)
-
                 
             }
+            $('#commentsRow').append(`<div style="background-color: white;" class="post-load-more col-md-12"><a style="background-color: white;" class="btn btn-upper btn-primary" onclick="" >&nbsp;</a></div>`);
 
         }
     });
