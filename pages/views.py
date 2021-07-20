@@ -390,7 +390,7 @@ def userInformation(idUser):
 
         return {
             'name': result[0][0],
-            'email': result[0][1],
+            'email': result[0][1],  
             'phone': result[0][2],
             'address': result[0][3]
         }
@@ -403,6 +403,75 @@ def userInformation(idUser):
             'address': ''
         }
 
+
+"""
+    Devuelve un JSON con la información de los comentarios (actualizados) de un producto.
+"""
+def review(request):
+    
+    if request.method == 'POST':
+        
+        emailUserCommented = request.session.get('email') # Obtiene el correo del usuario que ha hecho el comentario
+        emailUserPublication = request.POST.get('email') # Dueño del producto
+        comment = request.POST.get('comment')           # Comentario de la reseña
+        calification = request.POST.get('calification')# Calificación del comentario
+        idProduct = request.POST.get('idProduct')     # ID del producto
+
+        idUserPublication = getUserID(emailUserPublication)  # Obtiene el id del dueño del producto
+        idUserCommented = getUserID(emailUserCommented)    # Obtiene el id del usuario que ha hecho el comentario
+
+        sqlComment = """
+        INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
+            ('Articulo', '%s', %s, %s);
+        """%(comment, idUserPublication, idUserCommented)
+
+        sqlCalification = """
+        INSERT INTO CALIFICACION (calificacion, fk_usuarioCalificador, fk_usuarioCalificado) VALUES
+            (%s, %s, %s);
+        """%(calification, idUserCommented, idUserPublication)
+            
+        dms(sqlComment)
+        dms(sqlCalification)
+
+        try: 
+            updatedComments = productDetailsComments(idProduct=idProduct) 
+
+            if updatedComments:
+
+                return HttpResponse(json.dumps(
+                                {
+                                    'status':'Success',
+                                    **productDetailsRating(idUser=idUserPublication), # Calificación (promedio) del dueño del producto
+                                    'comment': updatedComments,                      # Comentarios del producto
+                                }
+                            ), 
+                            content_type="application/json")
+
+            else:
+                return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
+
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+
+
+"""
+    Retorna el ID del usuario a partir del email.
+    @param email: correo del usuario
+"""
+def getUserID(email): 
+    
+    sql="""
+        SELECT
+            id_usuario AS idUsuario
+        FROM
+            USUARIO
+        WHERE
+            correo = '%s';
+        """%(email)
+
+    result = transaction(sql)
+
+    return result[0][0]
 
 
 """
@@ -480,6 +549,18 @@ def transaction(sql):
     cursor.close()
 
     return result
+
+
+"""
+    Realizar un INSERT a la base de datos.
+"""
+def dms(sql): 
+    
+    database, cursor = conexion.conectar()
+    cursor.execute(sql)
+    database.commit()
+
+    cursor.close()
 
 
 """
