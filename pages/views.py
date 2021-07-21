@@ -24,7 +24,13 @@ def index(request):
 def logout(request):
     del request.session['email']
     return render(request,'index.html')
+
+ """
+    Devuelve la vista de perfil de usuario.
     
+    @param request
+    @return render
+"""   
 @csrf_exempt
 def user(request):
     return render(request,'user.html')
@@ -257,6 +263,7 @@ def almacenarArticulo(request):
         
         Success: La ejecución fue exitosa y se encontraron registros.
         dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        Empty: No se encontró el usuario
         requestError: No se recibió una petición POST.
 """
 
@@ -266,8 +273,9 @@ def userProfile(request):
         correo_usuario,calificacion, comentario = request.POST.get('correo_usuario'), request.POST.get('calificacion'), request.POST.get('comentario') #Puede ser el del id_usuario o el id_de cualquier otro usuario que ha publicado un artículo
         #id_usuario = request.POST.get('id_usuario')
         id_usuario = getIdUser(correo_usuario)
+        id_usuarioLogueado = getIdUser(request.session.get('email'))
 
-        if id_usuario != 0:
+        if id_usuario != 0 and id_usuarioLogueado !=0:
             database, cursor = conexion.conectar()
 
             userQuery = """SELECT nombre_completo,correo,telefono,direccion FROM USUARIO
@@ -281,11 +289,11 @@ def userProfile(request):
             try:
                 if calificacion != 0:
                     insertCalificacionQuery = """INSERT INTO CALIFICACION (fk_usuarioCalificador,fk_usuarioCalificado,calificacion) VALUES
-                                                (%s,%s,%s);""" % (request.session['userId'], id_usuario, calificacion)
+                                                (%s,%s,%s);""" % (id_usuarioLogueado, id_usuario, calificacion)
                     cursor.execute(insertCalificacionQuery)
                 if comentario != 0:
                     insertComentarioQuery = """INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
-                                            ("Usuario",'%s',%s,%s);""" % (comentario, request.session['userId'], id_usuario) # El valor de tipo por defecto va en Usuario
+                                            ("Usuario",'%s',%s,%s);""" % (comentario, id_usuarioLogueado, id_usuario) # El valor de tipo por defecto va en Usuario
                     cursor.execute(insertComentarioQuery)
                 database.commit()
 
@@ -296,11 +304,12 @@ def userProfile(request):
                 cursor.execute(comentariosQuery)
                 resultComentarios = [cursor.fetchall()]
                 datosUser = resultUser + resultEstrellitas + resultComentarios # Lista de tuplas con los datos del usuario, calificacion y comentarios
+                cursor.close()
 
                 return HttpResponse(json.dumps({'status':'Success', 'data':datosUser}),content_type="application/json")
             except Exception as e:
                 return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
-        return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+        return HttpResponse(json.dumps({'status':'Empty', 'errorMessage':'No se encontro el usuario'}),content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
@@ -318,6 +327,7 @@ def getIdUser(correo):
     try:
         cursor.execute(idUserQuery)
         resultId = cursor.fetchone()
+        cursor.close()
         return resultId[0]
     except:
         errorConexion = 0
