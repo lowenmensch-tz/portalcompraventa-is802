@@ -1,4 +1,4 @@
-from pages.views import loginValidation, logout, productCategories, productDetails, registerUser, user, loggedInValidator, userProfile, almacenarArticulo
+from pages.views import loginValidation, logout, productCategories, productDetails, registerUser, user, loggedInValidator, userProfile, almacenarArticulo, userReview
 from django.urls import path
 from django.conf.urls import include, url
 from .views import *
@@ -12,9 +12,11 @@ path('ajax/registerUser', registerUser, name='register_user'),
 path('categories', productCategories, name='categories_page'),
 path('ajax/findProducts', findProducts, name='find_products'),
 path('ajax/almacenarArticulo', almacenarArticulo, name='almacenar_Articulo'),
-path('ajax/userProfile', userProfile, name='user_Profile'),
+#path('ajax/userProfile', userProfile, name='user_Profile'),
 path('user', user, name='user'),
 path('logout', logout),
+path('ajax/userReview', userReview, name='user_Review'),
+url(r'^user\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/userProfile$', userProfile, name='user_Profile'),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/loggedValidator', loggedInValidator),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/$', productDetails), # esta cosa solo es de prueba UwU
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/productDetailsDescription$', productDetailsDescription),

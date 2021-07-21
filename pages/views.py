@@ -218,13 +218,13 @@ def almacenarArticulo(request):
     if request.method == 'POST':
         nombre, precio, descripcion = request.POST.get('nombre'), request.POST.get('precio'), request.POST.get('descripcion')
         fk_departamento, fk_municipio, = request.POST.get('fk_departamento'), request.POST.get('fk_municipio')
-        cantidad_disponible, fk_categoria, fk_usuario = request.POST.get('cantidad_disponible'), request.POST.get('fk_categoria'), request.POST.get('fk_usuario')
+        cantidad_disponible, fk_categoria = request.POST.get('cantidad_disponible'), request.POST.get('fk_categoria')
         link_imagen1,link_imagen2,link_imagen3  = request.POST.get('link_imagen1'), request.POST.get('link_imagen2'), request.POST.get('link_imagen3')
-        link_imagen4, link_imagen5 = request.POST.get('link_imagen4'), request.POST.get('link_imagen5')
+        fk_usuario = getIdUser(request.session.get('email'))
 
-        listaImagenes = [link_imagen1, link_imagen2, link_imagen3, link_imagen4, link_imagen5]
+        listaImagenes = [link_imagen1, link_imagen2, link_imagen3]
         listaImagenesContenido = []
-        for i in range(5):
+        for i in range(3):
             if listaImagenes[i] != 0:
                 listaImagenesContenido.append(listaImagenes[i])
 
@@ -245,7 +245,7 @@ def almacenarArticulo(request):
                 insertImageQuery = """INSERT INTO IMAGEN (enlace_imagen,fk_articulo) VALUES
                                     ('%s',%s);""" % (listaImagenesContenido[i],result[0])
                 cursor.execute(insertImageQuery)
-            database.comit()
+            database.commit()
             cursor.close()
             return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
         except Exception as e:
@@ -256,7 +256,10 @@ def almacenarArticulo(request):
 """
     Retorna un JSON con la información del usuario.
 
-    @param request: JSON con el correo del usuario a mostrar.
+    @param url: url que contiene el id del usuario a mostrar. La url esperada tiene la siguiente estructura 
+                    5-carlos-sauceda
+                    idUsuario-primerNombre-apellido
+                    
     @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la petición dentro del mismo JSON se envia
                           una lista de tuplas que contiene la información del usuario ademas de la calificación y comentarios que este
                           ha recibido:
@@ -268,26 +271,33 @@ def almacenarArticulo(request):
 """
 
 @csrf_exempt
-def userProfile(request):
-    if request.method == 'POST':
-        correo_usuario,calificacion, comentario = request.POST.get('correo_usuario'), request.POST.get('calificacion'), request.POST.get('comentario') #Puede ser el del id_usuario o el id_de cualquier otro usuario que ha publicado un artículo
+def userProfile(request, url):
+    #if request.method == 'POST':
+        #correo_usuario,calificacion, comentario = request.POST.get('correo_usuario'), request.POST.get('calificacion'), request.POST.get('comentario') #Puede ser el del id_usuario o el id_de cualquier otro usuario que ha publicado un artículo
         #id_usuario = request.POST.get('id_usuario')
-        id_usuario = getIdUser(correo_usuario)
-        id_usuarioLogueado = getIdUser(request.session.get('email'))
+        #id_usuario = getIdUser(correo_usuario)
+        id_usuario = int(url.split('-')[0])
+        #id_usuarioLogueado = getIdUser(request.session.get('email'))
 
-        if id_usuario != 0 and id_usuarioLogueado !=0:
+        if id_usuario != 0: #and id_usuarioLogueado !=0:
             database, cursor = conexion.conectar()
 
             userQuery = """SELECT nombre_completo,correo,telefono,direccion FROM USUARIO
                         WHERE id_usuario=%s;""" % (id_usuario)
 
-            estrellitasQuery = """SELECT SUM(calificacion) / COUNT(fk_usuarioCalificado) as promedio_estrellas FROM CALIFICACION
+            estrellitasQuery = """SELECT SUBSTRING(CAST((SUM(calificacion) / COUNT(fk_usuarioCalificado)) AS CHAR), 1,4) as promedio_estrellas FROM CALIFICACION
                                 WHERE fk_usuarioCalificado = %s;""" % (id_usuario)
 
             comentariosQuery = """SELECT comentario FROM COMENTARIO WHERE tipo = 'Usuario' AND fk_dirigidoA = %s;""" % (id_usuario)
 
+            articulosQuery = """SELECT id_articulo, nombre, CAST(precio AS CHAR) precio, descripcion, CAST(fecha_publicacion AS CHAR) fecha, fk_departamento, fk_municipio,
+                                cantidad_disponible, fk_usuario, enlace_imagen FROM ARTICULO INNER JOIN IMAGEN
+                                ON ARTICULO.id_articulo = IMAGEN.fk_articulo 
+                                WHERE fk_usuario = %s AND id_imagen IN (SELECT min(id_imagen) FROM IMAGEN group by fk_articulo)
+                                ORDER BY fecha_publicacion DESC;""" % (id_usuario)
+
             try:
-                if calificacion != 0:
+                '''if calificacion != 0:
                     insertCalificacionQuery = """INSERT INTO CALIFICACION (fk_usuarioCalificador,fk_usuarioCalificado,calificacion) VALUES
                                                 (%s,%s,%s);""" % (id_usuarioLogueado, id_usuario, calificacion)
                     cursor.execute(insertCalificacionQuery)
@@ -295,7 +305,7 @@ def userProfile(request):
                     insertComentarioQuery = """INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
                                             ("Usuario",'%s',%s,%s);""" % (comentario, id_usuarioLogueado, id_usuario) # El valor de tipo por defecto va en Usuario
                     cursor.execute(insertComentarioQuery)
-                database.commit()
+                database.commit()'''
 
                 cursor.execute(userQuery)
                 resultUser = [cursor.fetchone()]
@@ -303,16 +313,18 @@ def userProfile(request):
                 resultEstrellitas = [cursor.fetchone()]
                 cursor.execute(comentariosQuery)
                 resultComentarios = [cursor.fetchall()]
-                datosUser = resultUser + resultEstrellitas + resultComentarios # Lista de tuplas con los datos del usuario, calificacion y comentarios
+                cursor.execute(articulosQuery)
+                resultArticulos = [cursor.fetchall()]
+                datosUser = resultUser + resultEstrellitas + resultComentarios + resultArticulos # Lista de tuplas con los datos del usuario, calificacion, comentarios y articulos
                 cursor.close()
 
                 return HttpResponse(json.dumps({'status':'Success', 'data':datosUser}),content_type="application/json")
             except Exception as e:
                 return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
-        return HttpResponse(json.dumps({'status':'Empty', 'errorMessage':'No se encontro el usuario'}),content_type="application/json")
-    else:
-        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
-
+        else:
+            return HttpResponse(json.dumps({'status':'Empty', 'errorMessage':'No se encontro el usuario'}),content_type="application/json")
+    #else:
+        #return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 """
     Función utilizada por userProfile para obtener el id del usuario 
 
@@ -332,6 +344,49 @@ def getIdUser(correo):
     except:
         errorConexion = 0
         return errorConexion
+
+"""
+    Agrega un nuevo comentario y calificación a un usuario 
+
+    @param request: JSON con el comentario y la calificación que reciibe un usuario  
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la petición dentro del mismo JSON se envia
+                          una lista de tuplas que contiene la información del usuario ademas de la calificación y comentarios que este
+                          ha recibido:
+        
+        Success: La ejecución fue exitosa y se almaceno el nuevo comentario y/o calificacion.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def userReview(request):
+    if request.method == 'POST':
+        comentario, calificacion, correoVendedor = request.POST.get('comentario'), request.POST.get('calificacion'), request.POST.get('correoVendedor')
+        id_usuario = getIdUser(request.session.get('email'))
+        id_usuarioVendedor = getIdUser(correoVendedor)
+
+        database, cursor = conexion.conectar()
+        comentarioQuery = """INSERT INTO COMENTARIO (tipo,comentario,fk_usuarioComentador,fk_dirigidoA) VALUES
+                             ('Usuario','%s',%s,%s);""" % (comentario,id_usuario,id_usuarioVendedor)
+
+        calificacionQuery = """INSERT INTO CALIFICACION (calificacion,fk_usuarioCalificador,fk_usuarioCalificado) VALUES
+                             (%s,%s,%s);""" % (calificacion,id_usuario,id_usuarioVendedor)
+        
+        try:
+            if comentario !=0:
+                cursor.execute(comentarioQuery)
+                
+            if calificacion !=0:
+                cursor.execute(calificacionQuery)
+
+            database.commit()
+            cursor.close()
+
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
 
 """
     Devuelve un JSON con la información de los artículos publicados. 
