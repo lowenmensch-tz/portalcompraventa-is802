@@ -14,7 +14,7 @@ El archivo `requirements.txt` contiene las dependencias del proyecto asociadas a
 Instalar dependencias utilizando pip
 
 ```Shell
-pipinstall -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 **Observación**  
