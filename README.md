@@ -17,15 +17,21 @@ Instalar dependencias utilizando pip
 pipinstall -r requirements.txt
 ```
 
-**Observación**
-Creación de entorno virtual
+**Observación**  
+Ejemplo de creación del entorno virtual utilizando `venv`
 
 ```Shell
 sudo python3 -m venv /path/to/new/virtual/environment/nameFolder
 ```
 
-Activación
+**Activación**:    
 
 ```Shell
 source nameFolder/bin/activate
+```
+
+**Desactivar entorno virtual**:  
+
+```Shell
+deactivate
 ```
