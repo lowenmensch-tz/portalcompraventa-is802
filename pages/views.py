@@ -25,7 +25,7 @@ def logout(request):
     del request.session['email']
     return render(request,'index.html')
 
- """
+"""
     Devuelve la vista de perfil de usuario.
     
     @param request
