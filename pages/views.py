@@ -368,20 +368,6 @@ def productDetailsDescription(request, url):
 
             if resultProduct != []:
 
-                #return HttpResponse(json.dumps(
-                #    { 
-                #        'status':'Success', 
-                #        **{
-                #            'title':resultProduct[0][0], 
-                #            'description':resultProduct[0][1], 
-                #            'price':resultProduct[0][2], 
-                #        }, 
-                #        **productDetailsRating(resultProduct[0][-1]), # Calificación (promedio) del vendedor
-                #        **productDetailsImage(idProduct=idProduct),    # Imagen del producto
-                #        **productDetailsComments(idProduct=idProduct)  # Comentarios del producto
-                #    
-                #    }), content_type="application/json")
-
                 return HttpResponse(
                     json.dumps(  
                             { 
