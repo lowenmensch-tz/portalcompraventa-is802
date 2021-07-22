@@ -107,7 +107,8 @@ function updateReviews(){
     
     $.ajax({
         type: "POST",
-        url:  `ajax/userReview`,
+        //url:  `ajax/userReview`,
+        url:  `ajax/review`,
         data: {
             comentario: $('#exampleInputReview').val(),
             calificacion: rate,

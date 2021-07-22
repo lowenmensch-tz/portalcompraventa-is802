@@ -367,9 +367,12 @@ def userReview(request,url):
         id_usuarioVendedor = getIdUser(correoVendedor)
         print(id_usuarioVendedor)
 
+        print( 'URL: ', url )
+        print( 'CALIFICACION: ', calificacion )
+
         database, cursor = conexion.conectar()
         comentarioQuery = """INSERT INTO COMENTARIO (tipo,comentario,fk_usuarioComentador,fk_dirigidoA) VALUES
-                             ('Usuario','%s',%s,%s);""" % (comentario,id_usuario,id_usuarioVendedor)
+                             ('Usuario','%s',%s,%s);""" % (comentario,id_usuario, id_usuarioVendedor)
 
         calificacionQuery = """INSERT INTO CALIFICACION (calificacion,fk_usuarioCalificador,fk_usuarioCalificado) VALUES
                              (%s,%s,%s);""" % (calificacion,id_usuario,id_usuarioVendedor)
@@ -487,34 +490,41 @@ def userInformation(idUser):
 """
     Devuelve un JSON con la información de los comentarios (actualizados) de un producto.
 """
-def review(request):
+@csrf_exempt
+def review(request, url):
     
     if request.method == 'POST':
+
+        emailUserCommented = request.session.get('email')           # Obtiene el correo del usuario que ha hecho el comentario
+        emailUserPublication = request.POST.get('correoVendedor')  # Dueño del producto
+        comment = request.POST.get('comentario')                  # Comentario de la reseña
         
-        emailUserCommented = request.session.get('email') # Obtiene el correo del usuario que ha hecho el comentario
-        emailUserPublication = request.POST.get('email') # Dueño del producto
-        comment = request.POST.get('comment')           # Comentario de la reseña
-        calification = request.POST.get('calification')# Calificación del comentario
-        idProduct = request.POST.get('idProduct')     # ID del producto
+        ratio = request.POST.get('calificacion')                 # Calificación del comentario
+        ratio = 0 if ratio == 'NaN' else float(ratio)
+
+        idProduct = int( url.split('-')[0] )                   # ID del producto
 
         idUserPublication = getUserID(emailUserPublication)  # Obtiene el id del dueño del producto
-        idUserCommented = getUserID(emailUserCommented)    # Obtiene el id del usuario que ha hecho el comentario
+        idUserCommented = getUserID(emailUserCommented)     # Obtiene el id del usuario que ha hecho el comentario
 
         sqlComment = """
         INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
             ('Articulo', '%s', %s, %s);
-        """%(comment, idUserPublication, idUserCommented)
+        """%(comment, idUserCommented, idProduct)
 
-        sqlCalification = """
+        sqlRatio = """
         INSERT INTO CALIFICACION (calificacion, fk_usuarioCalificador, fk_usuarioCalificado) VALUES
             (%s, %s, %s);
-        """%(calification, idUserCommented, idUserPublication)
+        """%(ratio, idUserCommented, idUserPublication)
             
         dms(sqlComment)
-        dms(sqlCalification)
+        dms(sqlRatio)
 
         try: 
             updatedComments = productDetailsComments(idProduct=idProduct) 
+
+            print('Comentario actualizado: ', updatedComments)
+            print('HOLA')
 
             if updatedComments:
 
@@ -569,12 +579,11 @@ def productDetailsComments(idProduct):
     INNER JOIN 
         USUARIO AS u ON c.fk_usuarioComentador = u.id_usuario
     WHERE
-        tipo = 1 AND fk_dirigidoA = %s 
+        tipo = 2 AND fk_dirigidoA = %s 
     """ % (idProduct) # REVISAR
 
     result = transaction(sql) # Result viene vación incluso luego de insertar un comentario (ya se puede ingresar comentarios)
 
-    # En vez de un JSON devolver una lista de listas [[user1, comentario1],[user2, comentario2],[user3, comentario3]]
     return convertToDictionary(data=result, key=['userCommenting', 'comment'])
 
 
