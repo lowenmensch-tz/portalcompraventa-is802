@@ -29,51 +29,6 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Nombre de la Empresa<sup></sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Usuario</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading 
-            <div class="sidebar-heading">
-                Interfaz
-            </div> -->
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Mis productos</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Cerrar Sesion</span></a>
-            </li>
-        </ul>
-        <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -158,80 +113,38 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Mi Perfil</h1>
-                            <a data-toggle="modal" data-target="#logoutModal" href="#logoutModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Agregar Nuevo Producto
-                        </a>
+                        <h1 class="h3 mb-0 text-gray-800">Vendedor</h1>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
                         <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card shadow h-100 py-2">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4" style="padding-top:2rem;">Mis Datos</h1>
-                                </div>
                                 <div class="card-body">
                                     <form class="user" id="UpdateForm" name="UpdateForm" data-toggle="validator" data-focus="false">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="Ufirstname"
-                                            placeholder="First Name">
-                                            <div class="help-block with-errors"></div>
+                                        FirstName
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="Ulastname"
-                                            placeholder="Last Name">
+                                        Lastname
                                     </div>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="Uemail"
-                                        placeholder="Email Address">
-                                        <div class="help-block with-errors"></div>
+                                    Email
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-user" id="Upassword"
-                                        placeholder="Password">
-                                        <div class="help-block with-errors"></div>
+                                    Phone Number
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="Uphone"
-                                        placeholder="Phone Number">
-                                        <div class="help-block with-errors"></div>
+                                    Address
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="Uaddress"
-                                        placeholder="Address">
-                                        <div class="help-block with-errors"></div>
+                                    Departamento
                                 </div>
-                                <div class="form-group">
-                                    <select id="Ustate" class="form-control form-control-select dropdown-toggle">
-                                        <option selected>Departamento...</option>
-                                        <option value="Atlántida">Atlántida</option>
-                                        <option value="Colón">Colón</option>
-                                        <option value="Comayagua">Comayagua</option>
-                                        <option value="Copán">Copán</option>
-                                        <option value="Cortés">Cortés</option>
-                                        <option value="Choluteca">Choluteca</option>
-                                        <option value="El Paraíso">El Paraíso</option>
-                                        <option value="Francisco Morazán">Francisco Morazán</option>
-                                        <option value="Gracias a Dios">Gracias a Dios</option>
-                                        <option value="Intibucá">Intibucá</option>
-                                        <option value="Islas de la Bahía">Islas de la Bahía</option>
-                                        <option value="La Paz">La Paz</option>
-                                        <option value="Lempira Gracias">Lempira Gracias</option>
-                                        <option value="Ocotepeque">Ocotepeque</option>
-                                        <option value="Olancho">Olancho</option>
-                                        <option value="Santa Bárbara">Santa Bárbara</option>
-                                        <option value="Valle">Valle</option>
-                                        <option value="Yoro">Yoro</option>
-                                    </select>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">Actualizar Datos</button>
-                                <div class="form-message">
-                                    <div id="smsgSubmit" class="h3 text-center hidden"></div>
-                                </div>
+                                <a data-toggle="modal" data-target="#logoutModal" href="#logoutModal" class="btn btn-primary btn-user btn-block">Calificar al vendedor
+                                </a>
                             </form>
                                 </div>
                             </div>
@@ -323,7 +236,7 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Ingresar Producto</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Calificacion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -339,72 +252,6 @@
                         <input type="text" class="form-control form-control-user" id="Pprice"
                             placeholder="Precio">
                             <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" id="Pdescription" rows="3" placeholder="Descripcion"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="Pimage1"
-                            placeholder="URL imagen 1">
-                            <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="Pimage2"
-                            placeholder="URL imagen 2">
-                            <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="Pimage3"
-                            placeholder="URL imagen 3">
-                            <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <select id="Pstate" class="form-control form-control-select dropdown-toggle">
-                            <option selected>Departamento...</option>
-                            <option value="Atlántida">Atlántida</option>
-                            <option value="Colón">Colón</option>
-                            <option value="Comayagua">Comayagua</option>
-                            <option value="Copán">Copán</option>
-                            <option value="Cortés">Cortés</option>
-                            <option value="Choluteca">Choluteca</option>
-                            <option value="El Paraíso">El Paraíso</option>
-                            <option value="Francisco Morazán">Francisco Morazán</option>
-                            <option value="Gracias a Dios">Gracias a Dios</option>
-                            <option value="Intibucá">Intibucá</option>
-                            <option value="Islas de la Bahía">Islas de la Bahía</option>
-                            <option value="La Paz">La Paz</option>
-                            <option value="Lempira Gracias">Lempira Gracias</option>
-                            <option value="Ocotepeque">Ocotepeque</option>
-                            <option value="Olancho">Olancho</option>
-                            <option value="Santa Bárbara">Santa Bárbara</option>
-                            <option value="Valle">Valle</option>
-                            <option value="Yoro">Yoro</option>
-                        </select>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <select id="Pmunicipio" class="form-control form-control-select dropdown-toggle">
-                            <option selected>Municipio...</option>
-                            <option value="Atlántida">Atlántida</option>
-                            <option value="Colón">Colón</option>
-                            <option value="Comayagua">Comayagua</option>
-                            <option value="Copán">Copán</option>
-                            <option value="Cortés">Cortés</option>
-                            <option value="Choluteca">Choluteca</option>
-                            <option value="El Paraíso">El Paraíso</option>
-                            <option value="Francisco Morazán">Francisco Morazán</option>
-                            <option value="Gracias a Dios">Gracias a Dios</option>
-                            <option value="Intibucá">Intibucá</option>
-                            <option value="Islas de la Bahía">Islas de la Bahía</option>
-                            <option value="La Paz">La Paz</option>
-                            <option value="Lempira Gracias">Lempira Gracias</option>
-                            <option value="Ocotepeque">Ocotepeque</option>
-                            <option value="Olancho">Olancho</option>
-                            <option value="Santa Bárbara">Santa Bárbara</option>
-                            <option value="Valle">Valle</option>
-                            <option value="Yoro">Yoro</option>
-                        </select>
-                        <div class="help-block with-errors"></div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">Guardar Producto</button>
                     <div class="form-message">
