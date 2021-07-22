@@ -1,15 +1,12 @@
-from pages.vwDetails import productDetailsDescription 
-from pages.vwDetails import review
-
 from pages.views import almacenarArticulo 
 from pages.views import productCategories
 from pages.views import loggedInValidator
 from pages.views import loginValidation 
-from pages.views import productDetails 
 from pages.views import registerUser
 from pages.views import findProducts
 from pages.views import userProfile
 from pages.views import register
+from pages.views import details
 from pages.views import logout
 from pages.views import login
 from pages.views import index
@@ -19,6 +16,7 @@ from django.urls import path
 
 from django.conf.urls import include
 from django.conf.urls import url
+
 
 urlpatterns = [
 path('', index, name='index_page'),
@@ -33,10 +31,11 @@ path('ajax/almacenarArticulo', almacenarArticulo, name='almacenar_Articulo'),
 path('user', user, name='user'),
 path('logout', logout),
 
-url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/productDetailsDescription$', productDetailsDescription),
+url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/productDetailsDescription$', details.productDetailsDescription),
+url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/review$', details.review, name='review'),
+url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/$', details.productDetails), # esta cosa solo es de prueba UwU
+
 url(r'^user\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/userProfile$', userProfile, name='user_Profile'),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/loggedValidator', loggedInValidator),
-url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/review$', review, name='review'),
-url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/$', productDetails), # esta cosa solo es de prueba UwU
 
 ]

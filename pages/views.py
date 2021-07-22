@@ -5,14 +5,18 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
-from pages.MySQLEngine import transaction
-from pages.MySQLEngine import dms
+from pages.MySQLEngine import MySQLEngine
+
+from pages.vwDetails import Details
 
 import json
 
 import pages.conexion as conexion
 
 # Create your views here.
+
+engine = MySQLEngine()    #Ejecuta statements de la base de datos. SELECT (tranaction), INSERT (dms). 
+details = Details(engine) #Funciones pertenecientes a la Vista Donde se muestra la información de los artículos
 
 """
     Vista principal de la página.
@@ -200,16 +204,6 @@ def findProducts(request):
 
 
 """
-    Devuelve la vista de Detalles del Producto.
-    
-    @param request
-    @return render
-"""
-@csrf_exempt
-def productDetails(request,url):
-    return render(request,'detail.html',)
-
-"""
     Petición para postear un nuevo artículo.
 
     @param request: JSON con la información del nuevo articulo a publicar.
@@ -350,60 +344,3 @@ def getIdUser(correo):
     except:
         errorConexion = 0
         return errorConexion
-
-
-""""
-    Información del usuario
-"""
-def userInformation(idUser):
-    sql = """
-        SELECT
-            u.nombre_completo AS Name,
-            u.correo AS Email,
-            u.telefono AS Phone,
-            u.direccion AS Address
-        FROM 
-            USUARIO AS u
-        WHERE id_usuario = %s;
-        """ % (idUser)
-
-    result = transaction(sql)
-
-    print( "INFORMACION DEL USUAIRO: ", result )
-
-    if result: 
-
-        return {
-            'name': result[0][0],
-            'email': result[0][1],  
-            'phone': result[0][2],
-            'address': result[0][3]
-        }
-    else:
-        
-        return {
-            'name':  '',
-            'email':  '',
-            'phone':  '',
-            'address': ''
-        }
-
-
-"""
-    Retorna el ID del usuario a partir del email.
-    @param email: correo del usuario
-"""
-def getUserID(email): 
-    
-    sql="""
-        SELECT
-            id_usuario AS idUsuario
-        FROM
-            USUARIO
-        WHERE
-            correo = '%s';
-        """%(email)
-
-    result = transaction(sql)
-
-    return result[0][0]
