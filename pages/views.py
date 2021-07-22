@@ -1,6 +1,12 @@
-from django.shortcuts import render, resolve_url
-from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt # Este decorador solo es de prueba y no una solución para la cookie csrf
+
+from django.shortcuts import resolve_url
+from django.shortcuts import render 
+
+from django.http import HttpResponse
+
+from pages.MySQLEngine import transaction
+from pages.MySQLEngine import dms
 
 import json
 
@@ -345,112 +351,6 @@ def getIdUser(correo):
         errorConexion = 0
         return errorConexion
 
-"""
-    Agrega un nuevo comentario y calificación a un usuario 
-
-    @param request: JSON con el comentario y la calificación que reciibe un usuario  
-    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la petición dentro del mismo JSON se envia
-                          una lista de tuplas que contiene la información del usuario ademas de la calificación y comentarios que este
-                          ha recibido:
-        
-        Success: La ejecución fue exitosa y se almaceno el nuevo comentario y/o calificacion.
-        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
-        requestError: No se recibió una petición POST.
-"""
-@csrf_exempt
-def userReview(request,url):
-    if request.method == 'POST':
-        print('AQUI -------------------------')
-        comentario, calificacion, correoVendedor = request.POST.get('comentario'), request.POST.get('calificacion'), request.POST.get('correoVendedor')
-        id_usuario = getIdUser(request.session.get('email'))
-        print(id_usuario)
-        id_usuarioVendedor = getIdUser(correoVendedor)
-        print(id_usuarioVendedor)
-
-        print( 'URL: ', url )
-        print( 'CALIFICACION: ', calificacion )
-
-        database, cursor = conexion.conectar()
-        comentarioQuery = """INSERT INTO COMENTARIO (tipo,comentario,fk_usuarioComentador,fk_dirigidoA) VALUES
-                             ('Usuario','%s',%s,%s);""" % (comentario,id_usuario, id_usuarioVendedor)
-
-        calificacionQuery = """INSERT INTO CALIFICACION (calificacion,fk_usuarioCalificador,fk_usuarioCalificado) VALUES
-                             (%s,%s,%s);""" % (calificacion,id_usuario,id_usuarioVendedor)
-        
-        try:
-            if comentario !=0:
-                cursor.execute(comentarioQuery)
-                
-            if calificacion !=0:
-                cursor.execute(calificacionQuery)
-
-            database.commit()
-            cursor.close()
-
-            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
-        except Exception as e:
-            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
-    else:
-        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
-
-
-"""
-    Devuelve un JSON con la información de los artículos publicados. 
-    @param url: ejemplo de la url que se espera
-                        12-dell-laptop-xps-15
-                        idProducto-titulo-del-producto
-
-    Por medio de la url se sustrae el id del producto y se busca en la base de datos.
-"""
-@csrf_exempt
-def productDetailsDescription(request, url):
-    
-    #if request.method == 'POST':
-        idProduct = int( url.split('-')[0] ) 
-
-        sqlProduct = """
-        SELECT 
-            a.nombre AS Title, 
-            a.descripcion AS Description,
-            CAST(FORMAT(a.precio, 2) AS CHAR) AS Price, 
-            a.fk_usuario AS User
-        FROM 
-            ARTICULO AS a
-        INNER JOIN 
-            CATEGORIA AS c ON a.fk_categoria = c.id_categoria
-        INNER JOIN 
-            DEPARTAMENTO AS d ON a.fk_departamento = d.id_departamento
-        WHERE 
-            a.id_articulo = %s;
-            """ % (idProduct)
-
-        try:
-            resultProduct = transaction(sqlProduct)
-
-            if resultProduct != []:
-
-                return HttpResponse(
-                    json.dumps(  
-                            { 
-                                'status':'Success', 
-                                **{
-                                    'title':resultProduct[0][0], 
-                                    'description':resultProduct[0][1], 
-                                    'price':resultProduct[0][2], 
-                                }, 
-                                **productDetailsRating(resultProduct[0][-1]),          # Calificación (promedio) del vendedor
-                                'image': productDetailsImage(idProduct=idProduct),      # Imagen del producto
-                                'comment': productDetailsComments(idProduct=idProduct),  # Comentarios del producto
-                                **userInformation(resultProduct[0][-1])                   # Información del usuario     
-                            }),content_type="application/json"
-                    )
-            else:
-                return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
-        except Exception as e:
-            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
-    #else:
-    #    return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
-    
 
 """"
     Información del usuario
@@ -468,6 +368,8 @@ def userInformation(idUser):
         """ % (idUser)
 
     result = transaction(sql)
+
+    print( "INFORMACION DEL USUAIRO: ", result )
 
     if result: 
 
@@ -488,63 +390,6 @@ def userInformation(idUser):
 
 
 """
-    Devuelve un JSON con la información de los comentarios (actualizados) de un producto.
-"""
-@csrf_exempt
-def review(request, url):
-    
-    if request.method == 'POST':
-
-        emailUserCommented = request.session.get('email')           # Obtiene el correo del usuario que ha hecho el comentario
-        emailUserPublication = request.POST.get('correoVendedor')  # Dueño del producto
-        comment = request.POST.get('comentario')                  # Comentario de la reseña
-        
-        ratio = request.POST.get('calificacion')                 # Calificación del comentario
-        ratio = 0 if ratio == 'NaN' else float(ratio)
-
-        idProduct = int( url.split('-')[0] )                   # ID del producto
-
-        idUserPublication = getUserID(emailUserPublication)  # Obtiene el id del dueño del producto
-        idUserCommented = getUserID(emailUserCommented)     # Obtiene el id del usuario que ha hecho el comentario
-
-        sqlComment = """
-        INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
-            ('Articulo', '%s', %s, %s);
-        """%(comment, idUserCommented, idProduct)
-
-        sqlRatio = """
-        INSERT INTO CALIFICACION (calificacion, fk_usuarioCalificador, fk_usuarioCalificado) VALUES
-            (%s, %s, %s);
-        """%(ratio, idUserCommented, idUserPublication)
-            
-        dms(sqlComment)
-        dms(sqlRatio)
-
-        try: 
-            updatedComments = productDetailsComments(idProduct=idProduct) 
-
-            print('Comentario actualizado: ', updatedComments)
-            print('HOLA')
-
-            if updatedComments:
-
-                return HttpResponse(json.dumps(
-                                {
-                                    'status':'Success',
-                                    **productDetailsRating(idUser=idUserPublication), # Calificación (promedio) del dueño del producto
-                                    'comment': updatedComments,                      # Comentarios del producto
-                                }
-                            ), 
-                            content_type="application/json")
-
-            else:
-                return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
-
-        except Exception as e:
-            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
-
-
-"""
     Retorna el ID del usuario a partir del email.
     @param email: correo del usuario
 """
@@ -562,125 +407,3 @@ def getUserID(email):
     result = transaction(sql)
 
     return result[0][0]
-
-
-"""
-    Devuelve un diccionario con la información de los comentarios, nombre de los usuarios de los artículos publicados.
-    @param idProducto: Id del producto que se busca.
-"""
-def productDetailsComments(idProduct):
-
-    sql = """
-    SELECT
-        u.nombre_completo AS User,
-        c.comentario AS Comment
-    FROM
-        COMENTARIO AS c
-    INNER JOIN 
-        USUARIO AS u ON c.fk_usuarioComentador = u.id_usuario
-    WHERE
-        tipo = 2 AND fk_dirigidoA = %s 
-    """ % (idProduct) # REVISAR
-
-    result = transaction(sql) # Result viene vación incluso luego de insertar un comentario (ya se puede ingresar comentarios)
-
-    return convertToDictionary(data=result, key=['userCommenting', 'comment'])
-
-
-"""
-    Devuelve un diccionario con la información de las url de las imagénes asociadas al artículo publicado.
-"""
-def productDetailsImage(idProduct):
-
-    sql = """
-    SELECT
-        enlace_imagen AS Image
-    FROM
-        IMAGEN
-    WHERE
-        fk_articulo = %s
-    """ % (idProduct)
-
-    result = transaction(sql)
-
-    return convertToDictionary(data=result, key='photo')
-
-
-"""
-    Calificación (promedio) que tiene un vendedor
-    @param idUsuario 
-"""
-def productDetailsRating(idUser):
-
-    sql = """
-    SELECT
-        CAST(AVG(calificacion) AS CHAR) AS AVG_Rating
-    FROM
-        CALIFICACION
-    WHERE
-        fk_usuarioCalificado  = %s
-    """ % (idUser)
-
-    result = transaction(sql)
-
-    return {   
-            'rating': 0 if result[0][0] is None else float(result[0][0])
-        }
-    
-
-"""
-    Devuelve el resultado de la ejecución de una consulta a la base de datos.
-"""
-def transaction(sql): 
-    
-    database, cursor = conexion.conectar()
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    cursor.close()
-
-    return result
-
-
-"""
-    Realizar un INSERT a la base de datos.
-"""
-def dms(sql): 
-    
-    database, cursor = conexion.conectar()
-    cursor.execute(sql)
-    database.commit()
-
-    cursor.close()
-
-
-"""
-    Convierte una lista de tuplas en un diccionario.
-    @param data: Lista con los datos de las filas.
-    @param key: Lista con los nombres de las columnas. Puede ser un dato o una lista con los nombres de las columnas.
-
-    # data = [('a', 'b'), ('c', 'd'), ('e', 'f'), ('g', 'h')]
-"""
-def convertToDictionary(data, key):
-    
-    jso = {}
-    if data: 
-
-        if len(data[0]) == 1:     
-
-            for i in range(len(data)):
-                jso[key + str(i)] = data[i][0]
-
-        else: 
-
-            for i in range(len(data)):
-                for j in range(len(key)):
-                    jso[key[j] + str(i)] = data[i][j]
-
-    else:   
-        if type(key) is  list and len(key) > 1:
-            for i in range(len(key)):
-                jso[key[i]] = ''
-        else:
-            jso[key + '0'] = ''
-                
-    return jso
