@@ -70,7 +70,8 @@ function loadData(){
                     </a>
                 </div>
             `);
-
+            
+            console.log(data.comment)
             for (i=0; i<Object.keys(data.comment).length/2; i++){
 
                 $('#commentsRow').append(`
@@ -92,12 +93,8 @@ function loadData(){
                 
             }
             $('#commentsRow').append(`<div style="background-color: white;" class="post-load-more col-md-12"><a style="background-color: white;" class="btn btn-upper btn-primary" onclick="" >&nbsp;</a></div>`);
-
         }
     });
-
-    
-    
 }
 
 function updateReviews(){
@@ -107,7 +104,19 @@ function updateReviews(){
     status = parseInt($('input[name="status"]:checked').val());
 
     rate = (parseInt(quality)+parseInt(price)+parseInt(status))/3;
-    console.log(rate);
+    
+    $.ajax({
+        type: "POST",
+        url:  `ajax/userReview`,
+        data: {
+            comentario: $('#exampleInputReview').val(),
+            calificacion: rate,
+            correoVendedor: $('#publisherEmail').val(),
+        },
+        success: function(data) {
+            console.log(data);
+        }
+    });
     
     comment = $('#exampleInputReview').val();
     console.log(comment);

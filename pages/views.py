@@ -358,11 +358,14 @@ def getIdUser(correo):
         requestError: No se recibió una petición POST.
 """
 @csrf_exempt
-def userReview(request):
+def userReview(request,url):
     if request.method == 'POST':
+        print('AQUI -------------------------')
         comentario, calificacion, correoVendedor = request.POST.get('comentario'), request.POST.get('calificacion'), request.POST.get('correoVendedor')
         id_usuario = getIdUser(request.session.get('email'))
+        print(id_usuario)
         id_usuarioVendedor = getIdUser(correoVendedor)
+        print(id_usuarioVendedor)
 
         database, cursor = conexion.conectar()
         comentarioQuery = """INSERT INTO COMENTARIO (tipo,comentario,fk_usuarioComentador,fk_dirigidoA) VALUES
@@ -569,8 +572,9 @@ def productDetailsComments(idProduct):
         tipo = 1 AND fk_dirigidoA = %s 
     """ % (idProduct) # REVISAR
 
-    result = transaction(sql)
+    result = transaction(sql) # Result viene vación incluso luego de insertar un comentario (ya se puede ingresar comentarios)
 
+    # En vez de un JSON devolver una lista de listas [[user1, comentario1],[user2, comentario2],[user3, comentario3]]
     return convertToDictionary(data=result, key=['userCommenting', 'comment'])
 
 
