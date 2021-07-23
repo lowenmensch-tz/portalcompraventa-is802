@@ -9,6 +9,8 @@ from pages.MySQLEngine import MySQLEngine
 
 from pages.vwDetails import Details
 
+from pages.vwUserProfile import UserProfile
+
 import json
 
 import pages.conexion as conexion
@@ -16,7 +18,14 @@ import pages.conexion as conexion
 # Create your views here.
 
 engine = MySQLEngine()    #Ejecuta statements de la base de datos. SELECT (tranaction), INSERT (dms). 
-details = Details(engine) #Funciones pertenecientes a la Vista Donde se muestra la información de los artículos
+details = Details(engine)  #Funciones pertenecientes a la Vista Donde se muestra la información de los artículos
+profile = UserProfile(engine)  #Funciones de la Vista donde se muestra la información de los artículos
+
+
+@csrf_exempt
+def seller(request): 
+    return render(request, 'seller.html')
+
 
 """
     Vista principal de la página.
@@ -237,7 +246,7 @@ def almacenarArticulo(request):
         
         try:
             cursor.execute(postQuery)
-            database.comit()
+            database.commit()
             cursor.execute(fkArticuloQuery)
             result = cursor.fetchone()
 
@@ -253,78 +262,6 @@ def almacenarArticulo(request):
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
-"""
-    Retorna un JSON con la información del usuario.
-
-    @param url: url que contiene el id del usuario a mostrar. La url esperada tiene la siguiente estructura 
-                    5-carlos-sauceda
-                    idUsuario-primerNombre-apellido
-                    
-    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la petición dentro del mismo JSON se envia
-                          una lista de tuplas que contiene la información del usuario ademas de la calificación y comentarios que este
-                          ha recibido:
-        
-        Success: La ejecución fue exitosa y se encontraron registros.
-        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
-        Empty: No se encontró el usuario
-        requestError: No se recibió una petición POST.
-"""
-
-@csrf_exempt
-def userProfile(request, url):
-    #if request.method == 'POST':
-        #correo_usuario,calificacion, comentario = request.POST.get('correo_usuario'), request.POST.get('calificacion'), request.POST.get('comentario') #Puede ser el del id_usuario o el id_de cualquier otro usuario que ha publicado un artículo
-        #id_usuario = request.POST.get('id_usuario')
-        #id_usuario = getIdUser(correo_usuario)
-        id_usuario = int(url.split('-')[0])
-        #id_usuarioLogueado = getIdUser(request.session.get('email'))
-
-        if id_usuario != 0: #and id_usuarioLogueado !=0:
-            database, cursor = conexion.conectar()
-
-            userQuery = """SELECT nombre_completo,correo,telefono,direccion FROM USUARIO
-                        WHERE id_usuario=%s;""" % (id_usuario)
-
-            estrellitasQuery = """SELECT SUBSTRING(CAST((SUM(calificacion) / COUNT(fk_usuarioCalificado)) AS CHAR), 1,4) as promedio_estrellas FROM CALIFICACION
-                                WHERE fk_usuarioCalificado = %s;""" % (id_usuario)
-
-            comentariosQuery = """SELECT comentario FROM COMENTARIO WHERE tipo = 'Usuario' AND fk_dirigidoA = %s;""" % (id_usuario)
-
-            articulosQuery = """SELECT id_articulo, nombre, CAST(precio AS CHAR) precio, descripcion, CAST(fecha_publicacion AS CHAR) fecha, fk_departamento, fk_municipio,
-                                cantidad_disponible, fk_usuario, enlace_imagen FROM ARTICULO INNER JOIN IMAGEN
-                                ON ARTICULO.id_articulo = IMAGEN.fk_articulo 
-                                WHERE fk_usuario = %s AND id_imagen IN (SELECT min(id_imagen) FROM IMAGEN group by fk_articulo)
-                                ORDER BY fecha_publicacion DESC;""" % (id_usuario)
-
-            try:
-                '''if calificacion != 0:
-                    insertCalificacionQuery = """INSERT INTO CALIFICACION (fk_usuarioCalificador,fk_usuarioCalificado,calificacion) VALUES
-                                                (%s,%s,%s);""" % (id_usuarioLogueado, id_usuario, calificacion)
-                    cursor.execute(insertCalificacionQuery)
-                if comentario != 0:
-                    insertComentarioQuery = """INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
-                                            ("Usuario",'%s',%s,%s);""" % (comentario, id_usuarioLogueado, id_usuario) # El valor de tipo por defecto va en Usuario
-                    cursor.execute(insertComentarioQuery)
-                database.commit()'''
-
-                cursor.execute(userQuery)
-                resultUser = [cursor.fetchone()]
-                cursor.execute(estrellitasQuery)
-                resultEstrellitas = [cursor.fetchone()]
-                cursor.execute(comentariosQuery)
-                resultComentarios = [cursor.fetchall()]
-                cursor.execute(articulosQuery)
-                resultArticulos = [cursor.fetchall()]
-                datosUser = resultUser + resultEstrellitas + resultComentarios + resultArticulos # Lista de tuplas con los datos del usuario, calificacion, comentarios y articulos
-                cursor.close()
-
-                return HttpResponse(json.dumps({'status':'Success', 'data':datosUser}),content_type="application/json")
-            except Exception as e:
-                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
-        else:
-            return HttpResponse(json.dumps({'status':'Empty', 'errorMessage':'No se encontro el usuario'}),content_type="application/json")
-    #else:
-        #return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 """
     Función utilizada por userProfile para obtener el id del usuario 
 

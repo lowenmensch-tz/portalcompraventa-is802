@@ -73,7 +73,7 @@ class Details:
                 resultProduct = self.engine.transaction(sqlProduct)
 
                 if resultProduct != []:
-
+                    userRaiting =   self.raiting( resultProduct[0][-1] )
                     return HttpResponse(
                         json.dumps(  
                                 { 
@@ -83,7 +83,8 @@ class Details:
                                         'description':resultProduct[0][1], 
                                         'price':resultProduct[0][2], 
                                     }, 
-                                    **self.productDetailsRating(resultProduct[0][-1]),          # Calificación (promedio) del vendedor
+                                    **self.raiting(resultProduct[0][-1]),          # Calificación (promedio) del vendedor
+                                    # { 'rating': 0 if result[0][0] is None else float(result[0][0]) }
                                     #'image': productDetailsImage(idProduct=idProduct),      # Imagen del producto
                                     'image': convertToDictionary(
                                                                 data=self.productDetailsImage(idProduct=idProduct), 
@@ -122,8 +123,8 @@ class Details:
 
             idProduct = int( url.split('-')[0] )                   # ID del producto
 
-            idUserPublication = self.getUserID(emailUserPublication)  # Obtiene el id del dueño del producto
-            idUserCommented = self.getUserID(emailUserCommented)     # Obtiene el id del usuario que ha hecho el comentario
+            idUserPublication = self.engine.getUserIDByEmail(emailUserPublication)  # Obtiene el id del dueño del producto
+            idUserCommented = self.engine.getUserIDByEmail(emailUserCommented)     # Obtiene el id del usuario que ha hecho el comentario
 
             sqlComment = """
             INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
@@ -148,7 +149,7 @@ class Details:
                     return HttpResponse(json.dumps(
                                     {
                                         'status':'Success',
-                                        **self.productDetailsRating(idUser=idUserPublication), # Calificación (promedio) del dueño del producto
+                                        **self.raiting(idUser=idUserPublication), # Calificación (promedio) del dueño del producto
                                         'comment': updatedComments,                      # Comentarios del producto
                                     }
                                 ), 
@@ -209,7 +210,7 @@ class Details:
         Calificación (promedio) que tiene un vendedor
         @param idUsuario 
     """
-    def productDetailsRating(self, idUser):
+    def raiting(self, idUser):
 
         sql = """
         SELECT
@@ -262,23 +263,3 @@ class Details:
                 'phone':  '',
                 'address': ''
             }
-
-
-    """
-        Retorna el ID del usuario a partir del email.
-        @param email: correo del usuario
-    """
-    def getUserID(self, email): 
-        
-        sql="""
-            SELECT
-                id_usuario AS idUsuario
-            FROM
-                USUARIO
-            WHERE
-                correo = '%s';
-            """%(email)
-
-        result = self.engine.transaction(sql)
-
-        return result[0][0]

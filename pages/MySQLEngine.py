@@ -44,3 +44,48 @@ class MySQLEngine:
         database.commit()
 
         cursor.close()
+
+    
+    """
+        Retorna el ID del usuario a partir del email.
+        @param email: correo del usuario
+    """
+    def getUserIDByEmail(self, email): 
+        
+        sql="""
+            SELECT
+                id_usuario AS idUsuario
+            FROM
+                USUARIO
+            WHERE
+                correo = '%s';
+            """%(email)
+
+        result = self.transaction(sql)
+
+        return result[0][0]
+
+
+    """
+        Retorna la información de un usuario a partir de su correo.
+        @param email: correo del usuario
+    """
+    def getInformationUserByEmail(self, email): 
+        
+        sql = """
+            SELECT 
+                SUBSTRING_INDEX(nombre_completo, ' ', 1) AS Firstname, 
+                SUBSTRING_INDEX(nombre_completo, ' ', -1) AS Lastname, 
+                correo AS Email,
+                contrasenia AS Password,
+                telefono AS Phone,
+                direccion AS Address 
+            FROM 
+                USUARIO 
+            WHERE 
+                correo = '%s'
+                """%(email)
+
+        result = self.transaction(sql)
+
+        return result

@@ -12,6 +12,8 @@ $(function() {
         }
     });
 
+    loadData(); // Carga datos iniciales al formulario del perfil de usuario
+
     function ssubmitForm() {
         // initiate variables with form content
         var firstname = $("#rfirstname").val();
@@ -157,6 +159,31 @@ $(function() {
         }
     });
 
+
+    function loadData(){
+        
+        $.ajax({
+            type: "POST",
+            url:  `user-profile`,     
+            data: {},       
+            success: function(data) {
+                
+                console.log("-----Datos del perfil del usuario-----");
+
+                console.log(data.data);
+
+                $("#Ufirstname").val(`${data.data[0][1]}`);
+                $("#Ulastname").val(`${data.data[0][1]}`);
+                $("#Uemail").val(`${data.data[0][2]}`);
+                $("#Upassword").val(`${data.data[0][3]}`);
+                $("#Uphone").val(`${data.data[0][4]}`);
+                $("#Uaddress").val(`${data.data[0][5]}`);
+                //$("#Ustate").val(`${data.state}`);
+            }
+        });
+    }
+
+    /*
     function PsubmitForm() {
         console.log("Entre a la funcion");
         // initiate variables with form content
@@ -177,6 +204,43 @@ $(function() {
         //peticion que espera una variable text
         $.ajax({
             type: "POST",
+            url: "user-profile",
+            data: data,
+            success: function(text) {
+                console.log(text);
+                if (text.status == "Success") {
+                    PformSuccess();
+                } else {
+                    PformError();
+                    PsubmitMSG(false, text);
+                }
+            }
+        });
+    }*/
+
+
+    function PsubmitForm() {
+        // Los datos estaticos son datos que se deben precargar: departamento, municipio
+        // y categoria
+        // initiate variables with form content
+        var name = $("#Pname").val();
+        var price = $("#Pprice").val();
+        var description = $("#Pdescription").val();
+        var state = 2;
+        var municipio = 2;
+        var quantity = $("#Pcantidad").val();
+        var category = 3;
+        var url_img1 = $("#Pimage1").val();
+        var url_img2 = $("#Pimage2").val();
+        var url_img3 = $("#Pimage3").val();
+
+        var data = { 'nombre': name, 'precio' : price, 'descripcion': description, 'fk_departamento': state,
+            'fk_municipio': municipio, 'cantidad_disponible': quantity, 'fk_categoria': category, 'link_imagen1': url_img1,
+            'link_imagen2': url_img2, 'link_imagen3': url_img3};
+
+        //peticion que espera una variable text
+        $.ajax({
+            type: "POST",
             url: "ajax/almacenarArticulo",
             data: data,
             success: function(text) {
@@ -190,6 +254,7 @@ $(function() {
             }
         });
     }
+
 
     function PformSuccess() {
         alert("El producto se guardo");

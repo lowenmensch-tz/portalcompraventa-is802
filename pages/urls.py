@@ -4,9 +4,10 @@ from pages.views import loggedInValidator
 from pages.views import loginValidation 
 from pages.views import registerUser
 from pages.views import findProducts
-from pages.views import userProfile
 from pages.views import register
 from pages.views import details
+from pages.views import profile
+from pages.views import seller
 from pages.views import logout
 from pages.views import login
 from pages.views import index
@@ -27,6 +28,11 @@ path('ajax/registerUser', registerUser, name='register_user'),
 path('categories', productCategories, name='categories_page'),
 path('ajax/findProducts', findProducts, name='find_products'),
 path('ajax/almacenarArticulo', almacenarArticulo, name='almacenar_Articulo'),
+
+path('user-profile', profile.userProfile, name='user_profile'),
+
+path('seller', seller, name='seller_page'),
+
 #path('ajax/userProfile', userProfile, name='user_Profile'),
 path('user', user, name='user'),
 path('logout', logout),
@@ -35,7 +41,7 @@ url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/productDetailsDescription$', detai
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/review$', details.review, name='review'),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/$', details.productDetails), # esta cosa solo es de prueba UwU
 
-url(r'^user\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/userProfile$', userProfile, name='user_Profile'),
+#url(r'^user\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/userProfile$', userProfile, name='user_Profile'),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/loggedValidator', loggedInValidator),
 
 ]
