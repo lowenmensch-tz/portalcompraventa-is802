@@ -202,7 +202,8 @@ $(function() {
         var data = { nombre: name, precio : price, descripcion: description, departamento: state, municipio: municipio, cantidad: quantity, categoria: category, link_imagen1: url_img1, link_imagen2: url_img2, link_imagen3: url_img3, idUser: idUser};
 
         //peticion que espera una variable text
-        $.ajax({
+        //peticion que espera una variable text
+        /*$.ajax({
             type: "POST",
             url: "user-profile",
             data: data,
@@ -252,7 +253,24 @@ $(function() {
                     PsubmitMSG(false, text);
                 }
             }
+        });*/
+        console.log('estoy en la funcion')
+        $.ajax({
+            type: "POST",
+            url: "ajax/almacenarArticulo",
+            data: {'nombre':'SIJDNFSED', 'precio':'3000', 'descripcion':'sidhfsidnfsi', 'fk_departamento':1, 'fk_municipio':1, 
+            'cantidad_disponible':5, 'fk_categoria':1,'link_imagen1':'sfsdfs','link_imagen2':'sdfsdf','link_imagen3':'sdfsdfsf'},
+            success: function(text) {
+                console.log(text);
+                if (text.status == "Success") {
+                    PformSuccess();
+                } else {
+                    PformError();
+                    PsubmitMSG(false, text);
+                }
+            }
         });
+    }
     }
 
 
