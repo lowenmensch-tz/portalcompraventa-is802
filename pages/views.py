@@ -281,3 +281,32 @@ def getIdUser(correo):
     except:
         errorConexion = 0
         return errorConexion
+
+"""
+    Actualiza los datos del usuario logueado.
+
+    @param request: JSON con los datos del usuario provenientes del formulario.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion.
+        
+        Success: La ejecución fue exitosa.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def updateUser(request):
+    if request.method == 'POST':
+        primer_nombre, apellido = request.POST.get('primer_nombre'), request.POST.get('apellido')
+        telefono, direccion, contrasenia = request.POST.get('telefono'), request.POST.get('direccion'), request.POST.get('contrasenia')
+        id_usuario = engine.getUserIDByEmail(request.session.get('email'))
+
+        updateUserQuery = """UPDATE USUARIO SET nombre_completo = CONCAT('%s',' ','%s'), telefono = '%s'
+                        ,direccion ='%s', contrasenia = '%s' WHERE id_usuario = %s;""" % (primer_nombre, apellido, telefono, direccion, contrasenia, id_usuario)
+        
+        try:
+            engine.dms(updateUserQuery)
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+        
