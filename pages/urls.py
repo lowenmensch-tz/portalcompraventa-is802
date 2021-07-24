@@ -4,6 +4,7 @@ from pages.views import loggedInValidator
 from pages.views import loginValidation 
 from pages.views import registerUser
 from pages.views import findProducts
+from pages.views import updateUser
 from pages.views import register
 from pages.views import details
 from pages.views import profile
@@ -30,7 +31,7 @@ path('ajax/findProducts', findProducts, name='find_products'),
 path('ajax/almacenarArticulo', almacenarArticulo, name='almacenar_Articulo'),
 
 path('user-profile', profile.userProfile, name='user_profile'),
-
+path('ajax/updateUser', updateUser, name='update_User'),
 path('seller', seller, name='seller_page'),
 
 #path('ajax/userProfile', userProfile, name='user_Profile'),
