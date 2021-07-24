@@ -14,6 +14,8 @@ SET GLOBAL log_bin_trust_function_creators = 1;
 DROP FUNCTION IF EXISTS fn_getImage;
 
 
+-- CONCAT('url', i.fk_articulo), 
+
 -- Se cambia el delimitador
 DELIMITER $$
     -- Obtiene el nombre de un usuario por medio de su identificador
@@ -23,7 +25,7 @@ DELIMITER $$
                     SELECT
                         JSON_ARRAYAGG(
                             JSON_OBJECT(
-                                        CONCAT('url', i.fk_articulo), 
+                                        'url', 
                                         enlace_imagen)
                                     ) 
                     FROM 
