@@ -35,7 +35,7 @@ CREATE TABLE ARTICULO(
 	id_articulo INT NOT NULL AUTO_INCREMENT UNIQUE,
     nombre VARCHAR(30) NOT NULL,
     precio DECIMAL(13,2) NOT NULL,
-    descripcion VARCHAR(250),
+    descripcion VARCHAR(1000),
     publicado BOOL NOT NULL,
     fecha_publicacion DATETIME NOT NULL DEFAULT NOW(),
     fk_departamento INT NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE CATEGORIA(
 CREATE TABLE USUARIO(
 	id_usuario INT NOT NULL AUTO_INCREMENT UNIQUE,
     nombre_completo VARCHAR(30) NOT NULL,
-    correo VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL,
     telefono VARCHAR(20),
     direccion VARCHAR(100) NOT NULL,
     estado BOOL DEFAULT 0,
