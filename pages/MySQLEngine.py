@@ -70,7 +70,7 @@ class MySQLEngine:
         Retorna la información de un usuario a partir de su correo.
         @param email: correo del usuario
     """
-    def getInformationUserByEmail(self, email): 
+    def getUserInformationByEmail(self, email): 
         
         sql = """
             SELECT 
@@ -87,5 +87,107 @@ class MySQLEngine:
                 """%(email)
 
         result = self.transaction(sql)
+
+        return result
+
+
+    """"
+        Retorna la información de todos los artículo publicados por un usuario, a partir de su correo.
+        Incluyendo las imágenes.  
+
+        @param email: correo del usuario
+        @param limit: número de artículos a retornar
+    """
+    def getPublishedProductsByEmail(self, email, limit=False):
+        
+        sql = """
+            SELECT 
+                a.id_articulo AS id,
+                a.nombre AS Title,
+                c.nombre AS Category,
+                d.nombre AS State,
+                m.nombre AS Municipality,
+                CAST(FORMAT(a.precio, 2) AS CHAR) AS Price,
+                
+                a.cantidad_disponible AS Quantity,
+                CAST(a.fecha_publicacion AS CHAR) AS Date,
+                a.descripcion AS Description,
+                fn_getImage(a.id_articulo) AS Image
+            FROM 
+                ARTICULO AS a
+            INNER JOIN 
+                DEPARTAMENTO AS d ON a.fk_departamento = d.id_departamento
+            INNER JOIN 
+                MUNICIPIO AS m ON a.fk_municipio = m.id_municipio
+            INNER JOIN 
+                CATEGORIA AS c ON a.fk_categoria = c.id_categoria
+            INNER JOIN 
+                USUARIO AS u ON a.fk_usuario = u.id_usuario
+            WHERE 
+                u.correo = '%s'
+            ORDER BY
+                a.fecha_publicacion DESC;
+            """%(email)
+
+        if limit: 
+            sql = sql.replace(';', '') + " LIMIT 2;"
+
+        result = self.transaction(sql)
+
+        return result
+
+
+    """
+        Retorna las imágenes asociadas a un artículo a partir del email del publicador.
+
+        @param email: correo del publicador
+    """
+    def getProducImagetByEmail(self, email): 
+        
+        sql = """
+            SELECT 
+                i.enlace_imagen AS Image
+            FROM 
+                IMAGEN AS i
+            INNER JOIN 
+                ARTICULO AS a ON i.fk_articulo = a.id_articulo
+            INNER JOIN 
+                USUARIO AS u ON a.fk_usuario = u.id_usuario
+            WHERE 
+                u.correo = '%s';
+            """%(email)
+
+        result = self.transaction(sql)
+
+        return result
+
+
+    """
+        Devuelve un diccionario con la información de los comentarios, nombre de los usuarios de los artículos publicados.
+
+        @param idProducto: 
+                            id del usuario
+                            id del artículo
+                            id de la denuncia
+        @param type: 
+                    1 'Usuario'
+                    2 'Articulo'
+                    3 'Denuncia' 
+    """
+    def comment(self, id, type=1):
+
+        sql = """
+        SELECT
+            u.nombre_completo AS User,
+            c.comentario AS Comment
+        FROM
+            COMENTARIO AS c
+        INNER JOIN 
+            USUARIO AS u ON c.fk_usuarioComentador = u.id_usuario
+        WHERE
+            tipo = %s AND fk_dirigidoA = %s 
+        """ % (type, id) # REVISAR
+
+        result = self.transaction(sql) 
 
         return result

@@ -48,26 +48,16 @@ class UserProfile:
         print( request.method )
         
         if request.method:
-            
-            print( "EMAIL: ", request.session.get('email') )
 
-            idUser = self.engine.getUserIDByEmail( 
-                                                    email=request.session.get('email') 
-                                                ) 
+            email = request.session.get('email') 
+            idUser = self.engine.getUserIDByEmail( email=email ) 
+
             #id_usuarioLogueado = getIdUser(request.session.get('email'))
 
             #if idUser != 0: #and id_usuarioLogueado !=0:
                 
             estrellitasQuery = """SELECT SUBSTRING(CAST((SUM(calificacion) / COUNT(fk_usuarioCalificado)) AS CHAR), 1,4) as promedio_estrellas FROM CALIFICACION
                                 WHERE fk_usuarioCalificado = %s;""" % (idUser)
-
-            comentariosQuery = """SELECT comentario FROM COMENTARIO WHERE tipo = 'Usuario' AND fk_dirigidoA = %s;""" % (idUser)
-
-            articulosQuery = """SELECT id_articulo, nombre, CAST(precio AS CHAR) precio, descripcion, CAST(fecha_publicacion AS CHAR) fecha, fk_departamento, fk_municipio,
-                                cantidad_disponible, fk_usuario, enlace_imagen FROM ARTICULO INNER JOIN IMAGEN
-                                ON ARTICULO.id_articulo = IMAGEN.fk_articulo 
-                                WHERE fk_usuario = %s AND id_imagen IN (SELECT min(id_imagen) FROM IMAGEN group by fk_articulo)
-                                ORDER BY fecha_publicacion DESC;""" % (idUser)
 
             try:
                 '''if calificacion != 0:
@@ -80,26 +70,21 @@ class UserProfile:
                     cursor.execute(insertComentarioQuery)
                 database.commit()'''
 
-                profile = self.engine.getInformationUserByEmail(email=request.session.get('email'))
-
-                #cursor.execute(estrellitasQuery)
-                #resultEstrellitas = [cursor.fetchone()]
-
-                #cursor.execute(comentariosQuery)
-                #resultComentarios = [cursor.fetchall()]
-
-                #cursor.execute(articulosQuery)
-                #resultArticulos = [cursor.fetchall()]
-
+                
+                publishedProducts = self.engine.getPublishedProductsByEmail(email=email)
+                profile           = self.engine.getUserInformationByEmail(email=email)
+                comment           = self.engine.comment(id=idUser, type=1) # 1: 'Usuario'
+                
                 #datosUser = resultUser + resultEstrellitas + resultComentarios + resultArticulos # Lista de tuplas con los datos del usuario, calificacion, comentarios y articulos
-                datosUser = profile 
-
+                
+                print( "ARTICULOS: ", publishedProducts )
 
                 return HttpResponse(
                         json.dumps(
                                 {
                                     'status':'Success', 
-                                    'data': datosUser
+                                    'profile': profile, 
+                                    'product': publishedProducts
                                 }
                             ),
                             content_type="application/json"

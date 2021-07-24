@@ -169,15 +169,11 @@ $(function() {
             success: function(data) {
                 
                 console.log("-----Datos del perfil del usuario-----");
+                console.log(data);
 
-                console.log(data.data);
-
-                $("#Ufirstname").val(`${data.data[0][1]}`);
-                $("#Ulastname").val(`${data.data[0][1]}`);
-                $("#Uemail").val(`${data.data[0][2]}`);
-                $("#Upassword").val(`${data.data[0][3]}`);
-                $("#Uphone").val(`${data.data[0][4]}`);
-                $("#Uaddress").val(`${data.data[0][5]}`);
+                profile(data.profile[0]);
+                product(data.product[0]);
+                
                 //$("#Ustate").val(`${data.state}`);
             }
         });
@@ -253,25 +249,9 @@ $(function() {
                     PsubmitMSG(false, text);
                 }
             }
-        });*/
-        console.log('estoy en la funcion')
-        $.ajax({
-            type: "POST",
-            url: "ajax/almacenarArticulo",
-            data: {'nombre':'SIJDNFSED', 'precio':'3000', 'descripcion':'sidhfsidnfsi', 'fk_departamento':1, 'fk_municipio':1, 
-            'cantidad_disponible':5, 'fk_categoria':1,'link_imagen1':'sfsdfs','link_imagen2':'sdfsdf','link_imagen3':'sdfsdfsf'},
-            success: function(text) {
-                console.log(text);
-                if (text.status == "Success") {
-                    PformSuccess();
-                } else {
-                    PformError();
-                    PsubmitMSG(false, text);
-                }
-            }
         });
     }
-    }
+    //}
 
 
     function PformSuccess() {
@@ -296,4 +276,62 @@ $(function() {
         }
         $("#PmsgSubmit").removeClass().addClass(msgClasses).text(msg);
     }
+
+
+    // Carga los elementos del perfil del usuario en el template.
+    function profile(profile){
+        
+        $("#Ufirstname").val(`${profile[1]}`);
+        $("#Ulastname").val(`${profile[1]}`);
+        $("#Uemail").val(`${profile[2]}`);
+        $("#Upassword").val(`${profile[3]}`);
+        $("#Uphone").val(`${profile[4]}`);
+        $("#Uaddress").val(`${profile[5]}`);
+    }
+
+
+    // Carga la información del producto en el template. 
+    /*
+    Contenido del parámetro product: 
+        id,
+        Title,
+        Category,
+        State,
+        Municipality,
+        Price,
+        AS Quantity,
+        AS CHAR) AS Date,
+        AS Description,
+        Image --> [{'key':'value'}, {'key':'value'}]
+    */
+    function product(product){
+
+        //${data.comment[`comment${i}`]}
+        
+        $("#published-product").append(`
+            <div class="card">
+                <div class="card-header">
+                    Estufa de gas
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <img class="card-img-top" src="{% static 'img/undraw_posting_photo.svg' %}" style="padding-top:2rem;">
+                        </div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <ul>
+                                <li>Categoria</li>
+                                <li>Departamento</li>
+                                <li>Municipio</li>
+                                <li>Precio</li>
+                            </ul>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">Ver Mas</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+
+    }
+
 });
