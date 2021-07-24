@@ -172,7 +172,7 @@ $(function() {
 
                 console.log(data.data);
 
-                $("#Ufirstname").val(`${data.data[0][1]}`);
+                $("#Ufirstname").val(`${data.data[0][0]}`);
                 $("#Ulastname").val(`${data.data[0][1]}`);
                 $("#Uemail").val(`${data.data[0][2]}`);
                 $("#Upassword").val(`${data.data[0][3]}`);
@@ -253,7 +253,7 @@ $(function() {
                     PsubmitMSG(false, text);
                 }
             }
-        });*/
+        });
         console.log('estoy en la funcion')
         $.ajax({
             type: "POST",
@@ -271,8 +271,6 @@ $(function() {
             }
         });
     }
-    }
-
 
     function PformSuccess() {
         alert("El producto se guardo");
@@ -296,4 +294,65 @@ $(function() {
         }
         $("#PmsgSubmit").removeClass().addClass(msgClasses).text(msg);
     }
+
+
 });
+
+function mostrarMunicipios(){
+    var municipio = $('#Pstate').val();
+    if (municipio==06){
+        $('#Pmunicipio').html('');
+        $('#Pmunicipio').append(`
+            <option value="00" selected> Municipio</option>
+            <option value="29">San Pedro Sula</option>
+            <option value="30">Choloma</option>
+            <option value="31">La Lima</option>
+            <option value="32">Omoa</option>
+            <option value="33">Pimienta</option>
+            <option value="34">Potrerillos</option>
+            <option value="35">Puerto Cortés</option>
+            <option value="36">San Antonio de Córtes</option>
+            <option value="37">San Francisco de Yojoa</option>
+            <option value="38">San Manuel</option>
+            <option value="39">Santa Cruz de Yojoa</option>
+            <option value="40">Villanueva</option>
+        `);
+        $('#Pmunicipio').show();
+    }else if(municipio==08){
+        $('#Pmunicipio').html('');
+        $('#Pmunicipio').append(`
+            <option value="00" selected> Municipio</option>
+            <option value="01">Distrito Central</option>
+            <option value="02">Alubarén</option>
+            <option value="03">Cantarranas</option>
+            <option value="04">Cedros</option>
+            <option value="05">Curarén</option>
+            <option value="06">El Porvenir</option>
+            <option value="07">Guaimaca</option>
+            <option value="08">La Libertad</option>
+            <option value="09">La Venta</option>
+            <option value="10">Lepaterique</option>
+            <option value="11">Maraita</option>
+            <option value="12">Marale</option>
+            <option value="13">Nueva Armenia</option>
+            <option value="14">Ojojona</option>
+            <option value="15">Orica</option>
+            <option value="16">Reitoca</option>
+            <option value="17">Sabanagrande</option>
+            <option value="18">San Antonio de Oriente</option>
+            <option value="19">San Buenaventura</option>
+            <option value="20">San Ignacio</option>
+            <option value="21">San Miguelito</option>
+            <option value="22">Santa Ana</option>
+            <option value="23">Santa Lucía</option>
+            <option value="24">Talanga</option>
+            <option value="25">Tatumbla</option>
+            <option value="26">Valle de Ángeles</option>
+            <option value="27">Vallecillo</option>
+            <option value="28">Villa de San Francisco</option>
+        `);
+        $('#Pmunicipio').show();
+    }else{
+        $('#Pmunicipio').hide(); 
+    }
+}

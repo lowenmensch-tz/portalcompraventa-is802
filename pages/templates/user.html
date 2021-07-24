@@ -185,11 +185,6 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="Uemail"
-                                                placeholder="Email Address">
-                                                <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
                                             <input type="password" class="form-control form-control-user" id="Upassword"
                                                 placeholder="Password">
                                                 <div class="help-block with-errors"></div>
@@ -203,30 +198,6 @@
                                             <input type="text" class="form-control form-control-user" id="Uaddress"
                                                 placeholder="Address">
                                                 <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <select id="Ustate" class="form-control form-control-select dropdown-toggle">
-                                                <option selected>Departamento...</option>
-                                                <option value="Atlántida">Atlántida</option>
-                                                <option value="Colón">Colón</option>
-                                                <option value="Comayagua">Comayagua</option>
-                                                <option value="Copán">Copán</option>
-                                                <option value="Cortés">Cortés</option>
-                                                <option value="Choluteca">Choluteca</option>
-                                                <option value="El Paraíso">El Paraíso</option>
-                                                <option value="Francisco Morazán">Francisco Morazán</option>
-                                                <option value="Gracias a Dios">Gracias a Dios</option>
-                                                <option value="Intibucá">Intibucá</option>
-                                                <option value="Islas de la Bahía">Islas de la Bahía</option>
-                                                <option value="La Paz">La Paz</option>
-                                                <option value="Lempira Gracias">Lempira Gracias</option>
-                                                <option value="Ocotepeque">Ocotepeque</option>
-                                                <option value="Olancho">Olancho</option>
-                                                <option value="Santa Bárbara">Santa Bárbara</option>
-                                                <option value="Valle">Valle</option>
-                                                <option value="Yoro">Yoro</option>
-                                            </select>
-                                            <div class="help-block with-errors"></div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Actualizar Datos</button>
                                         <div class="form-message">
@@ -345,31 +316,31 @@
                     </div>
                     <div class="form-group">
                         <select id="Pstate" onchange="mostrarMunicipios();" class="form-control form-control-select dropdown-toggle" required>
-                            <option selected>Departamento...</option>
-                            <option value="Atlántida">Atlántida</option>
-                            <option value="Colón">Colón</option>
-                            <option value="Comayagua">Comayagua</option>
-                            <option value="Copán">Copán</option>
-                            <option value="Cortés">Cortés</option>
-                            <option value="Choluteca">Choluteca</option>
-                            <option value="El Paraíso">El Paraíso</option>
-                            <option value="Francisco Morazán">Francisco Morazán</option>
-                            <option value="Gracias a Dios">Gracias a Dios</option>
-                            <option value="Intibucá">Intibucá</option>
-                            <option value="Islas de la Bahía">Islas de la Bahía</option>
-                            <option value="La Paz">La Paz</option>
-                            <option value="Lempira Gracias">Lempira Gracias</option>
-                            <option value="Ocotepeque">Ocotepeque</option>
-                            <option value="Olancho">Olancho</option>
-                            <option value="Santa Bárbara">Santa Bárbara</option>
-                            <option value="Valle">Valle</option>
-                            <option value="Yoro">Yoro</option>
+                            <option value="00" selected>Departamento</option>
+                          <option value="1"> Atlantida</option>
+                          <option value="2">Choluteca</option>
+                          <option value="3">Colón</option>
+                          <option value="4">Comayagua</option>
+                          <option value="5">Copán</option>
+                          <option value="6">Cortés</option>
+                          <option value="7">El Paraíso</option>
+                          <option value="8">Francisco Morazán</option>
+                          <option value="9">Gracias a Dios</option>
+                          <option value="10">Intibucá</option>
+                          <option value="11">Islas de la Bahía</option>
+                          <option value="12">La Paz</option>
+                          <option value="13">Lempira</option>
+                          <option value="14">Ocotopeque</option>
+                          <option value="15">Olancho</option>
+                          <option value="16">Santa Bárbara</option>
+                          <option value="17">Valle</option>
+                          <option value="18">Yoro</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <select style="display: none;" id="PmunicipioDropdown">
-                          <option value="00" selected> Munucipio</option>
+                        <select style="display: none;" id="Pmunicipio" class="form-control form-control-select dropdown-toggle">
+                          <option value="00" selected> Municipio</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -386,16 +357,6 @@
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="Pimage1"
                             placeholder="URL imagen 1" required>
-                            <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="Pimage2"
-                            placeholder="URL imagen 2" required>
-                            <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="Pimage3"
-                            placeholder="URL imagen 3" required>
                             <div class="help-block with-errors"></div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">Guardar Producto</button>

@@ -161,7 +161,7 @@ function mostrarMunicipios(){
     if (municipio==06){
         $('#municipioDropdown').html('');
         $('#municipioDropdown').append(`
-            <option value="00" selected> Munucipio</option>
+            <option value="00" selected> Municipio</option>
             <option value="29">San Pedro Sula</option>
             <option value="30">Choloma</option>
             <option value="31">La Lima</option>
@@ -179,7 +179,7 @@ function mostrarMunicipios(){
     }else if(municipio==08){
         $('#municipioDropdown').html('');
         $('#municipioDropdown').append(`
-            <option value="00" selected> Munucipio</option>
+            <option value="00" selected> Municipio</option>
             <option value="01">Distrito Central</option>
             <option value="02">Alubarén</option>
             <option value="03">Cantarranas</option>
