@@ -151,3 +151,9 @@ dmypy.json
 cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/django
+db.sqlite3
+db.sqlite3
+Marketplace/__pycache__/__init__.cpython-38.pyc
+Marketplace/__pycache__/settings.cpython-38.pyc
+*.pyc
+db.sqlite3
