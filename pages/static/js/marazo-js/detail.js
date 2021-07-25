@@ -7,6 +7,7 @@ window.onload = function(){
 
 var comentarios;
 var count = 1;
+var commentPublisher;
 
 function sessionCheck(){
     var response;
@@ -39,53 +40,43 @@ function loadData(){
             url: window.location.pathname.replaceAll(/(\/details\/)|(\/)/g,"")
         },
         success: function(data) {
-            //<a href="details/${convertURL(data[i][1], data[i][0])}">${data[i][1]}</a>
-            ///${data.name}
+        
             let url = "seller/" + convertURL(data.name, data.idPublisher); 
 
-            console.log(url);
+            commentPublisher = data.publisher;
 
             document.getElementById("url-seller").onclick = function(){
                 location.href = "http://localhost:8000/" + url;
             };
 
-            //$('#url-seller').attr('href', url);
+            document.getElementById('productName').innerHTML = data.title; //Nombre del producto
 
-            $('#productName').html(data.title); //Nombre del producto
 
-            // El promedio de valoraciones se calcula en el backend
             $('#productDetailRating').rateit({max: 5, step: 1, value : parseFloat(data.rating), resetable : false , readonly : true}); // Promedio de Valoraciones
+        
+            document.getElementById('productDescription').innerHTML = `<p>${data.description}</p>`; //Descripción del Producto
+        
+            document.getElementById('productPrice').innerHTML = `HNL ${data.price}`;
+            document.getElementById('publisher').value = `${data.name}`;
+            document.getElementById('publisherPhone').value = `${data.phone}`;
+            document.getElementById('publisherEmail').value = `${data.email}`;
+            document.getElementById('publisherAddress').value = `${data.address}`;
+
+
+            document.getElementById('owl-single-product').innerHTML = '';
+            document.getElementById('owl-single-product-thumbnails').innerHTML = '';
             
-            // data.comment.length == undefined ? rate = 0 : rate = data.comment.length;
-
-            // $('#reviewCount').html(`(${rate} Reseñas)`); // Cantidad de Reseñas recibidas
-        
-            $('#productDescription').html(`<p>${data.description}</p>
-            `); //Descripción del Producto
-        
-            $('#productPrice').html(`HNL ${data.price}`);
-            $('#publisher').val(`${data.name}`);
-            $('#publisherEmail').val(`${data.email}`);
-            $('#publisherPhone').val(`${data.phone}`);
-            $('#publisherAddress').val(`${data.address}`);
-
-
-
-            $('#owl-single-product').html('');
-            $('#owl-single-product-thumbnails').html('');
-
-            $('#owl-single-product').append(`
+            document.getElementById('owl-single-product').innerHTML += `
                 <div class="single-product-gallery-item" id="slide1">
                     <a data-lightbox="image-1" data-title="Galeria" href="${data.image.photo0}">
                         <img class="img-responsive" alt="" src="https://drive.google.com/uc?export=view&id=1kWdiW6kBydwbjkmhzdLtcfq0YsbvmmWT" data-echo="${data.image.photo0}">
                     </a>
                 </div>
-            `);
+            `;
             
-            console.log(data.comment)
             for (i=0; i<Object.keys(data.comment).length/2; i++){
 
-                $('#commentsRow').append(`
+                document.getElementById('commentsRow').innerHTML += `
                     <div class="col-md-2 col-sm-2">
                         <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="Responsive image" class="img-rounded img-responsive">
                     </div>
@@ -100,10 +91,8 @@ function loadData(){
                             <p>${data.comment[`comment${i}`]}</p>
                         </div>
                     </div>
-                `);
-                
+                `;
             }
-            $('#commentsRow').append(`<div style="background-color: white;" class="post-load-more col-md-12"><a style="background-color: white;" class="btn btn-upper btn-primary" onclick="" >&nbsp;</a></div>`);
         }
     });
 }
@@ -118,7 +107,6 @@ function updateReviews(){
     
     $.ajax({
         type: "POST",
-        //url:  `ajax/userReview`,
         url:  `ajax/review`,
         data: {
             comentario: $('#exampleInputReview').val(),
@@ -131,24 +119,22 @@ function updateReviews(){
     });
     
     comment = $('#exampleInputReview').val();
-    console.log(comment);
 
     // Aquí se envían los datos a la base de datos y este responde con el nuevo cálculo y un nuevo listado de comentarios que sea guardará en la variable comentarios
-    oldComments = $('#commentsRow').html();
-    $('#commentsRow').html(`
+
+    document.getElementById('commentsRow').innerHTML += `
     <div class="col-md-2 col-sm-2">
-        <img src="https://avatarfiles.alphacoders.com/280/thumb-280983.png" alt="Responsive image" class="img-rounded img-responsive">
+        <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="Responsive image" class="img-rounded img-responsive">
     </div>
     <div class="col-md-10 col-sm-10">
         <div class="blog-comments inner-bottom-xs outer-bottom-xs">
-            <h4>Lisa</h4>
+            <h4>${commentPublisher}</h4>
             <span class="review-action pull-right">
                 <div class="rating rateit-small"></div>
             </span>
             <p>${comment}</p>
         </div>
-    </div>
-    `+oldComments);
+    </div>`;
 }
 
 function loadComments(){
