@@ -77,7 +77,8 @@ function loadData(){
             
             for (i=0; i<Object.keys(data.comment).length/2; i++){
 
-                document.getElementById('commentsRow').innerHTML += `
+                if (data.comment['userCommenting0'] != undefined){
+                    document.getElementById('commentsRow').innerHTML += `
                     <div class="col-md-2 col-sm-2">
                         <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="Responsive image" class="img-rounded img-responsive">
                     </div>
@@ -93,6 +94,20 @@ function loadData(){
                         </div>
                     </div>
                 `;
+                }else{
+                    document.getElementById('commentsRow').innerHTML += `
+                    <div id="noHayComentarios">
+                    <div class="col-md-2 col-sm-2">
+                    </div>
+                    <div class="col-md-10 col-sm-10 blog-comments outer-bottom-xs">
+                        <div class="blog-comments inner-bottom-xs">
+                            <h1>AUN NO HAY COMENTARIOS, SE EL PRIMERO!</h1>
+                        </div>
+                    </div>
+                    </div>
+                    `; 
+                }
+                
             }
 
             $('#commentsRow').append(`<div style="background-color: white;" id = "pincheMarazo" class="post-load-more col-md-12"><a style="background-color: white;" class="btn btn-upper btn-primary" onclick="" >&nbsp;</a></div>`);
@@ -121,6 +136,7 @@ function updateReviews(){
             $('#exampleInputReview').val('');
             
             document.getElementById('pincheMarazo').parentNode.removeChild(document.getElementById('pincheMarazo'));
+            document.getElementById('noHayComentarios').parentNode.removeChild(document.getElementById('noHayComentarios'));
 
             document.getElementById('commentsRow').innerHTML += `
             <div class="col-md-2 col-sm-2">
