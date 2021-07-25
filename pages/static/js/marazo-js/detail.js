@@ -135,8 +135,14 @@ function updateReviews(){
             comment = $('#exampleInputReview').val();
             $('#exampleInputReview').val('');
             
+            try {
+                document.getElementById('noHayComentarios').parentNode.removeChild(document.getElementById('noHayComentarios'));
+              }
+              catch(err) {
+                console.log('Ok');
+              }
             document.getElementById('pincheMarazo').parentNode.removeChild(document.getElementById('pincheMarazo'));
-            document.getElementById('noHayComentarios').parentNode.removeChild(document.getElementById('noHayComentarios'));
+            
 
             document.getElementById('commentsRow').innerHTML += `
             <div class="col-md-2 col-sm-2">
