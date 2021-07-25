@@ -42,7 +42,7 @@ function loadData(){
         success: function(data) {
         
             let url = "seller/" + convertURL(data.name, data.idPublisher); 
-
+            console.log(data)
             commentPublisher = data.publisher;
 
             document.getElementById("url-seller").onclick = function(){
@@ -51,7 +51,7 @@ function loadData(){
 
             document.getElementById('productName').innerHTML = data.title; //Nombre del producto
 
-
+            console.log(data.rating)
             $('#productDetailRating').rateit({max: 5, step: 1, value : parseFloat(data.rating), resetable : false , readonly : true}); // Promedio de Valoraciones
         
             document.getElementById('productDescription').innerHTML = `<p>${data.description}</p>`; //Descripción del Producto
@@ -114,27 +114,30 @@ function updateReviews(){
             correoVendedor: $('#publisherEmail').val(),
         },
         success: function(data) {
-            console.log(data);
+            comment = $('#exampleInputReview').val();
+            $('#exampleInputReview').val('');
+
+            document.getElementById('commentsRow').innerHTML += `
+            <div class="col-md-2 col-sm-2">
+                <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="Responsive image" class="img-rounded img-responsive">
+            </div>
+            <div class="col-md-10 col-sm-10">
+                <div class="blog-comments inner-bottom-xs outer-bottom-xs">
+                    <h4>${commentPublisher}</h4>
+                    <span class="review-action pull-right">
+                        <div class="rating rateit-small"></div>
+                    </span>
+                    <p>${comment}</p>
+                </div>
+            </div>`;
         }
     });
     
-    comment = $('#exampleInputReview').val();
+    
 
     // Aquí se envían los datos a la base de datos y este responde con el nuevo cálculo y un nuevo listado de comentarios que sea guardará en la variable comentarios
 
-    document.getElementById('commentsRow').innerHTML += `
-    <div class="col-md-2 col-sm-2">
-        <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="Responsive image" class="img-rounded img-responsive">
-    </div>
-    <div class="col-md-10 col-sm-10">
-        <div class="blog-comments inner-bottom-xs outer-bottom-xs">
-            <h4>${commentPublisher}</h4>
-            <span class="review-action pull-right">
-                <div class="rating rateit-small"></div>
-            </span>
-            <p>${comment}</p>
-        </div>
-    </div>`;
+    
 }
 
 function loadComments(){
