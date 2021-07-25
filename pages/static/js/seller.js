@@ -133,3 +133,73 @@ function loadProfile(profile){
 function loadRaiting(raiting){
 
 }
+
+$(function(){
+
+    //*************************************************************
+    $("#rateForm").validator().on("submit", function(event) {
+        if (event.isDefaultPrevented()) {
+            // handle the invalid form...
+            rateformError();
+            ratesubmitMSG(false, "Please fill all fields!");
+        } else {
+            // everything looks good!
+            event.preventDefault();
+            ratesubmitForm();
+        }
+    });
+        function ratesubmitForm() {
+        // Los datos estaticos son datos que se deben precargar: departamento, municipio
+        // y categoria
+        // initiate variables with form content
+        var lastname = document.querySelector('input[name="rating"]:checked').value;
+        var description = $("#Ratecomment").val();
+
+        var data = { 'primer_nombre': firstname, 'apellido' : lastname, 'telefono': phone, 'direccion': address,
+            'contrasenia': password };
+
+        //peticion que espera una variable text
+        $.ajax({
+            type: "POST",
+            url: "",
+            data: data,
+            success: function(text) {
+                console.log(text);
+                if (text.status == "Success") {
+                    rateformSuccess();
+                    location.reload();
+                } else {
+                    rateformError();
+                    ratesubmitMSG(false, text);
+                }
+            }
+        });
+    }
+    //}
+
+
+    function rateformSuccess() {
+        alert("Se han actualizado tus datos");
+        $("#rateForm")[0].reset();
+        ratesubmitMSG(true, "Sign Up Submitted!");
+        $("input").removeClass('notEmpty'); // resets the field label after submission
+    }
+
+    function rateformError() {
+        alert("El producto no se guardo");
+        $("#rateForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $(this).removeClass();
+        });
+    }
+
+    function ratesubmitMSG(valid, msg) {
+        if (valid) {
+            var msgClasses = "h3 text-center tada animated";
+        } else {
+            var msgClasses = "h3 text-center";
+        }
+        $("#ratemsgSubmit").removeClass().addClass(msgClasses).text(msg);
+    }
+    //*************************************************************
+
+});

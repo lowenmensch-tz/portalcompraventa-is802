@@ -48,10 +48,10 @@ $(function() {
         var name = $("#Pname").val();
         var price = $("#Pprice").val();
         var description = $("#Pdescription").val();
-        var state = 2;
-        var municipio = 2;
+        var state = $("#Pstate").val();
+        var municipio = $("#Pmunicipio").val();
         var quantity = $("#Pcantidad").val();
-        var category = 3;
+        var category = $("#Pcategoria").val();
         var url_img1 = $("#Pimage1").val();
         var url_img2 = $("#Pimage2").val();
         var url_img3 = $("#Pimage3").val();
@@ -83,6 +83,7 @@ $(function() {
 
     function PformSuccess() {
         alert("El producto se guardo");
+        window.location.href = "user"
         $("#ProductForm")[0].reset();
         PsubmitMSG(true, "Sign Up Submitted!");
         $("input").removeClass('notEmpty'); // resets the field label after submission
@@ -103,6 +104,75 @@ $(function() {
         }
         $("#PmsgSubmit").removeClass().addClass(msgClasses).text(msg);
     }
+
+    //*************************************************************
+    $("#UpdateForm").validator().on("submit", function(event) {
+        if (event.isDefaultPrevented()) {
+            // handle the invalid form...
+            UformError();
+            UsubmitMSG(false, "Please fill all fields!");
+        } else {
+            // everything looks good!
+            event.preventDefault();
+            UsubmitForm();
+        }
+    });
+        function UsubmitForm() {
+        // Los datos estaticos son datos que se deben precargar: departamento, municipio
+        // y categoria
+        // initiate variables with form content
+        var firstname = $("#Ufirstname").val();
+        var lastname = $("#Ulastname").val();
+        var phone = $("#Uphone").val();
+        var address = $("#Uaddress").val();
+        var password = $("#Upassword").val();
+
+        var data = { 'primer_nombre': firstname, 'apellido' : lastname, 'telefono': phone, 'direccion': address,
+            'contrasenia': password };
+
+        //peticion que espera una variable text
+        $.ajax({
+            type: "POST",
+            url: "ajax/updateUser",
+            data: data,
+            success: function(text) {
+                console.log(text);
+                if (text.status == "Success") {
+                    UformSuccess();
+                    window.location.href = "user";
+                } else {
+                    UformError();
+                    UsubmitMSG(false, text);
+                }
+            }
+        });
+    }
+    //}
+
+
+    function UformSuccess() {
+        alert("Se han actualizado tus datos");
+        $("#UpdateForm")[0].reset();
+        UsubmitMSG(true, "Sign Up Submitted!");
+        $("input").removeClass('notEmpty'); // resets the field label after submission
+    }
+
+    function UformError() {
+        alert("El producto no se guardo");
+        $("#UpdateForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $(this).removeClass();
+        });
+    }
+
+    function UsubmitMSG(valid, msg) {
+        if (valid) {
+            var msgClasses = "h3 text-center tada animated";
+        } else {
+            var msgClasses = "h3 text-center";
+        }
+        $("#umsgSubmit").removeClass().addClass(msgClasses).text(msg);
+    }
+    //*************************************************************
 
 
     // Carga los elementos del perfil del usuario en el template.
@@ -286,7 +356,7 @@ function sessionCheck(){
             console.log(response);
 
             if (response == 'true'){
-                alert("Bienvenido");
+                
             }else{
                 window.location.href = "login";
             }

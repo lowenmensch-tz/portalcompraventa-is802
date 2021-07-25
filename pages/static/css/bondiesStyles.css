@@ -24,3 +24,84 @@
   color: #0d3bbf;
   text-decoration: underline;
 }
+
+.text-gray-800:hover {
+	color: #000!important;
+}
+
+
+
+.star-rating form {
+    display: none;
+}
+.star-rating .thanks-msg {
+    display: none;
+    font-size: 20px;
+    margin: 40px auto;
+    color: #4caf50;
+    background-color: rgba(76, 175, 80, 0.1411764705882353);
+    padding: 8px 20px;
+    border-left: 3px solid #4caf50;
+    border-radius: 20px;
+}
+.star-rating input {
+    display: none;
+}
+.star-rating {
+    margin: 50px auto;
+    display: table;
+    width: 350px;
+}
+.star-rating label {
+    padding: 10px;
+    float: right;
+    font-size: 44px;
+    color: #eee;
+}
+.star-rating input:not(:checked) ~ label:hover,
+.star-rating input:not(:checked) ~ label:hover ~ label {
+    color: #ffc107;
+}
+.star-rating input:checked ~ label {
+    color: #ffc107;
+}
+.star-rating form .rating-reaction:before {
+    width: 100%;
+    float: left;
+    color: #ffc107;
+}
+.star-rating #rating-1:checked ~ form .rating-reaction:before {
+    content: "Pesimo";
+}
+.star-rating #rating-2:checked ~ form .rating-reaction:before {
+    content: "Malo";
+}
+.star-rating #rating-3:checked ~ form .rating-reaction:before {
+    content: "Esta bien";
+}
+.star-rating #rating-4:checked ~ form .rating-reaction:before {
+    content: "Muy bien";
+}
+.star-rating #rating-5:checked ~ form .rating-reaction:before {
+    content: "Excelente";
+}
+.star-rating input:checked ~ form {
+    width: 100%;
+    display: inline-block;
+}
+.star-rating form .rating-reaction {
+    font-size: 24px;
+    float: left;
+    text-transform: capitalize;
+}
+.star-rating form .submit-rating {
+    border: none;
+    outline: none;
+    background: #795548;
+    color: #ffc107;
+    font-size: 18px;
+    border-radius: 4px;
+    padding: 5px 15px;
+    cursor: pointer;
+    float: right;
+}

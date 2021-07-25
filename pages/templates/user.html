@@ -17,6 +17,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesome-free/css/all.css' %}"> 
 
     <!-- Custom styles for this template-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/sb-admin-2.min.css' %}">
@@ -91,59 +92,52 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item mx-1">
+                            <a class="nav-link text-gray-800" href="/" id="alertsDropdown">
+                                <i class="fas fa-home fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                Principal
+                            </a>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item mx-1">
+                            <a class="nav-link text-gray-800" href="categories" id="messagesDropdown">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                Tienda
+                            </a>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="/login" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Home</span>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="/login" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Tienda</span>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="/login" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Acerca de Nosotros</span>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="/login" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Terminos y condiciones</span>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="/register" id="customLogin" role="button"aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Registrate</span>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            <a class="nav-link" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <!-- <a class="small" href="forgot-password.html">Forgot Password?</a> -->
-                                <span class="mr-2 d-none d-lg-inline medium blueBondies">Usuario</span>
-                                <!-- <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg"> -->
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bienvenido Yefri</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{% static 'img/undraw_profile.svg' %}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="user">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
+                                    Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configuración
+                                    Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Mis Articulos en Venta
+                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="logout" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Salir
+                                    Logout
                                 </a>
                             </div>
                         </li>
@@ -201,7 +195,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Actualizar Datos</button>
                                         <div class="form-message">
-                                            <div id="smsgSubmit" class="h3 text-center hidden"></div>
+                                            <div id="umsgSubmit" class="h3 text-center hidden"></div>
                                         </div>
                                     </form>
                                 </div>
@@ -353,9 +347,19 @@
                             <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="Pcategoria"
-                            placeholder="Categoria" required>
-                            <div class="help-block with-errors"></div>
+                        <select id="Pcategoria" class="form-control form-control-select dropdown-toggle" required>
+                            <option value="00" selected>Categoria</option>
+                          <option value="2"> Vehiculos</option>
+                          <option value="3">Hogar</option>
+                          <option value="4">Moda</option>
+                          <option value="5">Futuros Padres</option>
+                          <option value="6">Mascotas</option>
+                          <option value="7">Electrónica</option>
+                          <option value="8">Servicios</option>
+                          <option value="9">Negocios</option>
+                          <option value="10">Empleo</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="Pimage1"

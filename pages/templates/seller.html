@@ -17,6 +17,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesome-free/css/all.css' %}"> 
 
     <!-- Custom styles for this template-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/sb-admin-2.min.css' %}">
@@ -144,7 +145,7 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user" id="Udepartment" placeholder="Department" disabled="disabled">
                                             </div>
-                                            <a data-toggle="modal" data-target="#logoutModal" href="#logoutModal" class="btn btn-primary btn-user btn-block">Calificar al vendedor
+                                            <a data-toggle="modal" data-target="#calificacionmodal" href="#calificacionmodal" class="btn btn-primary btn-user btn-block">Calificar al vendedor
                                             </a>
                                         </form>
                                     </div>
@@ -159,6 +160,39 @@
                                     </div>
                                 </div>
                                 <a href="#" class="text-center" id="see-more">Ver mas</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card shadow h-100 py-2">
+                                <div class="card-body">
+                                    <section class="section featured-product" style="width: 97.7%; margin-left: 1.2%;">
+                                        <div class="row">
+                                          <!-- ********************************************************************************** -->
+                                            <div class="blog-review wow fadeInUp">
+                                                <div class="col-md-12">
+                                                    <h3 class="title-review-comments">Reseñas</h3>
+                                                </div>
+                                                <div class="row" id="commentsRow">
+                                                    <div class="col-md-2 col-sm-2" style="height: 20px;">
+                                                         <!-- <img src="https://gamingonphone.com/wp-content/uploads/2021/03/image-1.jpg" alt="Responsive image" class="img-rounded img-responsive">  -->
+                                                    </div>
+                                                    <div class="col-md-10 col-sm-10 blog-comments outer-bottom-xs" style="height: 92px;">
+                                                        <div class="blog-comments inner-bottom-xs">
+                                                            <h4>&nbsp;</h4>
+                                                            <span class="review-action pull-right">
+                                                                <div class="rating rateit-small"></div>
+                                                            </span>
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section><!-- /.section -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -186,7 +220,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Modal -->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="calificacionmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -196,22 +230,32 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form class="user" id="ProductForm" name="ProductForm" data-toggle="validator" data-focus="false">
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="Pname"
-                            placeholder="Nombre">
-                            <div class="help-block with-errors"></div>
+                <div class="star-rating">
+                    <div class="star-input">
+                        <input type="radio" name="rating" id="rating-5" value="5">
+                        <label for="rating-5" class="fas fa-star"></label>
+                        <input type="radio" name="rating" id="rating-4" value="4">
+                        <label for="rating-4" class="fas fa-star"></label>
+                        <input type="radio" name="rating" id="rating-3" value="3">
+                        <label for="rating-3" class="fas fa-star"></label>
+                        <input type="radio" name="rating" id="rating-2" value="2">
+                        <label for="rating-2" class="fas fa-star"></label>
+                        <input type="radio" name="rating" id="rating-1" value="1">
+                        <label for="rating-1" class="fas fa-star"></label>
+                        <!-- Rating Submit Form -->
+                        <form class="user" id="rateForm" name="ProductForm" data-toggle="validator" data-focus="false">
+                            <span class="rating-reaction"></span>
+                            <br>
+                            <div class="form-group">
+                                <textarea class="form-control" id="Ratecomment" rows="3" placeholder="Descripcion" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">Calificar</button>
+                            <div class="form-message">
+                                <div id="ratemsgSubmit" class="h3 text-center hidden"></div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="Pprice"
-                            placeholder="Precio">
-                            <div class="help-block with-errors"></div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">Guardar Producto</button>
-                    <div class="form-message">
-                        <div id="smsgSubmit" class="h3 text-center hidden"></div>
-                    </div>
-                </form>
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
