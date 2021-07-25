@@ -45,6 +45,27 @@ class MySQLEngine:
 
         cursor.close()
 
+
+    """
+        Retorna el Email del usuario a partir del id.
+        @param id: id del usuario
+    """
+    def getUserEmailByID(self, id): 
+        
+        sql="""
+            SELECT
+                correo AS Email
+            FROM
+                USUARIO
+            WHERE
+                id_usuario = %s;
+            """%(id)
+
+        result = self.transaction(sql)
+
+        return result[0][0]
+
+
     
     """
         Retorna el ID del usuario a partir del email.
@@ -189,5 +210,26 @@ class MySQLEngine:
         """ % (type, id) # REVISAR
 
         result = self.transaction(sql) 
+
+        return result
+
+
+    """
+        Calificación (promedio) que tiene un vendedor
+        @param idUsuario 
+    """
+    def raiting(self, idUser):
+
+        sql = """
+        SELECT
+            CAST(AVG(calificacion) AS CHAR) AS AVG_Rating
+        FROM
+            CALIFICACION
+        WHERE
+            fk_usuarioCalificado  = %s
+        """ % (idUser)
+
+        result = self.transaction(sql)
+        result = 0 if result[0][0] is None else float(result[0][0]) #En caso de aun no tener una calificación
 
         return result

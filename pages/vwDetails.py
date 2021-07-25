@@ -36,7 +36,7 @@ class Details:
     """
     @csrf_exempt
     def productDetails(self, request, url):
-            return render(request,'detail.html',)
+        return render(request,'detail.html',)
 
 
     """
@@ -73,17 +73,15 @@ class Details:
                 resultProduct = self.engine.transaction(sqlProduct)
 
                 if resultProduct != []:
-                    userRaiting =   self.raiting( resultProduct[0][-1] )
                     return HttpResponse(
                         json.dumps(  
                                 { 
                                     'status':'Success', 
-                                    **{
-                                        'title':resultProduct[0][0], 
-                                        'description':resultProduct[0][1], 
-                                        'price':resultProduct[0][2], 
-                                    }, 
-                                    **self.raiting(resultProduct[0][-1]),          # Calificación (promedio) del vendedor
+                                    'title':resultProduct[0][0], 
+                                    'description':resultProduct[0][1], 
+                                    'price':resultProduct[0][2], 
+                                    'idPublisher': resultProduct[0][3],
+                                    'rating': self.engine.raiting(resultProduct[0][-1]),  # Calificación (promedio) del vendedor
                                     # { 'rating': 0 if result[0][0] is None else float(result[0][0]) }
                                     #'image': productDetailsImage(idProduct=idProduct),      # Imagen del producto
                                     'image': convertToDictionary(
@@ -149,7 +147,7 @@ class Details:
                     return HttpResponse(json.dumps(
                                     {
                                         'status':'Success',
-                                        **self.raiting(idUser=idUserPublication), # Calificación (promedio) del dueño del producto
+                                        **{ 'rating': self.engine.raiting(idUser=idUserPublication) }, # Calificación (promedio) del dueño del producto
                                         'comment': updatedComments,                      # Comentarios del producto
                                     }
                                 ), 
@@ -206,29 +204,7 @@ class Details:
         return result
 
 
-    """
-        Calificación (promedio) que tiene un vendedor
-        @param idUsuario 
-    """
-    def raiting(self, idUser):
-
-        sql = """
-        SELECT
-            CAST(AVG(calificacion) AS CHAR) AS AVG_Rating
-        FROM
-            CALIFICACION
-        WHERE
-            fk_usuarioCalificado  = %s
-        """ % (idUser)
-
-        result = self.engine.transaction(sql)
-
-        return {   
-                'rating': 0 if result[0][0] is None else float(result[0][0])
-            }
-
-
-        """"
+    """"
         Información del usuario
     """
     def userInformation(self, idUser):

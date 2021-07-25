@@ -122,30 +122,31 @@
                             <div class="card shadow h-100 py-2">
                                 <div class="card-body">
                                     <form class="user" id="UpdateForm" name="UpdateForm" data-toggle="validator" data-focus="false">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        FirstName
-                                    </div>
-                                    <div class="col-sm-6">
-                                        Lastname
-                                    </div>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group">
-                                    Email
-                                </div>
-                                <div class="form-group">
-                                    Phone Number
-                                </div>
-                                <div class="form-group">
-                                    Address
-                                </div>
-                                <div class="form-group">
-                                    Departamento
-                                </div>
-                                <a data-toggle="modal" data-target="#logoutModal" href="#logoutModal" class="btn btn-primary btn-user btn-block">Calificar al vendedor
-                                </a>
-                            </form>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input type="text" class="form-control form-control-user" id="Ufirstname" placeholder="First Name" disabled="disabled">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control form-control-user" id="Ulastname" placeholder="Last Name" disabled="disabled">
+                                            </div>
+                                        <div class="help-block with-errors">
+                                        </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="Uemail" placeholder="Email" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="Uphone" placeholder="Phone Number" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="Uaddress" placeholder="Address" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" id="Udepartment" placeholder="Department" disabled="disabled">
+                                        </div>
+                                        <a data-toggle="modal" data-target="#logoutModal" href="#logoutModal" class="btn btn-primary btn-user btn-block">Calificar al vendedor
+                                        </a>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -153,58 +154,11 @@
                             <div class="card shadow h-100 py-2">
                                 
                                 <div class="card-body">
-                                    <div class="text-center">
+                                    <div class="text-center" id="published-product">
                                         <h1 class="h4 text-gray-900 mb-4">Productos</h1>
-                                        <div class="card">
-                                            <div class="card-header">
-                                                Estufa de gas
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                                        <img class="card-img-top" src="{% static 'img/undraw_posting_photo.svg' %}" style="padding-top:2rem;">
-                                                    </div>
-                                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                                        <ul>
-                                                            <li>Categoria</li>
-                                                            <li>Departamento</li>
-                                                            <li>Municipio</li>
-                                                            <li>Precio</li>
-                                                        </ul>
-                                                        <button type="submit" class="btn btn-primary btn-user btn-block">Ver Mas</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <hr>
-
-                                        <div class="card">
-                                            <div class="card-header">
-                                                Estufa de gas
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                                        <img class="card-img-top" src="{% static 'img/undraw_posting_photo.svg' %}" style="padding-top:2rem;">
-                                                    </div>
-                                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                                        <ul>
-                                                            <li>Categoria</li>
-                                                            <li>Departamento</li>
-                                                            <li>Municipio</li>
-                                                            <li>Precio</li>
-                                                        </ul>
-                                                        <button type="submit" class="btn btn-primary btn-user btn-block">Ver Mas</button>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
-                                <a href="#" class="text-center">Ver mas</a>
+                                <a href="#" class="text-center" id="see-more">Ver mas</a>
                             </div>
                         </div>
                     </div>
@@ -269,6 +223,8 @@
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/seller.js' %}"></script>
+
 
 </body>
 

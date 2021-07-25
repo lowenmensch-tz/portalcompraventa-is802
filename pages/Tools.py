@@ -39,39 +39,69 @@ def convertToDictionary(data, key):
                 
     return jso
 
-
 """
     Limpia la data devuelta de la base de datos.
 
-    @param data: Es el resultado directo de una consulta a la base de datos. Un arreglo de tuplas.
+    @param products: Es un arreglo de tuplas de los productos publicados por un usuario.
 """
-def processDataTransaction(data):
+def processDataProduct(products):
+  
+    if len(products) == 0: #Ningún producto
+        return products
 
-    newData = list(data[0])    
-    image = eval( newData.pop() )  #Se espera que el último campo de la tupla sea una lista de diccionarios que contiene URL de las imágenes.
-    newData.append(newJSON( image ))
+    elif len(products) == 1: #Un producto
+        return [processProduct(product=products[0])]
 
-    return [ tuple(newData) ]
+    else: #Más de un producto
+        newListProducts = []
+
+        for product in products:
+            newListProducts.append( processProduct(product=product) )
+
+        return newListProducts
+
+    
+"""
+    Toma una tupla de datos y la procesa.
+
+    @param product: Es una tupla de datos de un producto.
+"""
+def processProduct(product):
+
+    newListProduct = list(product) 
+
+    if newListProduct[-1]:
+        urls = eval( newListProduct.pop() )  #Se espera que el último campo de la tupla sea una lista de diccionarios que contiene URL de las imágenes.
+        newListProduct.append(parserJSON( urls=urls ))
+
+        return tuple(newListProduct)
+
+    else:
+        newListProduct[-1] = parserJSON(urls={})   #Se sustituye el None por un diccionario vacío
+
+        return tuple(newListProduct)
 
 
 """
-    Toma una lista de diccionarios y devuelve un único diccionario.
+    Toma una lista de diccionarios y devuelve un único diccionario convertido a formato JSON.
+
+    @param urls: Es una lista de diccionarios.
 """
-def newJSON(data):
+def parserJSON(urls):
 
-  if data: 
+    if urls: 
 
-    newDictionary = {}
-    i = 0
+        newDictionary = {}
+        i = 0
 
-    for jso in data: 
-      
-      for key, value in jso.items():
-        newDictionary[i] = value
+        for url in urls: 
 
-      i+=1
+            for key, value in url.items():
+                newDictionary[i] = value
 
-    return json.dumps(newDictionary)
+                i+=1
 
-  else: 
-    return json.dumps({})
+        return json.dumps(newDictionary)
+
+    else: 
+        return json.dumps({})

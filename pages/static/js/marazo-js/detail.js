@@ -39,6 +39,18 @@ function loadData(){
             url: window.location.pathname.replaceAll(/(\/details\/)|(\/)/g,"")
         },
         success: function(data) {
+            //<a href="details/${convertURL(data[i][1], data[i][0])}">${data[i][1]}</a>
+            ///${data.name}
+            let url = "seller/" + convertURL(data.name, data.idPublisher); 
+
+            console.log(url);
+
+            document.getElementById("url-seller").onclick = function(){
+                location.href = "http://localhost:8000/" + url;
+            };
+
+            //$('#url-seller').attr('href', url);
+
             $('#productName').html(data.title); //Nombre del producto
 
             // El promedio de valoraciones se calcula en el backend
@@ -52,7 +64,6 @@ function loadData(){
             `); //Descripción del Producto
         
             $('#productPrice').html(`HNL ${data.price}`);
-        
             $('#publisher').val(`${data.name}`);
             $('#publisherEmail').val(`${data.email}`);
             $('#publisherPhone').val(`${data.phone}`);
@@ -147,4 +158,9 @@ function loadComments(){
 
 function showComments(){
     //Aqui se cargan en la vista los comentarios desde la variable comentarios
+}
+
+
+function convertURL(nameProduct, idProduct){
+    return  idProduct.toString() + '-' + nameProduct.toLowerCase().replaceAll(/ /g,'-').replaceAll(/[^\w-]+/g,'');
 }

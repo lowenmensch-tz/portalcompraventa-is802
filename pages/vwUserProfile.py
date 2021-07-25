@@ -13,6 +13,7 @@ from django.shortcuts import resolve_url
 from django.shortcuts import render 
 
 from pages.Tools import convertToDictionary
+from pages.Tools import processDataProduct
 
 import json
 
@@ -77,14 +78,15 @@ class UserProfile:
                 
                 #datosUser = resultUser + resultEstrellitas + resultComentarios + resultArticulos # Lista de tuplas con los datos del usuario, calificacion, comentarios y articulos
                 
-                print( "ARTICULOS: ", publishedProducts )
+                print( "ARTICULOS: ", publishedProducts ) 
+                print( "ARTICULOS procesados: ", processDataProduct(publishedProducts) ) 
 
                 return HttpResponse(
                         json.dumps(
                                 {
                                     'status':'Success', 
                                     'profile': profile, 
-                                    'product': publishedProducts
+                                    'product': processDataProduct(publishedProducts)
                                 }
                             ),
                             content_type="application/json"
