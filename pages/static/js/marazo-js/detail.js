@@ -9,6 +9,7 @@ var comentarios;
 var count = 1;
 var commentPublisher;
 
+
 function sessionCheck(){
     var response;
 
@@ -43,7 +44,7 @@ function loadData(){
         
             let url = "seller/" + convertURL(data.name, data.idPublisher); 
             console.log(data)
-            commentPublisher = data.publisher;
+            commentPublisher = data.publisher[0];
 
             document.getElementById("url-seller").onclick = function(){
                 location.href = "http://localhost:8000/" + url;
@@ -93,6 +94,8 @@ function loadData(){
                     </div>
                 `;
             }
+
+            $('#commentsRow').append(`<div style="background-color: white;" id = "pincheMarazo" class="post-load-more col-md-12"><a style="background-color: white;" class="btn btn-upper btn-primary" onclick="" >&nbsp;</a></div>`);
         }
     });
 }
@@ -116,6 +119,8 @@ function updateReviews(){
         success: function(data) {
             comment = $('#exampleInputReview').val();
             $('#exampleInputReview').val('');
+            
+            document.getElementById('pincheMarazo').parentNode.removeChild(document.getElementById('pincheMarazo'));
 
             document.getElementById('commentsRow').innerHTML += `
             <div class="col-md-2 col-sm-2">
@@ -130,6 +135,8 @@ function updateReviews(){
                     <p>${comment}</p>
                 </div>
             </div>`;
+
+            $('#commentsRow').append(`<div style="background-color: white;" id = "pincheMarazo" class="post-load-more col-md-12"><a style="background-color: white;" class="btn btn-upper btn-primary" onclick="" >&nbsp;</a></div>`);
         }
     });
     

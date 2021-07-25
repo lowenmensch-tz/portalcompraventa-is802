@@ -82,7 +82,7 @@ class Details:
                                     'price':resultProduct[0][2], 
                                     'idPublisher': resultProduct[0][3],
                                     'rating': self.engine.raiting(resultProduct[0][-1]),  # Calificación (promedio) del vendedor
-                                    'publisher': self.engine.transaction("SELECT nombre_completo FROM USUARIO WHERE correo = '%s';"%(email))[0][0],
+                                    'publisher': self.engine.transaction("SELECT nombre_completo FROM USUARIO WHERE correo = '%s';"%(email)),
                                     # { 'rating': 0 if result[0][0] is None else float(result[0][0]) }
                                     #'image': productDetailsImage(idProduct=idProduct),      # Imagen del producto
                                     'image': convertToDictionary(
