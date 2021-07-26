@@ -236,7 +236,7 @@ $(function() {
                                             <li>${product[index][4]}</li>
                                             <li>${product[index][5]}</li>
                                         </ul>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">Ver Mas</button>
+                                        <a href="http://localhost:8000/details/${convertURL(product[index][1], product[index][0])}" class="btn btn-primary btn-user btn-block">Ver Más</a>
                                     </div>
                                 </div>
                             </div>
@@ -275,6 +275,12 @@ $(function() {
     }
 
 });
+
+
+function convertURL(nameProduct, idProduct){
+    return  idProduct.toString() + '-' + nameProduct.toLowerCase().replaceAll(/ /g,'-').replaceAll(/[^\w-]+/g,'');
+}
+
 
 function mostrarMunicipios(){
     var municipio = $('#Pstate').val();
