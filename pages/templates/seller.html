@@ -125,7 +125,7 @@
                                         <h1 class="h4 text-gray-900 mb-4">Productos</h1>
                                     </div>
                                 </div>
-                                <a href="#" class="text-center" id="see-more">Ver mas</a>
+                                <!-- <a href="#" class="text-center" id="see-more">Ver mas</a> -->
                             </div>
                         </div>
                     </div>
@@ -215,7 +215,7 @@
                             <div class="form-group">
                                 <textarea class="form-control" id="Ratecomment" rows="3" placeholder="Descripcion" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">Calificar</button>
+                            <button type="button" id="calification" onclick="ratingAndComment();" class="btn btn-primary btn-user btn-block">Calificar</button>
                             <div class="form-message">
                                 <div id="ratemsgSubmit" class="h3 text-center hidden"></div>
                             </div>
@@ -224,7 +224,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               </div>
             </div>
           </div>

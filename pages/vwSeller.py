@@ -94,13 +94,18 @@ class Seller:
         Calificación del vendedor y comentario con respecto a este.
     """
     @csrf_exempt
-    def raitingAndComment(self, request): 
+    def ratingAndComment(self, request): 
         
-        idCustomer = int( request.POST.get('url').replace('seller', '').split('-')[0] ) #id del publicador
+        #idCustomer = int( request.POST.get('url').replace('seller', '').split('-')[0] ) #id del publicador
+        idCustomer =   int( self.engine.getUserIDByEmail(email=request.session.get('email')) )  #id del publicador
+
+
         commentRequest = request.POST.get('comment') #Comentario del publicador
         emailSeller = request.POST.get('email') #email del publicador
-        raiting = request.POST.get('raiting') #raiting del publicador
+        rating = int( request.POST.get('rating') ) #raiting del publicador
         idSeller = self.engine.getUserIDByEmail(email=emailSeller)
+
+        print("RATING: ", type(rating) )
 
         if request.method:
 
@@ -108,13 +113,13 @@ class Seller:
 
                 sqlComment = """
                             INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
-                            ('Articulo', '%s', %s, %s);
-                            """%(1, commentRequest, idCustomer, idSeller)
+                            ('Usuario', '%s', %s, %s);
+                            """%(commentRequest, idCustomer, idSeller)
 
                 sqlRaiting = """
-                            INSERT INTO CALIFICACION (fk_usuarioCalificador,fk_usuarioCalificado,calificacion) VALUES
-                            (%s,%s,%s);
-                """%(idCustomer, idSeller, raiting)
+                            INSERT INTO CALIFICACION (fk_usuarioCalificador, fk_usuarioCalificado, calificacion) VALUES
+                            (%s, %s, %s);
+                """%(idCustomer, idSeller, rating)
 
                 self.engine.dms(sql=sqlComment)
                 self.engine.dms(sql=sqlRaiting)

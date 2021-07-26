@@ -54,7 +54,7 @@ function loadData(){
 
             loadProfile(data.profile[0]);
             loadProducts(data.product);
-            loadRaiting(data.raiting);
+            //loadRaiting(data.raiting);
             loadComment(data.comment);
         }
     });
@@ -106,7 +106,7 @@ function loadProducts(products){
                                         <li>${products[index][4]}</li>
                                         <li>${products[index][5]}</li>
                                     </ul>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">Ver Mas</button>
+                                    <a href="http://localhost:8000/details/${convertURL(products[index][1], products[index][0])}" class="btn btn-primary btn-user btn-block">Ver Más</a>
                                 </div>
                             </div>
                         </div>
@@ -141,6 +141,11 @@ function loadProducts(products){
         `);
 
     }   
+}
+
+
+function convertURL(nameProduct, idProduct){
+    return  idProduct.toString() + '-' + nameProduct.toLowerCase().replaceAll(/ /g,'-').replaceAll(/[^\w-]+/g,'');
 }
 
 /*
@@ -194,15 +199,13 @@ function loadComment(comments){
                             <div class="card-body p-4">
                             <div class="">
                                 <h5>${comments[index][0]}</h5>
-                                <p class="small">3 hours ago</p>
+                                <p class="small"></p>
                                 <p>
                                 ${comments[index][1]}
                                 </p>
 
                                 <div class="d-flex justify-content-between align-items-center">
-                                <a href="#!" class="link-muted"
-                                    ><i class="fas fa-reply me-1"></i> Reply</a
-                                >
+
                                 </div>
                             </div>
                             </div>
@@ -219,8 +222,18 @@ function loadComment(comments){
 
 
 // Carga la calificación (como un promedio ponderado) del vendedor
-function loadRaiting(raiting){
+function loadRaiting(){
 
+    let id = "#rating-";
+    let rating = 0;
+    for(let index = 1; index < 6; index++){
+        
+        if( $(`${id}${index}`).is(':checked') ){
+            rating = parseInt( $(`${id}${index}`).val() ); 
+        }
+    }
+
+    return rating;
 }
 
 
@@ -228,6 +241,80 @@ function loadRaiting(raiting){
 /*
     Esta función se encarga de enviar hacia la base de datos un nevo comentario y la calificación publicado por un cliente. 
 */
+
+function ratingAndComment(){
+
+    console.log("Probando. 2:09am");
+
+    var data = { 
+        comment: $("#Ratecomment").val(),
+        rating: loadRaiting(),
+        email: $("#Uemail").val()
+    };
+
+    console.log('DATA: ', data);
+
+    //peticion que espera una variable text
+    //url: "ajax/sellerRaitingAndComment",
+    $.ajax({
+
+    type: "POST",
+    url: "ajax/ratingAndComment",
+    data: data,
+
+    success: function(data) {
+
+        console.log(data);
+        console.log("Agregado con éxito!");
+
+        if (data.status == "Success") {
+
+            rateformSuccess();
+            loadData();
+            $('#calificacionmodal').modal('toggle');
+
+        } else {
+            rateformError();
+            ratesubmitMSG(false, data);
+        }
+    }
+    });
+
+}
+
+
+function rateformSuccess() {
+    alert("Se han actualizado tus datos");
+    $("#rateForm")[0].reset();
+    ratesubmitMSG(true, "Sign Up Submitted!");
+    $("input").removeClass('notEmpty'); // resets the field label after submission
+}
+
+
+function rateformSuccess() {
+    alert("Se han actualizado tus datos");
+    $("#rateForm")[0].reset();
+    ratesubmitMSG(true, "Sign Up Submitted!");
+    $("input").removeClass('notEmpty'); // resets the field label after submission
+}
+
+function rateformError() {
+    alert("El producto no se guardo");
+    $("#rateForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        $(this).removeClass();
+    });
+}
+
+function ratesubmitMSG(valid, msg) {
+    if (valid) {
+        var msgClasses = "h3 text-center tada animated";
+    } else {
+        var msgClasses = "h3 text-center";
+    }
+    $("#ratemsgSubmit").removeClass().addClass(msgClasses).text(msg);
+}
+
+/*
 $(function(){
 
     //*************************************************************
@@ -258,7 +345,7 @@ $(function(){
         $.ajax({
 
             type: "POST",
-            url: "ajax/raitingAndComment",
+            url: "ajax/ratingAndComment",
             data: data,
 
             success: function(data) {
@@ -281,28 +368,8 @@ $(function(){
     //}
 
 
-    function rateformSuccess() {
-        alert("Se han actualizado tus datos");
-        $("#rateForm")[0].reset();
-        ratesubmitMSG(true, "Sign Up Submitted!");
-        $("input").removeClass('notEmpty'); // resets the field label after submission
-    }
-
-    function rateformError() {
-        alert("El producto no se guardo");
-        $("#rateForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-            $(this).removeClass();
-        });
-    }
-
-    function ratesubmitMSG(valid, msg) {
-        if (valid) {
-            var msgClasses = "h3 text-center tada animated";
-        } else {
-            var msgClasses = "h3 text-center";
-        }
-        $("#ratemsgSubmit").removeClass().addClass(msgClasses).text(msg);
-    }
+    
     //*************************************************************
 
 });
+*/
