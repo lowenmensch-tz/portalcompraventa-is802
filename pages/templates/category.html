@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{% static 'css/marazo-css/bootstrap.min.css' %}">
     
     <!-- Customizable CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/marazo-css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/marazo-css/blue.css' %}">
     <!-- <link rel="stylesheet" href="assets/css/owl.carousel.css"> -->
@@ -38,7 +39,42 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   </head>
   <body class="cnt-home">
-    
+  <nav class="navbar-superior" style= "margin-top: -19px;">
+			
+				<!--<h2 class="logotipo-h2">Logotipo página</h2>-->
+			
+			<!--<div class="logotipo">
+				<img src="{% static 'img/logo.png' %}" />
+				<h2>Nombre página</h2>
+			</div>-->
+
+			<ul class="navbar-superior-ul">
+        <li id="registrarse" class="navbar-superior-ul-li" style="display:none;">
+					<a class="navbar-superior-ul-li-a" href="/register">Registrate</a>
+				</li>
+        <li id="iniciar-sesion" class="navbar-superior-ul-li" style="display:none;">
+					<a class="navbar-superior-ul-li-a" href="/login">Iniciar sesión</a>
+				</li>
+				<li id="cerrar-sesion" class="navbar-superior-ul-li" style="display:none;">
+					<a class="navbar-superior-ul-li-a" href="/logout">Cerrar sesión</a>
+				</li>
+				<li id = "mi-perfil" class="navbar-superior-ul-li" style="display:none;">
+					<a class="navbar-superior-ul-li-a" href="/user">Mi Perfil</a>
+				</li>
+				<li class="navbar-superior-ul-li">
+					<a class="navbar-superior-ul-li-a" href="#">Contacto</a>
+				</li>
+				<li class="navbar-superior-ul-li">
+					<a class="navbar-superior-ul-li-a" href="#">Sobre nosotros</a>
+				</li>
+				<li class="navbar-superior-ul-li">
+					<a class="navbar-superior-ul-li-a" href="/categories">Categorias</a>
+				</li>
+				<li class="navbar-superior-ul-li">
+					<a class="navbar-superior-ul-li-a" href="/">Inicio</a>
+				</li>
+			</ul>
+	</nav>
 
 
 <div class="body-content outer-top-xs">
@@ -413,6 +449,7 @@
 <script src="assets/js/bootstrap-select.min.js"></script> -->
 
 <script src="{% static 'js/marazo-js/wow.min.js' %}"></script>
+<script src="{% static 'js/navbar.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/marazo-js/scripts.js' %}"></script>
 <script src="{% static 'js/marazo-js/category.js' %}"></script>
 </body>

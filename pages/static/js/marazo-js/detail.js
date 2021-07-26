@@ -22,8 +22,16 @@ function sessionCheck(){
 
             if (response == 'true'){
                 $('#contact-review-forms').show();
+                document.getElementById('cerrar-sesion').style.display = 'block';
+                document.getElementById('mi-perfil').style.display = 'block';
+                document.getElementById('iniciar-sesion').style.display = 'none';
+                document.getElementById('registrarse').style.display = 'none';
             }else{
                 $('#contact-review-forms').hide();
+                document.getElementById('cerrar-sesion').style.display = 'none';
+                document.getElementById('mi-perfil').style.display = 'none';
+                document.getElementById('iniciar-sesion').style.display = 'block';
+                document.getElementById('registrarse').style.display = 'block';
             }
         }
     });
