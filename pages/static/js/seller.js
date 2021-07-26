@@ -153,12 +153,12 @@ function convertURL(nameProduct, idProduct){
 */
 function loadProfile(profile){
 
-    $("#Ufirstname").val(`${profile[0]}`);
-    $("#Ulastname").val(`${profile[1]}`);
-    $("#Uphone").val(`${profile[4]}`);
-    $("#Uemail").val(`${profile[2]}`);
-    $("#Uaddress").val(`${profile[5]}`);
-    $("#Udepartment").val(`${profile[3]}`);
+    $("#Sellerfirstname").val(`${profile[0]}`);
+    $("#Sellerlastname").val(`${profile[1]}`);
+    $("#Sellerphone").val(`${profile[4]}`);
+    $("#Selleremail").val(`${profile[2]}`);
+    $("#Selleraddress").val(`${profile[5]}`);
+    $("#Sellerdepartment").val(`${profile[3]}`);
 }
 
 
@@ -263,7 +263,7 @@ function ratingAndComment(){
     var data = { 
         comment: $("#Ratecomment").val(),
         rating: loadRaiting(),
-        email: $("#Uemail").val()
+        email: $("#Selleremail").val()
     };
 
     console.log('DATA: ', data);
@@ -298,22 +298,14 @@ function ratingAndComment(){
 
 
 function rateformSuccess() {
-    alert("Se han actualizado tus datos");
+    alert("Se ha calificado con éxito!");
     $("#rateForm")[0].reset();
-    ratesubmitMSG(true, "Sign Up Submitted!");
-    $("input").removeClass('notEmpty'); // resets the field label after submission
-}
-
-
-function rateformSuccess() {
-    alert("Se han actualizado tus datos");
-    $("#rateForm")[0].reset();
-    ratesubmitMSG(true, "Sign Up Submitted!");
+    ratesubmitMSG(true, "Ha calificado a vendedor éxitosamente!");
     $("input").removeClass('notEmpty'); // resets the field label after submission
 }
 
 function rateformError() {
-    alert("El producto no se guardo");
+    alert("Hubo un error no se pudo calificar al vendedor");
     $("#rateForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
         $(this).removeClass();
     });
