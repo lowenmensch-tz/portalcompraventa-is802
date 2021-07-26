@@ -186,16 +186,14 @@ class MySQLEngine:
     """
         Devuelve un diccionario con la información de los comentarios, nombre de los usuarios de los artículos publicados.
 
-        @param idProducto: 
-                            id del usuario
-                            id del artículo
-                            id de la denuncia
-        @param type: 
+        @param fk_usuarioComentador: 
+        @param tipo: 
                     1 'Usuario'
                     2 'Articulo'
                     3 'Denuncia' 
+        @param fk_dirigidoA:
     """
-    def comment(self, id, type=1):
+    def comment(self, tipo, fk_dirigidoA):
 
         sql = """
         SELECT
@@ -206,8 +204,8 @@ class MySQLEngine:
         INNER JOIN 
             USUARIO AS u ON c.fk_usuarioComentador = u.id_usuario
         WHERE
-            tipo = %s AND fk_dirigidoA = %s 
-        """ % (type, id) # REVISAR
+            tipo = %s AND fk_dirigidoA = %s;
+        """ % (tipo, fk_dirigidoA) # REVISAR
 
         result = self.transaction(sql) 
 

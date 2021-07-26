@@ -74,7 +74,7 @@ class UserProfile:
                 
                 publishedProducts = self.engine.getPublishedProductsByEmail(email=email)
                 profile           = self.engine.getUserInformationByEmail(email=email)
-                comment           = self.engine.comment(id=idUser, type=1) # 1: 'Usuario'
+                #comment           = self.engine.comment(tipo=1, fk_usuarioComentador=, fk_dirigidoA=) 
                 
                 #datosUser = resultUser + resultEstrellitas + resultComentarios + resultArticulos # Lista de tuplas con los datos del usuario, calificacion, comentarios y articulos
                 

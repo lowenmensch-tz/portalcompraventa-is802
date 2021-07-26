@@ -14,19 +14,22 @@ window.onload = function(){
     Carga los datos personales del vendedor en la vista
 */
 function loadData(){
+    //raiting: $("#raiting").val(),
+    let data = {
+                url: window.location.pathname.replaceAll(/(\/details\/)|(\/)/g,"") 
+    }
+
     $.ajax({
+
         type: "POST",
         url:  `ajax/sellerProfileDescription`,
-        data: {
-            url: window.location.pathname.replaceAll(/(\/details\/)|(\/)/g,"")
-        },
+        data: data,
         success: function(data) {
-
-            console.log(data);
 
             loadProfile(data.profile[0]);
             loadProducts(data.product);
             loadRaiting(data.raiting);
+            loadComment(data.comment);
         }
     });
 }
@@ -59,7 +62,6 @@ function loadProducts(products){
             
             if (index < 2){
                 let url = JSON.parse(products[index][products[index].length-1])
-                console.log( url );            
 
                 $("#published-product").append(`
                     <div class="card">
@@ -129,11 +131,77 @@ function loadProfile(profile){
 }
 
 
+
+/*
+    Se encarga de cargar los comentarios asociados al vendedor
+*/
+function loadComment(comments){
+
+    if( comments.length == 0 ){
+        document.getElementById('commentsRow').innerHTML += `
+            <div id="noHayComentarios">
+            <div class="col-md-2 col-sm-2">
+            </div>
+            <div class="col-md-10 col-sm-10 blog-comments outer-bottom-xs">
+                <div class="blog-comments inner-bottom-xs">
+                    <h1>AUN NO HAY COMENTARIOS, SE EL PRIMERO!</h1>
+                </div>
+            </div>
+            </div>
+            `; 
+    } else{
+        for (let index = 0; index < comments.length; index++) {
+
+            document.getElementById('commentsRow').innerHTML += `
+                <div class="container my-1 py-1 text-dark">
+                    <div class="row d-flex justify-content-center">
+                    <div class="col-md-11 col-lg-9 col-xl-7">
+                        <div class="d-flex flex-start mb-4">
+                        <img
+                            class="rounded-circle shadow-1-strong me-3"
+                            src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+                            alt="avatar"
+                            width="65"
+                            height="65"
+                        />
+                        <div class="card w-100">
+                            <div class="card-body p-4">
+                            <div class="">
+                                <h5>${comments[index][0]}</h5>
+                                <p class="small">3 hours ago</p>
+                                <p>
+                                ${comments[index][1]}
+                                </p>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                <a href="#!" class="link-muted"
+                                    ><i class="fas fa-reply me-1"></i> Reply</a
+                                >
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+}
+
+
 // Carga la calificación (como un promedio ponderado) del vendedor
 function loadRaiting(raiting){
 
 }
 
+
+
+/*
+    Esta función se encarga de enviar hacia la base de datos un nevo comentario y la calificación publicado por un cliente. 
+*/
 $(function(){
 
     //*************************************************************
@@ -152,22 +220,31 @@ $(function(){
         // Los datos estaticos son datos que se deben precargar: departamento, municipio
         // y categoria
         // initiate variables with form content
-        var lastname = document.querySelector('input[name="rating"]:checked').value;
-        var description = $("#Ratecomment").val();
 
-        var data = { 'primer_nombre': firstname, 'apellido' : lastname, 'telefono': phone, 'direccion': address,
-            'contrasenia': password };
+        var data = { 
+                    comment: $("#Ratecomment").val(),
+                    raiting: $("#raiting").val(),
+                    email: $("#Uemail").val() 
+            };
 
         //peticion que espera una variable text
+        //url: "ajax/sellerRaitingAndComment",
         $.ajax({
+
             type: "POST",
-            url: "",
+            url: "ajax/raitingAndComment",
             data: data,
-            success: function(text) {
-                console.log(text);
+
+            success: function(data) {
+
+                console.log(data);
+                console.log("Agregado con éxito!");
+
                 if (text.status == "Success") {
+
                     rateformSuccess();
                     location.reload();
+
                 } else {
                     rateformError();
                     ratesubmitMSG(false, text);

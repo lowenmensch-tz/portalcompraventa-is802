@@ -39,7 +39,7 @@ path('user', user, name='user'),
 path('logout', logout),
 
 url(r'^seller/ajax/sellerProfileDescription$', seller.profileDescription),
-#url(r'^seller\/(\d{1,4}\-[0-9a-zA-Z-]+)$', seller.seller),
+url(r'^seller/ajax/raitingAndComment$', seller.raitingAndComment),
 url(r'^seller\/(\d{1,4}\-[0-9a-zA-Z-]+)$', seller.seller),
 #
 #path('seller/', seller.seller, name='seller_page'),
