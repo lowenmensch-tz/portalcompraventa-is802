@@ -187,7 +187,7 @@ def findProducts(request):
         preciomin, preciomax, fechaPublicacion = request.POST.get('preciomin'), request.POST.get('preciomax'), request.POST.get('fechaPublicacion')
 
         database, cursor = conexion.conectar()
-        articulosQuery = """SELECT id_articulo, nombre, CAST(precio AS CHAR), descripcion, CAST(fecha_publicacion AS CHAR), fk_departamento, fk_municipio,
+        articulosQuery = """SELECT id_articulo, nombre, CAST(precio AS CHAR), CONCAT(SUBSTRING(descripcion,1,35),'...'), CAST(fecha_publicacion AS CHAR), fk_departamento, fk_municipio,
                             cantidad_disponible, fk_usuario, enlace_imagen FROM ARTICULO INNER JOIN IMAGEN
                             ON ARTICULO.id_articulo = IMAGEN.fk_articulo
                             WHERE (fk_categoria like '%s' AND precio BETWEEN '%s' AND '%s')
