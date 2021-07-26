@@ -140,16 +140,16 @@ CREATE UNIQUE INDEX in_correo ON USUARIO(correo);
 */
 
 INSERT INTO DEPARTAMENTO (nombre) VALUES
-("Francisco Morazán"),
 ("Atlántida"),
 ("Choluteca"),
 ("Colón"),
 ("Comayagua"),
 ("Copán"),
-("Cortés"),
+("Cortes"),
 ("EL Paraíso"),
+("Francisco Morazán"),
 ("Gracias a Dios"),
-("Intibúca"),
+("Intibuca"),
 ("Islas de la Bahía"),
 ("La Paz"),
 ("Lempira"),
