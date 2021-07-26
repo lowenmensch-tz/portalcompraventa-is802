@@ -170,21 +170,35 @@ function loadComment(comments){
 
     if( comments.length == 0 ){
         document.getElementById('commentsRow').innerHTML += `
-            <div id="noHayComentarios">
-            <div class="col-md-2 col-sm-2">
-            </div>
-            <div class="col-md-10 col-sm-10 blog-comments outer-bottom-xs">
-                <div class="blog-comments inner-bottom-xs">
-                    <h1>AUN NO HAY COMENTARIOS, SE EL PRIMERO!</h1>
+        <div class="container my-1 py-1 text-dark" style="width:100vw;">
+        <div class="row d-flex justify-content-center">
+        <div class="col-md-11 col-lg-9 col-xl-7">
+            <div class="d-flex flex-start mb-4">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                <div class="">
+                    <h5>Dinos que piensas sobre este vendedor.</h5>
+                    <p class="small"></p>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                    </div>
+                </div>
                 </div>
             </div>
             </div>
+            
+        </div>
+        </div>
+    </div>
             `; 
     } else{
-        for (let index = 0; index < comments.length; index++) {
+        document.getElementById('commentsRow').innerHTML = "";
 
+        for (let index = 0; index < comments.length; index++) {
+            
             document.getElementById('commentsRow').innerHTML += `
-                <div class="container my-1 py-1 text-dark">
+                <div class="container my-1 py-1 text-dark" style="width:100vw;">
                     <div class="row d-flex justify-content-center">
                     <div class="col-md-11 col-lg-9 col-xl-7">
                         <div class="d-flex flex-start mb-4">
