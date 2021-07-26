@@ -81,7 +81,6 @@ class Details:
                                     'description':resultProduct[0][1], 
                                     'price':resultProduct[0][2], 
                                     'idPublisher': resultProduct[0][3],
-                                    'rating': self.engine.raiting(resultProduct[0][-1]),  # Calificación (promedio) del vendedor
                                     'publisher': self.engine.transaction("SELECT nombre_completo FROM USUARIO WHERE correo = '%s';"%(email)),
                                     # { 'rating': 0 if result[0][0] is None else float(result[0][0]) }
                                     #'image': productDetailsImage(idProduct=idProduct),      # Imagen del producto
@@ -89,6 +88,7 @@ class Details:
                                                                 data=self.productDetailsImage(idProduct=idProduct), 
                                                                 key='photo'
                                                             ),
+                                    'rating': self.engine.raiting(resultProduct[0][-1]),  # Calificación (promedio) del vendedor
                                     #'comment': productDetailsComments(idProduct=idProduct),  # Comentarios del producto
                                     'comment': convertToDictionary(
                                                                     data=self.productDetailsComments(idProduct=idProduct),
@@ -117,12 +117,12 @@ class Details:
             emailUserPublication = request.POST.get('correoVendedor')  # Dueño del producto
             comment = request.POST.get('comentario')                  # Comentario de la reseña
             
-            ratio = request.POST.get('calificacion')                 # Calificación del comentario
-            ratio = 0 if ratio == 'NaN' else float(ratio)
+            #ratio = request.POST.get('calificacion')                 # Calificación del comentario
+            #ratio = 0 if ratio == 'NaN' else float(ratio)
 
             idProduct = int( url.split('-')[0] )                   # ID del producto
 
-            idUserPublication = self.engine.getUserIDByEmail(emailUserPublication)  # Obtiene el id del dueño del producto
+            #idUserPublication = self.engine.getUserIDByEmail(emailUserPublication)  # Obtiene el id del dueño del producto
             idUserCommented = self.engine.getUserIDByEmail(emailUserCommented)     # Obtiene el id del usuario que ha hecho el comentario
 
             sqlComment = """
@@ -130,13 +130,10 @@ class Details:
                 ('Articulo', '%s', %s, %s);
             """%(comment, idUserCommented, idProduct)
 
-            sqlRatio = """
-            INSERT INTO CALIFICACION (calificacion, fk_usuarioCalificador, fk_usuarioCalificado) VALUES
-                (%s, %s, %s);
-            """%(ratio, idUserCommented, idUserPublication)
+            #sqlRatio = """INSERT INTO CALIFICACION (calificacion, fk_usuarioCalificador, fk_usuarioCalificado) VALUES(%s, %s, %s);"""%(ratio, idUserCommented, idUserPublication)
                 
             self.engine.dms(sqlComment)
-            self.engine.dms(sqlRatio)
+            #self.engine.dms(sqlRatio)
 
             try: 
                 updatedComments = self.productDetailsComments(idProduct=idProduct) 
@@ -144,11 +141,10 @@ class Details:
                 print('Comentario actualizado: ', updatedComments)
 
                 if updatedComments:
-
+                    #**{ 'rating': self.engine.raiting(idUser=idUserPublication) }, # Calificación (promedio) del dueño del producto
                     return HttpResponse(json.dumps(
                                     {
                                         'status':'Success',
-                                        **{ 'rating': self.engine.raiting(idUser=idUserPublication) }, # Calificación (promedio) del dueño del producto
                                         'comment': updatedComments,                      # Comentarios del producto
                                     }
                                 ), 
