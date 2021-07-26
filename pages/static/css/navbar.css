@@ -1,0 +1,76 @@
+/**{
+	margin: 0px;
+	padding: 0px;
+	font-family: sans-serif, Arial, Helvetica;
+}*/
+
+
+/*Estilos barra de navegación*/
+
+.navbar-superior{
+	width: 100%;
+	height: 50px;
+	margin: 0px;
+	padding: 0px;
+	background-color: #fff;
+	border: 1px solid #cccfd6;
+	box-shadow: 0px 5px 5px rgb(182, 181, 181);
+	font-size: 15px;
+	margin-bottom: 25px;
+	font-family: sans-serif, Arial, Helvetica;
+}
+
+.navbar-superior-ul{
+	list-style: none;
+	text-decoration: none;
+	margin-right: 30px;
+}
+
+.navbar-superior-ul-li{
+	line-height: 50px;
+	float: right;
+}
+
+.navbar-superior-ul-li-a{
+	display: block;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: rgb(99, 98, 98);
+	border-radius: 3px;
+	text-decoration: none;
+}
+
+.navbar-superior-ul-li-a:hover{
+	background: #4e73df;
+	box-shadow: 0px 0px 5px rgb(153, 155, 156) inset;
+	color: white;
+	transition: all 300ms;
+}
+
+/*.enlaces-links{
+	text-decoration: none;
+	color: rgb(99, 98, 98);
+	font-family: sans-serif, Arial, Helvetica;
+	display: block;
+	background-color: #e9e6e6;
+	width: 80px;
+	display: none;
+	
+}
+
+.enlaces-links:hover{
+	background-color: #f1f1f1;
+}
+
+#navbar-superior-ul-li:hover .enlaces-links{
+	display: block;
+	position: absolute;
+}*/
+
+
+@media (max-width: 600px){
+	.navbar-superior{
+		flex-direction: column;
+	}
+}
+

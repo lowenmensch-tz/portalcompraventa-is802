@@ -22,8 +22,16 @@ function sessionCheck(){
 
             if (response == 'true'){
                 $('#contact-review-forms').show();
+                document.getElementById('cerrar-sesion').style.display = 'block';
+                document.getElementById('mi-perfil').style.display = 'block';
+                document.getElementById('iniciar-sesion').style.display = 'none';
+                document.getElementById('registrarse').style.display = 'none';
             }else{
                 $('#contact-review-forms').hide();
+                document.getElementById('cerrar-sesion').style.display = 'none';
+                document.getElementById('mi-perfil').style.display = 'none';
+                document.getElementById('iniciar-sesion').style.display = 'block';
+                document.getElementById('registrarse').style.display = 'block';
             }
         }
     });
@@ -117,19 +125,12 @@ function loadData(){
 
 function updateReviews(){
     // Calcular las estrellas
-    quality = parseInt($('input[name="quality"]:checked').val());
-    price = parseInt($('input[name="price"]:checked').val());
-    status = parseInt($('input[name="status"]:checked').val());
-
-    rate = (parseInt(quality)+parseInt(price)+parseInt(status))/3;
-    
     $.ajax({
         type: "POST",
         url:  `ajax/review`,
         data: {
             comentario: $('#exampleInputReview').val(),
-            calificacion: rate,
-            correoVendedor: $('#publisherEmail').val(),
+            correoVendedor: $('#publisherEmail').val()
         },
         success: function(data) {
             comment = $('#exampleInputReview').val();
@@ -138,9 +139,7 @@ function updateReviews(){
             try {
                 document.getElementById('noHayComentarios').parentNode.removeChild(document.getElementById('noHayComentarios'));
               }
-              catch(err) {
-                console.log('Ok');
-              }
+              catch(err) {}
             document.getElementById('pincheMarazo').parentNode.removeChild(document.getElementById('pincheMarazo'));
             
 

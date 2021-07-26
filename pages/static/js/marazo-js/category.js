@@ -3,7 +3,7 @@ currentPage = 1;
 
 window.onload = function(){
     gatherProducts();
-
+    sessionCheck2();
 };
 
 /* * * * * * * * * * * * * * * * *
