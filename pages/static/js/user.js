@@ -10,7 +10,7 @@ $(function() {
         if (event.isDefaultPrevented()) {
             // handle the invalid form...
             PformError();
-            PsubmitMSG(false, "Please fill all fields!");
+            PsubmitMSG(false, "Por favor llene todos los campos!");
         } else {
             // everything looks good!
             event.preventDefault();
@@ -86,7 +86,7 @@ $(function() {
         alert("El producto se guardo");
         window.location.href = "user"
         $("#ProductForm")[0].reset();
-        PsubmitMSG(true, "Sign Up Submitted!");
+        PsubmitMSG(true, "El producto se guardo con éxito!");
         $("input").removeClass('notEmpty'); // resets the field label after submission
     }
 
@@ -111,7 +111,7 @@ $(function() {
         if (event.isDefaultPrevented()) {
             // handle the invalid form...
             UformError();
-            UsubmitMSG(false, "Please fill all fields!");
+            UsubmitMSG(false, "Por favor llene todos los campos!");
         } else {
             // everything looks good!
             event.preventDefault();
@@ -119,8 +119,6 @@ $(function() {
         }
     });
         function UsubmitForm() {
-        // Los datos estaticos son datos que se deben precargar: departamento, municipio
-        // y categoria
         // initiate variables with form content
         var firstname = $("#Ufirstname").val();
         var lastname = $("#Ulastname").val();
@@ -154,12 +152,12 @@ $(function() {
     function UformSuccess() {
         alert("Se han actualizado tus datos");
         $("#UpdateForm")[0].reset();
-        UsubmitMSG(true, "Sign Up Submitted!");
+        UsubmitMSG(true, "Se actualizaaron los datos correctamente!");
         $("input").removeClass('notEmpty'); // resets the field label after submission
     }
 
     function UformError() {
-        alert("El producto no se guardo");
+        alert("Los datos no se pudieron actualizar");
         $("#UpdateForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
             $(this).removeClass();
         });

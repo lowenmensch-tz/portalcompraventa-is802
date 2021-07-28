@@ -4,7 +4,7 @@ $(function() {
         if (event.isDefaultPrevented()) {
             // handle the invalid form...
             sformError();
-            ssubmitMSG(false, "Please fill all fields!");
+            ssubmitMSG(false, "Por favor llene todos los campos!");
         } else {
             // everything looks good!
             event.preventDefault();
@@ -60,7 +60,7 @@ $(function() {
 
     function sformSuccess() {
         $("#signUpForm")[0].reset();
-        ssubmitMSG(true, "Sign Up Submitted!");
+        ssubmitMSG(true, "Se registro con éxito!");
         $("input").removeClass('notEmpty'); // resets the field label after submission
     }
 
@@ -85,7 +85,7 @@ $(function() {
         if (event.isDefaultPrevented()) {
             // handle the invalid form...
             lformError();
-            lsubmitMSG(false, "Please fill all fields!");
+            lsubmitMSG(false, "Por favor llene todos los campos!");
         } else {
             // everything looks good!
             event.preventDefault();
@@ -125,7 +125,7 @@ $(function() {
 
     function lformSuccess() {
         $("#logInForm")[0].reset();
-        lsubmitMSG(true, "Log In Submitted!");
+        lsubmitMSG(true, "Inicio Sesión!");
         $("input").removeClass('notEmpty'); // resets the field label after submission
     }
 
