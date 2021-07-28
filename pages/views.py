@@ -225,12 +225,14 @@ def almacenarArticulo(request):
         nombre, precio, descripcion = request.POST.get('nombre'), request.POST.get('precio'), request.POST.get('descripcion')
         fk_departamento, fk_municipio, = request.POST.get('fk_departamento'), request.POST.get('fk_municipio')
         cantidad_disponible, fk_categoria = request.POST.get('cantidad_disponible'), request.POST.get('fk_categoria')
-        link_imagen1,link_imagen2,link_imagen3  = request.POST.get('link_imagen1'), request.POST.get('link_imagen2'), request.POST.get('link_imagen3')
+        link_imagen1  = request.POST.get('link_imagen1')
         fk_usuario = getIdUser(request.session.get('email'))
 
-        listaImagenes = [link_imagen1, link_imagen2, link_imagen3]
+        #,link_imagen2,link_imagen3 ---- , link_imagen2, link_imagen3
+
+        listaImagenes = [link_imagen1]
         listaImagenesContenido = []
-        for i in range(3):
+        for i in range(1):
             if listaImagenes[i] != 0:
                 listaImagenesContenido.append(listaImagenes[i])
 

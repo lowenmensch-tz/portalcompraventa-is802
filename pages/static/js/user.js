@@ -56,6 +56,7 @@ $(function() {
         var url_img2 = $("#Pimage2").val();
         var url_img3 = $("#Pimage3").val();
 
+        municipio == 00 ? municipio = 41 : municipio = municipio;
         var data = { 'nombre': name, 'precio' : price, 'descripcion': description, 'fk_departamento': state,
             'fk_municipio': municipio, 'cantidad_disponible': quantity, 'fk_categoria': category, 'link_imagen1': url_img1,
             'link_imagen2': url_img2, 'link_imagen3': url_img3};
