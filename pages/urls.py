@@ -5,6 +5,7 @@ from pages.views import loginValidation
 from pages.views import registerUser
 from pages.views import findProducts
 from pages.views import updateUser
+from pages.views import loadImage
 from pages.views import register
 from pages.views import details
 from pages.views import profile
@@ -16,8 +17,13 @@ from pages.views import user
 
 from django.urls import path
 
+from django.conf.urls.static import static
+
 from django.conf.urls import include
 from django.conf.urls import url
+
+from django.conf import settings
+
 
 
 urlpatterns = [
@@ -30,6 +36,8 @@ path('ajax/registerUser', registerUser, name='register_user'),
 path('categories', productCategories, name='categories_page'),
 path('ajax/findProducts', findProducts, name='find_products'),
 path('ajax/almacenarArticulo', almacenarArticulo, name='almacenar_Articulo'),
+path('ajax/loadImage', loadImage, name='load_image'),
+
 
 path('user-profile', profile.userProfile, name='user_profile'),
 path('ajax/updateUser', updateUser, name='update_User'),
@@ -51,3 +59,6 @@ url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/$', details.productDetails), # esta cos
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/loggedValidator', loggedInValidator),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

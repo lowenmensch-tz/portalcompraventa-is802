@@ -52,14 +52,21 @@ $(function() {
         var municipio = $("#Pmunicipio").val();
         var quantity = $("#Pcantidad").val();
         var category = $("#Pcategoria").val();
-        var url_img1 = $("#Pimage1").val();
-        var url_img2 = $("#Pimage2").val();
-        var url_img3 = $("#Pimage3").val();
+
 
         municipio == 00 ? municipio = 41 : municipio = municipio;
-        var data = { 'nombre': name, 'precio' : price, 'descripcion': description, 'fk_departamento': state,
-            'fk_municipio': municipio, 'cantidad_disponible': quantity, 'fk_categoria': category, 'link_imagen1': url_img1,
-            'link_imagen2': url_img2, 'link_imagen3': url_img3};
+        
+        var data = { 
+            'nombre': name, 
+            'precio' : price, 
+            'descripcion': description, 
+            'fk_departamento': state,
+            'fk_municipio': municipio, 
+            'cantidad_disponible': quantity, 
+            'fk_categoria': category 
+        };
+
+        
 
         //peticion que espera una variable text
         $.ajax({
@@ -69,6 +76,7 @@ $(function() {
             success: function(text) {
                 console.log(text);
                 if (text.status == "Success") {
+                    loadImage(); // Envia el o los archivos al backend para ser procesados y almacenados
                     PformSuccess();
                 } else {
                     PformError();
@@ -226,7 +234,7 @@ $(function() {
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <img class="card-img-top" src="${url["0"]}" style="padding-top:2rem;">
+                                        <img class="card-img-top" src="http://localhost:8000${url["0"]}" style="padding-top:2rem;">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <ul>
@@ -367,4 +375,110 @@ function sessionCheck(){
             }
         }
     });
+}
+
+
+//Carga el nombre de la imagen en el input
+function inputTitleImageFile(){
+    
+    $('input[type="file"]').on("change", function() {
+        let filenames = [];
+        let files = this.files;
+
+        if (files.length > 1) {
+
+          filenames.push("Archvios Totales (" + files.length + ")");
+
+          for (let i in files) {
+              sizeValidImageFile(files[i]);
+              formatValidImage(files[i]);
+          }
+
+        } else {
+
+          for (let i in files) {
+
+            if (files.hasOwnProperty(i)) {
+                filenames.push(files[i].name);
+              }
+
+              sizeValidImageFile(files[i]);
+              formatValidImage(files[i]);
+          }
+        }
+        
+        $(this)
+          .next(".custom-file-label")
+          .html(filenames.join(","));
+      });
+}
+
+
+//Tamaño valido de la imagen 2MB
+function sizeValidImageFile(file){
+    
+    var size = file.size;
+    var maxSize = 1024 * 1024 * 2; // 2MB Máximo
+
+    if (size > maxSize) {
+        alert(`El archivo "${file.name}", es demasiado grande.`);
+        return false;
+    }
+    return true;
+}
+
+
+// Validar solo archivos con formato de imagen  jpeg|png|gif|bmp|jpg
+function formatValidImage(file){
+
+    var type = file.type;
+    let pattern = /^image\/(jpeg|png|gif|jpg|bmp)$/i;
+
+    console.log(type);
+    console.log("¿TIPO?");
+
+    if (type !== undefined) {
+
+        if (!type.match(pattern)) {
+            alert(`El archivo "${file.name}", no es un formato acepato.`);
+            return false;
+        }
+        return true;
+
+    }
+}
+
+
+/*
+    Se encarga de obtener los objetos de tipo imagen para ser enviados al backend
+*/
+function loadImage(){
+            
+    var input = document.querySelector('input[type="file"]');
+
+    var data = new FormData();
+    
+    if (input.files.length > 0) {
+
+        for (let index = 0; index < input.files.length; index++) {
+            
+            data.append(`file-${index}`, input.files[index]);
+
+        }
+    }
+
+    console.log("Se ejecuta?");
+    
+    const url = 'ajax/loadImage';
+
+    const option = {
+        method: 'POST',
+        body: data,
+    };
+
+    fetch(url, option)
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+        });
 }

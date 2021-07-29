@@ -13,6 +13,8 @@ from pages.vwSeller import Seller
 
 import json
 
+from django.core.files.storage import FileSystemStorage
+
 import pages.conexion as conexion
 
 # Create your views here.
@@ -225,41 +227,73 @@ def almacenarArticulo(request):
         nombre, precio, descripcion = request.POST.get('nombre'), request.POST.get('precio'), request.POST.get('descripcion')
         fk_departamento, fk_municipio, = request.POST.get('fk_departamento'), request.POST.get('fk_municipio')
         cantidad_disponible, fk_categoria = request.POST.get('cantidad_disponible'), request.POST.get('fk_categoria')
-        link_imagen1  = request.POST.get('link_imagen1')
         fk_usuario = getIdUser(request.session.get('email'))
 
-        #,link_imagen2,link_imagen3 ---- , link_imagen2, link_imagen3
+        postQuery = """
+                        INSERT INTO ARTICULO (
+                                            nombre,
+                                            precio,
+                                            descripcion,
+                                            publicado,
+                                            fk_departamento,
+                                            fk_municipio,
+                                            cantidad_disponible,
+                                            fk_categoria,
+                                            fk_usuario
+                                            ) VALUES 
+                            ('%s', CAST('%s' AS DECIMAL(13,4)), '%s', 1, %s, %s, %s, %s, %s)
+                        """ % (nombre, precio, descripcion, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario)
 
-        listaImagenes = [link_imagen1]
-        listaImagenesContenido = []
-        for i in range(1):
-            if listaImagenes[i] != 0:
-                listaImagenesContenido.append(listaImagenes[i])
-
-        database, cursor = conexion.conectar()
-        postQuery = """INSERT INTO ARTICULO (nombre,precio,descripcion,publicado,fecha_publicacion,fk_departamento,
-                        fk_municipio,cantidad_disponible,fk_categoria,fk_usuario) VALUES ('%s', CAST('%s' AS DECIMAL(13,4)), 
-                        '%s', 1, NOW(), %s, %s, %s, %s, %s)""" % (nombre,precio,descripcion,fk_departamento,fk_municipio,cantidad_disponible,fk_categoria,fk_usuario)
-
-        fkArticuloQuery = "SELECT LAST_INSERT_ID();"
-        
         try:
-            cursor.execute(postQuery)
-            database.commit()
-            cursor.execute(fkArticuloQuery)
-            result = cursor.fetchone()
 
-            for i in range(len(listaImagenesContenido)):
-                insertImageQuery = """INSERT INTO IMAGEN (enlace_imagen,fk_articulo) VALUES
-                                    ('%s',%s);""" % (listaImagenesContenido[i],result[0])
-                cursor.execute(insertImageQuery)
-            database.commit()
-            cursor.close()
+            engine.dms( postQuery )
+
             return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
         except Exception as e:
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+
+#Cargar los archivos de tipo imagen al servidor
+@csrf_exempt
+def loadImage(request): 
+
+    if request.method == 'POST': # and request.FILES['loadFileImage']:
+    
+
+        try: 
+            getLastID = "SELECT id_articulo FROM ARTICULO ORDER BY id_articulo DESC LIMIT 1;"
+            result = engine.transaction(getLastID)
+            
+
+            imageFiles = request.FILES
+
+            print("A VER: ",  imageFiles )
+            fs = FileSystemStorage()
+
+            for key in imageFiles:
+                
+                file = fs.save(imageFiles[key].name, imageFiles[key])
+                uploaded_file_url = fs.url(file)
+
+                print("URL: ", uploaded_file_url)
+
+                sql = """
+                                     INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+                                         ('%s', %s);
+                                 """ % (uploaded_file_url, result[0][0])
+                
+                print(sql)
+
+                engine.dms(sql)
+
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
 
 """
     Función utilizada por userProfile para obtener el id del usuario 

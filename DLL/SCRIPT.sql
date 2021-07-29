@@ -69,6 +69,7 @@ CREATE TABLE USUARIO(
     telefono VARCHAR(20),
     direccion VARCHAR(100) NOT NULL,
     estado BOOL DEFAULT 0,
+    fecha_creacion DATETIME NOT NULL DEFAULT NOW(),
     contrasenia VARCHAR(255) NOT NULL,
     PRIMARY KEY (id_usuario)
 );
@@ -103,6 +104,7 @@ CREATE TABLE COMENTARIO(
 	id_comentario INT NOT NULL AUTO_INCREMENT UNIQUE,
     tipo ENUM("Usuario","Articulo","Denuncia"),
     comentario VARCHAR(300) NOT NULL,
+    fecha_publicacion DATETIME NOT NULL DEFAULT NOW(),
     fk_usuarioComentador INT NOT NULL,
     fk_dirigidoA INT NOT NULL,
     PRIMARY KEY (id_comentario)

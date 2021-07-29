@@ -275,7 +275,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form class="user" id="ProductForm" name="ProductForm" data-toggle="validator" data-focus="false">
+                <form class="user" id="ProductForm" name="ProductForm" data-toggle="validator" data-focus="false" enctype="multipart/form-data" method="POST">
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="Pname"
                             placeholder="Nombre" required>
@@ -340,9 +340,10 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="Pimage1"
-                            placeholder="URL imagen 1" required>
-                            <div class="help-block with-errors"></div>
+                         <div class="custom-file">
+                            <input type="file" name="loadFileImage" multiple class="custom-file-input form-control" id="customFile" > 
+                            <label class="custom-file-label" for="customFile">Elija uno o varios archivos</label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">Guardar Producto</button>
                     <div class="form-message">

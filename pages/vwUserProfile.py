@@ -46,8 +46,6 @@ class UserProfile:
     @csrf_exempt
     def userProfile(self, request):
 
-        print( request.method )
-        
         if request.method:
 
             email = request.session.get('email') 
@@ -57,30 +55,11 @@ class UserProfile:
 
             #if idUser != 0: #and id_usuarioLogueado !=0:
                 
-            estrellitasQuery = """SELECT SUBSTRING(CAST((SUM(calificacion) / COUNT(fk_usuarioCalificado)) AS CHAR), 1,4) as promedio_estrellas FROM CALIFICACION
-                                WHERE fk_usuarioCalificado = %s;""" % (idUser)
-
             try:
-                '''if calificacion != 0:
-                    insertCalificacionQuery = """INSERT INTO CALIFICACION (fk_usuarioCalificador,fk_usuarioCalificado,calificacion) VALUES
-                                                (%s,%s,%s);""" % (id_usuarioLogueado, id_usuario, calificacion)
-                    cursor.execute(insertCalificacionQuery)
-                if comentario != 0:
-                    insertComentarioQuery = """INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
-                                            ("Usuario",'%s',%s,%s);""" % (comentario, id_usuarioLogueado, id_usuario) # El valor de tipo por defecto va en Usuario
-                    cursor.execute(insertComentarioQuery)
-                database.commit()'''
-
                 
                 publishedProducts = self.engine.getPublishedProductsByEmail(email=email)
                 profile           = self.engine.getUserInformationByEmail(email=email)
-                #comment           = self.engine.comment(tipo=1, fk_usuarioComentador=, fk_dirigidoA=) 
                 
-                #datosUser = resultUser + resultEstrellitas + resultComentarios + resultArticulos # Lista de tuplas con los datos del usuario, calificacion, comentarios y articulos
-                
-                print( "ARTICULOS: ", publishedProducts ) 
-                print( "ARTICULOS procesados: ", processDataProduct(publishedProducts) ) 
-
                 return HttpResponse(
                         json.dumps(
                                 {
