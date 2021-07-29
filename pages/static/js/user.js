@@ -4,6 +4,7 @@ window.onload = function(){
 
 $(function() {
     loadData(); // Carga datos iniciales al formulario del perfil de usuario
+    inputTitleImageFile(); // Carga las fotos del perfil de usuario
 
     /* Add Product Form */
     $("#ProductForm").validator().on("submit", function(event) {
@@ -381,6 +382,8 @@ function sessionCheck(){
 //Carga el nombre de la imagen en el input
 function inputTitleImageFile(){
     
+    console.log("HOLA");
+
     $('input[type="file"]').on("change", function() {
         let filenames = [];
         let files = this.files;
