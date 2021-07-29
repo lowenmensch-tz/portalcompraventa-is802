@@ -33,7 +33,7 @@ CREATE TABLE MUNICIPIO(
 /*Creacion de la tabla de artículos.*/
 CREATE TABLE ARTICULO(
 	id_articulo INT NOT NULL AUTO_INCREMENT UNIQUE,
-    nombre VARCHAR(100) NOT NULL,
+    nombre VARCHAR(150) NOT NULL,
     precio DECIMAL(13,2) NOT NULL,
     descripcion VARCHAR(1000),
     publicado BOOL NOT NULL,
