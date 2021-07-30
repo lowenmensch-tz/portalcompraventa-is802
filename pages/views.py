@@ -7,6 +7,7 @@ from django.http import HttpResponse
 
 from pages.MySQLEngine import MySQLEngine
 
+from pages.vwSellerProduct import SellerProduct
 from pages.vwUserProfile import UserProfile
 from pages.vwDetails import Details
 from pages.vwSeller import Seller
@@ -19,11 +20,11 @@ import pages.conexion as conexion
 
 # Create your views here.
 
-engine = MySQLEngine()      #Ejecuta statements de la base de datos. SELECT (tranaction), INSERT (dms). 
+engine = MySQLEngine()            #Ejecuta statements de la base de datos. SELECT (tranaction), INSERT (dms). 
+sellerProduct = SellerProduct(engine)
+profile = UserProfile(engine)  #Funciones de la Vista donde se muestra la información de los artículos
 details = Details(engine)    #Funciones pertenecientes a la Vista Donde se muestra la información de los artículos
-profile = UserProfile(engine) #Funciones de la Vista donde se muestra la información de los artículos
-seller = Seller(engine)        #Funciones de la vista del vendedor desde el punto de vista del cliente.   
-
+seller = Seller(engine)     #Funciones de la vista del vendedor desde el punto de vista del cliente.   
 
 
 """

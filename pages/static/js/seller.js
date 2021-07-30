@@ -7,6 +7,7 @@
 // Ready de la función
 window.onload = function(){
     sessionCheck();
+    setLinkSeeMore();
     loadData();
 };
 
@@ -319,6 +320,14 @@ function ratesubmitMSG(valid, msg) {
     }
     $("#ratemsgSubmit").removeClass().addClass(msgClasses).text(msg);
 }
+
+
+function setLinkSeeMore(){
+    
+    const url = window.location.pathname.split('/');
+    document.getElementById('see-more').setAttribute('href', `${url[0]}/seller-product/${url[url.length-1]}` );
+}
+
 
 /*
 $(function(){

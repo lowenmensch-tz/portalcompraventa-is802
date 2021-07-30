@@ -100,7 +100,8 @@ class MySQLEngine:
                 correo AS Email,
                 contrasenia AS Password,
                 telefono AS Phone,
-                direccion AS Address 
+                direccion AS Address,
+                id_usuario AS id 
             FROM 
                 USUARIO 
             WHERE 

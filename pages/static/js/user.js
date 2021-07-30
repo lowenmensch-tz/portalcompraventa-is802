@@ -32,7 +32,11 @@ $(function() {
                 console.log(data);
 
                 profile(data.profile[0]);
-                loadProduct(data.product);
+                //product data, url user 
+                loadProduct(data.product, convertURL(
+                        `${data.profile[0][0]} ${data.profile[0][1]}`, 
+                        data.profile[0][data.profile[0].length-1])
+                    );
                 
                 //$("#Ustate").val(`${data.state}`);
             }
@@ -209,7 +213,7 @@ $(function() {
         AS Description,
         Image --> [{'key':'value'}, {'key':'value'}]
     */
-    function loadProduct(product){
+    function loadProduct(product, url){
 
         //${data.comment[`comment${i}`]}
         //let url = product.slice(product.length-1, product.length);
@@ -254,7 +258,12 @@ $(function() {
                     `);
                 }
                 
-            }
+            } // end for
+
+            document.getElementById("see-more").setAttribute(
+                                                    "href", 
+                                                    `http://localhost:8000/seller-product/${url}`
+                                                )
 
         }
         else{

@@ -5,6 +5,7 @@ from pages.views import loginValidation
 from pages.views import registerUser
 from pages.views import findProducts
 from pages.views import updateUser
+from pages.views import sellerProduct
 from pages.views import loadImage
 from pages.views import register
 from pages.views import details
@@ -45,6 +46,10 @@ path('ajax/updateUser', updateUser, name='update_User'),
 #path('ajax/userProfile', userProfile, name='user_Profile'),
 path('user', user, name='user'),
 path('logout', logout),
+
+path('seller-product/ajax/listProductPublisher', sellerProduct.listProductPublisher), #Como vendedor quiero ver todos mis productos
+path('seller-product/ajax/listProductSeller', sellerProduct.listProductSeller), #Como usuario quiero ver todos los productos de un vendedor
+url(r'^seller\-product\/(\d{1,4}\-[0-9a-zA-Z-]+)$', sellerProduct.index, name='seller_product'),
 
 url(r'^seller/ajax/sellerProfileDescription$', seller.profileDescription),
 url(r'^seller/ajax/ratingAndComment$', seller.ratingAndComment),
