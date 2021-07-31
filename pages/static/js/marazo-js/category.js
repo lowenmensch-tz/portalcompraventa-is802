@@ -1,4 +1,7 @@
 currentDateOrder = 'DESC';
+currentPriceOrder = 'ASC';
+currentMinPrice = 10;
+currentMaxPrice = 100000;
 currentPage = 1;
 
 window.onload = function(){
@@ -244,7 +247,6 @@ function gatherProducts(){
     min = $('#minValue').val();
     max = $('#maxValue').val();
 
-
     category == "" ? category = '%' : category = category.replaceAll(/(<strong>)|(<\/strong>)/ig,'');
     department == 00 ? department = '%' : department = department;
     town == 00 ? town = '%' : town = town;
@@ -258,7 +260,8 @@ function gatherProducts(){
             municipio : town,
             preciomin : min, 
             preciomax: max, 
-            fechaPublicacion : currentDateOrder.replaceAll(/'/ig,'')
+            fechaPublicacion : currentDateOrder.replaceAll(/'/ig,''),
+            priceOrder: currentPriceOrder
             },
 
         // Success
@@ -291,6 +294,7 @@ function convertURL(nameProduct, idProduct){
 function priceRange(){
     console.log($('#minValue').val());
     console.log($('#maxValue').val());
+    gatherProducts();
 }
 
 function sortPriceButton(){
@@ -298,11 +302,15 @@ function sortPriceButton(){
         $('#anchorButtonSortPrice').html('');
         $('#anchorButtonSortPrice').html('<i id="sortButton" class="icon fa fa-sort-amount-asc"></i>');
         $('#sortButton').val('1');
+        currentPriceOrder = 'ASC';
     }else{
         $('#anchorButtonSortPrice').html('');
         $('#anchorButtonSortPrice').html('<i id="sortButton" class="icon fa fa-sort-amount-desc"></i>');
         $('#sortButton').val('0');
+        currentPriceOrder = 'DESC';
     }
+    //Pagination.page = 1;
+    gatherProducts();
 }
 
 /* SLIDER */

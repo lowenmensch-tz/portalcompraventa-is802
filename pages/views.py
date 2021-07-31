@@ -198,6 +198,7 @@ def findProducts(request):
     if request.method == 'POST':
         categoria, departamento, municipio = request.POST.get('categoria'), request.POST.get('departamento'), request.POST.get('municipio')
         preciomin, preciomax, fechaPublicacion = request.POST.get('preciomin'), request.POST.get('preciomax'), request.POST.get('fechaPublicacion')
+        priceOrder = request.POST.get('priceOrder')
 
         database, cursor = conexion.conectar()
         articulosQuery = """SELECT id_articulo, nombre, CAST(FORMAT(precio, 2) AS CHAR), CONCAT(SUBSTRING(descripcion,1,35),'...'), CAST(fecha_publicacion AS CHAR), fk_departamento, fk_municipio,
@@ -206,7 +207,7 @@ def findProducts(request):
                             WHERE (fk_categoria like '%s' AND precio BETWEEN '%s' AND '%s')
                             AND (fk_departamento  like '%s' AND fk_municipio like '%s') AND publicado = 1
                             AND id_imagen IN (SELECT min(id_imagen) FROM IMAGEN group by fk_articulo)
-                            ORDER BY fecha_publicacion %s;""" % (categoria, preciomin, preciomax, departamento, municipio, fechaPublicacion)
+                            ORDER BY fecha_publicacion %s, precio %s;""" % (categoria, preciomin, preciomax, departamento, municipio, fechaPublicacion, priceOrder)
         try:
             cursor.execute(articulosQuery)
             result = cursor.fetchall()
