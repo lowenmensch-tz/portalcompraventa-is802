@@ -411,6 +411,8 @@ function fillForm(product){
     document.getElementById("priceProduct").value = `${product[5].replaceAll(/(,)|(\.0{2})/g,'')}`;
     document.getElementById("avalaibleProduct").value = `${product[6]}`;
     // document.getElementById("imageProduct").value = `${product[product.length-1]}`;
+    document.getElementById("carousel-image-product").innerHTML = imageGridContainer(product[product.length-1]);
+    
 
 }
 
@@ -469,4 +471,27 @@ function drawFormInModal(){
                     <!-- <button type="button" class="btn btn-primary btn-user btn-block" onclick="updateProduct(this)">Actualizar Datos</button> -->
             </div> 
     `;
+}
+
+function imageGridContainer(images){
+    var img = [];
+    var urls = JSON.parse(images);
+
+    img.push(`
+        <div class="carousel-item active">
+            <img  class="d-block w-40 d-block mx-auto" src="${urls[0].url}">
+        </div>
+
+    `);
+    
+    for(var i = 1; i < urls.length; i++){
+        img.push(`
+            <div class="carousel-item">
+                <img  class="d-block w-40 d-block mx-auto" src="${urls[i].url}">
+            </div>
+        `);
+    }
+
+    console.log( img);
+    return img.join(" ");
 }
