@@ -232,3 +232,12 @@ class MySQLEngine:
         result = 0 if result[0][0] is None else float(result[0][0]) #En caso de aun no tener una calificación
 
         return result
+
+    """
+        Categorias de los artículos
+    """
+    def categories(self):
+        sql="SELECT id_categoria, nombre FROM CATEGORIA;"
+
+        result = self.transaction(sql)
+        return result
