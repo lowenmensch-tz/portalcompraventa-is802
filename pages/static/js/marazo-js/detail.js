@@ -82,7 +82,14 @@ function loadData(){
                     </a>
                 </div>
             `;
-            
+            document.getElementById('addToFavorite').innerHTML +=`
+            <div  class="favorite-button m-t-5">
+                <a onclick="addWish(${data.id_articulo});" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Agregar a Favoritos" href="#">
+                <i class="fa fa-heart"></i>
+                </a>
+                </a>
+            </div>`;
+
             for (i=0; i<Object.keys(data.comment).length/2; i++){
 
                 if (data.comment['userCommenting0'] != undefined){
@@ -180,4 +187,25 @@ function showComments(){
 
 function convertURL(nameProduct, idProduct){
     return  idProduct.toString() + '-' + nameProduct.toLowerCase().replaceAll(/ /g,'-').replaceAll(/[^\w-]+/g,'');
+}
+
+
+
+function addWish(id_articulo){
+    $.ajax({
+        type: "POST",
+        url: "ajax/addWishList",
+        data: {'id_articulo': id_articulo},
+        success: function(data) {
+            console.log(data);
+
+            if (data.status == "Success"){
+                alert('Se agregó a la lista de favoritos');
+            }else if(data.status == "favoritoRepetido"){
+                alert('Usted ya cuenta con ese artículo en la lista de favoritos');
+            }else{
+                alert('Error, no se agregó la lista de favoritos');
+            }
+        }
+    });
 }

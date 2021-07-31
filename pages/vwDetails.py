@@ -58,7 +58,8 @@ class Details:
                 a.nombre AS Title, 
                 a.descripcion AS Description,
                 CAST(FORMAT(a.precio, 2) AS CHAR) AS Price, 
-                a.fk_usuario AS User
+                a.fk_usuario AS User,
+                a.id_articulo
             FROM 
                 ARTICULO AS a
             INNER JOIN 
@@ -94,7 +95,8 @@ class Details:
                                                                     data=self.productDetailsComments(idProduct=idProduct),
                                                                     key=['userCommenting', 'comment']
                                                                 ), 
-                                    **self.userInformation(resultProduct[0][-1])                   # Información del usuario     
+                                    **self.userInformation(resultProduct[0][-1]),
+                                    'id_articulo':resultProduct[0][4]              # Información del usuario     
                                 }),content_type="application/json"
                         )
                 else:

@@ -15,6 +15,10 @@ from pages.views import logout
 from pages.views import login
 from pages.views import index
 from pages.views import user
+from pages.views import wishlist
+from pages.views import addWishList
+from pages.views import showWishList
+from pages.views import deleteFromWishList
 
 from django.urls import path
 
@@ -38,7 +42,9 @@ path('categories', productCategories, name='categories_page'),
 path('ajax/findProducts', findProducts, name='find_products'),
 path('ajax/almacenarArticulo', almacenarArticulo, name='almacenar_Articulo'),
 path('ajax/loadImage', loadImage, name='load_image'),
-
+path('categories/ajax/addWishList', addWishList, name = 'add_Wish_List'),
+path('ajax/showWishList', showWishList, name = 'show_Wish_List'),
+path('ajax/deleteFromWishList', deleteFromWishList, name = 'delete_From_Wish_List'),
 
 path('user-profile', profile.userProfile, name='user_profile'),
 path('ajax/updateUser', updateUser, name='update_User'),
@@ -46,6 +52,7 @@ path('ajax/updateUser', updateUser, name='update_User'),
 #path('ajax/userProfile', userProfile, name='user_Profile'),
 path('user', user, name='user'),
 path('logout', logout),
+path('wishlist', wishlist),
 
 path('seller-product/ajax/listProductPublisher', sellerProduct.listProductPublisher), #Como vendedor quiero ver todos mis productos
 path('seller-product/ajax/listProductSeller', sellerProduct.listProductSeller), #Como usuario quiero ver todos los productos de un vendedor
@@ -62,7 +69,7 @@ url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/review$', details.review, name='re
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/$', details.productDetails), # esta cosa solo es de prueba UwU
 #url(r'^user\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/userProfile$', userProfile, name='user_Profile'),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/loggedValidator', loggedInValidator),
-
+url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/addWishList$', addWishList),
 ]
 
 if settings.DEBUG:

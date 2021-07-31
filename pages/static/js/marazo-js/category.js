@@ -423,15 +423,34 @@ function showProducts(data){
                             <div class="cart clearfix animate-effect">
                                 <div class="action">
                                     <ul class="list-unstyled">
-                                        <li style="margin-left:100%;" class="lnk wishlist"> <a class="add-to-cart" href="details.html" title="Agregar a Favoritos"> <i class="icon fa fa-heart"></i> </a> </li>
+                                        <li style="margin-left:100%;" class="lnk wishlist"> <a onclick="addWish(${data[i][0]});" class="add-to-cart" href="#" title="Agregar a Favoritos"> <i class="icon fa fa-heart"></i> </a> </li>
                                     </ul>
                                 </div>
                             </div>
-                                
+                                                            
                         </div>
                     </div>
                 </div>
             </div>
         `);
     }
+}
+
+function addWish(id_articulo){
+    $.ajax({
+        type: "POST",
+        url: "categories/ajax/addWishList",
+        data: {'id_articulo': id_articulo}, 
+        success: function(data) {
+            console.log(data);
+
+            if (data.status == "Success"){
+                alert('Se agregó a la lista de favoritos');
+            }else if(data.status == "favoritoRepetido"){
+                alert('Usted ya cuenta con ese artículo en la lista de favoritos');
+            }else{
+                alert('Error, no se agregó la lista de favoritos');
+            }
+        }
+    });
 }
