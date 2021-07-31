@@ -233,3 +233,39 @@ class MySQLEngine:
         result = 0 if result[0][0] is None else float(result[0][0]) #En caso de aun no tener una calificación
 
         return result
+
+
+    """
+        Obtiene la descripción de un producto a partir de su id.
+    """
+    def getDetailProductByIDProduct(self, id):
+        
+        sql = """
+            SELECT 
+                a.id_articulo AS id,
+                a.nombre AS Title,
+                c.nombre AS Category,
+                d.nombre AS State,
+                m.nombre AS Municipality,
+                CAST(FORMAT(a.precio, 2) AS CHAR) AS Price,
+                
+                a.cantidad_disponible AS Quantity,
+                CAST(a.fecha_publicacion AS CHAR) AS Date,
+                a.descripcion AS Description,
+                fn_getImage(a.id_articulo) AS Image
+            FROM 
+                ARTICULO AS a
+            INNER JOIN 
+                DEPARTAMENTO AS d ON a.fk_departamento = d.id_departamento
+            INNER JOIN 
+                MUNICIPIO AS m ON a.fk_municipio = m.id_municipio
+            INNER JOIN 
+                CATEGORIA AS c ON a.fk_categoria = c.id_categoria
+            WHERE 
+                a.id_articulo = %s AND 
+                a.publicado = 1
+            """%(id)
+
+        result = self.transaction(sql)
+
+        return result

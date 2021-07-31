@@ -55,9 +55,10 @@ path('logout', logout),
 path('wishlist', wishlist),
 
 url(r'^seller\-product\/(\d{1,4}\-[0-9a-zA-Z-]+)$', sellerProduct.index, name='seller_product'),
-path('seller-product/ajax/listProductPublisher', sellerProduct.listProductPublisher), #Como vendedor quiero ver todos mis productos
-#path('seller-product/ajax/listProductSeller', sellerProduct.listProductSeller), #Como usuario quiero ver todos los productos de un vendedor
 path('seller-product/ajax/deleteProductPublisher', sellerProduct.deleteProductPublisher), #elimina producto de un vendedor
+path('seller-product/ajax/listProductPublisher', sellerProduct.listProductPublisher), #Como vendedor quiero ver todos mis productos
+path('seller-product/ajax/getDetailProduct', sellerProduct.getDetailProduct), #Obtiene un producto de un vendedor
+#path('seller-product/ajax/listProductSeller', sellerProduct.listProductSeller), #Como usuario quiero ver todos los productos de un vendedor
 
 url(r'^seller/ajax/sellerProfileDescription$', seller.profileDescription),
 url(r'^seller/ajax/ratingAndComment$', seller.ratingAndComment),

@@ -104,6 +104,36 @@ class SellerProduct:
         else:
             return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
+    
+    """
+        Obtener un producto de un usuario
+    """
+    @csrf_exempt
+    def getDetailProduct(self, request):
+
+        idProduct = int( request.POST.get('idProduct') )
+
+        if request.method:
+
+            try:
+                
+                result = self.engine.getDetailProductByIDProduct(idProduct)
+
+                return HttpResponse(
+                        json.dumps(
+                                {
+                                    'status':'Success', 
+                                    'product': result
+                                }
+                            ),
+                            content_type="application/json"
+                        )
+
+            except Exception as e:
+                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
+        else:        
+            return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
 
     
     
