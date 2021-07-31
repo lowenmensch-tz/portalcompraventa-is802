@@ -519,1402 +519,1409 @@ INSERT INTO FAVORITO (fk_usuario,fk_articulo) VALUES
 INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
 ("Usuario", "Excelente, es un vendedor responsable", 1, 2);
 
-INSERT INTO IMAGEN (enlace_imagen,fk_articulo) VALUES
-("/media/adf04439d82d90994491476ad6976ade-500x500.jpg",1),
-("/media/50e2c7493bd701a9c12ab9acf85f0308-500x500.jpg",1),
-("/media/111eba6f030f4e51b9696acd88863caf-500x500.jpg",1),
-("/media/173b0af594ed6677d58b16088e303ae3-500x500.jpg",1),
-("/media/5867faf05499a139e59ce553c84bff8b-500x500.jpg",2),
-("/media/2d21f77517e31cda670f7743d704b275-500x500.jpg",2),
-("/media/6e7e62e61d33923c04e8b94a11f27d32-500x500.jpg",2),
-("/media/f6a2a1410c4fd0433a41602721a23fb1-500x500.jpg",3),
-("/media/e07ba8e755959be89ca9d740a7de2144-500x500.jpg",3),
-("/media/2fd42aeb331e226c585df3b283c01b3b-500x500.jpg",3),
-("/media/9f7e5e5bce40c64811ebd5325b67a7dc-500x500.jpg",3),
-("/media/b93dea84333fb1ccb7c863578e99970d-500x500.jpg",3),
-("/media/d7152e297657fb4dd324bc59bac140d0-500x500.jpg",3),
-("/media/657655c7c6fbc06b20f6568eba85a056-500x500.jpg",4),
-("/media/5348d45af1462b29410eee7e10c279a1-500x500.jpg",4),
-("/media/119277dba44916d959daab691c24849c-500x500.jpg",4),
-("/media/9bdea20f545aea9dee76cb1629807886-500x500.jpg",4),
-("/media/27368f7cb000719ffe1173ffb6cd4daf-500x500.png",5),
-("/media/a46870b7112d1d8f03ae8d5b20e46702-500x500.png",5),
-("/media/05841f294912ee3bbc65975f007f981c-500x500.png",5),
-("/media/e954083fabcf3ada2f86ba9b8bb7f8e5-500x500.png",5),
-("/media/029f41ff76836bcdfc5f20d84503e729-500x500.png",5),
-("/media/f46dea4440c7cfb65c285c1038d5fa98-500x500.png",5),
-("/media/dbc337f2813ea8979f0ac0e0db386762-500x500.jpg",6),
-("/media/978d3deb06639e7e07c8249c3c4a0961-500x500.jpg",6),
-("/media/16055df6822163fb75e301fc32117311-500x500.jpg",6),
-("/media/d0a5fa01cfade52c9495e890c07c9ad3-500x500.jpg",6),
-("/media/b53f9095a8b761892f199f299fc0e313-500x500.jpg",6),
-("/media/7889f47dd0f9358cf6fd8320a100a5e4-500x500.jpg",6),
-("/media/680ec71b40649288031c15d16b893a4d-500x500.jpg",6),
-("/media/d6afd3779bb32a3892584ec5412c94ad-500x500.jpg",7),
-("/media/aea269f9236908236ba8cfd6464cdbe2-500x500.jpg",7),
-("/media/e0a261dad72904d84406d25059855643-500x500.jpg",7),
-("/media/4dd4dd3511f63f984d30b9e9c436e682-500x500.jpg",7),
-("/media/04ecc9a8cd8a6247bf8160645c0ba781-500x500.jpg",7),
-("/media/bb7bf28ecc9222a9e72abb828e196e13-500x500.jpg",7),
-("/media/c2763c61e780c29be2e6d88b7264a093-500x500.jpg",8),
-("/media/35cf5afacb78f524252d30aa3ef63bba-500x500.jpg",8),
-("/media/b1996ebf9cbde69184a41df5e038d041-500x500.jpg",8),
-("/media/f61fc93279aa1b914cd68f6113667443-500x500.jpg",8),
-("/media/c5b30a431af1a5af5255d2ebfda7ba45-500x500.jpg",9),
-("/media/ff69963300b720954797b1ae50da56ce-500x500.jpg",9),
-("/media/d26afd2e86fcdca683f6778d84317de4-500x500.jpg",9),
-("/media/6a70c3f072b9fd946afbe83619c0004b-500x500.jpg",9),
-("/media/703111ed5cef87fb255faa91e99be9d1-500x500.jpg",9),
-("/media/d750029d870b87fe9f6c5bf5551c0acc-500x500.jpg",9),
-("/media/09bb9111302159151bb6015cc22bc905-500x500.jpg",9),
-("/media/01ea8389fabcf673f9ab64c22e1c32e1-500x500.jpg",9),
-("/media/dc2a1156d7bdf40561658f642328f30a-500x500.jpg",10),
-("/media/5fff0f746017b4816439d5eff646430e-500x500.jpg",10),
-("/media/e1ef5736d3e35f5aa5e0191a273a8862-500x500.jpg",10),
-("/media/e67ea5c1258a1d85b971268d6958a0e2-500x500.jpg",10),
-("/media/c0fa45b395b114ce486982c802cb0b17-500x500.jpg",10),
-("/media/288e0303b42ab9e2375ca8576a7732c3-500x500.jpg",10),
-("/media/00f60a0cf9fa6f25245dfc89eb517ff7-500x500.jpg",10),
-("/media/e0fb3472d1b4a862811d98f04f2dd18c-500x500.jpg",10),
-("/media/445d305fe4978baa536791b1498053f3-500x500.jpg",10),
-("/media/052542da6dae2064a363fd0454ff4491-500x500.jpg",10),
-("/media/c61d82bb5ef9c9aa45f91c5c6dd60df6-500x500.jpg",11),
-("/media/bcd93e93fd88a1f22124cdb03ebd4adc-500x500.jpg",11),
-("/media/80fad68eb9fd9c4731b2da407551a873-500x500.jpg",11),
-("/media/daa1c42dc536b7c3d13c42b8eabb7190-500x500.jpg",11),
-("/media/2bf26964e012cd577ad69208509da8ce-500x500.jpg",11),
-("/media/c1b01841aa2c61e4db123961b0a9309c-500x500.jpg",11),
-("/media/b416749ca6bf9c8e3096bda89d0c926a-500x500.jpg",11)
-;
+-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO `IMAGEN` VALUES (1,'/media/adf04439d82d90994491476ad6976ade-500x500.jpg',1),(2,'/media/50e2c7493bd701a9c12ab9acf85f0308-500x500.jpg',1),(3,'/media/111eba6f030f4e51b9696acd88863caf-500x500.jpg',1),(4,'/media/173b0af594ed6677d58b16088e303ae3-500x500.jpg',1),(5,'/media/5867faf05499a139e59ce553c84bff8b-500x500.jpg',2),(6,'/media/2d21f77517e31cda670f7743d704b275-500x500.jpg',2),(7,'/media/6e7e62e61d33923c04e8b94a11f27d32-500x500.jpg',2),(8,'/media/f6a2a1410c4fd0433a41602721a23fb1-500x500.jpg',3),(9,'/media/e07ba8e755959be89ca9d740a7de2144-500x500.jpg',3),(10,'/media/2fd42aeb331e226c585df3b283c01b3b-500x500.jpg',3),(11,'/media/9f7e5e5bce40c64811ebd5325b67a7dc-500x500.jpg',3),(12,'/media/b93dea84333fb1ccb7c863578e99970d-500x500.jpg',3),(13,'/media/d7152e297657fb4dd324bc59bac140d0-500x500.jpg',3),(14,'/media/657655c7c6fbc06b20f6568eba85a056-500x500.jpg',4),(15,'/media/5348d45af1462b29410eee7e10c279a1-500x500.jpg',4),(16,'/media/119277dba44916d959daab691c24849c-500x500.jpg',4),(17,'/media/9bdea20f545aea9dee76cb1629807886-500x500.jpg',4),(18,'/media/27368f7cb000719ffe1173ffb6cd4daf-500x500.png',5),(19,'/media/a46870b7112d1d8f03ae8d5b20e46702-500x500.png',5),(20,'/media/05841f294912ee3bbc65975f007f981c-500x500.png',5),(21,'/media/e954083fabcf3ada2f86ba9b8bb7f8e5-500x500.png',5),(22,'/media/029f41ff76836bcdfc5f20d84503e729-500x500.png',5),(23,'/media/f46dea4440c7cfb65c285c1038d5fa98-500x500.png',5),(24,'/media/dbc337f2813ea8979f0ac0e0db386762-500x500.jpg',6),(25,'/media/978d3deb06639e7e07c8249c3c4a0961-500x500.jpg',6),(26,'/media/16055df6822163fb75e301fc32117311-500x500.jpg',6),(27,'/media/d0a5fa01cfade52c9495e890c07c9ad3-500x500.jpg',6),(28,'/media/b53f9095a8b761892f199f299fc0e313-500x500.jpg',6),(29,'/media/7889f47dd0f9358cf6fd8320a100a5e4-500x500.jpg',6),(30,'/media/680ec71b40649288031c15d16b893a4d-500x500.jpg',6),(31,'/media/d6afd3779bb32a3892584ec5412c94ad-500x500.jpg',7),(32,'/media/aea269f9236908236ba8cfd6464cdbe2-500x500.jpg',7),(33,'/media/e0a261dad72904d84406d25059855643-500x500.jpg',7),(34,'/media/4dd4dd3511f63f984d30b9e9c436e682-500x500.jpg',7),(35,'/media/04ecc9a8cd8a6247bf8160645c0ba781-500x500.jpg',7),(36,'/media/bb7bf28ecc9222a9e72abb828e196e13-500x500.jpg',7),(37,'/media/c2763c61e780c29be2e6d88b7264a093-500x500.jpg',8),(38,'/media/35cf5afacb78f524252d30aa3ef63bba-500x500.jpg',8),(39,'/media/b1996ebf9cbde69184a41df5e038d041-500x500.jpg',8),(40,'/media/f61fc93279aa1b914cd68f6113667443-500x500.jpg',8),(41,'/media/c5b30a431af1a5af5255d2ebfda7ba45-500x500.jpg',9),(42,'/media/ff69963300b720954797b1ae50da56ce-500x500.jpg',9),(43,'/media/d26afd2e86fcdca683f6778d84317de4-500x500.jpg',9),(44,'/media/6a70c3f072b9fd946afbe83619c0004b-500x500.jpg',9),(45,'/media/703111ed5cef87fb255faa91e99be9d1-500x500.jpg',9),(46,'/media/d750029d870b87fe9f6c5bf5551c0acc-500x500.jpg',9),(47,'/media/09bb9111302159151bb6015cc22bc905-500x500.jpg',9),(48,'/media/01ea8389fabcf673f9ab64c22e1c32e1-500x500.jpg',9),(49,'/media/dc2a1156d7bdf40561658f642328f30a-500x500.jpg',10),(50,'/media/5fff0f746017b4816439d5eff646430e-500x500.jpg',10),(51,'/media/e1ef5736d3e35f5aa5e0191a273a8862-500x500.jpg',10),(52,'/media/e67ea5c1258a1d85b971268d6958a0e2-500x500.jpg',10),(53,'/media/c0fa45b395b114ce486982c802cb0b17-500x500.jpg',10),(54,'/media/288e0303b42ab9e2375ca8576a7732c3-500x500.jpg',10),(55,'/media/00f60a0cf9fa6f25245dfc89eb517ff7-500x500.jpg',10),(56,'/media/e0fb3472d1b4a862811d98f04f2dd18c-500x500.jpg',10),(57,'/media/445d305fe4978baa536791b1498053f3-500x500.jpg',10),(58,'/media/052542da6dae2064a363fd0454ff4491-500x500.jpg',10),(59,'/media/c61d82bb5ef9c9aa45f91c5c6dd60df6-500x500.jpg',11),(60,'/media/bcd93e93fd88a1f22124cdb03ebd4adc-500x500.jpg',11),(61,'/media/80fad68eb9fd9c4731b2da407551a873-500x500.jpg',11),(62,'/media/daa1c42dc536b7c3d13c42b8eabb7190-500x500.jpg',11),(63,'/media/2bf26964e012cd577ad69208509da8ce-500x500.jpg',11),(64,'/media/c1b01841aa2c61e4db123961b0a9309c-500x500.jpg',11),(65,'/media/b416749ca6bf9c8e3096bda89d0c926a-500x500.jpg',11),(66,'/media/c2763c61e780c29be2e6d88b7264a093-500x500.jpg',12),(67,'/media/35cf5afacb78f524252d30aa3ef63bba-500x500.jpg',12),(68,'/media/b1996ebf9cbde69184a41df5e038d041-500x500.jpg',12),(69,'/media/f61fc93279aa1b914cd68f6113667443-500x500.jpg',12),(70,'/media/cc5958b1c1626ec3607e10fa6cd9ddc6-500x500.jpg',12),(71,'/media/c5b30a431af1a5af5255d2ebfda7ba45-500x500.jpg',13),(72,'/media/ff69963300b720954797b1ae50da56ce-500x500.jpg',13),(73,'/media/d26afd2e86fcdca683f6778d84317de4-500x500.jpg',13),(74,'/media/6a70c3f072b9fd946afbe83619c0004b-500x500.jpg',13),(75,'/media/703111ed5cef87fb255faa91e99be9d1-500x500.jpg',13),(76,'/media/d750029d870b87fe9f6c5bf5551c0acc-500x500.jpg',13),(77,'/media/09bb9111302159151bb6015cc22bc905-500x500.jpg',13),(78,'/media/01ea8389fabcf673f9ab64c22e1c32e1-500x500.jpg',13),(79,'/media/dc2a1156d7bdf40561658f642328f30a-500x500.jpg',14),(80,'/media/5fff0f746017b4816439d5eff646430e-500x500.jpg',14),(81,'/media/e1ef5736d3e35f5aa5e0191a273a8862-500x500.jpg',14),(82,'/media/e67ea5c1258a1d85b971268d6958a0e2-500x500.jpg',14),(83,'/media/c0fa45b395b114ce486982c802cb0b17-500x500.jpg',14),(84,'/media/288e0303b42ab9e2375ca8576a7732c3-500x500.jpg',14),(85,'/media/00f60a0cf9fa6f25245dfc89eb517ff7-500x500.jpg',14),(86,'/media/e0fb3472d1b4a862811d98f04f2dd18c-500x500.jpg',14),(87,'/media/445d305fe4978baa536791b1498053f3-500x500.jpg',14),(88,'/media/052542da6dae2064a363fd0454ff4491-500x500.jpg',14),(89,'/media/c61d82bb5ef9c9aa45f91c5c6dd60df6-500x500.jpg',15),(90,'/media/bcd93e93fd88a1f22124cdb03ebd4adc-500x500.jpg',15),(91,'/media/80fad68eb9fd9c4731b2da407551a873-500x500.jpg',15),(92,'/media/daa1c42dc536b7c3d13c42b8eabb7190-500x500.jpg',15),(93,'/media/2bf26964e012cd577ad69208509da8ce-500x500.jpg',15),(94,'/media/c1b01841aa2c61e4db123961b0a9309c-500x500.jpg',15),(95,'/media/b416749ca6bf9c8e3096bda89d0c926a-500x500.jpg',15),(96,'/media/18b843cb7d3129d91fbac06977689ecc-500x500.jpg',16),(97,'/media/29947cfe2eebe3447794a584c34a82de-500x500.jpg',16),(98,'/media/9fdb0b1e264fa8b27499180db2c738c2-500x500.jpg',16),(99,'/media/e96b3d22ad8277d5bdfb0aecd7e63d74-500x500.jpg',16),(100,'/media/4b83251639474fc50f0fc6235ad63b6f-500x500.jpg',17),(101,'/media/bf5830d8ffe0b15336ce44016c69f88e-500x500.jpg',17),(102,'/media/d5c2aadd1a8cfd1824a29d6909ee7e9b-500x500.jpg',17),(103,'/media/b1adf008115288e8bbb254635678888f-500x500.jpg',17),(104,'/media/295bd498cd2db001512a299da47a86ad-500x500.jpg',17),(105,'/media/bcdff6c3aecf44f9f0177d8975391895-500x500.jpg',18),(106,'/media/060efaf72c651d6aab0333ac6d888a26-500x500.jpg',18),(107,'/media/3ade77f9f23aee95849daa9f2469a6cf-500x500.jpg',18),(108,'/media/e52a328bc2a26090a63822566f37b261-500x500.jpg',18),(109,'/media/43babcec18b7e9c9effd1f7581a89d42-500x500.jpg',18),(110,'/media/4c5fcbf3c8e57f335dd80fd1d91a90c8-500x500.jpg',18),(111,'/media/445060a95f0f787dba12ca185896b9a5-500x500.jpg',18),(112,'/media/0e1c8131232ff34d03c0123ec2b0d352-500x500.jpg',19),(113,'/media/26dddd24d90455a7a49abeb82bc5d0ef-500x500.jpg',19),(114,'/media/f52ad5679a574c3c52588effbf06eaae-500x500.jpg',19),(115,'/media/3619f6665a98db958a9eb0f79710bdad-500x500.jpg',19),(116,'/media/4a669f65e962ae57f6651a2e1c140f00-500x500.jpg',19),(117,'/media/b91f7f46ab0ae1cf822b90cf9d40e7f4-500x500.jpg',19),(118,'/media/e170dac1f774c4d7dca8428b4f1de131-500x500.jpg',19),(119,'/media/230bfa609a6707753de4154baca0a225-500x500.jpg',19),(120,'/media/3d7927804519d1a734d34e13230ecc2c-500x500.png',20),(121,'/media/2f47decef566bc885e5da64b41c17615-500x500.png',20),(122,'/media/c6c2e45f7470d4c88ab832e832906225-500x500.png',20),(123,'/media/2c484826758d2b3bf62e146ce517f80e-500x500.png',20),(124,'/media/997362be993ec442800dcf61ec217909-500x500.png',20),(125,'/media/10d6262442f64934a2afdef58452c66f-500x500.png',20),(126,'/media/d665e3fe68225ddb031a357aeedec487-500x500.png',20),(127,'/media/1b8ea728e4255d50deced9d43167b7d3-500x500.jpg',21),(128,'/media/aa12012eab9c81795147e4038d92dfdb-500x500.jpg',21),(129,'/media/d1b57b39517eec45d7e80e1e9bc4857b-500x500.jpg',21),(130,'/media/91f5d29ab76f1f75309f643a1d9c1dc5-500x500.jpg',21),(131,'/media/19b80e40d5c248fa703ed2bcda69f8d8-500x500.jpg',21),(132,'/media/dc29a507cc71083b026c11ad39d514de-500x500.jpg',21),(133,'/media/e182fd4b55d76989f618a5000665ede1-500x500.jpg',21),(134,'/media/14-DH0004LA_0-500x500.jpg',22),(135,'/media/14-DH0004LA_1-500x500.jpg',22),(136,'/media/14-DH0004LA_2-500x500.jpg',22),(137,'/media/14-DH0004LA_3-500x500.jpg',22),(138,'/media/14-DH0004LA_4-500x500.jpg',22),(139,'/media/14-DH0004LA_6-500x500.jpg',22),(140,'/media/79e662119cbc14405ec2a5aabfe91dcb-500x500.jpg',23),(141,'/media/bd70ce5dafd372318b20e869f582028a-500x500.jpg',23),(142,'/media/bf04050ca6082f19cb3f7de31ffd47b5-500x500.jpg',23),(143,'/media/938d17fb86c0ee5977540c73142eaccb-500x500.jpg',23),(144,'/media/e0f83c9873f20c05d8480b07ddc988a1-500x500.jpg',24),(145,'/media/5877ebd6ea0814a598a26c8afae0e356-500x500.jpg',24),(146,'/media/35441336a956e8ae0be4d21eec5f35dd-500x500.jpg',24),(147,'/media/25ccf1002cc9cff69ffe2a605ea1a49b-500x500.jpg',24),(148,'/media/090c52dcb1510e2bd72cb81da29150da-500x500.jpg',24),(149,'/media/72dc94071b2a8ef5579e3ddcb43306a2-500x500.jpg',24),(150,'/media/MONITOR_GAMING_2-500x500.jpg',25),(151,'/media/2160beb68ea0e9ff08f7ff679bae35d1-500x500.jpg',26),(152,'/media/7ea60d0026cb0119238dbc64848b4e7f-500x500.jpg',26),(153,'/media/e1c6d8cc5dd05922d6035b996459c92a-500x500.jpg',26),(154,'/media/download_(1)-500x500.jpg',27),(155,'/media/9f09645d378b981992585b361e929a8d-500x500.jpg',28),(156,'/media/179f521093ecc2ff20146a847388a254-500x500.jpg',28),(157,'/media/bd9336fd70aaa56e4e6dbbad4dcee8c4-500x500.jpg',28),(158,'/media/3935402648634d90ead3760f1b523dc3-500x500.jpg',28),(159,'/media/2247c8c6c0789085f2c27c352d76bf99-500x500.jpg',29),(160,'/media/ea49aab36283976a39fa950252df9aaa-500x500.jpg',29),(161,'/media/ef730cebd2318907640f4501fa1524c5-500x500.jpg',29),(162,'/media/43aa88174f181a4506a3da683a014c2b-500x500.jpg',29),(163,'/media/c05935981_209x189-500x500.jpg',30),(164,'/media/MONITOR_DELL_22-500x500.jpg',31),(165,'/media/81-KPRZ3SCL._SY355_-500x500.jpg',32),(166,'/media/MOUSE_TARGUS_BLUETOOTH_INALAMBRICO_B580-500x500.png',33),(167,'/media/MOUSE_TARGUS_BLUETOOTH_INALAMBRICO_B580_LATERAL-500x500.png',33),(168,'/media/MOUSE_TARGUS_BLUETOOTH_INALAMBRICO_B580_LATERAL_2-500x500.png',33),(169,'/media/pro_59033562_1-500x500.jpg',34),(170,'/media/klip-xtreme-kmo-310bk-beetle-r-500x500.jpg',35),(171,'/media/pro_59053345_2-500x500.jpg',35),(172,'/media/356KL_ROJO_MOUSE-500x500.jpg',36),(173,'/media/MOUSE_BL356KL-500x500.jpg',36),(174,'/media/MOUSE_INALAMBRICO_330BL_AZUL-500x500.png',37),(175,'/media/MOUSE_INALAMBRICO_330BK_NEGRO_Trasera-500x500.jpg',37),(176,'/media/LINKSYS_RE6250-500x500.jpeg',38),(177,'/media/LINKSYS_RE6250_lateral-500x500.jpeg',38),(178,'/media/MIC365-500x500.jpg',39),(179,'/media/348272-MOWL-C_1-500x500.jpg',40),(180,'/media/348272-MOWL-C_2-500x500.jpg',40),(181,'/media/348272-MOWL-C_3-500x500.jpg',40),(182,'/media/MOUSE_INALAMBRICO_330BK_NEGRO-500x500.jpg',41),(183,'/media/MOUSE_INALAMBRICO_330BK_NEGRO_Trasera-500x500.jpg',41),(184,'/media/07081bbce3ecb500ec01222480499cdc-500x500.jpg',42),(185,'/media/0e0106fbc9e45fe67f64b23c9889e702-500x500.jpg',42),(186,'/media/f650c7b6a8366deaf618ee527c39eec2-500x500.jpg',42),(187,'/media/20a656374f9b0691474fb5c397b96917-500x500.jpg',43),(188,'/media/69e15f653dfdec00997b94b6cc1341ba-500x500.jpg',43),(189,'/media/08da63fdec09df6e2aaace60643d4662-500x500.jpg',43),(190,'/media/616c83a17ca4eb8e137fe470059f35cc-500x500.jpg',43),(191,'/media/d4d06d4fde06710db1ab5d7366ddf65c-500x500.jpg',43),(192,'/media/b93cd8d215980fd1ae841d7201a68a3b-500x500.jpg',43),(193,'/media/0d456d58feead1e64edcb8b374d20f13-500x500.jpg',43),(194,'/media/6303267faa7d938d7f684065656a2da2-500x500.jpg',43),(195,'/media/MOUSE_KLIP356BK-500x500.jpg',44),(196,'/media/MOUSE_BL356KL-500x500.jpg',44),(197,'/media/kasp-500x500.jpg',45),(198,'/media/pro_59033561_1-500x500.jpg',46),(199,'/media/pro_59033561_2-500x500.jpg',46),(200,'/media/pro_59033561_3-500x500.jpg',46),(201,'/media/pro_59033561_4-500x500.jpg',46),(202,'/media/26e82aad299f6271f8b3ca0576b7b325-500x500.jpg',47),(203,'/media/794d11f4bc024323ec9dc59f6259b05e-500x500.jpg',47),(204,'/media/46c91600cd955a0cdc77a77ae90dcfdc-500x500.jpg',47),(205,'/media/e08c41b7c659e7c3b9088630393db6eb-500x500.jpg',48),(206,'/media/2044f8d7206ca100339e0c3d6832904f-500x500.jpg',48),(207,'/media/pro_59052691_1-500x500.jpg',49),(208,'/media/pro_59052691_2-500x500.jpg',49),(209,'/media/CP-KLIPXTREME-KMP-100B-2-500x500.jpg',50),(210,'/media/81-KPRZ3SCL._SY355_-500x500.jpg',51),(211,'/media/c2060b2cd139ffe900ac2813e36b6191-500x500.jpg',52),(212,'/media/9b08f2226e1ce02de638b44257ce8854-500x500.jpg',52),(213,'/media/d1e6237b708d474a7effab2be82f6c35-500x500.jpg',52),(214,'/media/737738909e4b6eb8e714b74c8a2a07af-500x500.jpg',52),(215,'/media/118ff862ed0259acf692a85e7b5867a3-500x500.jpg',53),(216,'/media/19014b1602528b653737c25a596b9c1c-500x500.jpg',53),(217,'/media/88222a958241260f774011f5125b5bdf-500x500.jpg',53),(218,'/media/afcebecbe0ffa8973a9dcd9072e0210f-500x500.jpg',53),(219,'/media/7c857da93d353fb34310a76156cc0b64-500x500.jpg',53),(220,'/media/3675ef1b741723109d6cda6f32c342f2-500x500.jpg',53),(221,'/media/58cd0e9ee82a7e0e4aff268eff4824cd-500x500.jpg',54),(222,'/media/dd988a9cbd82b97177298b3471564bb6-500x500.jpg',54),(223,'/media/a01f21b2f8cc4305fcab1e53cbedd31b-500x500.jpg',54),(224,'/media/bf4e1fed07684ee1eb934a4be9672ff8-500x500.jpg',54),(225,'/media/d08afaaaf81b5ce7fe133d8134df369d-500x500.jpg',54),(226,'/media/233d940a8275aaaaa211f32d09f6d1cb-500x500.jpg',55),(227,'/media/a64a63c2311267333a7f60fb98625b1e-500x500.jpg',55),(228,'/media/26e627e66adcbac8e9c7a351f780433d-500x500.jpg',56),(229,'/media/d8fdf704d82e955190954bdc9ca0efbd-500x500.jpg',56),(230,'/media/411ac134bc28dfaa59d5790a60edadac-500x500.jpg',56),(231,'/media/e8cf559aea6ae934bfea293f3485f13f-500x500.jpg',56),(232,'/media/3952ad8ccdc2669e01d1d6bd577608bf-500x500.jpg',56),(233,'/media/2f32f875f8330e24b6cfae70886bea9b-500x500.jpg',56),(234,'/media/5d678210afa6c30f872b8d1777808e50-500x500.jpg',56),(235,'/media/ccd09a7af9246f1328a0ceb78df7b584-500x500.jpg',56),(236,'/media/72562988638c58caa69ca337a2137135-500x500.jpg',57),(237,'/media/0ad9e57b0d207b5cc12f3150deea10a6-500x500.jpg',57),(238,'/media/714e59a58e5ccbe35a4fb893dd60e3cf-500x500.jpg',57),(239,'/media/ea921fa06880e23fb23be7900db26750-500x500.jpg',57),(240,'/media/14f6f3c4720fb02455a38695e57204fa-500x500.jpg',57),(241,'/media/72f28ae5d7cf23847428fb8c3b6bc88c-500x500.jpg',58),(242,'/media/cd051609d78570bca6a70ab89d74ec2a-500x500.jpg',58),(243,'/media/28db26aeac1b6eb19edb0d1ba3f3e2b7-500x500.jpg',58),(244,'/media/756c6060e5e8fb65356ee4210f394801-500x500.jpg',58),(245,'/media/8f56afd49530fa6d4921f1e4fb0cb5e5-500x500.jpg',59),(246,'/media/d5ec940b4dc2b317fd38ac6d466734ac-500x500.jpg',59),(247,'/media/18b4debcc52e585a89f65ea1e6bb38e3-500x500.jpg',59),(248,'/media/339299aed7598c40ae89a0da6e64c8fe-500x500.jpg',59),(249,'/media/c69145b1bc656fa8aa57e8d8838ad105-500x500.jpg',60),(250,'/media/411eddf657389bbc9bb77f6819cc2e17-500x500.jpg',60),(251,'/media/2e6eb40334ba122620462e56f5fffb87-500x500.jpg',60),(252,'/media/5e18b11d797928711e90266e78c7bbc0-500x500.jpg',60),(253,'/media/5ed1062845fba28668fcfaa62bd2f3a4-500x500.jpg',60),(254,'/media/01d90fdddcaabc05ba61940694808c09-500x500.jpg',60),(255,'/media/de3fc7204d55526f7db9c8a508e70b83-500x500.jpg',61),(256,'/media/846ea809e69bf19a66b848fd04eed294-500x500.jpg',61),(257,'/media/168f93b2e2e2c52212b04533f8c4c512-500x500.jpg',61),(258,'/media/22b5136fb5697288b70ef5ccf8e38411-500x500.jpg',61),(259,'/media/8c61d0f14f9a804cc1cb65d510c80956-500x500.jpg',61),(260,'/media/e13289adcf67fd50fc9ab0605b573f9f-500x500.jpg',61),(261,'/media/7204fb86435a63372ae8ce3ffc6b1f72-500x500.jpg',62),(262,'/media/a2e61d6f6efe51377e8dc57c7fe9379b-500x500.jpg',62),(263,'/media/b108f1e5c277fd10cb349b60d209f9e9-500x500.jpg',62),(264,'/media/a1b497d292c2911706a71c2fbb168f6d-500x500.jpg',62),(265,'/media/cf97272e85c65dfbc73ff2b6feb9316e-500x500.jpg',62),(266,'/media/6f7991e3a3b074eb0df9b14743b6e815-500x500.jpg',62),(267,'/media/703af03cfdb42fafd3d26d2cf78523cb-500x500.jpg',62),(268,'/media/12b749de123eaee4a0686c8b6936d375-500x500.jpg',62),(269,'/media/BLU_C6L_FROT-500x500.jpg',63),(270,'/media/BLU-C6L-500x500.jpg',63),(271,'/media/BLU-C6L-C0030UU-BLK-4-500x500.jpg',63),(272,'/media/6466ca4f6b6abd160f0821ac51a44d86-500x500.jpg',64),(273,'/media/f4b3e25ecb345ee64845ae6579b71796-500x500.jpg',64),(274,'/media/3351f40fdc04fd4935a68564ebe0afd1-500x500.jpg',64),(275,'/media/ad2cc4f7eccaa67e0465babd69959f6c-500x500.jpg',64),(276,'/media/2de0bc1bbb857b876a8f7a823901412a-500x500.jpg',64),(277,'/media/9ea25e04f243d7980ada1111d5d0ad78-500x500.jpg',64),(278,'/media/dfbff7c1689ce073d2e16602b8bec417-500x500.jpg',64),(279,'/media/bc932d028d6d1a8178fbe159b271817a-500x500.jpg',64),(280,'/media/e6855205795246089662781c0d00ec94-500x500.jpg',65),(281,'/media/069c51f75bd199f89775da5fb4319dee-500x500.jpg',65),(282,'/media/0c2e67566c4be4e3df91e9b996a8bbb2-500x500.jpg',65),(283,'/media/c0e35cc4dc2df7314a54245a17740928-500x500.jpg',65),(284,'/media/f96fa4c804d8910f2e2761420dc7b119-500x500.jpg',65),(285,'/media/582d1197ca91a47f21d83c5786c26662-500x500.jpg',65),(286,'/media/1a0b783f79ffda031e958c5ee600cc6e-500x500.jpg',65),(287,'/media/5ab533bc111be70c7d60ad4eb46f4f2a-500x500.jpg',65),(288,'/media/3c4a11c13265cb1c5ebf255b359ee51f-500x500.jpg',66),(289,'/media/13bd8df0faef049f29ca43c6eb8a6d1b-500x500.jpg',66),(290,'/media/ce99d6b3310698531e7c97bde0b1fe70-500x500.jpg',66),(291,'/media/8b4d9d62791e27518bd914cacbc29042-500x500.jpg',66),(292,'/media/666d0ebbf0575cf30091b75a1f9676f9-500x500.jpg',66),(293,'/media/ab9267f056b8bc1fd4d5c16e244765cd-500x500.jpg',67),(294,'/media/9564c28aec70d658bdedca9c6e33ffb3-500x500.jpg',67),(295,'/media/91c7ff121b2fc4ba797a4511c947c43a-500x500.jpg',67),(296,'/media/3c9bdc7d71d6b1e2bc5b2c79f14523c0-500x500.jpg',67),(297,'/media/c46d4019cfcfc19eb4adee2ceabfae1f-500x500.jpg',68),(298,'/media/05f69411dc67e97e41aef76bf5f3c822-500x500.jpg',68),(299,'/media/97099de59e6f16f8ac6a5a574e9ffcf4-500x500.jpg',68),(300,'/media/6585de50e32532a74abf20908a5c1a3e-500x500.jpg',68),(301,'/media/0ea2a30bd73c50f444cf919c2a467aaa-500x500.jpg',68),(302,'/media/16163c8177474f8b77fc2e7631587f57-500x500.jpg',68),(303,'/media/AX1077_Black_(2)-500x500.jpg',69),(304,'/media/AX1077_Black_(3)-500x500.jpg',69),(305,'/media/AX1077_Black_(4)-500x500.jpg',69),(306,'/media/AX1077_Black_(5)-500x500.jpg',69),(307,'/media/AX1077_Black_(6)-500x500.jpg',69),(308,'/media/AX1077_Black_(1)-500x500.jpg',69),(309,'/media/5bb6fde0ace07364eda404e09b8dfc0d-500x500.jpg',70),(310,'/media/5d64b16f62697999c6ac233798bc159e-500x500.jpg',70),(311,'/media/cd523c7a3dfa99ee880a2d5ee3750dca-500x500.jpg',70),(312,'/media/7362b8001b9c36e7defce789b241be18-500x500.jpg',70),(313,'/media/88b212902895bd6f1f790ed76a2ff1d8-500x500.jpg',70),(314,'/media/blu-c6_AZUL-500x500.jpg',71),(315,'/media/BLU-C6L-AZUL-500x500.jpg',71),(316,'/media/BLU-C6L-BLUE-500x500.jpg',71),(317,'/media/TAB-HYUNDAI-KORAL10_1-500x500.jpg',72),(318,'/media/TAB-HYUNDAI-KORAL10_2-500x500.jpg',72),(319,'/media/TAB-HYUNDAI-KORAL10_3-500x500.jpg',72),(320,'/media/TAB-HYUNDAI-KORAL10_4-500x500.jpg',72),(321,'/media/636eed3d690b997691119f5c8ea914ba-500x500.jpg',73),(322,'/media/5d2ff0b3c5c3d06999f8fb16f021a6e2-500x500.jpg',73),(323,'/media/a722b60e829dbe0ab962aeab2ecaab08-500x500.jpg',73),(324,'/media/d9496c0500d0d7d9afbc60f4c6f77505-500x500.jpg',73),(325,'/media/7a9aa197ad56bc87b5233eda797e869b-500x500.jpg',73),(326,'/media/1e1f099ad345108dde3d1457d97cbf00-500x500.jpg',73),(327,'/media/c301cb2f6e9821271134037a7f899d67-500x500.jpg',73),(328,'/media/e1342b5a582101b9816df1d9b5766597-500x500.jpg',74),(329,'/media/08c506ba550c0ff5261fde115b86e631-500x500.jpg',74),(330,'/media/40daa06557c903d8f5503cbec9748c6c-500x500.jpg',74),(331,'/media/f9e0910e64b0f0fea7f6342a91f7d54a-500x500.jpg',74),(332,'/media/72c7acc9e603fe64f5845aca364465e2-500x500.jpg',74),(333,'/media/454437a4fe020e8b77627be9bc38f3dc-500x500.jpg',74),(334,'/media/a9f4e69df00c27dd058c64b4c55ec47a-500x500.jpg',75),(335,'/media/1de58660c52087ebcb3cc990dccda348-500x500.jpg',75),(336,'/media/e9293a9b043bc64a0c5eada9d6ea5971-500x500.jpg',75),(337,'/media/5760aefcdf3bd77bf9b51e8b52e1cbb3-500x500.jpg',75),(338,'/media/a7c57e3dc736e579247ee0532cc35501-500x500.jpg',75),(339,'/media/582908f757093421843c923e99542e2b-500x500.jpg',75),(340,'/media/0b012394efdb2c02a9b5ac0e32808803-500x500.jpg',75),(341,'/media/3b02cdcafdaac9c889510ded7c72326b-500x500.jpg',75),(342,'/media/44f042b84fed2a595bb1df937d436103-500x500.jpg',76),(343,'/media/c3dc90df6d50a8c341f4d7b9c5d3a228-500x500.jpg',76),(344,'/media/f0410b48f86da07071c2eb4a8b5b783b-500x500.jpg',76),(345,'/media/6266d0416d3e43014f3087a62ff6cbf6-500x500.jpg',76),(346,'/media/e4332403fb5114c7011dd2a26b68e48f-500x500.jpg',77),(347,'/media/3b9f391d60f7ac6722d7469d51e21648-500x500.jpg',77),(348,'/media/b6fc89939fe9f66b421ead18cd38bb73-500x500.jpg',77),(349,'/media/7f4a14afa4c63f015c76e7dbdeb96c4d-500x500.jpg',78),(350,'/media/97c0ffb5499aa6997b18837cf7f3ea39-500x500.jpg',78),(351,'/media/65d7c26aac661a6b066ac8563929d857-500x500.jpg',78),(352,'/media/5f9878de2c31552531d374f7d36cc07a-500x500.jpg',78),(353,'/media/c8563a5ed4289f8fba6f0a7615b1a921-500x500.jpg',78),(354,'/media/012dee6c3cca81ac29f5851ca49fd50f-500x500.jpg',78),(355,'/media/e0c8aeb1bbbfc91d77d23c12dcd830d8-500x500.jpg',79),(356,'/media/3822e18395ec028cd80e57d4c6b4fc7a-500x500.jpg',79),(357,'/media/02a7714dd7909dcf52ddc53dc81965e3-500x500.jpg',79),(358,'/media/a346f33601a7877a38eb6080f434050a-500x500.jpg',79),(359,'/media/b2152ab37131cfa9b74d5b2ceb083a36-500x500.jpg',80),(360,'/media/c8f60a2dc4cf01c2b15665c654a6f581-500x500.jpg',80),(361,'/media/e5ff464d2f7ad774d3a36578cc4da277-500x500.jpg',80),(362,'/media/fc3cd5c098dd1663fa8db59c742085f2-500x500.jpg',80),(363,'/media/1f7039ff9c863599129551b5bfc762be-500x500.jpg',80),(364,'/media/0000002222-tablet-500x500.jpg',81),(365,'/media/2797b22aee04e80468c3339d1f94f58d-500x500.jpg',82),(366,'/media/1b3ae1ca8d2e2e3fc077d6ff0845fbc1-500x500.jpg',82),(367,'/media/16b5fe7ca48ae5c0b7c350aca111c9dd-500x500.jpg',82),(368,'/media/34b3b8d119fc0f7d3484b9059d76af27-500x500.jpg',82),(369,'/media/a1fd7d35da0a1d7aff3e16f4e6641f23-500x500.jpg',83),(370,'/media/92f748d65c214944bc9fc998d1ff192e-500x500.jpg',83),(371,'/media/644902784115300c0ecbc25262bb700a-500x500.jpg',83),(372,'/media/TAB-HYUNDAI-KORAL_1-500x500.jpg',84),(373,'/media/TAB-HYUNDAI-KORAL_2-500x500.jpg',84),(374,'/media/TAB-HYUNDAI-KORAL_3-500x500.jpg',84),(375,'/media/1665aacaa8ed207395c3cb6e4a1f8b8e-500x500.jpg',85),(376,'/media/cf32ede0d478f387829423ceaa3a4187-500x500.jpg',85),(377,'/media/a8c991455aa2592265577a75dea2d852-500x500.jpg',85),(378,'/media/1c668e0f6e6cd98ec7be5eb33c021665-500x500.jpg',85),(379,'/media/09b2ccffae757ef06e45b4496f3395c8-500x500.jpg',86),(380,'/media/c3d9ceed76f1e6d7db4262af8fcd82b7-500x500.jpg',86),(381,'/media/a64f61760f9760144910011dfa093a5d-500x500.jpg',86),(382,'/media/1894084f7c4684f32f203ccba3cdec51-500x500.jpg',86),(383,'/media/abe3476a1d777ea4098bba64e8b22ae7-500x500.jpg',87),(384,'/media/33e662b072f992bf718d67f2a7f0a171-500x500.jpg',87),(385,'/media/4c80799b77cd27a82d0f64a915d36bea-500x500.jpg',87),(386,'/media/ce350b26a6fd50f8fd44e68f68e94e1a-500x500.jpg',87),(387,'/media/d39c28850a6b95218cfa3a28bf0ea1af-500x500.jpg',87),(388,'/media/3296362f15340a68d35b33b0571a3445-500x500.jpg',87),(389,'/media/1ea6e0833150d325c9043e01cf6d2e9b-500x500.jpg',88),(390,'/media/d660e379ccc142e6c4cbe4e58ac14930-500x500.jpg',88),(391,'/media/b0694b50fe50e6b1ad2f1bb9eaa893d9-500x500.jpg',88),(392,'/media/68c2cee18669be6bf5ed7db218afb744-500x500.jpg',88),(393,'/media/ea11b5a1ec8c856b17b89315275df8dc-500x500.jpg',88),(394,'/media/galaxy_tab-500x500.jpg',89),(395,'/media/f3768571b6da0ef3671dd3d442028ea5-500x500.jpg',90),(396,'/media/c837ee1c53fe8f0d7e5932dab54daae8-500x500.jpg',90),(397,'/media/9badc85e1f201295f875d0271de09f2f-500x500.jpg',90);
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c2763c61e780c29be2e6d88b7264a093-500x500.jpg', 12);
+-- INSERT INTO IMAGEN (enlace_imagen,fk_articulo) VALUES
+-- ("/media/adf04439d82d90994491476ad6976ade-500x500.jpg",1),
+-- ("/media/50e2c7493bd701a9c12ab9acf85f0308-500x500.jpg",1),
+-- ("/media/111eba6f030f4e51b9696acd88863caf-500x500.jpg",1),
+-- ("/media/173b0af594ed6677d58b16088e303ae3-500x500.jpg",1),
+-- ("/media/5867faf05499a139e59ce553c84bff8b-500x500.jpg",2),
+-- ("/media/2d21f77517e31cda670f7743d704b275-500x500.jpg",2),
+-- ("/media/6e7e62e61d33923c04e8b94a11f27d32-500x500.jpg",2),
+-- ("/media/f6a2a1410c4fd0433a41602721a23fb1-500x500.jpg",3),
+-- ("/media/e07ba8e755959be89ca9d740a7de2144-500x500.jpg",3),
+-- ("/media/2fd42aeb331e226c585df3b283c01b3b-500x500.jpg",3),
+-- ("/media/9f7e5e5bce40c64811ebd5325b67a7dc-500x500.jpg",3),
+-- ("/media/b93dea84333fb1ccb7c863578e99970d-500x500.jpg",3),
+-- ("/media/d7152e297657fb4dd324bc59bac140d0-500x500.jpg",3),
+-- ("/media/657655c7c6fbc06b20f6568eba85a056-500x500.jpg",4),
+-- ("/media/5348d45af1462b29410eee7e10c279a1-500x500.jpg",4),
+-- ("/media/119277dba44916d959daab691c24849c-500x500.jpg",4),
+-- ("/media/9bdea20f545aea9dee76cb1629807886-500x500.jpg",4),
+-- ("/media/27368f7cb000719ffe1173ffb6cd4daf-500x500.png",5),
+-- ("/media/a46870b7112d1d8f03ae8d5b20e46702-500x500.png",5),
+-- ("/media/05841f294912ee3bbc65975f007f981c-500x500.png",5),
+-- ("/media/e954083fabcf3ada2f86ba9b8bb7f8e5-500x500.png",5),
+-- ("/media/029f41ff76836bcdfc5f20d84503e729-500x500.png",5),
+-- ("/media/f46dea4440c7cfb65c285c1038d5fa98-500x500.png",5),
+-- ("/media/dbc337f2813ea8979f0ac0e0db386762-500x500.jpg",6),
+-- ("/media/978d3deb06639e7e07c8249c3c4a0961-500x500.jpg",6),
+-- ("/media/16055df6822163fb75e301fc32117311-500x500.jpg",6),
+-- ("/media/d0a5fa01cfade52c9495e890c07c9ad3-500x500.jpg",6),
+-- ("/media/b53f9095a8b761892f199f299fc0e313-500x500.jpg",6),
+-- ("/media/7889f47dd0f9358cf6fd8320a100a5e4-500x500.jpg",6),
+-- ("/media/680ec71b40649288031c15d16b893a4d-500x500.jpg",6),
+-- ("/media/d6afd3779bb32a3892584ec5412c94ad-500x500.jpg",7),
+-- ("/media/aea269f9236908236ba8cfd6464cdbe2-500x500.jpg",7),
+-- ("/media/e0a261dad72904d84406d25059855643-500x500.jpg",7),
+-- ("/media/4dd4dd3511f63f984d30b9e9c436e682-500x500.jpg",7),
+-- ("/media/04ecc9a8cd8a6247bf8160645c0ba781-500x500.jpg",7),
+-- ("/media/bb7bf28ecc9222a9e72abb828e196e13-500x500.jpg",7),
+-- ("/media/c2763c61e780c29be2e6d88b7264a093-500x500.jpg",8),
+-- ("/media/35cf5afacb78f524252d30aa3ef63bba-500x500.jpg",8),
+-- ("/media/b1996ebf9cbde69184a41df5e038d041-500x500.jpg",8),
+-- ("/media/f61fc93279aa1b914cd68f6113667443-500x500.jpg",8),
+-- ("/media/c5b30a431af1a5af5255d2ebfda7ba45-500x500.jpg",9),
+-- ("/media/ff69963300b720954797b1ae50da56ce-500x500.jpg",9),
+-- ("/media/d26afd2e86fcdca683f6778d84317de4-500x500.jpg",9),
+-- ("/media/6a70c3f072b9fd946afbe83619c0004b-500x500.jpg",9),
+-- ("/media/703111ed5cef87fb255faa91e99be9d1-500x500.jpg",9),
+-- ("/media/d750029d870b87fe9f6c5bf5551c0acc-500x500.jpg",9),
+-- ("/media/09bb9111302159151bb6015cc22bc905-500x500.jpg",9),
+-- ("/media/01ea8389fabcf673f9ab64c22e1c32e1-500x500.jpg",9),
+-- ("/media/dc2a1156d7bdf40561658f642328f30a-500x500.jpg",10),
+-- ("/media/5fff0f746017b4816439d5eff646430e-500x500.jpg",10),
+-- ("/media/e1ef5736d3e35f5aa5e0191a273a8862-500x500.jpg",10),
+-- ("/media/e67ea5c1258a1d85b971268d6958a0e2-500x500.jpg",10),
+-- ("/media/c0fa45b395b114ce486982c802cb0b17-500x500.jpg",10),
+-- ("/media/288e0303b42ab9e2375ca8576a7732c3-500x500.jpg",10),
+-- ("/media/00f60a0cf9fa6f25245dfc89eb517ff7-500x500.jpg",10),
+-- ("/media/e0fb3472d1b4a862811d98f04f2dd18c-500x500.jpg",10),
+-- ("/media/445d305fe4978baa536791b1498053f3-500x500.jpg",10),
+-- ("/media/052542da6dae2064a363fd0454ff4491-500x500.jpg",10),
+-- ("/media/c61d82bb5ef9c9aa45f91c5c6dd60df6-500x500.jpg",11),
+-- ("/media/bcd93e93fd88a1f22124cdb03ebd4adc-500x500.jpg",11),
+-- ("/media/80fad68eb9fd9c4731b2da407551a873-500x500.jpg",11),
+-- ("/media/daa1c42dc536b7c3d13c42b8eabb7190-500x500.jpg",11),
+-- ("/media/2bf26964e012cd577ad69208509da8ce-500x500.jpg",11),
+-- ("/media/c1b01841aa2c61e4db123961b0a9309c-500x500.jpg",11),
+-- ("/media/b416749ca6bf9c8e3096bda89d0c926a-500x500.jpg",11)
+-- ;
+
+-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c2763c61e780c29be2e6d88b7264a093-500x500.jpg', 12);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/35cf5afacb78f524252d30aa3ef63bba-500x500.jpg', 12);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/35cf5afacb78f524252d30aa3ef63bba-500x500.jpg', 12);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/b1996ebf9cbde69184a41df5e038d041-500x500.jpg', 12);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/b1996ebf9cbde69184a41df5e038d041-500x500.jpg', 12);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/f61fc93279aa1b914cd68f6113667443-500x500.jpg', 12);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/f61fc93279aa1b914cd68f6113667443-500x500.jpg', 12);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/cc5958b1c1626ec3607e10fa6cd9ddc6-500x500.jpg', 12);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/cc5958b1c1626ec3607e10fa6cd9ddc6-500x500.jpg', 12);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c5b30a431af1a5af5255d2ebfda7ba45-500x500.jpg', 13);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c5b30a431af1a5af5255d2ebfda7ba45-500x500.jpg', 13);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ff69963300b720954797b1ae50da56ce-500x500.jpg', 13);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ff69963300b720954797b1ae50da56ce-500x500.jpg', 13);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d26afd2e86fcdca683f6778d84317de4-500x500.jpg', 13);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d26afd2e86fcdca683f6778d84317de4-500x500.jpg', 13);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/6a70c3f072b9fd946afbe83619c0004b-500x500.jpg', 13);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/6a70c3f072b9fd946afbe83619c0004b-500x500.jpg', 13);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/703111ed5cef87fb255faa91e99be9d1-500x500.jpg', 13);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/703111ed5cef87fb255faa91e99be9d1-500x500.jpg', 13);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d750029d870b87fe9f6c5bf5551c0acc-500x500.jpg', 13);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d750029d870b87fe9f6c5bf5551c0acc-500x500.jpg', 13);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/09bb9111302159151bb6015cc22bc905-500x500.jpg', 13);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/09bb9111302159151bb6015cc22bc905-500x500.jpg', 13);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/01ea8389fabcf673f9ab64c22e1c32e1-500x500.jpg', 13);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/01ea8389fabcf673f9ab64c22e1c32e1-500x500.jpg', 13);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/dc2a1156d7bdf40561658f642328f30a-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/dc2a1156d7bdf40561658f642328f30a-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5fff0f746017b4816439d5eff646430e-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5fff0f746017b4816439d5eff646430e-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e1ef5736d3e35f5aa5e0191a273a8862-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e1ef5736d3e35f5aa5e0191a273a8862-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e67ea5c1258a1d85b971268d6958a0e2-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e67ea5c1258a1d85b971268d6958a0e2-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c0fa45b395b114ce486982c802cb0b17-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c0fa45b395b114ce486982c802cb0b17-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/288e0303b42ab9e2375ca8576a7732c3-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/288e0303b42ab9e2375ca8576a7732c3-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/00f60a0cf9fa6f25245dfc89eb517ff7-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/00f60a0cf9fa6f25245dfc89eb517ff7-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e0fb3472d1b4a862811d98f04f2dd18c-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e0fb3472d1b4a862811d98f04f2dd18c-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/445d305fe4978baa536791b1498053f3-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/445d305fe4978baa536791b1498053f3-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/052542da6dae2064a363fd0454ff4491-500x500.jpg', 14);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/052542da6dae2064a363fd0454ff4491-500x500.jpg', 14);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c61d82bb5ef9c9aa45f91c5c6dd60df6-500x500.jpg', 15);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c61d82bb5ef9c9aa45f91c5c6dd60df6-500x500.jpg', 15);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/bcd93e93fd88a1f22124cdb03ebd4adc-500x500.jpg', 15);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/bcd93e93fd88a1f22124cdb03ebd4adc-500x500.jpg', 15);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/80fad68eb9fd9c4731b2da407551a873-500x500.jpg', 15);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/80fad68eb9fd9c4731b2da407551a873-500x500.jpg', 15);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/daa1c42dc536b7c3d13c42b8eabb7190-500x500.jpg', 15);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/daa1c42dc536b7c3d13c42b8eabb7190-500x500.jpg', 15);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2bf26964e012cd577ad69208509da8ce-500x500.jpg', 15);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2bf26964e012cd577ad69208509da8ce-500x500.jpg', 15);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c1b01841aa2c61e4db123961b0a9309c-500x500.jpg', 15);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c1b01841aa2c61e4db123961b0a9309c-500x500.jpg', 15);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/b416749ca6bf9c8e3096bda89d0c926a-500x500.jpg', 15);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/b416749ca6bf9c8e3096bda89d0c926a-500x500.jpg', 15);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/18b843cb7d3129d91fbac06977689ecc-500x500.jpg', 16);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/18b843cb7d3129d91fbac06977689ecc-500x500.jpg', 16);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/29947cfe2eebe3447794a584c34a82de-500x500.jpg', 16);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/29947cfe2eebe3447794a584c34a82de-500x500.jpg', 16);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/9fdb0b1e264fa8b27499180db2c738c2-500x500.jpg', 16);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/9fdb0b1e264fa8b27499180db2c738c2-500x500.jpg', 16);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e96b3d22ad8277d5bdfb0aecd7e63d74-500x500.jpg', 16);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e96b3d22ad8277d5bdfb0aecd7e63d74-500x500.jpg', 16);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/4b83251639474fc50f0fc6235ad63b6f-500x500.jpg', 17);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/4b83251639474fc50f0fc6235ad63b6f-500x500.jpg', 17);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/bf5830d8ffe0b15336ce44016c69f88e-500x500.jpg', 17);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/bf5830d8ffe0b15336ce44016c69f88e-500x500.jpg', 17);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d5c2aadd1a8cfd1824a29d6909ee7e9b-500x500.jpg', 17);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d5c2aadd1a8cfd1824a29d6909ee7e9b-500x500.jpg', 17);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/b1adf008115288e8bbb254635678888f-500x500.jpg', 17);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/b1adf008115288e8bbb254635678888f-500x500.jpg', 17);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/295bd498cd2db001512a299da47a86ad-500x500.jpg', 17);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/295bd498cd2db001512a299da47a86ad-500x500.jpg', 17);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/bcdff6c3aecf44f9f0177d8975391895-500x500.jpg', 18);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/bcdff6c3aecf44f9f0177d8975391895-500x500.jpg', 18);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/060efaf72c651d6aab0333ac6d888a26-500x500.jpg', 18);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/060efaf72c651d6aab0333ac6d888a26-500x500.jpg', 18);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3ade77f9f23aee95849daa9f2469a6cf-500x500.jpg', 18);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3ade77f9f23aee95849daa9f2469a6cf-500x500.jpg', 18);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e52a328bc2a26090a63822566f37b261-500x500.jpg', 18);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e52a328bc2a26090a63822566f37b261-500x500.jpg', 18);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/43babcec18b7e9c9effd1f7581a89d42-500x500.jpg', 18);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/43babcec18b7e9c9effd1f7581a89d42-500x500.jpg', 18);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/4c5fcbf3c8e57f335dd80fd1d91a90c8-500x500.jpg', 18);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/4c5fcbf3c8e57f335dd80fd1d91a90c8-500x500.jpg', 18);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/445060a95f0f787dba12ca185896b9a5-500x500.jpg', 18);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/445060a95f0f787dba12ca185896b9a5-500x500.jpg', 18);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/0e1c8131232ff34d03c0123ec2b0d352-500x500.jpg', 19);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/0e1c8131232ff34d03c0123ec2b0d352-500x500.jpg', 19);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/26dddd24d90455a7a49abeb82bc5d0ef-500x500.jpg', 19);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/26dddd24d90455a7a49abeb82bc5d0ef-500x500.jpg', 19);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/f52ad5679a574c3c52588effbf06eaae-500x500.jpg', 19);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/f52ad5679a574c3c52588effbf06eaae-500x500.jpg', 19);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3619f6665a98db958a9eb0f79710bdad-500x500.jpg', 19);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3619f6665a98db958a9eb0f79710bdad-500x500.jpg', 19);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/4a669f65e962ae57f6651a2e1c140f00-500x500.jpg', 19);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/4a669f65e962ae57f6651a2e1c140f00-500x500.jpg', 19);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/b91f7f46ab0ae1cf822b90cf9d40e7f4-500x500.jpg', 19);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/b91f7f46ab0ae1cf822b90cf9d40e7f4-500x500.jpg', 19);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e170dac1f774c4d7dca8428b4f1de131-500x500.jpg', 19);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e170dac1f774c4d7dca8428b4f1de131-500x500.jpg', 19);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/230bfa609a6707753de4154baca0a225-500x500.jpg', 19);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/230bfa609a6707753de4154baca0a225-500x500.jpg', 19);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3d7927804519d1a734d34e13230ecc2c-500x500.png', 20);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3d7927804519d1a734d34e13230ecc2c-500x500.png', 20);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2f47decef566bc885e5da64b41c17615-500x500.png', 20);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2f47decef566bc885e5da64b41c17615-500x500.png', 20);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c6c2e45f7470d4c88ab832e832906225-500x500.png', 20);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c6c2e45f7470d4c88ab832e832906225-500x500.png', 20);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2c484826758d2b3bf62e146ce517f80e-500x500.png', 20);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2c484826758d2b3bf62e146ce517f80e-500x500.png', 20);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/997362be993ec442800dcf61ec217909-500x500.png', 20);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/997362be993ec442800dcf61ec217909-500x500.png', 20);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/10d6262442f64934a2afdef58452c66f-500x500.png', 20);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/10d6262442f64934a2afdef58452c66f-500x500.png', 20);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d665e3fe68225ddb031a357aeedec487-500x500.png', 20);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d665e3fe68225ddb031a357aeedec487-500x500.png', 20);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1b8ea728e4255d50deced9d43167b7d3-500x500.jpg', 21);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1b8ea728e4255d50deced9d43167b7d3-500x500.jpg', 21);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/aa12012eab9c81795147e4038d92dfdb-500x500.jpg', 21);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/aa12012eab9c81795147e4038d92dfdb-500x500.jpg', 21);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d1b57b39517eec45d7e80e1e9bc4857b-500x500.jpg', 21);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d1b57b39517eec45d7e80e1e9bc4857b-500x500.jpg', 21);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/91f5d29ab76f1f75309f643a1d9c1dc5-500x500.jpg', 21);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/91f5d29ab76f1f75309f643a1d9c1dc5-500x500.jpg', 21);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/19b80e40d5c248fa703ed2bcda69f8d8-500x500.jpg', 21);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/19b80e40d5c248fa703ed2bcda69f8d8-500x500.jpg', 21);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/dc29a507cc71083b026c11ad39d514de-500x500.jpg', 21);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/dc29a507cc71083b026c11ad39d514de-500x500.jpg', 21);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e182fd4b55d76989f618a5000665ede1-500x500.jpg', 21);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e182fd4b55d76989f618a5000665ede1-500x500.jpg', 21);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/14-DH0004LA%0-500x500.jpg', 22);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/14-DH0004LA%0-500x500.jpg', 22);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/14-DH0004LA%1-500x500.jpg', 22);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/14-DH0004LA%1-500x500.jpg', 22);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/14-DH0004LA%2-500x500.jpg', 22);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/14-DH0004LA%2-500x500.jpg', 22);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/14-DH0004LA%3-500x500.jpg', 22);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/14-DH0004LA%3-500x500.jpg', 22);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/14-DH0004LA%4-500x500.jpg', 22);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/14-DH0004LA%4-500x500.jpg', 22);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/14-DH0004LA%6-500x500.jpg', 22);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/14-DH0004LA%6-500x500.jpg', 22);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/79e662119cbc14405ec2a5aabfe91dcb-500x500.jpg', 23);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/79e662119cbc14405ec2a5aabfe91dcb-500x500.jpg', 23);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/bd70ce5dafd372318b20e869f582028a-500x500.jpg', 23);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/bd70ce5dafd372318b20e869f582028a-500x500.jpg', 23);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/bf04050ca6082f19cb3f7de31ffd47b5-500x500.jpg', 23);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/bf04050ca6082f19cb3f7de31ffd47b5-500x500.jpg', 23);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/938d17fb86c0ee5977540c73142eaccb-500x500.jpg', 23);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/938d17fb86c0ee5977540c73142eaccb-500x500.jpg', 23);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e0f83c9873f20c05d8480b07ddc988a1-500x500.jpg', 24);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e0f83c9873f20c05d8480b07ddc988a1-500x500.jpg', 24);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5877ebd6ea0814a598a26c8afae0e356-500x500.jpg', 24);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5877ebd6ea0814a598a26c8afae0e356-500x500.jpg', 24);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/35441336a956e8ae0be4d21eec5f35dd-500x500.jpg', 24);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/35441336a956e8ae0be4d21eec5f35dd-500x500.jpg', 24);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/25ccf1002cc9cff69ffe2a605ea1a49b-500x500.jpg', 24);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/25ccf1002cc9cff69ffe2a605ea1a49b-500x500.jpg', 24);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/090c52dcb1510e2bd72cb81da29150da-500x500.jpg', 24);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/090c52dcb1510e2bd72cb81da29150da-500x500.jpg', 24);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/72dc94071b2a8ef5579e3ddcb43306a2-500x500.jpg', 24);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/72dc94071b2a8ef5579e3ddcb43306a2-500x500.jpg', 24);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MONITOR%GAMING%2-500x500.jpg', 25);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MONITOR%GAMING%2-500x500.jpg', 25);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2160beb68ea0e9ff08f7ff679bae35d1-500x500.jpg', 26);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2160beb68ea0e9ff08f7ff679bae35d1-500x500.jpg', 26);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/7ea60d0026cb0119238dbc64848b4e7f-500x500.jpg', 26);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/7ea60d0026cb0119238dbc64848b4e7f-500x500.jpg', 26);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e1c6d8cc5dd05922d6035b996459c92a-500x500.jpg', 26);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e1c6d8cc5dd05922d6035b996459c92a-500x500.jpg', 26);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/download%(1)-500x500.jpg', 27);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/download%(1)-500x500.jpg', 27);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/9f09645d378b981992585b361e929a8d-500x500.jpg', 28);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/9f09645d378b981992585b361e929a8d-500x500.jpg', 28);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/179f521093ecc2ff20146a847388a254-500x500.jpg', 28);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/179f521093ecc2ff20146a847388a254-500x500.jpg', 28);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/bd9336fd70aaa56e4e6dbbad4dcee8c4-500x500.jpg', 28);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/bd9336fd70aaa56e4e6dbbad4dcee8c4-500x500.jpg', 28);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3935402648634d90ead3760f1b523dc3-500x500.jpg', 28);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3935402648634d90ead3760f1b523dc3-500x500.jpg', 28);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2247c8c6c0789085f2c27c352d76bf99-500x500.jpg', 29);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2247c8c6c0789085f2c27c352d76bf99-500x500.jpg', 29);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ea49aab36283976a39fa950252df9aaa-500x500.jpg', 29);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ea49aab36283976a39fa950252df9aaa-500x500.jpg', 29);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ef730cebd2318907640f4501fa1524c5-500x500.jpg', 29);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ef730cebd2318907640f4501fa1524c5-500x500.jpg', 29);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/43aa88174f181a4506a3da683a014c2b-500x500.jpg', 29);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/43aa88174f181a4506a3da683a014c2b-500x500.jpg', 29);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c05935981_209x189-500x500.jpg', 30);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c05935981_209x189-500x500.jpg', 30);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MONITOR%DELL%22-500x500.jpg', 31);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MONITOR%DELL%22-500x500.jpg', 31);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/81-KPRZ3SCL._SY355_-500x500.jpg', 32);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/81-KPRZ3SCL._SY355_-500x500.jpg', 32);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%TARGUS%BLUETOOTH%INALAMBRICO%B580-500x500.png', 33);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%TARGUS%BLUETOOTH%INALAMBRICO%B580-500x500.png', 33);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%TARGUS%BLUETOOTH%INALAMBRICO%B580%LATERAL-500x500.png', 33);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%TARGUS%BLUETOOTH%INALAMBRICO%B580%LATERAL-500x500.png', 33);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%TARGUS%BLUETOOTH%INALAMBRICO%B580%LATERAL%2-500x500.png', 33);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%TARGUS%BLUETOOTH%INALAMBRICO%B580%LATERAL%2-500x500.png', 33);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/pro_59033562_1-500x500.jpg', 34);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/pro_59033562_1-500x500.jpg', 34);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/klip-xtreme-kmo-310bk-beetle-r-500x500.jpg', 35);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/klip-xtreme-kmo-310bk-beetle-r-500x500.jpg', 35);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/pro_59053345_2-500x500.jpg', 35);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/pro_59053345_2-500x500.jpg', 35);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/356KL%ROJO%MOUSE-500x500.jpg', 36);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/356KL%ROJO%MOUSE-500x500.jpg', 36);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%BL356KL-500x500.jpg', 36);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%BL356KL-500x500.jpg', 36);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%INALAMBRICO%330BL%AZUL-500x500.png', 37);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%INALAMBRICO%330BL%AZUL-500x500.png', 37);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%INALAMBRICO%330BK%NEGRO%Trasera-500x500.jpg', 37);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%INALAMBRICO%330BK%NEGRO%Trasera-500x500.jpg', 37);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/LINKSYS%RE6250-500x500.jpeg', 38);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/LINKSYS%RE6250-500x500.jpeg', 38);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/LINKSYS%RE6250%lateral-500x500.jpeg', 38);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/LINKSYS%RE6250%lateral-500x500.jpeg', 38);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MIC365-500x500.jpg', 39);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MIC365-500x500.jpg', 39);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/348272-MOWL-C%1-500x500.jpg', 40);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/348272-MOWL-C%1-500x500.jpg', 40);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/348272-MOWL-C%2-500x500.jpg', 40);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/348272-MOWL-C%2-500x500.jpg', 40);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/348272-MOWL-C%3-500x500.jpg', 40);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/348272-MOWL-C%3-500x500.jpg', 40);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%INALAMBRICO%330BK%NEGRO-500x500.jpg', 41);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%INALAMBRICO%330BK%NEGRO-500x500.jpg', 41);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%INALAMBRICO%330BK%NEGRO%Trasera-500x500.jpg', 41);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%INALAMBRICO%330BK%NEGRO%Trasera-500x500.jpg', 41);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/07081bbce3ecb500ec01222480499cdc-500x500.jpg', 42);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/07081bbce3ecb500ec01222480499cdc-500x500.jpg', 42);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/0e0106fbc9e45fe67f64b23c9889e702-500x500.jpg', 42);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/0e0106fbc9e45fe67f64b23c9889e702-500x500.jpg', 42);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/f650c7b6a8366deaf618ee527c39eec2-500x500.jpg', 42);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/f650c7b6a8366deaf618ee527c39eec2-500x500.jpg', 42);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/20a656374f9b0691474fb5c397b96917-500x500.jpg', 43);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/20a656374f9b0691474fb5c397b96917-500x500.jpg', 43);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/69e15f653dfdec00997b94b6cc1341ba-500x500.jpg', 43);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/69e15f653dfdec00997b94b6cc1341ba-500x500.jpg', 43);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/08da63fdec09df6e2aaace60643d4662-500x500.jpg', 43);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/08da63fdec09df6e2aaace60643d4662-500x500.jpg', 43);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/616c83a17ca4eb8e137fe470059f35cc-500x500.jpg', 43);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/616c83a17ca4eb8e137fe470059f35cc-500x500.jpg', 43);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d4d06d4fde06710db1ab5d7366ddf65c-500x500.jpg', 43);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d4d06d4fde06710db1ab5d7366ddf65c-500x500.jpg', 43);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/b93cd8d215980fd1ae841d7201a68a3b-500x500.jpg', 43);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/b93cd8d215980fd1ae841d7201a68a3b-500x500.jpg', 43);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/0d456d58feead1e64edcb8b374d20f13-500x500.jpg', 43);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/0d456d58feead1e64edcb8b374d20f13-500x500.jpg', 43);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/6303267faa7d938d7f684065656a2da2-500x500.jpg', 43);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/6303267faa7d938d7f684065656a2da2-500x500.jpg', 43);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%KLIP356BK-500x500.jpg', 44);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%KLIP356BK-500x500.jpg', 44);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/MOUSE%BL356KL-500x500.jpg', 44);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/MOUSE%BL356KL-500x500.jpg', 44);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/kasp-500x500.jpg', 45);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/kasp-500x500.jpg', 45);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/pro_59033561_1-500x500.jpg', 46);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/pro_59033561_1-500x500.jpg', 46);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/pro_59033561_2-500x500.jpg', 46);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/pro_59033561_2-500x500.jpg', 46);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/pro_59033561_3-500x500.jpg', 46);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/pro_59033561_3-500x500.jpg', 46);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/pro_59033561_4-500x500.jpg', 46);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/pro_59033561_4-500x500.jpg', 46);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/26e82aad299f6271f8b3ca0576b7b325-500x500.jpg', 47);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/26e82aad299f6271f8b3ca0576b7b325-500x500.jpg', 47);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/794d11f4bc024323ec9dc59f6259b05e-500x500.jpg', 47);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/794d11f4bc024323ec9dc59f6259b05e-500x500.jpg', 47);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/46c91600cd955a0cdc77a77ae90dcfdc-500x500.jpg', 47);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/46c91600cd955a0cdc77a77ae90dcfdc-500x500.jpg', 47);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e08c41b7c659e7c3b9088630393db6eb-500x500.jpg', 48);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e08c41b7c659e7c3b9088630393db6eb-500x500.jpg', 48);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2044f8d7206ca100339e0c3d6832904f-500x500.jpg', 48);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2044f8d7206ca100339e0c3d6832904f-500x500.jpg', 48);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/pro_59052691_1-500x500.jpg', 49);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/pro_59052691_1-500x500.jpg', 49);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/pro_59052691_2-500x500.jpg', 49);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/pro_59052691_2-500x500.jpg', 49);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/CP-KLIPXTREME-KMP-100B-2-500x500.jpg', 50);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/CP-KLIPXTREME-KMP-100B-2-500x500.jpg', 50);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/81-KPRZ3SCL._SY355_-500x500.jpg', 51);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/81-KPRZ3SCL._SY355_-500x500.jpg', 51);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c2060b2cd139ffe900ac2813e36b6191-500x500.jpg', 52);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c2060b2cd139ffe900ac2813e36b6191-500x500.jpg', 52);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/9b08f2226e1ce02de638b44257ce8854-500x500.jpg', 52);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/9b08f2226e1ce02de638b44257ce8854-500x500.jpg', 52);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d1e6237b708d474a7effab2be82f6c35-500x500.jpg', 52);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d1e6237b708d474a7effab2be82f6c35-500x500.jpg', 52);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/737738909e4b6eb8e714b74c8a2a07af-500x500.jpg', 52);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/737738909e4b6eb8e714b74c8a2a07af-500x500.jpg', 52);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/118ff862ed0259acf692a85e7b5867a3-500x500.jpg', 53);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/118ff862ed0259acf692a85e7b5867a3-500x500.jpg', 53);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/19014b1602528b653737c25a596b9c1c-500x500.jpg', 53);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/19014b1602528b653737c25a596b9c1c-500x500.jpg', 53);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/88222a958241260f774011f5125b5bdf-500x500.jpg', 53);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/88222a958241260f774011f5125b5bdf-500x500.jpg', 53);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/afcebecbe0ffa8973a9dcd9072e0210f-500x500.jpg', 53);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/afcebecbe0ffa8973a9dcd9072e0210f-500x500.jpg', 53);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/7c857da93d353fb34310a76156cc0b64-500x500.jpg', 53);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/7c857da93d353fb34310a76156cc0b64-500x500.jpg', 53);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3675ef1b741723109d6cda6f32c342f2-500x500.jpg', 53);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3675ef1b741723109d6cda6f32c342f2-500x500.jpg', 53);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/58cd0e9ee82a7e0e4aff268eff4824cd-500x500.jpg', 54);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/58cd0e9ee82a7e0e4aff268eff4824cd-500x500.jpg', 54);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/dd988a9cbd82b97177298b3471564bb6-500x500.jpg', 54);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/dd988a9cbd82b97177298b3471564bb6-500x500.jpg', 54);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a01f21b2f8cc4305fcab1e53cbedd31b-500x500.jpg', 54);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a01f21b2f8cc4305fcab1e53cbedd31b-500x500.jpg', 54);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/bf4e1fed07684ee1eb934a4be9672ff8-500x500.jpg', 54);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/bf4e1fed07684ee1eb934a4be9672ff8-500x500.jpg', 54);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d08afaaaf81b5ce7fe133d8134df369d-500x500.jpg', 54);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d08afaaaf81b5ce7fe133d8134df369d-500x500.jpg', 54);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/233d940a8275aaaaa211f32d09f6d1cb-500x500.jpg', 55);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/233d940a8275aaaaa211f32d09f6d1cb-500x500.jpg', 55);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a64a63c2311267333a7f60fb98625b1e-500x500.jpg', 55);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a64a63c2311267333a7f60fb98625b1e-500x500.jpg', 55);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/26e627e66adcbac8e9c7a351f780433d-500x500.jpg', 56);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/26e627e66adcbac8e9c7a351f780433d-500x500.jpg', 56);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d8fdf704d82e955190954bdc9ca0efbd-500x500.jpg', 56);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d8fdf704d82e955190954bdc9ca0efbd-500x500.jpg', 56);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/411ac134bc28dfaa59d5790a60edadac-500x500.jpg', 56);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/411ac134bc28dfaa59d5790a60edadac-500x500.jpg', 56);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e8cf559aea6ae934bfea293f3485f13f-500x500.jpg', 56);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e8cf559aea6ae934bfea293f3485f13f-500x500.jpg', 56);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3952ad8ccdc2669e01d1d6bd577608bf-500x500.jpg', 56);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3952ad8ccdc2669e01d1d6bd577608bf-500x500.jpg', 56);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2f32f875f8330e24b6cfae70886bea9b-500x500.jpg', 56);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2f32f875f8330e24b6cfae70886bea9b-500x500.jpg', 56);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5d678210afa6c30f872b8d1777808e50-500x500.jpg', 56);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5d678210afa6c30f872b8d1777808e50-500x500.jpg', 56);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ccd09a7af9246f1328a0ceb78df7b584-500x500.jpg', 56);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ccd09a7af9246f1328a0ceb78df7b584-500x500.jpg', 56);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/72562988638c58caa69ca337a2137135-500x500.jpg', 57);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/72562988638c58caa69ca337a2137135-500x500.jpg', 57);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/0ad9e57b0d207b5cc12f3150deea10a6-500x500.jpg', 57);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/0ad9e57b0d207b5cc12f3150deea10a6-500x500.jpg', 57);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/714e59a58e5ccbe35a4fb893dd60e3cf-500x500.jpg', 57);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/714e59a58e5ccbe35a4fb893dd60e3cf-500x500.jpg', 57);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ea921fa06880e23fb23be7900db26750-500x500.jpg', 57);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ea921fa06880e23fb23be7900db26750-500x500.jpg', 57);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/14f6f3c4720fb02455a38695e57204fa-500x500.jpg', 57);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/14f6f3c4720fb02455a38695e57204fa-500x500.jpg', 57);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/72f28ae5d7cf23847428fb8c3b6bc88c-500x500.jpg', 58);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/72f28ae5d7cf23847428fb8c3b6bc88c-500x500.jpg', 58);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/cd051609d78570bca6a70ab89d74ec2a-500x500.jpg', 58);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/cd051609d78570bca6a70ab89d74ec2a-500x500.jpg', 58);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/28db26aeac1b6eb19edb0d1ba3f3e2b7-500x500.jpg', 58);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/28db26aeac1b6eb19edb0d1ba3f3e2b7-500x500.jpg', 58);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/756c6060e5e8fb65356ee4210f394801-500x500.jpg', 58);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/756c6060e5e8fb65356ee4210f394801-500x500.jpg', 58);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/8f56afd49530fa6d4921f1e4fb0cb5e5-500x500.jpg', 59);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/8f56afd49530fa6d4921f1e4fb0cb5e5-500x500.jpg', 59);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d5ec940b4dc2b317fd38ac6d466734ac-500x500.jpg', 59);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d5ec940b4dc2b317fd38ac6d466734ac-500x500.jpg', 59);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/18b4debcc52e585a89f65ea1e6bb38e3-500x500.jpg', 59);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/18b4debcc52e585a89f65ea1e6bb38e3-500x500.jpg', 59);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/339299aed7598c40ae89a0da6e64c8fe-500x500.jpg', 59);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/339299aed7598c40ae89a0da6e64c8fe-500x500.jpg', 59);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c69145b1bc656fa8aa57e8d8838ad105-500x500.jpg', 60);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c69145b1bc656fa8aa57e8d8838ad105-500x500.jpg', 60);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/411eddf657389bbc9bb77f6819cc2e17-500x500.jpg', 60);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/411eddf657389bbc9bb77f6819cc2e17-500x500.jpg', 60);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2e6eb40334ba122620462e56f5fffb87-500x500.jpg', 60);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2e6eb40334ba122620462e56f5fffb87-500x500.jpg', 60);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5e18b11d797928711e90266e78c7bbc0-500x500.jpg', 60);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5e18b11d797928711e90266e78c7bbc0-500x500.jpg', 60);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5ed1062845fba28668fcfaa62bd2f3a4-500x500.jpg', 60);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5ed1062845fba28668fcfaa62bd2f3a4-500x500.jpg', 60);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/01d90fdddcaabc05ba61940694808c09-500x500.jpg', 60);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/01d90fdddcaabc05ba61940694808c09-500x500.jpg', 60);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/de3fc7204d55526f7db9c8a508e70b83-500x500.jpg', 61);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/de3fc7204d55526f7db9c8a508e70b83-500x500.jpg', 61);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/846ea809e69bf19a66b848fd04eed294-500x500.jpg', 61);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/846ea809e69bf19a66b848fd04eed294-500x500.jpg', 61);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/168f93b2e2e2c52212b04533f8c4c512-500x500.jpg', 61);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/168f93b2e2e2c52212b04533f8c4c512-500x500.jpg', 61);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/22b5136fb5697288b70ef5ccf8e38411-500x500.jpg', 61);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/22b5136fb5697288b70ef5ccf8e38411-500x500.jpg', 61);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/8c61d0f14f9a804cc1cb65d510c80956-500x500.jpg', 61);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/8c61d0f14f9a804cc1cb65d510c80956-500x500.jpg', 61);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e13289adcf67fd50fc9ab0605b573f9f-500x500.jpg', 61);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e13289adcf67fd50fc9ab0605b573f9f-500x500.jpg', 61);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/7204fb86435a63372ae8ce3ffc6b1f72-500x500.jpg', 62);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/7204fb86435a63372ae8ce3ffc6b1f72-500x500.jpg', 62);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a2e61d6f6efe51377e8dc57c7fe9379b-500x500.jpg', 62);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a2e61d6f6efe51377e8dc57c7fe9379b-500x500.jpg', 62);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/b108f1e5c277fd10cb349b60d209f9e9-500x500.jpg', 62);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/b108f1e5c277fd10cb349b60d209f9e9-500x500.jpg', 62);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a1b497d292c2911706a71c2fbb168f6d-500x500.jpg', 62);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a1b497d292c2911706a71c2fbb168f6d-500x500.jpg', 62);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/cf97272e85c65dfbc73ff2b6feb9316e-500x500.jpg', 62);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/cf97272e85c65dfbc73ff2b6feb9316e-500x500.jpg', 62);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/6f7991e3a3b074eb0df9b14743b6e815-500x500.jpg', 62);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/6f7991e3a3b074eb0df9b14743b6e815-500x500.jpg', 62);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/703af03cfdb42fafd3d26d2cf78523cb-500x500.jpg', 62);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/703af03cfdb42fafd3d26d2cf78523cb-500x500.jpg', 62);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/12b749de123eaee4a0686c8b6936d375-500x500.jpg', 62);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/12b749de123eaee4a0686c8b6936d375-500x500.jpg', 62);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/BLU%C6L%FROT-500x500.jpg', 63);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/BLU%C6L%FROT-500x500.jpg', 63);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/BLU-C6L-500x500.jpg', 63);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/BLU-C6L-500x500.jpg', 63);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/BLU-C6L-C0030UU-BLK-4-500x500.jpg', 63);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/BLU-C6L-C0030UU-BLK-4-500x500.jpg', 63);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/6466ca4f6b6abd160f0821ac51a44d86-500x500.jpg', 64);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/6466ca4f6b6abd160f0821ac51a44d86-500x500.jpg', 64);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/f4b3e25ecb345ee64845ae6579b71796-500x500.jpg', 64);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/f4b3e25ecb345ee64845ae6579b71796-500x500.jpg', 64);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3351f40fdc04fd4935a68564ebe0afd1-500x500.jpg', 64);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3351f40fdc04fd4935a68564ebe0afd1-500x500.jpg', 64);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ad2cc4f7eccaa67e0465babd69959f6c-500x500.jpg', 64);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ad2cc4f7eccaa67e0465babd69959f6c-500x500.jpg', 64);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2de0bc1bbb857b876a8f7a823901412a-500x500.jpg', 64);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2de0bc1bbb857b876a8f7a823901412a-500x500.jpg', 64);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/9ea25e04f243d7980ada1111d5d0ad78-500x500.jpg', 64);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/9ea25e04f243d7980ada1111d5d0ad78-500x500.jpg', 64);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/dfbff7c1689ce073d2e16602b8bec417-500x500.jpg', 64);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/dfbff7c1689ce073d2e16602b8bec417-500x500.jpg', 64);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/bc932d028d6d1a8178fbe159b271817a-500x500.jpg', 64);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/bc932d028d6d1a8178fbe159b271817a-500x500.jpg', 64);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e6855205795246089662781c0d00ec94-500x500.jpg', 65);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e6855205795246089662781c0d00ec94-500x500.jpg', 65);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/069c51f75bd199f89775da5fb4319dee-500x500.jpg', 65);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/069c51f75bd199f89775da5fb4319dee-500x500.jpg', 65);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/0c2e67566c4be4e3df91e9b996a8bbb2-500x500.jpg', 65);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/0c2e67566c4be4e3df91e9b996a8bbb2-500x500.jpg', 65);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c0e35cc4dc2df7314a54245a17740928-500x500.jpg', 65);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c0e35cc4dc2df7314a54245a17740928-500x500.jpg', 65);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/f96fa4c804d8910f2e2761420dc7b119-500x500.jpg', 65);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/f96fa4c804d8910f2e2761420dc7b119-500x500.jpg', 65);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/582d1197ca91a47f21d83c5786c26662-500x500.jpg', 65);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/582d1197ca91a47f21d83c5786c26662-500x500.jpg', 65);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1a0b783f79ffda031e958c5ee600cc6e-500x500.jpg', 65);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1a0b783f79ffda031e958c5ee600cc6e-500x500.jpg', 65);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5ab533bc111be70c7d60ad4eb46f4f2a-500x500.jpg', 65);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5ab533bc111be70c7d60ad4eb46f4f2a-500x500.jpg', 65);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3c4a11c13265cb1c5ebf255b359ee51f-500x500.jpg', 66);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3c4a11c13265cb1c5ebf255b359ee51f-500x500.jpg', 66);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/13bd8df0faef049f29ca43c6eb8a6d1b-500x500.jpg', 66);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/13bd8df0faef049f29ca43c6eb8a6d1b-500x500.jpg', 66);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ce99d6b3310698531e7c97bde0b1fe70-500x500.jpg', 66);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ce99d6b3310698531e7c97bde0b1fe70-500x500.jpg', 66);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/8b4d9d62791e27518bd914cacbc29042-500x500.jpg', 66);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/8b4d9d62791e27518bd914cacbc29042-500x500.jpg', 66);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/666d0ebbf0575cf30091b75a1f9676f9-500x500.jpg', 66);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/666d0ebbf0575cf30091b75a1f9676f9-500x500.jpg', 66);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ab9267f056b8bc1fd4d5c16e244765cd-500x500.jpg', 67);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ab9267f056b8bc1fd4d5c16e244765cd-500x500.jpg', 67);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/9564c28aec70d658bdedca9c6e33ffb3-500x500.jpg', 67);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/9564c28aec70d658bdedca9c6e33ffb3-500x500.jpg', 67);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/91c7ff121b2fc4ba797a4511c947c43a-500x500.jpg', 67);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/91c7ff121b2fc4ba797a4511c947c43a-500x500.jpg', 67);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3c9bdc7d71d6b1e2bc5b2c79f14523c0-500x500.jpg', 67);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3c9bdc7d71d6b1e2bc5b2c79f14523c0-500x500.jpg', 67);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c46d4019cfcfc19eb4adee2ceabfae1f-500x500.jpg', 68);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c46d4019cfcfc19eb4adee2ceabfae1f-500x500.jpg', 68);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/05f69411dc67e97e41aef76bf5f3c822-500x500.jpg', 68);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/05f69411dc67e97e41aef76bf5f3c822-500x500.jpg', 68);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/97099de59e6f16f8ac6a5a574e9ffcf4-500x500.jpg', 68);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/97099de59e6f16f8ac6a5a574e9ffcf4-500x500.jpg', 68);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/6585de50e32532a74abf20908a5c1a3e-500x500.jpg', 68);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/6585de50e32532a74abf20908a5c1a3e-500x500.jpg', 68);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/0ea2a30bd73c50f444cf919c2a467aaa-500x500.jpg', 68);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/0ea2a30bd73c50f444cf919c2a467aaa-500x500.jpg', 68);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/16163c8177474f8b77fc2e7631587f57-500x500.jpg', 68);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/16163c8177474f8b77fc2e7631587f57-500x500.jpg', 68);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/AX1077%Black%(2)-500x500.jpg', 69);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/AX1077%Black%(2)-500x500.jpg', 69);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/AX1077%Black%(3)-500x500.jpg', 69);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/AX1077%Black%(3)-500x500.jpg', 69);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/AX1077%Black%(4)-500x500.jpg', 69);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/AX1077%Black%(4)-500x500.jpg', 69);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/AX1077%Black%(5)-500x500.jpg', 69);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/AX1077%Black%(5)-500x500.jpg', 69);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/AX1077%Black%(6)-500x500.jpg', 69);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/AX1077%Black%(6)-500x500.jpg', 69);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/AX1077%Black%(1)-500x500.jpg', 69);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/AX1077%Black%(1)-500x500.jpg', 69);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5bb6fde0ace07364eda404e09b8dfc0d-500x500.jpg', 70);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5bb6fde0ace07364eda404e09b8dfc0d-500x500.jpg', 70);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5d64b16f62697999c6ac233798bc159e-500x500.jpg', 70);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5d64b16f62697999c6ac233798bc159e-500x500.jpg', 70);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/cd523c7a3dfa99ee880a2d5ee3750dca-500x500.jpg', 70);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/cd523c7a3dfa99ee880a2d5ee3750dca-500x500.jpg', 70);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/7362b8001b9c36e7defce789b241be18-500x500.jpg', 70);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/7362b8001b9c36e7defce789b241be18-500x500.jpg', 70);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/88b212902895bd6f1f790ed76a2ff1d8-500x500.jpg', 70);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/88b212902895bd6f1f790ed76a2ff1d8-500x500.jpg', 70);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/blu-c6%AZUL-500x500.jpg', 71);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/blu-c6%AZUL-500x500.jpg', 71);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/BLU-C6L-AZUL-500x500.jpg', 71);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/BLU-C6L-AZUL-500x500.jpg', 71);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/BLU-C6L-BLUE-500x500.jpg', 71);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/BLU-C6L-BLUE-500x500.jpg', 71);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/TAB-HYUNDAI-KORAL10%1-500x500.jpg', 72);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/TAB-HYUNDAI-KORAL10%1-500x500.jpg', 72);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/TAB-HYUNDAI-KORAL10%2-500x500.jpg', 72);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/TAB-HYUNDAI-KORAL10%2-500x500.jpg', 72);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/TAB-HYUNDAI-KORAL10%3-500x500.jpg', 72);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/TAB-HYUNDAI-KORAL10%3-500x500.jpg', 72);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/TAB-HYUNDAI-KORAL10%4-500x500.jpg', 72);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/TAB-HYUNDAI-KORAL10%4-500x500.jpg', 72);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/636eed3d690b997691119f5c8ea914ba-500x500.jpg', 73);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/636eed3d690b997691119f5c8ea914ba-500x500.jpg', 73);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5d2ff0b3c5c3d06999f8fb16f021a6e2-500x500.jpg', 73);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5d2ff0b3c5c3d06999f8fb16f021a6e2-500x500.jpg', 73);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a722b60e829dbe0ab962aeab2ecaab08-500x500.jpg', 73);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a722b60e829dbe0ab962aeab2ecaab08-500x500.jpg', 73);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d9496c0500d0d7d9afbc60f4c6f77505-500x500.jpg', 73);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d9496c0500d0d7d9afbc60f4c6f77505-500x500.jpg', 73);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/7a9aa197ad56bc87b5233eda797e869b-500x500.jpg', 73);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/7a9aa197ad56bc87b5233eda797e869b-500x500.jpg', 73);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1e1f099ad345108dde3d1457d97cbf00-500x500.jpg', 73);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1e1f099ad345108dde3d1457d97cbf00-500x500.jpg', 73);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c301cb2f6e9821271134037a7f899d67-500x500.jpg', 73);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c301cb2f6e9821271134037a7f899d67-500x500.jpg', 73);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e1342b5a582101b9816df1d9b5766597-500x500.jpg', 74);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e1342b5a582101b9816df1d9b5766597-500x500.jpg', 74);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/08c506ba550c0ff5261fde115b86e631-500x500.jpg', 74);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/08c506ba550c0ff5261fde115b86e631-500x500.jpg', 74);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/40daa06557c903d8f5503cbec9748c6c-500x500.jpg', 74);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/40daa06557c903d8f5503cbec9748c6c-500x500.jpg', 74);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/f9e0910e64b0f0fea7f6342a91f7d54a-500x500.jpg', 74);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/f9e0910e64b0f0fea7f6342a91f7d54a-500x500.jpg', 74);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/72c7acc9e603fe64f5845aca364465e2-500x500.jpg', 74);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/72c7acc9e603fe64f5845aca364465e2-500x500.jpg', 74);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/454437a4fe020e8b77627be9bc38f3dc-500x500.jpg', 74);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/454437a4fe020e8b77627be9bc38f3dc-500x500.jpg', 74);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a9f4e69df00c27dd058c64b4c55ec47a-500x500.jpg', 75);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a9f4e69df00c27dd058c64b4c55ec47a-500x500.jpg', 75);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1de58660c52087ebcb3cc990dccda348-500x500.jpg', 75);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1de58660c52087ebcb3cc990dccda348-500x500.jpg', 75);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e9293a9b043bc64a0c5eada9d6ea5971-500x500.jpg', 75);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e9293a9b043bc64a0c5eada9d6ea5971-500x500.jpg', 75);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5760aefcdf3bd77bf9b51e8b52e1cbb3-500x500.jpg', 75);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5760aefcdf3bd77bf9b51e8b52e1cbb3-500x500.jpg', 75);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a7c57e3dc736e579247ee0532cc35501-500x500.jpg', 75);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a7c57e3dc736e579247ee0532cc35501-500x500.jpg', 75);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/582908f757093421843c923e99542e2b-500x500.jpg', 75);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/582908f757093421843c923e99542e2b-500x500.jpg', 75);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/0b012394efdb2c02a9b5ac0e32808803-500x500.jpg', 75);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/0b012394efdb2c02a9b5ac0e32808803-500x500.jpg', 75);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3b02cdcafdaac9c889510ded7c72326b-500x500.jpg', 75);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3b02cdcafdaac9c889510ded7c72326b-500x500.jpg', 75);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/44f042b84fed2a595bb1df937d436103-500x500.jpg', 76);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/44f042b84fed2a595bb1df937d436103-500x500.jpg', 76);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c3dc90df6d50a8c341f4d7b9c5d3a228-500x500.jpg', 76);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c3dc90df6d50a8c341f4d7b9c5d3a228-500x500.jpg', 76);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/f0410b48f86da07071c2eb4a8b5b783b-500x500.jpg', 76);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/f0410b48f86da07071c2eb4a8b5b783b-500x500.jpg', 76);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/6266d0416d3e43014f3087a62ff6cbf6-500x500.jpg', 76);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/6266d0416d3e43014f3087a62ff6cbf6-500x500.jpg', 76);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e4332403fb5114c7011dd2a26b68e48f-500x500.jpg', 77);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e4332403fb5114c7011dd2a26b68e48f-500x500.jpg', 77);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3b9f391d60f7ac6722d7469d51e21648-500x500.jpg', 77);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3b9f391d60f7ac6722d7469d51e21648-500x500.jpg', 77);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/b6fc89939fe9f66b421ead18cd38bb73-500x500.jpg', 77);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/b6fc89939fe9f66b421ead18cd38bb73-500x500.jpg', 77);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/7f4a14afa4c63f015c76e7dbdeb96c4d-500x500.jpg', 78);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/7f4a14afa4c63f015c76e7dbdeb96c4d-500x500.jpg', 78);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/97c0ffb5499aa6997b18837cf7f3ea39-500x500.jpg', 78);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/97c0ffb5499aa6997b18837cf7f3ea39-500x500.jpg', 78);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/65d7c26aac661a6b066ac8563929d857-500x500.jpg', 78);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/65d7c26aac661a6b066ac8563929d857-500x500.jpg', 78);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/5f9878de2c31552531d374f7d36cc07a-500x500.jpg', 78);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/5f9878de2c31552531d374f7d36cc07a-500x500.jpg', 78);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c8563a5ed4289f8fba6f0a7615b1a921-500x500.jpg', 78);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c8563a5ed4289f8fba6f0a7615b1a921-500x500.jpg', 78);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/012dee6c3cca81ac29f5851ca49fd50f-500x500.jpg', 78);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/012dee6c3cca81ac29f5851ca49fd50f-500x500.jpg', 78);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e0c8aeb1bbbfc91d77d23c12dcd830d8-500x500.jpg', 79);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e0c8aeb1bbbfc91d77d23c12dcd830d8-500x500.jpg', 79);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3822e18395ec028cd80e57d4c6b4fc7a-500x500.jpg', 79);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3822e18395ec028cd80e57d4c6b4fc7a-500x500.jpg', 79);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/02a7714dd7909dcf52ddc53dc81965e3-500x500.jpg', 79);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/02a7714dd7909dcf52ddc53dc81965e3-500x500.jpg', 79);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a346f33601a7877a38eb6080f434050a-500x500.jpg', 79);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a346f33601a7877a38eb6080f434050a-500x500.jpg', 79);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/b2152ab37131cfa9b74d5b2ceb083a36-500x500.jpg', 80);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/b2152ab37131cfa9b74d5b2ceb083a36-500x500.jpg', 80);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c8f60a2dc4cf01c2b15665c654a6f581-500x500.jpg', 80);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c8f60a2dc4cf01c2b15665c654a6f581-500x500.jpg', 80);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/e5ff464d2f7ad774d3a36578cc4da277-500x500.jpg', 80);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/e5ff464d2f7ad774d3a36578cc4da277-500x500.jpg', 80);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/fc3cd5c098dd1663fa8db59c742085f2-500x500.jpg', 80);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/fc3cd5c098dd1663fa8db59c742085f2-500x500.jpg', 80);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1f7039ff9c863599129551b5bfc762be-500x500.jpg', 80);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1f7039ff9c863599129551b5bfc762be-500x500.jpg', 80);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/0000002222-tablet-500x500.jpg', 81);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/0000002222-tablet-500x500.jpg', 81);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/2797b22aee04e80468c3339d1f94f58d-500x500.jpg', 82);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/2797b22aee04e80468c3339d1f94f58d-500x500.jpg', 82);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1b3ae1ca8d2e2e3fc077d6ff0845fbc1-500x500.jpg', 82);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1b3ae1ca8d2e2e3fc077d6ff0845fbc1-500x500.jpg', 82);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/16b5fe7ca48ae5c0b7c350aca111c9dd-500x500.jpg', 82);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/16b5fe7ca48ae5c0b7c350aca111c9dd-500x500.jpg', 82);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/34b3b8d119fc0f7d3484b9059d76af27-500x500.jpg', 82);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/34b3b8d119fc0f7d3484b9059d76af27-500x500.jpg', 82);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a1fd7d35da0a1d7aff3e16f4e6641f23-500x500.jpg', 83);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a1fd7d35da0a1d7aff3e16f4e6641f23-500x500.jpg', 83);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/92f748d65c214944bc9fc998d1ff192e-500x500.jpg', 83);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/92f748d65c214944bc9fc998d1ff192e-500x500.jpg', 83);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/644902784115300c0ecbc25262bb700a-500x500.jpg', 83);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/644902784115300c0ecbc25262bb700a-500x500.jpg', 83);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/TAB-HYUNDAI-KORAL%1-500x500.jpg', 84);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/TAB-HYUNDAI-KORAL%1-500x500.jpg', 84);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/TAB-HYUNDAI-KORAL%2-500x500.jpg', 84);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/TAB-HYUNDAI-KORAL%2-500x500.jpg', 84);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/TAB-HYUNDAI-KORAL%3-500x500.jpg', 84);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/TAB-HYUNDAI-KORAL%3-500x500.jpg', 84);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1665aacaa8ed207395c3cb6e4a1f8b8e-500x500.jpg', 85);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1665aacaa8ed207395c3cb6e4a1f8b8e-500x500.jpg', 85);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/cf32ede0d478f387829423ceaa3a4187-500x500.jpg', 85);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/cf32ede0d478f387829423ceaa3a4187-500x500.jpg', 85);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a8c991455aa2592265577a75dea2d852-500x500.jpg', 85);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a8c991455aa2592265577a75dea2d852-500x500.jpg', 85);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1c668e0f6e6cd98ec7be5eb33c021665-500x500.jpg', 85);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1c668e0f6e6cd98ec7be5eb33c021665-500x500.jpg', 85);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/09b2ccffae757ef06e45b4496f3395c8-500x500.jpg', 86);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/09b2ccffae757ef06e45b4496f3395c8-500x500.jpg', 86);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c3d9ceed76f1e6d7db4262af8fcd82b7-500x500.jpg', 86);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c3d9ceed76f1e6d7db4262af8fcd82b7-500x500.jpg', 86);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/a64f61760f9760144910011dfa093a5d-500x500.jpg', 86);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/a64f61760f9760144910011dfa093a5d-500x500.jpg', 86);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1894084f7c4684f32f203ccba3cdec51-500x500.jpg', 86);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1894084f7c4684f32f203ccba3cdec51-500x500.jpg', 86);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/abe3476a1d777ea4098bba64e8b22ae7-500x500.jpg', 87);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/abe3476a1d777ea4098bba64e8b22ae7-500x500.jpg', 87);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/33e662b072f992bf718d67f2a7f0a171-500x500.jpg', 87);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/33e662b072f992bf718d67f2a7f0a171-500x500.jpg', 87);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/4c80799b77cd27a82d0f64a915d36bea-500x500.jpg', 87);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/4c80799b77cd27a82d0f64a915d36bea-500x500.jpg', 87);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ce350b26a6fd50f8fd44e68f68e94e1a-500x500.jpg', 87);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ce350b26a6fd50f8fd44e68f68e94e1a-500x500.jpg', 87);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d39c28850a6b95218cfa3a28bf0ea1af-500x500.jpg', 87);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d39c28850a6b95218cfa3a28bf0ea1af-500x500.jpg', 87);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/3296362f15340a68d35b33b0571a3445-500x500.jpg', 87);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/3296362f15340a68d35b33b0571a3445-500x500.jpg', 87);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/1ea6e0833150d325c9043e01cf6d2e9b-500x500.jpg', 88);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/1ea6e0833150d325c9043e01cf6d2e9b-500x500.jpg', 88);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/d660e379ccc142e6c4cbe4e58ac14930-500x500.jpg', 88);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/d660e379ccc142e6c4cbe4e58ac14930-500x500.jpg', 88);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/b0694b50fe50e6b1ad2f1bb9eaa893d9-500x500.jpg', 88);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/b0694b50fe50e6b1ad2f1bb9eaa893d9-500x500.jpg', 88);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/68c2cee18669be6bf5ed7db218afb744-500x500.jpg', 88);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/68c2cee18669be6bf5ed7db218afb744-500x500.jpg', 88);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/ea11b5a1ec8c856b17b89315275df8dc-500x500.jpg', 88);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/ea11b5a1ec8c856b17b89315275df8dc-500x500.jpg', 88);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/galaxy%tab-500x500.jpg', 89);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/galaxy%tab-500x500.jpg', 89);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/f3768571b6da0ef3671dd3d442028ea5-500x500.jpg', 90);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/f3768571b6da0ef3671dd3d442028ea5-500x500.jpg', 90);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/c837ee1c53fe8f0d7e5932dab54daae8-500x500.jpg', 90);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/c837ee1c53fe8f0d7e5932dab54daae8-500x500.jpg', 90);
           
 
-          INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
-          ('/media/9badc85e1f201295f875d0271de09f2f-500x500.jpg', 90);
+--           INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
+--           ('/media/9badc85e1f201295f875d0271de09f2f-500x500.jpg', 90);
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
