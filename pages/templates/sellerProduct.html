@@ -124,7 +124,30 @@
         {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Launch demo modal
         </button>  {% endcomment %}
+    
+       <!-- Modal -->
+    <div class="modal fade" id="modalDeleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header alert alert-danger" role="alert">
+                <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5> 
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-text-content">
+
+            
+            </div>
+            <div class="modal-footer">
+                <div id="ghost-product-modal"></div> <!-- Este div es un secreto. uwu -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn btn-danger" onclick="deleteProduct(this)">Aceptar</button>
+            </div>
+            </div>
+        </div>
+    </div> 
 
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'js/jquery/jquery.min.js' %}"></script>

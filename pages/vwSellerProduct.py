@@ -31,10 +31,6 @@ class SellerProduct:
 
     """
         Lista de productos del vendedor
-        Permite: 
-            - Editar un producto 
-            - Dar de baja (Eliminar)
-            - Actualizar un producto
     """
     @csrf_exempt
     def listProductPublisher(self, request):
@@ -73,33 +69,31 @@ class SellerProduct:
 
 
     """
-        Permite: 
-            - Editar un producto 
-            - Dar de baja (Eliminar)
-            - Actualizar un producto
+        Dar de baja a un producto seleccionado por el publicador
     """
     @csrf_exempt
-    def listProductSeller(self, request):
-        
-        print("ESTA ES MI URL: ", request.POST.get('url'))
-        idSeller = int( request.POST.get('url').replace('seller', '').split('-')[0] ) #Vendedor
+    def deleteProductPublisher(self, request):
+
+        print(request.POST)
+
+        idProduct = int( request.POST.get('idProduct') )
 
         if request.method:
 
+            # '0': producto dado de baja
+            sql = """
+            UPDATE ARTICULO 
+            SET publicado = 0
+            WHERE id_articulo = %s 
+            """%( idProduct )
+
             try:
-                
-                sellerProducts = self.engine.getPublishedProductsByEmail(
-                                                                            email=
-                                                                            self.engine.getUserEmailByID(id=idSeller) 
-                                                                    )
-                raiting = self.engine.raiting(idSeller)
+                self.engine.dms(sql=sql)                
                 
                 return HttpResponse(
                         json.dumps(
                                 {
                                     'status':'Success', 
-                                    'raiting': raiting,
-                                    'product': processDataProduct(sellerProducts), 
                                 }
                             ),
                             content_type="application/json"
@@ -107,8 +101,6 @@ class SellerProduct:
 
             except Exception as e:
                 return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
-            #else:
-            #    return HttpResponse(json.dumps({'status':'Empty', 'errorMessage':'No se encontro el usuario'}),content_type="application/json")
         else:
             return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 

@@ -181,7 +181,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (13, 'Laptop Dell Inspiron 15" Intel Core i7 Memoria RAM 8GB/ SSD 512 Gris', 30995.0, 'Laptop de 15" que es su centro de entretenimiento en el hogar personal para una visualización envolvente, con un borde angosto y procesador Intel Core i7 1065-G7 10a. Gen (4 núcleos 6MB, 3.90MHz)', 0, 14, 27, 3913, 3, 9);
+    (13, 'Laptop Dell Inspiron 15" Intel Core i7 Memoria RAM 8GB/ SSD 512 Gris', 30995.0, 'Laptop de 15" que es su centro de entretenimiento en el hogar personal para una visualización envolvente, con un borde angosto y procesador Intel Core i7 1065-G7 10a. Gen (4 núcleos 6MB, 3.90MHz)', 1, 14, 27, 3913, 3, 9);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -213,7 +213,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (21, 'Laptop Dell Inspiron 15" Intel Core i3 Memoria RAM 4GB/ Disco Duro 1TB Negra', 16995.0, 'Laptop de 15 pulgadas que ofrece un rendimiento con capacidad de respuesta en un diseño elegante con bordes angostos de dos lados, ExpressCharge, y procesadores Intel Core.', 0, 10, 7, 1155, 5, 11);
+    (21, 'Laptop Dell Inspiron 15" Intel Core i3 Memoria RAM 4GB/ Disco Duro 1TB Negra', 16995.0, 'Laptop de 15 pulgadas que ofrece un rendimiento con capacidad de respuesta en un diseño elegante con bordes angostos de dos lados, ExpressCharge, y procesadores Intel Core.', 1, 10, 7, 1155, 5, 11);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -225,16 +225,16 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (24, 'Laptop Dell G7 17" Intel Core i7 Memoria RAM 16GB/ SSD 512GB Negra', 58995.0, 'La nueva Dell G7 DELL-G7-7700-(I7) Laptop para juegos de 7 pulgadas con diseño delgado y elegante, procesadores Intel Core de décima generación, gráficos discretos, tecnología Game Shift y teclado RGB de 4 zonas.<span class="redactor-invisible-space"></span>', 0, 11, 11, 8000, 9, 1);
+    (24, 'Laptop Dell G7 17" Intel Core i7 Memoria RAM 16GB/ SSD 512GB Negra', 58995.0, 'La nueva Dell G7 DELL-G7-7700-(I7) Laptop para juegos de 7 pulgadas con diseño delgado y elegante, procesadores Intel Core de décima generación, gráficos discretos, tecnología Game Shift y teclado RGB de 4 zonas.<span class="redactor-invisible-space"></span>', 1, 11, 11, 8000, 9, 1);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria,
     fk_usuario) VALUES
-    (25, 'Monitor Gaming Dell  23.6"', 4995.0, 'Experimente una transmisión de alta calidad y alta velocidad en este elegante monitor Full HD.', 0, 12, 25, 151, 7, 1);
+    (25, 'Monitor Gaming Dell  23.6"', 4995.0, 'Experimente una transmisión de alta calidad y alta velocidad en este elegante monitor Full HD.', 1, 12, 25, 151, 7, 1);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (26, 'Dell Monitor 27" VGA y HDMI', 6994.99, 'Un monitor de 27 "mejora el flujo de trabajo diario. Cuenta con una base de altura regulable, resolución Full HD y altavoces integrados en un diseño que ahorra espacio.', 0, 16, 20, 5428, 4, 10);
+    (26, 'Dell Monitor 27" VGA y HDMI', 6994.99, 'Un monitor de 27 "mejora el flujo de trabajo diario. Cuenta con una base de altura regulable, resolución Full HD y altavoces integrados en un diseño que ahorra espacio.', 1, 16, 20, 5428, 4, 10);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -246,20 +246,20 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (29, 'Monitor HP 27" Ultraslim FHD', 6495.0, 'Obtenga la calidad de imagen nítida que desea con esta pantalla ultradelgada de microbordes, con un llamativo diseño de aluminio y ángulos de visión ultraanchos envolventes. Desde la exploración de contenido hasta la transmisión de entretenimiento, le permite ver su mundo de una manera completamente nueva.', 0, 13, 30, 8926, 7, 4);
+    (29, 'Monitor HP 27" Ultraslim FHD', 6495.0, 'Obtenga la calidad de imagen nítida que desea con esta pantalla ultradelgada de microbordes, con un llamativo diseño de aluminio y ángulos de visión ultraanchos envolventes. Desde la exploración de contenido hasta la transmisión de entretenimiento, le permite ver su mundo de una manera completamente nueva.', 1, 13, 30, 8926, 7, 4);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria,
     fk_usuario) VALUES
-    (30, 'Monitor HP 23.8" FHD 1920 x 1080', 5195.0, 'Obtén la calidad de imagen nítida que anhelas gracias a esta pantalla de microborde ultradelgada que cuenta con un atractivo diseño en aluminio e inmersivos ángulos de visualización muy amplios. Desde la navegación de contenido a la retransmisión de ocio, te permite ver el mundo de una forma totalmente nueva.', 0, 6, 1, 9409, 8, 7);
+    (30, 'Monitor HP 23.8" FHD 1920 x 1080', 5195.0, 'Obtén la calidad de imagen nítida que anhelas gracias a esta pantalla de microborde ultradelgada que cuenta con un atractivo diseño en aluminio e inmersivos ángulos de visualización muy amplios. Desde la navegación de contenido a la retransmisión de ocio, te permite ver el mundo de una forma totalmente nueva.', 1, 6, 1, 9409, 8, 7);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (31, 'Monitor Dell 21.5" FHD', 4195.0, 'Vea imágenes, videos y archivos claramente en este monitor Full HD de 21,5" con cubiertas delgadas encima de una base compacta y que le ahorra espacio', 0, 4, 10, 2136, 10, 1);
+    (31, 'Monitor Dell 21.5" FHD', 4195.0, 'Vea imágenes, videos y archivos claramente en este monitor Full HD de 21,5" con cubiertas delgadas encima de una base compacta y que le ahorra espacio', 1, 4, 10, 2136, 10, 1);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (32, 'Disco Duro Externo Seagate 2 TB Negro', 3595.0, 'Almacene y acceda fácilmente a 2 TB de contenido sobre la marcha, con Seagate Expansion Portable. Diseñado para trabajar con computadoras Windows, este disco duro externo compacto hace que la copia de seguridad sea muy fácil. ¡Solo arrastra y suelta! Para configurarlo, conecte el disco duro portátil a una computadora para el reconocimiento automático (no se requiere software) y disfrute de la simplicidad plug-and-play con el cable USB 3.0 de 18 pulgadas incluido.', 0, 10, 6, 8325, 2, 1);
+    (32, 'Disco Duro Externo Seagate 2 TB Negro', 3595.0, 'Almacene y acceda fácilmente a 2 TB de contenido sobre la marcha, con Seagate Expansion Portable. Diseñado para trabajar con computadoras Windows, este disco duro externo compacto hace que la copia de seguridad sea muy fácil. ¡Solo arrastra y suelta! Para configurarlo, conecte el disco duro portátil a una computadora para el reconocimiento automático (no se requiere software) y disfrute de la simplicidad plug-and-play con el cable USB 3.0 de 18 pulgadas incluido.', 1, 10, 6, 8325, 2, 1);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -267,7 +267,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (34, 'Protector de Corriente Forza 12 salidas/ Blanco', 1395.0, 'La serie de protectores contra sobretensiones Forza Home Theater SP ofrece protección confiable contra sobretensiones y picos para proteger sus electrodomésticos, equipos audiovisuales y dispositivos electrónicos sensibles. La serie SP combina capacidades de ahorro de energía con las mejores clasificaciones de protección contra sobretensiones de su clase. Su configuración de diseño de zócalo única es versátil y conveniente. ', 0, 17, 23, 6701, 6, 8);
+    (34, 'Protector de Corriente Forza 12 salidas/ Blanco', 1395.0, 'La serie de protectores contra sobretensiones Forza Home Theater SP ofrece protección confiable contra sobretensiones y picos para proteger sus electrodomésticos, equipos audiovisuales y dispositivos electrónicos sensibles. La serie SP combina capacidades de ahorro de energía con las mejores clasificaciones de protección contra sobretensiones de su clase. Su configuración de diseño de zócalo única es versátil y conveniente. ', 1, 17, 23, 6701, 6, 8);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -275,7 +275,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (36, 'MOUSE KLIP INALAMBRICO 2.4GHZ ROJO', 395.0, 'El KMW-356 combina perfectamente la libertad de trabajar sin cables con la tecnología inalámbrica de 2.4 GHz. Equipado con un sensor óptico de alta definición, ofrece mayor sensibilidad, un seguimiento uniforme así como el control preciso del cursor. Cuenta con un receptor ultracompacto que se puede guardar convenientemente en la parte inferior del mouse o dejarlo conectado en la computador portátil cuando te encuentras en movimiento. ', 0, 6, 27, 3292, 6, 3);
+    (36, 'MOUSE KLIP INALAMBRICO 2.4GHZ ROJO', 395.0, 'El KMW-356 combina perfectamente la libertad de trabajar sin cables con la tecnología inalámbrica de 2.4 GHz. Equipado con un sensor óptico de alta definición, ofrece mayor sensibilidad, un seguimiento uniforme así como el control preciso del cursor. Cuenta con un receptor ultracompacto que se puede guardar convenientemente en la parte inferior del mouse o dejarlo conectado en la computador portátil cuando te encuentras en movimiento. ', 1, 6, 27, 3292, 6, 3);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -291,7 +291,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (40, 'Maxell Mouse Inalámbrico Mowl C Negro', 495.0, 'Compatible con MAC y PC, nano antena de conexión automática de 2.4 GHz., diseño ergonómico, bajo consumo de energía. Cada click de un mouse puede producir hasta 48 decibeles lo cual contribuye con la contaminación sonora de oficina. Con el Silent Click Mouse bajas considerablemente el sonido en ambientes de trabajo o en el hogar.', 0, 1, 30, 2219, 2, 12);
+    (40, 'Maxell Mouse Inalámbrico Mowl C Negro', 495.0, 'Compatible con MAC y PC, nano antena de conexión automática de 2.4 GHz., diseño ergonómico, bajo consumo de energía. Cada click de un mouse puede producir hasta 48 decibeles lo cual contribuye con la contaminación sonora de oficina. Con el Silent Click Mouse bajas considerablemente el sonido en ambientes de trabajo o en el hogar.', 1, 1, 30, 2219, 2, 12);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -303,11 +303,11 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (43, 'Dell Mochila Esencial 15" Negra', 795.0, 'Diseñada con impresiones reflectantes en el panel frontal, la mochila Dell Essential 15 (ES1520P) se destaca en condiciones de poca luz cuando recibe luz directa, lo que lo hace más visible.', 0, 17, 25, 3593, 3, 11);
+    (43, 'Dell Mochila Esencial 15" Negra', 795.0, 'Diseñada con impresiones reflectantes en el panel frontal, la mochila Dell Essential 15 (ES1520P) se destaca en condiciones de poca luz cuando recibe luz directa, lo que lo hace más visible.', 1, 17, 25, 3593, 3, 11);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (44, 'MOUSE KLIP INALAMBRICO 2.4GHZ NEGRO', 395.0, 'El KMW-356 combina perfectamente la libertad de trabajar sin cables con la tecnología inalámbrica de 2.4 GHz. Equipado con un sensor óptico de alta definición, ofrece mayor sensibilidad, un seguimiento uniforme así como el control preciso del cursor. Cuenta con un receptor ultracompacto que se puede guardar convenientemente en la parte inferior del mouse o dejarlo conectado en la computador portátil cuando te encuentras en movimiento. ', 0, 1, 27, 3841, 6, 9);
+    (44, 'MOUSE KLIP INALAMBRICO 2.4GHZ NEGRO', 395.0, 'El KMW-356 combina perfectamente la libertad de trabajar sin cables con la tecnología inalámbrica de 2.4 GHz. Equipado con un sensor óptico de alta definición, ofrece mayor sensibilidad, un seguimiento uniforme así como el control preciso del cursor. Cuenta con un receptor ultracompacto que se puede guardar convenientemente en la parte inferior del mouse o dejarlo conectado en la computador portátil cuando te encuentras en movimiento. ', 1, 1, 27, 3841, 6, 9);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -323,7 +323,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (48, 'Dell Mouse Inalámbrico Negro', 695.0, 'El mouse óptico inalámbrico WM126 de Dell le ofrece un rendimiento inalámbrico diario con una excelente duración de la batería.', 0, 17, 34, 9797, 10, 6);
+    (48, 'Dell Mouse Inalámbrico Negro', 695.0, 'El mouse óptico inalámbrico WM126 de Dell le ofrece un rendimiento inalámbrico diario con una excelente duración de la batería.', 1, 17, 34, 9797, 10, 6);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -351,11 +351,11 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (55, 'Xiaomi Redmi 9 RAM 4GB/ 64GB Gris', 4995.0, 'El Xiaomi Redmi 9 posee el novedoso sistema operativo Android 10 que incorpora respuestas inteligentes y acciones sugeridas para todas tus aplicaciones. Entre sus diversas funcionalidades encontrarás el tema oscuro y navegación por gestos.<span></span>', 0, 1, 27, 5448, 3, 4);
+    (55, 'Xiaomi Redmi 9 RAM 4GB/ 64GB Gris', 4995.0, 'El Xiaomi Redmi 9 posee el novedoso sistema operativo Android 10 que incorpora respuestas inteligentes y acciones sugeridas para todas tus aplicaciones. Entre sus diversas funcionalidades encontrarás el tema oscuro y navegación por gestos.<span></span>', 1, 1, 27, 5448, 3, 4);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (56, 'LG K71 RAM 4GB/ 128GB Gris', 9395.0, 'Exprésale al mundo quién eres con el nuevo LG K71, el dispositivo que mejora tu #VidaCreativa y todas tus formas de vivirla. Ya sea que experimentes, crees o compartas contenido, LG K71 te da un potencial ilimitado aunque tengas un presupuesto limitado. ', 0, 3, 16, 1435, 3, 13);
+    (56, 'LG K71 RAM 4GB/ 128GB Gris', 9395.0, 'Exprésale al mundo quién eres con el nuevo LG K71, el dispositivo que mejora tu #VidaCreativa y todas tus formas de vivirla. Ya sea que experimentes, crees o compartas contenido, LG K71 te da un potencial ilimitado aunque tengas un presupuesto limitado. ', 1, 3, 16, 1435, 3, 13);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -375,7 +375,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (61, 'Huawei P40 Lite RAM 6GB/ 128GB Negro', 7994.99, 'El diseño de HUAWEI P40 lite enfatiza lo esencial, sin trucos innecesarios. El cuerpo tiene un diseño curvo de cuatro lados, por lo que se siente tan bien como se ve. La cámara frontal se encuentra dentro de la pantalla HUAWEI Punch FullView de 6,4 ", por lo que se aprovecha al máximo el espacio, solo pantalla para tu disfrute. ', 0, 18, 41, 8671, 3, 12);
+    (61, 'Huawei P40 Lite RAM 6GB/ 128GB Negro', 7994.99, 'El diseño de HUAWEI P40 lite enfatiza lo esencial, sin trucos innecesarios. El cuerpo tiene un diseño curvo de cuatro lados, por lo que se siente tan bien como se ve. La cámara frontal se encuentra dentro de la pantalla HUAWEI Punch FullView de 6,4 ", por lo que se aprovecha al máximo el espacio, solo pantalla para tu disfrute. ', 1, 18, 41, 8671, 3, 12);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -383,15 +383,15 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (63, 'BLU C6L RAM 1GB/ 16GB Negro', 2295.0, 'BLU C6L combina el elemento más fundamental del diseño con una estética de buen gusto para formar una de las imágenes de marca más icónicas. El patrón adorna la tapa de la batería para una excelente experiencia de mano junto con herramientas de líneas de decoración pulidas para una imagen atractiva. ', 0, 12, 34, 5248, 2, 13);
+    (63, 'BLU C6L RAM 1GB/ 16GB Negro', 2295.0, 'BLU C6L combina el elemento más fundamental del diseño con una estética de buen gusto para formar una de las imágenes de marca más icónicas. El patrón adorna la tapa de la batería para una excelente experiencia de mano junto con herramientas de líneas de decoración pulidas para una imagen atractiva. ', 1, 12, 34, 5248, 2, 13);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (64, 'LG K22 RAM 2GB/ 32GB Gris', 2995.0, 'Espléndidas fotos de cosas pequeñascon el LG K22. Toma fotos elaboradas de mascotas, gotas de lluvia o pétalos de flores sin tener que hacer zoom. La distancia focal mínima de 4cm de la cámara macro te mantiene totalmente enfocado incluso al estar extremadamente cerca.', 0, 17, 20, 3326, 2, 1);
+    (64, 'LG K22 RAM 2GB/ 32GB Gris', 2995.0, 'Espléndidas fotos de cosas pequeñascon el LG K22. Toma fotos elaboradas de mascotas, gotas de lluvia o pétalos de flores sin tener que hacer zoom. La distancia focal mínima de 4cm de la cámara macro te mantiene totalmente enfocado incluso al estar extremadamente cerca.', 1, 17, 20, 3326, 2, 1);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (65, 'Samsung Galaxy A12 RAM 4GB/ 64GB Azul', 4695.0, 'Expande tu vista a la pantalla Infinity-V de 6.5 pulgadas del Galaxy A12 y ve lo que se has estado perdiendo. Gracias a la tecnología HD +, tu contenido diario se ve nítido y claro. Galaxy A12 combina una estética de diseño aerodinámico con colores clásicos. Las curvas refinadas lo hacen cómodo de sostener y brindan una fácil navegación por la pantalla.', 0, 3, 41, 3481, 2, 2);
+    (65, 'Samsung Galaxy A12 RAM 4GB/ 64GB Azul', 4695.0, 'Expande tu vista a la pantalla Infinity-V de 6.5 pulgadas del Galaxy A12 y ve lo que se has estado perdiendo. Gracias a la tecnología HD +, tu contenido diario se ve nítido y claro. Galaxy A12 combina una estética de diseño aerodinámico con colores clásicos. Las curvas refinadas lo hacen cómodo de sostener y brindan una fácil navegación por la pantalla.', 1, 3, 41, 3481, 2, 2);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -403,19 +403,19 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (68, 'Samsung Galaxy S20 FE RAM 6GB/ 128GB Verde', 19995.0, 'Este es el teléfono hecho para personas que lo quieren todo. Está repleto de funciones hechas a medida para fanáticos de todo tipo, ya sea que te guste la fotografía, los juegos o llenar tu feed con todo lo que te inspira. Este es el teléfono que deja atrás el compromiso y ofrece las innovaciones del Galaxy S20 para que todos tengan acceso a una tecnología increíble.', 0, 12, 3, 8278, 2, 3);
+    (68, 'Samsung Galaxy S20 FE RAM 6GB/ 128GB Verde', 19995.0, 'Este es el teléfono hecho para personas que lo quieren todo. Está repleto de funciones hechas a medida para fanáticos de todo tipo, ya sea que te guste la fotografía, los juegos o llenar tu feed con todo lo que te inspira. Este es el teléfono que deja atrás el compromiso y ofrece las innovaciones del Galaxy S20 para que todos tengan acceso a una tecnología increíble.', 1, 12, 3, 8278, 2, 3);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (69, 'BMobile AX1077 Plus Tigo RAM 1GB/ 32GB Negro', 1299.0, 'Para los que siempre están conectados con sus redes sociales, Conectividad en todo momento,Revive cada momento en una pantalla grande, Una gran pantalla para brindar una experiencia espectacular.<br/>', 0, 9, 22, 9816, 7, 9);
+    (69, 'BMobile AX1077 Plus Tigo RAM 1GB/ 32GB Negro', 1299.0, 'Para los que siempre están conectados con sus redes sociales, Conectividad en todo momento,Revive cada momento en una pantalla grande, Una gran pantalla para brindar una experiencia espectacular.<br/>', 1, 9, 22, 9816, 7, 9);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (70, 'Huawei Y7A RAM 4GB/ 64GB Negro', 5995.0, 'Con una artesanía refinada y un revestimiento exquisito, el aspecto elegante de HUAWEI Y7a combinado con bordes curvos ofrece un toque cómodo en sus manos. Los tres colores dinámicos brillan en la luz y dejan que te encante a primera vista.', 0, 10, 30, 3125, 4, 5);
+    (70, 'Huawei Y7A RAM 4GB/ 64GB Negro', 5995.0, 'Con una artesanía refinada y un revestimiento exquisito, el aspecto elegante de HUAWEI Y7a combinado con bordes curvos ofrece un toque cómodo en sus manos. Los tres colores dinámicos brillan en la luz y dejan que te encante a primera vista.', 1, 10, 30, 3125, 4, 5);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (71, 'BLU C6L RAM 1GB/ 16GB Azul', 2295.0, 'BLU C6L combina el elemento más fundamental del diseño con una estética de buen gusto para formar una de las imágenes de marca más icónicas. El patrón adorna la tapa de la batería para una excelente experiencia de mano junto con herramientas de líneas de decoración pulidas para una imagen atractiva. ', 0, 9, 34, 5596, 3, 13);
+    (71, 'BLU C6L RAM 1GB/ 16GB Azul', 2295.0, 'BLU C6L combina el elemento más fundamental del diseño con una estética de buen gusto para formar una de las imágenes de marca más icónicas. El patrón adorna la tapa de la batería para una excelente experiencia de mano junto con herramientas de líneas de decoración pulidas para una imagen atractiva. ', 1, 9, 34, 5596, 3, 13);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -435,7 +435,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (76, 'Samsung Galaxy Tab S6 LTE 64GB/ Gris', 10600.0, 'Su pantalla expansiva y su construcción liviana y elegante lo hacen perfecto para el entretenimiento en movimiento. El S Pen incluido le permite crear, editar y navegar sin esfuerzo por su trabajo.<span class="redactor-invisible-space"><span class="redactor-invisible-space"></span></span>', 0, 10, 35, 1353, 9, 10);
+    (76, 'Samsung Galaxy Tab S6 LTE 64GB/ Gris', 10600.0, 'Su pantalla expansiva y su construcción liviana y elegante lo hacen perfecto para el entretenimiento en movimiento. El S Pen incluido le permite crear, editar y navegar sin esfuerzo por su trabajo.<span class="redactor-invisible-space"><span class="redactor-invisible-space"></span></span>', 1, 10, 35, 1353, 9, 10);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -455,7 +455,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (81, 'Tablet Huawei Media Pad T3 10" Wifi', 5495.0, 'Siéntase siempre como si estuviera con un amigo de confianza, con el sistema de operación HUAWEI MediaPad T3 10 EMUI 5.1, cuidadosamente diseñado para una interacción fácil e intuitiva. Desarrollado por Android 7.0, el sistema operativo personalizado de HUAWEI MediaPad T3 10 está aquí para hacerte la vida más fácil.', 0, 2, 21, 5767, 8, 8);
+    (81, 'Tablet Huawei Media Pad T3 10" Wifi', 5495.0, 'Siéntase siempre como si estuviera con un amigo de confianza, con el sistema de operación HUAWEI MediaPad T3 10 EMUI 5.1, cuidadosamente diseñado para una interacción fácil e intuitiva. Desarrollado por Android 7.0, el sistema operativo personalizado de HUAWEI MediaPad T3 10 está aquí para hacerte la vida más fácil.', 1, 2, 21, 5767, 8, 8);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -463,23 +463,23 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (83, 'Lenovo M10 10" 2GB 16GB WIFI LTE', 4995.0, 'La Tab M10 de Lenovo es una tablet familiar increíble. Su pantalla y sus altavoces frontales duales ofrecen un entretenimiento envolvente. Y todo ello incluido en un perfil extremadamente delgado y liviano. Incluye además el paquete opcional para niños para que tus hijos puedan usarla sin preocupaciones. Compártela sin problemas.', 0, 5, 2, 5762, 5, 7);
+    (83, 'Lenovo M10 10" 2GB 16GB WIFI LTE', 4995.0, 'La Tab M10 de Lenovo es una tablet familiar increíble. Su pantalla y sus altavoces frontales duales ofrecen un entretenimiento envolvente. Y todo ello incluido en un perfil extremadamente delgado y liviano. Incluye además el paquete opcional para niños para que tus hijos puedan usarla sin preocupaciones. Compártela sin problemas.', 1, 5, 2, 5762, 5, 7);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (84, 'Hyundai Tablet Koral 7M4 7" 1GB/ RAM 8GB Negro', 2795.0, 'Elegante y liviana, nuestra pantalla multitáctil de 7 pulgadas es lo suficientemente grande como para obtener imágenes claras, pero lo suficientemente compacta como para viajar fácilmente. Con 8 GB de almacenamiento Flash y una ranura para tarjeta Micro SD, no tendrá que preocuparse por las limitaciones de almacenamiento.', 0, 14, 15, 7897, 4, 12);
+    (84, 'Hyundai Tablet Koral 7M4 7" 1GB/ RAM 8GB Negro', 2795.0, 'Elegante y liviana, nuestra pantalla multitáctil de 7 pulgadas es lo suficientemente grande como para obtener imágenes claras, pero lo suficientemente compacta como para viajar fácilmente. Con 8 GB de almacenamiento Flash y una ranura para tarjeta Micro SD, no tendrá que preocuparse por las limitaciones de almacenamiento.', 1, 14, 15, 7897, 4, 12);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (85, 'Lenovo Yoga Smart Tab 10" Wi-Fi +4G Memoria RAM 4GB/ 64 GB Gris', 9995.0, 'Nuestra premiada Yoga Smart Tab con Google Assistant está inspirada en la revolucionaria Yoga Tab 3. Cuenta con increíbles funciones para la diversión - como una pantalla FHD IPS y altavoces JBL® en estéreo –, y además incluye el poder de un centro doméstico inteligente portátil. ', 0, 15, 11, 2893, 5, 11);
+    (85, 'Lenovo Yoga Smart Tab 10" Wi-Fi +4G Memoria RAM 4GB/ 64 GB Gris', 9995.0, 'Nuestra premiada Yoga Smart Tab con Google Assistant está inspirada en la revolucionaria Yoga Tab 3. Cuenta con increíbles funciones para la diversión - como una pantalla FHD IPS y altavoces JBL® en estéreo –, y además incluye el poder de un centro doméstico inteligente portátil. ', 1, 15, 11, 2893, 5, 11);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (86, 'Apple iPad Pro 12" Wi-Fi + Celular 256GB Gris', 45995.0, 'El iPad Pro de 12,9 pulgadas cuenta con una pantalla Liquid Retina inmersiva de borde a borde. Las nuevas cámaras profesionales, Wide y Ultra Wide, combinadas con el nuevo LiDAR Scanner permiten experiencias completamente nuevas en la próxima generación de aplicaciones de realidad aumentada (AR).', 0, 1, 31, 8310, 8, 8);
+    (86, 'Apple iPad Pro 12" Wi-Fi + Celular 256GB Gris', 45995.0, 'El iPad Pro de 12,9 pulgadas cuenta con una pantalla Liquid Retina inmersiva de borde a borde. Las nuevas cámaras profesionales, Wide y Ultra Wide, combinadas con el nuevo LiDAR Scanner permiten experiencias completamente nuevas en la próxima generación de aplicaciones de realidad aumentada (AR).', 1, 1, 31, 8310, 8, 8);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (87, 'Samsung Galaxy Tab A7 10" 32GB Gris', 8995.0, 'Conozca la tableta delgada y liviana con la experiencia de entretenimiento que anhela. Su pantalla ultra ancha de 10,4 pulgadas¹ y sus altavoces de sonido envolvente Dolby Atmos te atraen a películas y programas.', 0, 9, 24, 1412, 10, 4);
+    (87, 'Samsung Galaxy Tab A7 10" 32GB Gris', 8995.0, 'Conozca la tableta delgada y liviana con la experiencia de entretenimiento que anhela. Su pantalla ultra ancha de 10,4 pulgadas¹ y sus altavoces de sonido envolvente Dolby Atmos te atraen a películas y programas.', 1, 9, 24, 1412, 10, 4);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
@@ -487,7 +487,7 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES
-    (89, 'Samsung Galaxy Tab A 8" con S Pen', 9695.0, 'El nombre lo dice todo. La Galaxy Tab A viene con un S Pen en su interior, lo que la convierte en el dispositivo portátil definitivo para negocios y educación. Una amplia variedad de gráficos extendidos proporciona una sensación de paisaje incluso cuando se mantiene verticalmente, complementando el elegante diseño en negro.', 0, 8, 23, 7884, 9, 8);
+    (89, 'Samsung Galaxy Tab A 8" con S Pen', 9695.0, 'El nombre lo dice todo. La Galaxy Tab A viene con un S Pen en su interior, lo que la convierte en el dispositivo portátil definitivo para negocios y educación. Una amplia variedad de gráficos extendidos proporciona una sensación de paisaje incluso cuando se mantiene verticalmente, complementando el elegante diseño en negro.', 1, 8, 23, 7884, 9, 8);
     
 
     INSERT INTO ARTICULO (id_articulo, nombre, precio, descripcion, publicado, fk_departamento, fk_municipio, cantidad_disponible, fk_categoria, fk_usuario) VALUES

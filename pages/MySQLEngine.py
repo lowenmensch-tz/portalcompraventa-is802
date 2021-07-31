@@ -146,7 +146,8 @@ class MySQLEngine:
             INNER JOIN 
                 USUARIO AS u ON a.fk_usuario = u.id_usuario
             WHERE 
-                u.correo = '%s'
+                u.correo = '%s' AND 
+                a.publicado = 1
             ORDER BY
                 a.fecha_publicacion DESC;
             """%(email)
