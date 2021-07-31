@@ -74,6 +74,16 @@ def login(request):
     return render(request,'login.html',)
 
 """
+    Devuelve la vista de la lista de deseo.
+    
+    @param request
+    @return render
+"""  
+@csrf_exempt
+def wishlist(request):
+    return render(request,'wishlist.html')
+
+"""
     Valida que el usuario y contraseña existan y sean correctos. Si la variable remember es verdadera crea una sesión para el usuario.
 
     @param request: JSON con los valores de email, password y remember
@@ -343,4 +353,113 @@ def updateUser(request):
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Almacena un artículo dentro de la lista de deseo del usuario logueado.
+
+    @param request: JSON con el id del artículo a insertar.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion:
         
+        Success: La ejecución fue exitosa y agrego a la lista de favoritos.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        favoritoRepetido: El usuario ya cuenta con ese artículo en la lista de favoritos
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def addWishList(request, url=''):
+    #if request.method == 'POST':
+        id_articulo = request.POST.get('id_articulo')
+        #id_articulo = int( url.split('-')[0] )
+        id_usuario = engine.getUserIDByEmail(request.session.get('email'))
+
+        addWishQuery = """INSERT INTO FAVORITO (fk_usuario,fk_articulo) VALUES
+                        (%s,%s);""" % (id_usuario, id_articulo)
+
+        verificarFavoritoQuery = """SELECT COUNT(*) FROM FAVORITO WHERE fk_usuario = %s AND fk_articulo = %s;""" %(id_usuario, id_articulo)
+
+        try:
+            result = engine.transaction(verificarFavoritoQuery)
+
+            if result[0][0] == 0:
+                engine.dms(addWishQuery)
+                return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+            else:
+                return HttpResponse(json.dumps({'status':'favoritoRepetido', 'message':'El usuario ya cuenta con ese artículo en la lista de favoritos'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    #else:
+        #return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Elimina el artículo de la lista de deseo del usuario logueado.
+
+    @param request: JSON con el id del artículo
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion:
+        
+        Success: La ejecución fue exitosa y se eliminó de la lista de artículos.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def deleteFromWishList(request):
+    if request.method == 'POST':
+        id_articulo = request.POST.get('id_articulo')
+        id_usuario = engine.getUserIDByEmail(request.session.get('email'))
+
+        deleteQuery = "DELETE FROM FAVORITO WHERE fk_usuario = %s and fk_articulo = %s;" % (id_usuario,id_articulo)
+
+        try:
+            engine.dms(deleteQuery)
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+        
+"""
+    Muestra la lista de deseo del usuario logueado.
+
+    @param request: No se espera recibir nada, el id del usuario se obtiene de la sesión.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion y dentro del JSON
+                          se retorna una lista de tuplas con la informacion de los artículos:
+        
+        Success: La ejecución fue exitosa y envia la lista de artículos.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        Empty: El usuario no tiene artículos en su lista de favoritos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def showWishList(request):
+    if request.method == 'POST':
+        id_usuario = engine.getUserIDByEmail(request.session.get('email'))
+        listRaitings = []
+
+        wishlistQuery = """SELECT FAVORITO.fk_articulo, ARTICULO.nombre, CONCAT(SUBSTRING(descripcion,1,35),'...'), CAST(FORMAT(precio, 2) AS CHAR), 
+                        IMAGEN.enlace_imagen, CAST(ARTICULO.fecha_publicacion AS CHAR), ARTICULO.fk_usuario
+                        FROM FAVORITO INNER JOIN ARTICULO ON
+                        FAVORITO.fk_articulo = ARTICULO.id_articulo
+                        INNER JOIN IMAGEN ON ARTICULO.id_articulo = IMAGEN.fk_articulo
+                        WHERE FAVORITO.fk_usuario = %s AND IMAGEN.id_imagen IN
+                        (SELECT min(id_imagen) FROM IMAGEN group by fk_articulo)
+                        ORDER BY FAVORITO.id_favorito ASC;""" % (id_usuario)
+        
+
+        try:
+            result = engine.transaction(wishlistQuery)
+            if result != []:
+                for i in range(len(result)):
+                    raiting = engine.raiting(result[i][6])
+                    listRaitings.append(raiting)
+                    #raintingQuery = """SELECT CAST(AVG(calificacion) AS CHAR) FROM CALIFICACION WHERE fk_usuarioCalificado = %s;""" % (result[i][6])
+                    #raiting = engine.transaction(raintingQuery)
+                    #if raiting 
+                    #result[i].append(engine.transaction(raintingQuery)[0][0])
+                    #listRaitings.append(engine.transaction(raintingQuery)[0][0])
+                result2 = result + listRaitings
+                return HttpResponse(json.dumps({'status':'Success', 'data':result2}),content_type="application/json")
+            else:
+                return HttpResponse(json.dumps({'status':'Empty', 'message':'El usuario no tiene artículos en su lista de favoritos'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
