@@ -44,18 +44,15 @@ function sessionCheck(){
 */
 
 function loadDataListProductPublisher(){
-    let data = {
-                    url: window.location.pathname
-                };
+
+    var formData = new FormData();
+    formData.append("url", window.location.pathname.replace(/\/seller-product\//g, '').split("-")[0]);
 
     const url = "ajax/listProductPublisher" ;
 
     const option = {
         method: "POST",
-        body: JSON.stringify(data),
-        headers:{
-            'Content-Type': 'application/json'
-          }
+        body: formData
     };
     
     fetch(url, option)
@@ -63,7 +60,17 @@ function loadDataListProductPublisher(){
         .catch(error => console.log(error))
         .then(response => {
             loadProfile(response.name);
-            loadProducts(response.product, true);
+
+            console.log("¿Puedo editar mis productos?")
+            console.log(response.isEditable);
+
+            if(response.isEditable){
+
+                loadProducts(response.product, true);
+            }
+            else{
+                loadProducts(response.product, false);
+            }
         });
 
 }

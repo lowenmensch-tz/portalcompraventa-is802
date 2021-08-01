@@ -34,33 +34,36 @@ class SellerProduct:
     """
     @csrf_exempt
     def listProductPublisher(self, request):
-        id =  self.engine.getUserIDByEmail(request.session.get('email')) #id del perfil del usuario
+        
+        idCostumer =  self.engine.getUserIDByEmail(request.session.get('email')) #id del usuario logeado
+        idSeller = int(request.POST.get('url')) #id del vendedor
 
         if request.method:
-
             try:
-                
                 products = self.engine.getPublishedProductsByEmail(
                                                                             email=
-                                                                            self.engine.getUserEmailByID(id=id) 
+                                                                            self.engine.getUserEmailByID(id=idSeller) 
                                                                     )
-                name = " ".join( self.engine.getUserInformationByEmail(email=request.session.get('email'))[0][:2] )
-                raiting = self.engine.raiting(id)
+                name = " ".join( self.engine.getUserInformationByEmail( email=self.engine.getUserEmailByID(idSeller) )[0][:2] )
+                raiting = self.engine.raiting(idSeller)
 
                 print("Length product: {} Products: {}\nName: {}\nRaiting: {}".format(len(products), products, name, raiting))
-                
-                return HttpResponse(
-                        json.dumps(
-                                {
-                                    'status':'Success', 
-                                    'raiting': raiting,
-                                    'product': processDataProduct(products), 
-                                    'name': name
-                                }
-                            ),
-                            content_type="application/json"
-                        )
 
+                data = {
+                            'status':'Success', 
+                            'raiting': raiting,
+                            'product': processDataProduct(products), 
+                            'name': name
+                        }
+    
+                if idCostumer == idSeller: #El vendedor y el cliente son la misma persona, es decir el vendedor puede editar sus productos
+                    data['isEditable'] = True                    
+                    return HttpResponse( json.dumps( data), content_type="application/json")
+
+                else:   #Un cliente revisa los productos de un vendedor
+                    data['isEditable'] = False
+                    return HttpResponse( json.dumps( data), content_type="application/json")
+                        
             except Exception as e:
                 return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
         else:

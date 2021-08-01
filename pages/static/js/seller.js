@@ -94,29 +94,38 @@ function loadProducts(products){
                 let url = JSON.parse(products[index][products[index].length-1])
 
                 $("#published-product").append(`
-                    <div class="card">
-                        <div class="card-header">
-                            ${products[index][1]}
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <img class="card-img-top" src="${url["0"]}" style="padding-top:2rem;">
-                                </div>
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <ul>
-                                        <li>${products[index][2]}</li>
-                                        <li>${products[index][3]}</li>
-                                        <li>${products[index][4]}</li>
-                                        <li>${products[index][5]}</li>
-                                    </ul>
-                                    <a href="http://localhost:8000/details/${convertURL(products[index][1], products[index][0])}" class="btn btn-primary btn-user btn-block">Ver Más</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container-fluid">
+                    <div class="row" id="rows-product-${index}">
 
-                    <hr>
+                            <div class="col col-lg-10">
+                                <div class="card">
+                                    <div class="card-header justify-content-between">
+                                                        ${products[index][1].slice(0, 35) + "..."}  
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <img class="card-img-top" src="${url["0"]}" style="padding-top:2rem;">
+                                            </div>
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <ul>
+                                                    <li>${products[index][2]}</li>
+                                                    <li>${products[index][3]}</li>
+                                                    <li>${products[index][4]}</li>
+                                                    <li>${products[index][5]}</li>
+                                                </ul>
+                                                <a href="http://localhost:8000/details/${convertURL(products[index][1], products[index][0])}" class="btn btn-primary btn-user btn-block">Ver Más</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+            
+                        <hr>
+                    </div>
+                </div>
+                <br>
+
                 `);
             }
             
