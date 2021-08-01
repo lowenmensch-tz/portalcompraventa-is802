@@ -4,6 +4,19 @@ window.onload = function(){
     sessionCheck2();
     
 };
+var articulo;
+var id_articulo;
+function setArticulo(articulo, id_articulo){
+    document.querySelector("#Modal-wishlist").innerHTML = '<button class="btn btn-primary" onclick="deleteItem();" data-dismiss="modal">Aceptar</button>&nbsp;<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>';
+    this.articulo = articulo;
+    this.id_articulo = id_articulo;
+}
+function getArticulo(){
+    return this.articulo;
+}
+function getId_Articulo(){
+    return this.id_articulo;
+}
 
 function getMyWishlist(){
     $.ajax({
@@ -70,7 +83,7 @@ function loadMyWishlist(data){
                     </td>
 
                     <td class="col-md-1 close-btn">
-                    <a onclick="deleteItem(articulo${i},${data[i][0]});"><i class="fa fa-times"></i></a>
+                    <a data-toggle="modal" data-target="#delete-wishlist" href="#delete-wishlist" class="d-none d-sm-inline-block btn btn-sm btn-alert shadow-sm" onclick="setArticulo(articulo${i},${data[i][0]});" aria-label="Close"><span aria-hidden="true"><strong>X<strong></span></a>
                     </td>
                 </tr>
             </tbody>
@@ -86,10 +99,10 @@ function loadMyWishlist(data){
 
 
 
-function deleteItem(articulo, id_articulo){
+function deleteItem(){
 
-    deleteFromWishlist(id_articulo);
-    b.removeChild(articulo);
+    deleteFromWishlist(getId_Articulo());
+    b.removeChild(getArticulo());
 }
 
 function deleteFromWishlist(id_articulo){
@@ -101,9 +114,10 @@ function deleteFromWishlist(id_articulo){
             console.log(data);
 
             if (data.status == "Success"){
-                alert('Se eliminó el artículo');
+                console.log("Articulo borrado con exito");
             }else{
-                alert('Error no eliminó el artículo');
+                console.log("Articulo no pudo ser borrado");
+
             }
         }
     });
