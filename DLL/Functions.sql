@@ -12,7 +12,7 @@ SET GLOBAL log_bin_trust_function_creators = 1;
 
 -- Se eliminan las funciones
 DROP FUNCTION IF EXISTS fn_getImage;
-DROP FUNCTION IF EXISTS fn_convertMiliToHours;
+DROP FUNCTION IF EXISTS fn_convertDateTimeToMinutes;
 DROP FUNCTION IF EXISTS fn_getTimeElapsed;
 
 -- CONCAT('url', i.fk_articulo), 
@@ -43,14 +43,15 @@ DELIMITER ;
 
 DELIMITER $$ 
 
-    CREATE FUNCTION fn_convertMiliToHours(fecha_creacion DATETIME) RETURNS INT
+    CREATE FUNCTION fn_convertDateTimeToMinutes(fecha_creacion DATETIME) RETURNS INT
     BEGIN 
         RETURN ( 
-                SELECT (
-                        FLOOR (
-                                (NOW() - fecha_creacion)/(3.6*POW(10,6))
-                            )
-                    )
+                SELECT 
+                    TIMESTAMPDIFF(
+                                    MINUTE, 
+                                    fecha_creacion, 
+                                    NOW()
+                                )
                 ) 
             ;  
 
@@ -60,16 +61,17 @@ DELIMITER ;
 
 
 DELIMITER $$
-    CREATE FUNCTION fn_getTimeElapsed(fecha_creacion DATETIME) RETURNS VARCHAR(10)  
+    CREATE FUNCTION fn_getTimeElapsed(fecha_creacion DATETIME) RETURNS TEXT
     BEGIN
         RETURN (
                 SELECT
                     CASE
-                        WHEN fn_convertMiliToHours(fecha_creacion) < 24 THEN CONCAT(fn_convertMiliToHours(fecha_creacion), ' hrs ago')
-                        WHEN fn_convertMiliToHours(fecha_creacion) BETWEEN 24 AND 168 THEN CONCAT(fn_convertMiliToHours(fecha_creacion)/24, ' days')
-                        WHEN fn_convertMiliToHours(fecha_creacion) BETWEEN 168 AND 720 THEN CONCAT(fn_convertMiliToHours(fecha_creacion)/168, ' weeks')
-                        WHEN fn_convertMiliToHours(fecha_creacion) BETWEEN 720 AND 8760 THEN CONCAT(fn_convertMiliToHours(fecha_creacion)/720, ' months')
-                        WHEN fn_convertMiliToHours(fecha_creacion) > 8760 THEN CONCAT(fn_convertMiliToHours(fecha_creacion)/8760, ' years')
+                        WHEN fn_convertDateTimeToMinutes(fecha_creacion) < 60 THEN CONCAT(FLOOR(fn_convertDateTimeToMinutes(fecha_creacion)), ' min ago')
+                        WHEN fn_convertDateTimeToMinutes(fecha_creacion) BETWEEN 60 AND 23*60 THEN CONCAT(FLOOR(fn_convertDateTimeToMinutes(fecha_creacion)/60), ' hrs ago')
+                        WHEN fn_convertDateTimeToMinutes(fecha_creacion) BETWEEN 24*60 AND 167*60 THEN CONCAT(FLOOR(fn_convertDateTimeToMinutes(fecha_creacion)/(24*60)), ' days')
+                        WHEN fn_convertDateTimeToMinutes(fecha_creacion) BETWEEN 168*60 AND 719*60 THEN CONCAT(FLOOR(fn_convertDateTimeToMinutes(fecha_creacion)/(168*60)), ' weeks')
+                        WHEN fn_convertDateTimeToMinutes(fecha_creacion) BETWEEN 720*50 AND 8759*60 THEN CONCAT(FLOOR(fn_convertDateTimeToMinutes(fecha_creacion)/(720*60)), ' months')
+                        WHEN fn_convertDateTimeToMinutes(fecha_creacion) > 8760*60 THEN CONCAT(FLOOR(fn_convertDateTimeToMinutes(fecha_creacion)/(8760*60)), ' years')
                     END
                 )
             ;
