@@ -76,42 +76,51 @@
 	</nav>
 
 <!-- /.breadcrumb -->
+
 <div style="position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%); width: 100%;height: 90%;">
+	<section>
+		<div style="height: 45px;"></div>
+	</section>
 <div style="margin-left: 270px;">
 	<div class='container'>
 		<div class='row single-product'>
 
       <!-- ******************************************************* CARRUSEL DE IMÁGNES DEL PRODUCTO *********************************************************************** -->
 			<div class='col-xs-12 col-sm-12 col-md-9 rht-col'>
-            <div class="detail-block" style= "margin-top: 30px;">
-				<div class="row">
+            <div class="detail-block">
+			<div class="row">
 
-					     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 gallery-holder">
-    <div class="product-item-holder size-big single-product-gallery small-gallery">
+			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 gallery-holder">
+		
+				<div class="product-item-holder size-big single-product-gallery small-gallery">
 
-        <div id="owl-single-product">
+						<div id="owl-single-product">
 
-            <div class="single-product-gallery-item" id="slide1">
-                <a data-lightbox="image-1" data-title="Galeria" id="imagenProducto1" href="https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg"> 
-                  <img class="img-responsive" alt="" id="productImage1" src="{% static 'img/marazo-img/blank.gif' %} " data-echo="" > 
-                </a>
-            </div>
+							<div class="single-product-gallery-item" id="slide1">
+								<a data-lightbox="image-1" data-title="Galeria" id="imagenProducto1" href="https://danbooru.donmai.us/data/sample/da/f4/__jean_genshin_impact_drawn_by_kai1up__sample-daf449492b42c9a88dd086c3da3fcabb.jpg"> 
+								<img class="img-responsive" alt="" id="productImage1" src="{% static 'img/marazo-img/blank.gif' %} " data-echo="" > 
+								</a>
+							</div>
 
-        </div><!-- /.single-product-slider -->
+						</div>
 
+					
+						<div class="single-product-gallery-thumbs gallery-thumbs">
 
-        <div class="single-product-gallery-thumbs gallery-thumbs">
+							<div id="owl-single-product-thumbnails">
 
-            <div id="owl-single-product-thumbnails">
-                
-            </div><!-- /#owl-single-product-thumbnails -->
+								<div class="item">
+									<a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
+										<img class="img-responsive" alt="" src="{% static 'img/marazo-img/blank.gif' %}" data-echo="" />
+									</a>
+								</div>
+								
+							</div><!-- /#owl-single-product-thumbnails -->
 
-
-
-        </div><!-- /.gallery-thumbs -->
-
-    </div><!-- /.single-product-gallery -->
-</div><!-- /.gallery-holder -->
+						</div><!-- /.gallery-thumbs -->
+					<!-- </div> -->
+				</div><!-- /.single-product-gallery -->
+		</div><!-- /.gallery-holder -->
 
 
       <!-- ******************************************************* INFORMACIÓN DEL PRODUCTO *********************************************************************** -->
