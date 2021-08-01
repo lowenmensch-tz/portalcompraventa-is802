@@ -478,6 +478,8 @@ def getCategories(request):
         except Exception as e:
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
 
+
+
 """
     Recibe la petición para realizar una denuncia.
 
@@ -491,23 +493,58 @@ def getCategories(request):
 """
 @csrf_exempt
 def reportSeller(request, url=''):
+
     if request.method == 'POST':
-        id_seller = request.POST.get('id_seller')
-        motivo = request.POST.get('motivo')
+
+        id_seller = request.POST.get('idSeller')
+        motivo = request.POST.get('reasons')
+        comment = request.POST.get('comment')
+
         id_user = engine.getUserIDByEmail(request.session.get('email'))
         
-        checkReportQuery = """SELECT COUNT(*) FROM DENUNCIA WHERE fk_usuarioDenunciador = %s AND fk_usuarioDenunciado = %s;""" % (id_user, id_seller)
+        checkReportQuery = """
+                                SELECT 
+                                    COUNT(*) 
+                                FROM 
+                                    DENUNCIA 
+                                WHERE 
+                                    fk_usuarioDenunciador = %s 
+                                    AND 
+                                    fk_usuarioDenunciado = %s;
+                            """ %(id_user, id_seller)
 
-        reportQuery = """INSERT INTO DENUNCIA (fk_usuarioDenunciador,fk_usuarioDenunciado,motivo) VALUES (%s,%s,'%s');""" % (id_user, id_seller, motivo)
+        reportQuery = """
+                            INSERT INTO DENUNCIA (fk_usuarioDenunciador, fk_usuarioDenunciado, motivo) VALUES 
+                                (%s, %s, %s)
+                            ;
+                        """ % (id_user, id_seller, motivo)
+
+        commentQuery = """
+                            INSERT INTO COMENTARIO (fk_usuarioComentador, fk_dirigidoA, comentario, tipo) VALUES
+                                (%s, %s, '%s', 3)
+                            ;
+                        """ % (id_user, id_seller, comment)
+
+        nameSellerQuery = "SELECT nombre_completo FROM USUARIO WHERE id_usuario = %s"%(id_seller)
 
         try:
             result = engine.transaction(checkReportQuery)
 
+            nameSeller = engine.transaction(nameSellerQuery)[0][0]
+
             if result[0][0] == 0:
+
                 engine.dms(reportQuery)
+                engine.dms(commentQuery)
+
                 return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+
+            elif result[0][0] != 0:
+                return HttpResponse(json.dumps({'status':'alreadyReported', 'message':'Ya ha denunciado a <strong>{}.</strong>'.format(nameSeller) }),content_type="application/json")
+
             else:
-                return HttpResponse(json.dumps({'status':'alreadyReported', 'message':'El usuario ya ha denunciado al vendedor'}),content_type="application/json")
+                return HttpResponse(json.dumps({'status':'errorReported', 'message':'No puede realizar una denucia a sí mismo.'}),content_type="application/json")
+
         except Exception as e:
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
     else:

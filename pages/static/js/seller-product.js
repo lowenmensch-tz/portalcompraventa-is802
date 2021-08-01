@@ -61,9 +61,6 @@ function loadDataListProductPublisher(){
         .then(response => {
             loadProfile(response.name);
 
-            console.log("¿Puedo editar mis productos?")
-            console.log(response.isEditable);
-
             if(response.isEditable){
 
                 loadProducts(response.product, true);

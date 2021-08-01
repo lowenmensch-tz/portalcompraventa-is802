@@ -65,7 +65,7 @@ path('seller-product/ajax/getDetailProduct', sellerProduct.getDetailProduct), #O
 
 url(r'^seller/ajax/sellerProfileDescription$', seller.profileDescription),
 url(r'^seller/ajax/ratingAndComment$', seller.ratingAndComment),
-url(r'^seller/ajax/reportSeller$', reportSeller),
+path('seller/ajax/sellerProfileComplaint', reportSeller),
 url(r'^seller\/(\d{1,4}\-[0-9a-zA-Z-]+)$', seller.seller),
 #
 #path('seller/', seller.seller, name='seller_page'),

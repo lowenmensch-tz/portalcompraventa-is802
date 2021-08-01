@@ -88,9 +88,9 @@ CREATE TABLE DENUNCIA(
 	id_denuncia INT NOT NULL AUTO_INCREMENT UNIQUE,
     fk_usuarioDenunciador INT NOT NULL,
     fk_usuarioDenunciado INT NOT NULL,
-    motivo VARCHAR(30),
+    motivo ENUM('Fraude', 'Venta de productos ilegales', 'Publicidad engañosa', 'Otros') NOT NULL,
     PRIMARY KEY (id_denuncia)
-);
+); 
 
 /*Creacion de la tabla de suscripciones.*/
 CREATE TABLE SUSCRIPCION(

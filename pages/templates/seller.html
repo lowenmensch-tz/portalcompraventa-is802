@@ -257,6 +257,7 @@
                           <option value="1">Fraude</option>
                           <option value="2">Venta de productos ilegales</option>
                           <option value="3">Publicidad engañosa</option>
+                          <option value="4">Otros</option>
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -264,7 +265,7 @@
                         <label class="custom-label">Descripcion de la denuncia (opcional)</label>
                         <textarea class="form-control" id="denunciaDescription" rows="3" placeholder="Descripcion" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">Denunciar</button>
+                    <button type="button" class="btn btn-primary btn-user btn-block" onclick="getDataComplaint()">Denunciar</button>
                     <div class="form-message">
                         <div id="PmsgSubmit" class="h3 text-center hidden"></div>
                     </div>
@@ -276,6 +277,26 @@
             </div>
           </div>
         </div>
+
+
+    <!-- Modal mensaje para denuncia-->
+
+    <div class="modal fade" id="ComplaintMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="" id="classHeader" role="alert">
+                <h5 class="modal-title" id="modalTitleComplaintMessage">Mensaje Satisfactorio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="bodyModalComplaintMessage">
+                
+            </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'js/jquery/jquery.min.js' %}"></script>

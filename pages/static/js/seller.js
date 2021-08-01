@@ -18,7 +18,6 @@ function sessionCheck(){
         url: "http://localhost:8000/details/0-A/ajax/loggedValidator",
         success: function(data) {
             response = data.logged;
-            console.log(response);
 
             if (response == 'true'){
                 document.getElementById('cerrar-sesion').style.display = 'block';
@@ -53,9 +52,6 @@ function loadData(){
         data: data,
         success: function(data) {
             
-            console.log("A ver la data: ")
-            console.log(data);
-
             loadProfile(data.profile[0]);
             loadProducts(data.product);
             //loadRaiting(data.raiting);
@@ -81,7 +77,6 @@ function loadData(){
         Image --> [{'key':'value'}, {'key':'value'}]
 */
 function loadProducts(products){
-    console.log(products);
 
     if (products.length !== 0) {
         
@@ -271,15 +266,12 @@ function loadRaiting(){
 
 function ratingAndComment(){
 
-    console.log("Probando. 2:09am");
-
     var data = { 
         comment: $("#Ratecomment").val(),
         rating: loadRaiting(),
         email: $("#Selleremail").val()
     };
 
-    console.log('DATA: ', data);
 
     //peticion que espera una variable text
     //url: "ajax/sellerRaitingAndComment",
@@ -291,7 +283,6 @@ function ratingAndComment(){
 
     success: function(data) {
 
-        console.log(data);
         //console.log("Agregado con éxito!");
 
         if (data.status == "Success") {
@@ -340,6 +331,101 @@ function setLinkSeeMore(){
     document.getElementById('see-more').setAttribute('href', `${url[0]}/seller-product/${url[url.length-1]}` );
 }
 
+
+//Datos sobre la denuncia
+function getDataComplaint(){
+    //
+    const reasons = parseInt( document.getElementById("denunciaMotive").value );
+    const comment = document.getElementById("denunciaDescription").value;
+
+    var formData = new FormData();
+
+    formData.append("reasons", reasons);
+    formData.append("comment", comment);
+    formData.append( "idSeller", parseInt(window.location.pathname.replaceAll(/\/seller\//g, "").split("-")[0]) );
+
+    var url = "ajax/sellerProfileComplaint";
+
+    var option = {
+        method: "POST",
+        body: formData
+    };
+
+
+    fetch(url, option)
+        .then(response => response.json())
+        .catch(error => console.log(error))
+        .then(response => {
+
+            console.log("A VER");
+            console.log(response);
+
+            closeModal("#Seller_denuncia");
+            const modalName = "#ComplaintMessage";
+
+            if (response.status == "Success") {
+                
+                showModal(
+                            modalName, 
+                            "Mensaje Satisfactorio", 
+                            "modal-header alert alert-success", 
+                            "Su mensaje ha sido enviado correctamente al administrador de la página para tomar en consideración su denuncia."
+                        );
+
+            }
+            else if (response.status == "alreadyReported") {
+
+                showModal(
+                            modalName, 
+                            "Advertencia",
+                            "modal-header alert alert-warning", 
+                            response.message
+                      );
+            
+            }
+            else if (response.status == "errorReported") {
+
+                showModal(
+                            modalName, 
+                            "Advertencia",
+                            "modal-header alert alert-warning", 
+                            response.message
+                        );
+            
+            } else {
+
+                showModal(
+                            modalName, 
+                            "Advertencia",
+                            "modal-header alert alert-danger", 
+                            "Error al enviar la denuncia. Inténtelo más tarde."
+                        );
+
+            }
+            cleanFormModal();
+        });
+
+}
+
+
+function cleanFormModal(){
+    document.getElementById("denunciaMotive").innerHTML = "";
+    document.getElementById("denunciaDescription").value = "";
+}
+
+
+function showModal(modalName, title, alert, message){
+    
+    document.getElementById("classHeader").setAttribute('class', alert);
+    document.getElementById("bodyModalComplaintMessage").innerHTML = message;
+    document.getElementById("modalTitleComplaintMessage").innerHTML = title;
+    
+    $(modalName).modal('show');
+}
+
+function closeModal(modalName){
+    $(modalName).modal('hide');
+}
 
 /*
 $(function(){
