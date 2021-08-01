@@ -119,6 +119,8 @@
                                             </div>
                                             <a data-toggle="modal" id="btnCalificationSeller" data-target="#calificacionmodal" href="#calificacionmodal" class="btn btn-primary btn-user btn-block">Calificar al vendedor
                                             </a>
+                                            <a data-toggle="modal" id="btnDenunciaSeller" data-target="#Seller_denuncia" href="#Seller_denuncia" class="btn btn-primary btn-user btn-block">Denunciar al vendedor
+                                            </a>
                                         </form>
                                     </div>
                                 </div>
@@ -228,6 +230,45 @@
                         </form>
                     </div>
                 </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+            <!-- Modal -->
+        <div class="modal fade" id="Seller_denuncia" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Denunciar al Vendedor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="user" id="DenunciaForm" name="DenunciaForm" data-toggle="validator" data-focus="false" enctype="multipart/form-data" method="POST">
+                    <div class="form-group">
+                        <label class="custom-label">Motivo de la denuncia</label>
+                        <select id="denunciaMotive" class="form-control form-control-select dropdown-toggle" required>
+                            <option value="00" selected>Motivo...</option>
+                          <option value="1">Fraude</option>
+                          <option value="2">Venta de productos ilegales</option>
+                          <option value="3">Publicidad engañosa</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-label">Descripcion de la denuncia (opcional)</label>
+                        <textarea class="form-control" id="denunciaDescription" rows="3" placeholder="Descripcion" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">Denunciar</button>
+                    <div class="form-message">
+                        <div id="PmsgSubmit" class="h3 text-center hidden"></div>
+                    </div>
+                </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
