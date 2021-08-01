@@ -78,24 +78,20 @@ class Details:
                         json.dumps(  
                                 { 
                                     'status':'Success', 
+                                    'customer': self.engine.transaction("SELECT nombre_completo FROM USUARIO WHERE correo = '%s'"%(email))[0],
                                     'title':resultProduct[0][0], 
                                     'description':resultProduct[0][1], 
                                     'price':resultProduct[0][2], 
-                                    'idPublisher': resultProduct[0][3],
-                                    'publisher': self.engine.transaction("SELECT nombre_completo FROM USUARIO WHERE correo = '%s';"%(email)),
-                                    # { 'rating': 0 if result[0][0] is None else float(result[0][0]) }
-                                    #'image': productDetailsImage(idProduct=idProduct),      # Imagen del producto
                                     'image': convertToDictionary(
                                                                 data=self.productDetailsImage(idProduct=idProduct), 
                                                                 key='photo'
                                                             ),
                                     'rating': self.engine.raiting(resultProduct[0][-1]),  # Calificación (promedio) del vendedor
-                                    #'comment': productDetailsComments(idProduct=idProduct),  # Comentarios del producto
                                     'comment': convertToDictionary(
                                                                     data=self.productDetailsComments(idProduct=idProduct),
                                                                     key=['userCommenting', 'comment']
                                                                 ), 
-                                    **self.userInformation(resultProduct[0][-1]),
+                                    'profilePublisher': self.engine.getSellerProfileByIdProduct(idProduct=idProduct),
                                     'id_articulo':resultProduct[0][4]              # Información del usuario     
                                 }),content_type="application/json"
                         )
@@ -116,15 +112,9 @@ class Details:
         if request.method == 'POST':
 
             emailUserCommented = request.session.get('email')           # Obtiene el correo del usuario que ha hecho el comentario
-            emailUserPublication = request.POST.get('correoVendedor')  # Dueño del producto
             comment = request.POST.get('comentario')                  # Comentario de la reseña
             
-            #ratio = request.POST.get('calificacion')                 # Calificación del comentario
-            #ratio = 0 if ratio == 'NaN' else float(ratio)
-
             idProduct = int( url.split('-')[0] )                   # ID del producto
-
-            #idUserPublication = self.engine.getUserIDByEmail(emailUserPublication)  # Obtiene el id del dueño del producto
             idUserCommented = self.engine.getUserIDByEmail(emailUserCommented)     # Obtiene el id del usuario que ha hecho el comentario
 
             sqlComment = """
@@ -132,10 +122,7 @@ class Details:
                 ('Articulo', '%s', %s, %s);
             """%(comment, idUserCommented, idProduct)
 
-            #sqlRatio = """INSERT INTO CALIFICACION (calificacion, fk_usuarioCalificador, fk_usuarioCalificado) VALUES(%s, %s, %s);"""%(ratio, idUserCommented, idUserPublication)
-                
             self.engine.dms(sqlComment)
-            #self.engine.dms(sqlRatio)
 
             try: 
                 updatedComments = self.productDetailsComments(idProduct=idProduct) 
@@ -201,40 +188,3 @@ class Details:
 
         #return convertToDictionary(data=result, key='photo')
         return result
-
-
-    """"
-        Información del usuario
-    """
-    def userInformation(self, idUser):
-        sql = """
-            SELECT
-                u.nombre_completo AS Name,
-                u.correo AS Email,
-                u.telefono AS Phone,
-                u.direccion AS Address
-            FROM 
-                USUARIO AS u
-            WHERE id_usuario = %s;
-            """ % (idUser)
-
-        result = self.engine.transaction(sql)
-
-        print( "INFORMACION DEL USUAIRO: ", result )
-
-        if result: 
-
-            return {
-                'name': result[0][0],
-                'email': result[0][1],  
-                'phone': result[0][2],
-                'address': result[0][3]
-            }
-        else:
-            
-            return {
-                'name':  '',
-                'email':  '',
-                'phone':  '',
-                'address': ''
-            }

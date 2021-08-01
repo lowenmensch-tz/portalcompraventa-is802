@@ -52,6 +52,9 @@ function loadData(){
         url:  `ajax/sellerProfileDescription`,
         data: data,
         success: function(data) {
+            
+            console.log("A ver la data: ")
+            console.log(data);
 
             loadProfile(data.profile[0]);
             loadProducts(data.product);

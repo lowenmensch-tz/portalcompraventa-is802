@@ -54,9 +54,9 @@ function loadData(){
             url: window.location.pathname.replaceAll(/(\/details\/)|(\/)/g,"")
         },
         success: function(data) {
-        
-            let url = "seller/" + convertURL(data.name, data.idPublisher); 
-            commentPublisher = data.publisher[0];
+            
+            let url = "seller/" + convertURL(data.profilePublisher[0][1], data.profilePublisher[0][0]); 
+            commentPublisher = data.customer[0][1];
 
             document.getElementById("url-seller").onclick = function(){
                 location.href = "http://localhost:8000/" + url;
@@ -69,10 +69,10 @@ function loadData(){
             document.getElementById('productDescription').innerHTML = `<p>${data.description}</p>`; //Descripción del Producto
         
             document.getElementById('productPrice').innerHTML = `HNL ${data.price}`; //Precio del producto
-            document.getElementById('publisher').value = `${data.name}`; //Vendedor
-            document.getElementById('publisherPhone').value = `${data.phone}`;  //Teléfono del vendedor
-            document.getElementById('publisherEmail').value = `${data.email}`; // Correo del vendedor
-            document.getElementById('publisherAddress').value = `${data.address}`; // Dirección del vendedor
+            document.getElementById('publisher').value = `${data.profilePublisher[0][1]}`; //Vendedor
+            document.getElementById('publisherPhone').value = `${data.profilePublisher[0][3]}`;  //Teléfono del vendedor
+            document.getElementById('publisherEmail').value = `${data.profilePublisher[0][2]}`; // Correo del vendedor
+            document.getElementById('publisherAddress').value = `${data.profilePublisher[0][4]}`; // Dirección del vendedor
 
             // Cargar Imágenes
             cuadroImagenes = '';

@@ -95,15 +95,15 @@ class MySQLEngine:
         
         sql = """
             SELECT 
-                SUBSTRING_INDEX(nombre_completo, ' ', 1) AS Firstname, 
-                SUBSTRING_INDEX(nombre_completo, ' ', -1) AS Lastname, 
-                correo AS Email,
-                contrasenia AS Password,
-                telefono AS Phone,
-                direccion AS Address,
-                id_usuario AS id 
+                SUBSTRING_INDEX(u.nombre_completo, ' ', 1) AS Firstname, 
+                SUBSTRING_INDEX(u.nombre_completo, ' ', -1) AS Lastname, 
+                u.correo AS Email,
+                fn_getTimeElapsed(u.fecha_creacion) AS Since,
+                u.telefono AS Phone,
+                u.direccion AS Address,
+                u.id_usuario AS id 
             FROM 
-                USUARIO 
+                USUARIO AS u
             WHERE 
                 correo = '%s'
                 """%(email)
@@ -273,6 +273,28 @@ class MySQLEngine:
                 a.id_articulo = %s AND 
                 a.publicado = 1
             """%(id)
+
+        result = self.transaction(sql)
+
+        return result
+
+
+    def getSellerProfileByIdProduct(self, idProduct): 
+        
+        sql = """
+            SELECT
+                u.id_usuario AS id,
+                u.nombre_completo AS Name,
+                u.correo AS Email,
+                u.telefono AS Phone,
+                u.direccion AS Address
+            FROM 
+                USUARIO AS u
+            INNER JOIN
+                ARTICULO AS a ON u.id_usuario = a.fk_usuario
+            WHERE 
+                a.id_articulo = %s;
+            """ % (idProduct)
 
         result = self.transaction(sql)
 
