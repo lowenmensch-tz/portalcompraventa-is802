@@ -234,6 +234,14 @@ class MySQLEngine:
 
         return result
 
+    """
+        Categorias de los artículos
+    """
+    def categories(self):
+        sql="SELECT id_categoria, nombre FROM CATEGORIA;"
+
+        result = self.transaction(sql)
+        return result
 
     """
         Obtiene la descripción de un producto a partir de su id.

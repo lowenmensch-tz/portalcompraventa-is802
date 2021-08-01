@@ -19,6 +19,7 @@ from pages.views import wishlist
 from pages.views import addWishList
 from pages.views import showWishList
 from pages.views import deleteFromWishList
+from pages.views import getCategories
 
 from django.urls import path
 
@@ -48,6 +49,7 @@ path('ajax/deleteFromWishList', deleteFromWishList, name = 'delete_From_Wish_Lis
 
 path('user-profile', profile.userProfile, name='user_profile'),
 path('ajax/updateUser', updateUser, name='update_User'),
+path('ajax/getCategories', getCategories),
 
 #path('ajax/userProfile', userProfile, name='user_Profile'),
 path('user', user, name='user'),

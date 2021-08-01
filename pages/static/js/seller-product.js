@@ -440,16 +440,13 @@ function drawFormInModal(){
                 </div>
                 <div class="md-form mb-5">
                     <label data-error="wrong" data-success="right" for="stateProduct">Estado</label>
-                    <select class="form-control validate" readonly id="stateProduct" required>
-                        <option id=""></option>
-                    </select>
+                    <input type="text" class="form-control validate" readonly id="stateProduct" required>
+        
                     
                 </div>
                 <div class="md-form mb-5">
                     <label data-error="wrong" data-success="right" for="municipalityProduct">Municipio</label>
-                    <select class="form-control validate" readonly id="municipalityProduct" required>
-                        <option></option>
-                    </select>
+                    <input type="text" class="form-control validate" readonly id="municipalityProduct" required>
                     
                     
                 </div>

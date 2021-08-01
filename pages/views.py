@@ -464,3 +464,16 @@ def showWishList(request):
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Devuelve todas las categorias de la tabla CATEGORIA.
+    No recibe ningún parámetro
+"""
+@csrf_exempt
+def getCategories(request):
+
+        try:
+            categories = engine.categories()
+            return HttpResponse(json.dumps({'status':'Success', 'data':categories}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
