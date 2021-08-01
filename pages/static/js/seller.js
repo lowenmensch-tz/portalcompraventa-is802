@@ -283,7 +283,7 @@ function ratingAndComment(){
     success: function(data) {
 
         console.log(data);
-        console.log("Agregado con éxito!");
+        //console.log("Agregado con éxito!");
 
         if (data.status == "Success") {
 
@@ -309,7 +309,7 @@ function rateformSuccess() {
 }
 
 function rateformError() {
-    alert("Hubo un error no se pudo calificar al vendedor");
+    alert("Ya ha calificado a este vendedor anteriormente");
     $("#rateForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
         $(this).removeClass();
     });
