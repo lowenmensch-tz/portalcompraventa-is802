@@ -108,34 +108,40 @@ class Seller:
         print("RATING: ", type(rating) )
 
         if request.method:
+            if idCustomer != idSeller:
+                try:
+                    checkRaiting = """SELECT COUNT(*) FROM CALIFICACION WHERE fk_usuarioCalificador = %s AND fk_usuarioCalificado = %s;"""%(idCustomer,idSeller)
 
-            try:
+                    sqlComment = """
+                                INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
+                                ('Usuario', '%s', %s, %s);
+                                """%(commentRequest, idCustomer, idSeller)
 
-                sqlComment = """
-                            INSERT INTO COMENTARIO (tipo, comentario, fk_usuarioComentador, fk_dirigidoA) VALUES
-                            ('Usuario', '%s', %s, %s);
-                            """%(commentRequest, idCustomer, idSeller)
+                    sqlRaiting = """
+                                INSERT INTO CALIFICACION (fk_usuarioCalificador, fk_usuarioCalificado, calificacion) VALUES
+                                (%s, %s, %s);
+                    """%(idCustomer, idSeller, rating)
 
-                sqlRaiting = """
-                            INSERT INTO CALIFICACION (fk_usuarioCalificador, fk_usuarioCalificado, calificacion) VALUES
-                            (%s, %s, %s);
-                """%(idCustomer, idSeller, rating)
-
-                self.engine.dms(sql=sqlComment)
-                self.engine.dms(sql=sqlRaiting)
-                                
-                return HttpResponse(
-                        json.dumps(
-                                {
-                                    'status':'Success'
-                                }
-                            ),
-                            content_type="application/json"
-                        )
-
-            except Exception as e:
-                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
-            #else:
-            #    return HttpResponse(json.dumps({'status':'Empty', 'errorMessage':'No se encontro el usuario'}),content_type="application/json")
+                    result = self.engine.transaction(checkRaiting)
+                    if result[0][0] == 0:
+                        self.engine.dms(sql=sqlComment)
+                        self.engine.dms(sql=sqlRaiting)
+                                    
+                        return HttpResponse(
+                                json.dumps(
+                                        {
+                                            'status':'Success'
+                                        }
+                                    ),
+                                    content_type="application/json"
+                                )
+                    else:
+                        return HttpResponse(json.dumps({'status':'alreadyQualified', 'message':'El usuario ya ha denunciado al vendedor anteriormente'}) ,content_type="application/json")
+                except Exception as e:
+                    return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
+                #else:
+                #    return HttpResponse(json.dumps({'status':'Empty', 'errorMessage':'No se encontro el usuario'}),content_type="application/json")
+            else:
+                return HttpResponse(json.dumps({'status':'tryingToRateYourself', 'message':'El usuario no puede calificarse a su mismo'}) ,content_type="application/json")
         else:
             return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")

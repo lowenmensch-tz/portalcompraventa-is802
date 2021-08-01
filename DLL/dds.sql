@@ -88,6 +88,7 @@ CREATE TABLE DENUNCIA(
 	id_denuncia INT NOT NULL AUTO_INCREMENT UNIQUE,
     fk_usuarioDenunciador INT NOT NULL,
     fk_usuarioDenunciado INT NOT NULL,
+    motivo VARCHAR(30),
     PRIMARY KEY (id_denuncia)
 );
 
@@ -134,4 +135,4 @@ ALTER TABLE CALIFICACION ADD FOREIGN KEY (fk_usuarioCalificado) REFERENCES USUAR
 ALTER TABLE FAVORITO ADD FOREIGN KEY (fk_usuario) REFERENCES USUARIO (id_usuario);
 ALTER TABLE FAVORITO ADD FOREIGN KEY (fk_articulo) REFERENCES ARTICULO (id_articulo);
 ALTER TABLE USUARIO ADD INDEX in_contra (contrasenia);
-CREATE UNIQUE INDEX in_correo ON USUARIO(correo);
+CREATE INDEX in_correo ON USUARIO(correo);

@@ -477,3 +477,38 @@ def getCategories(request):
             return HttpResponse(json.dumps({'status':'Success', 'data':categories}),content_type="application/json")
         except Exception as e:
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+
+"""
+    Recibe la petición para realizar una denuncia.
+
+    @param request: Se espera recibir el id del usuario que está siendo denunciado.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion:
+        
+        Success: La ejecución fue exitosa y envia la lista de artículos.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        alreadyReported: El usuario ya ha denunciado al vendedor.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def reportSeller(request, url=''):
+    if request.method == 'POST':
+        id_seller = request.POST.get('id_seller')
+        motivo = request.POST.get('motivo')
+        id_user = engine.getUserIDByEmail(request.session.get('email'))
+        
+        checkReportQuery = """SELECT COUNT(*) FROM DENUNCIA WHERE fk_usuarioDenunciador = %s AND fk_usuarioDenunciado = %s;""" % (id_user, id_seller)
+
+        reportQuery = """INSERT INTO DENUNCIA (fk_usuarioDenunciador,fk_usuarioDenunciado,motivo) VALUES (%s,%s,'%s');""" % (id_user, id_seller, motivo)
+
+        try:
+            result = engine.transaction(checkReportQuery)
+
+            if result[0][0] == 0:
+                engine.dms(reportQuery)
+                return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+            else:
+                return HttpResponse(json.dumps({'status':'alreadyReported', 'message':'El usuario ya ha denunciado al vendedor'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
