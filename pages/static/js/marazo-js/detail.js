@@ -57,13 +57,12 @@ function loadData(){
             
             let url = "seller/" + convertURL(data.profilePublisher[0][1], data.profilePublisher[0][0]); 
             commentPublisher = data.customer[0];
-            console.log(commentPublisher);
             document.getElementById("url-seller").onclick = function(){
                 location.href = "http://localhost:8000/" + url;
             };
 
             document.getElementById('productName').innerHTML = data.title; //Nombre del producto
-
+            console.log(data.rating);
             $('#productDetailRating').rateit({max: 5, step: 1, value : parseFloat(data.rating), resetable : false , readonly : true}); // Promedio de Valoraciones
         
             document.getElementById('productDescription').innerHTML = `<p>${data.description}</p>`; //Descripción del Producto

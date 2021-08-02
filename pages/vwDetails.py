@@ -86,7 +86,7 @@ class Details:
                                                                 data=self.productDetailsImage(idProduct=idProduct), 
                                                                 key='photo'
                                                             ),
-                                    'rating': self.engine.raiting(resultProduct[0][-1]),  # Calificación (promedio) del vendedor
+                                    'rating': self.engine.raiting(resultProduct[0][3]),  # Calificación (promedio) del vendedor
                                     'comment': convertToDictionary(
                                                                     data=self.productDetailsComments(idProduct=idProduct),
                                                                     key=['userCommenting', 'comment']

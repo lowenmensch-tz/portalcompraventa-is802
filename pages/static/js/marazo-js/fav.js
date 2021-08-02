@@ -89,7 +89,7 @@ function loadMyWishlist(data){
             </tbody>
             
         `
-        $(`#rating${i}`).rateit({max: 5, step: 1, value : parseFloat(data[i+5]), resetable : false , readonly : true});
+        $(`#rating${i}`).rateit({max: 5, step: 1, value : parseFloat(data[i+(data.length/2)]), resetable : false , readonly : true});
         //document.getElementById(`#rating${i}`).rateit({max: 5, step: 1, value : parseFloat(3.5), resetable : false , readonly : true});
     }
 

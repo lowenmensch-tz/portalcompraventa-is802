@@ -167,6 +167,7 @@ function loadProfile(profile){
     $("#Selleremail").val(`${profile[2]}`);
     $("#Selleraddress").val(`${profile[5]}`);
     $("#Sellerdepartment").val(`${profile[3]}`);
+    
 }
 
 
@@ -271,7 +272,7 @@ function ratingAndComment(){
         rating: loadRaiting(),
         email: $("#Selleremail").val()
     };
-
+    console.log(data.email);
 
     //peticion que espera una variable text
     //url: "ajax/sellerRaitingAndComment",
