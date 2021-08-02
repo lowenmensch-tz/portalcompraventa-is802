@@ -415,7 +415,7 @@ function getDataComplaint(){
 
 
 function cleanFormModal(){
-    document.getElementById("denunciaMotive").innerHTML = "";
+    //document.getElementById("denunciaMotive").innerHTML = "";
     document.getElementById("denunciaDescription").value = "";
 }
 
