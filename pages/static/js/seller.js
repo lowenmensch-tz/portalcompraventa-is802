@@ -304,17 +304,22 @@ function ratingAndComment(){
 function rateformSuccess() {
     alert("Se ha calificado con éxito!");
     $("#rateForm")[0].reset();
-    ratesubmitMSG(true, "Ha calificado a vendedor éxitosamente!");
+    ratesubmitMSG(true, "Ha calificado al vendedor éxitosamente!");
     $("input").removeClass('notEmpty'); // resets the field label after submission
 }
 
-function rateformError(menjase) {
-    alert(menjase);
+function rateformError(mensaje) {
+    alert(mensaje);
     $("#rateForm")[0].reset();
     ratesubmitMSG(true, "No puede calificar más de una vez");
     $("input").removeClass('notEmpty');
     $("#calificacionmodal").modal('hide')
+    /*$("#rateForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        $(this).removeClass();
+    });
+    $("input").removeClass('notEmpty');*/
 }
+
 
 function ratesubmitMSG(valid, msg) {
     if (valid) {
@@ -322,7 +327,7 @@ function ratesubmitMSG(valid, msg) {
     } else {
         var msgClasses = "h3 text-center";
     }
-    $("#ratemsgSubmit").removeClass().addClass(msgClasses).text(msg);
+    //$("#ratemsgSubmit").removeClass().addClass(msgClasses).text(msg);
 }
 
 
