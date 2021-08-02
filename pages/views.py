@@ -496,56 +496,58 @@ def reportSeller(request, url=''):
 
     if request.method == 'POST':
 
-        id_seller = request.POST.get('idSeller')
+        id_seller = int(request.POST.get('idSeller'))
         motivo = request.POST.get('reasons')
         comment = request.POST.get('comment')
+        
 
         id_user = engine.getUserIDByEmail(request.session.get('email'))
-        
-        checkReportQuery = """
-                                SELECT 
-                                    COUNT(*) 
-                                FROM 
-                                    DENUNCIA 
-                                WHERE 
-                                    fk_usuarioDenunciador = %s 
-                                    AND 
-                                    fk_usuarioDenunciado = %s;
-                            """ %(id_user, id_seller)
+        #print(id_seller)
+        print(id_user!=id_seller)
+        if id_user != id_seller:
+            checkReportQuery = """
+                                    SELECT 
+                                        COUNT(*) 
+                                    FROM 
+                                        DENUNCIA 
+                                    WHERE 
+                                        fk_usuarioDenunciador = %s 
+                                        AND 
+                                        fk_usuarioDenunciado = %s;
+                                """ %(id_user, id_seller)
 
-        reportQuery = """
-                            INSERT INTO DENUNCIA (fk_usuarioDenunciador, fk_usuarioDenunciado, motivo) VALUES 
-                                (%s, %s, %s)
-                            ;
-                        """ % (id_user, id_seller, motivo)
+            reportQuery = """
+                                INSERT INTO DENUNCIA (fk_usuarioDenunciador, fk_usuarioDenunciado, motivo) VALUES 
+                                    (%s, %s, %s)
+                                ;
+                            """ % (id_user, id_seller, motivo)
 
-        commentQuery = """
-                            INSERT INTO COMENTARIO (fk_usuarioComentador, fk_dirigidoA, comentario, tipo) VALUES
-                                (%s, %s, '%s', 3)
-                            ;
-                        """ % (id_user, id_seller, comment)
+            commentQuery = """
+                                INSERT INTO COMENTARIO (fk_usuarioComentador, fk_dirigidoA, comentario, tipo) VALUES
+                                    (%s, %s, '%s', 3)
+                                ;
+                            """ % (id_user, id_seller, comment)
 
-        nameSellerQuery = "SELECT nombre_completo FROM USUARIO WHERE id_usuario = %s"%(id_seller)
+            nameSellerQuery = "SELECT nombre_completo FROM USUARIO WHERE id_usuario = %s"%(id_seller)
 
-        try:
-            result = engine.transaction(checkReportQuery)
+            try:
+                result = engine.transaction(checkReportQuery)
 
-            nameSeller = engine.transaction(nameSellerQuery)[0][0]
+                nameSeller = engine.transaction(nameSellerQuery)[0][0]
 
-            if result[0][0] == 0:
+                if result[0][0] == 0:
 
-                engine.dms(reportQuery)
-                engine.dms(commentQuery)
+                    engine.dms(reportQuery)
+                    engine.dms(commentQuery)
 
-                return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+                    return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
 
-            elif result[0][0] != 0:
-                return HttpResponse(json.dumps({'status':'alreadyReported', 'message':'Ya ha denunciado a <strong>{}.</strong>'.format(nameSeller) }),content_type="application/json")
+                elif result[0][0] != 0:
+                    return HttpResponse(json.dumps({'status':'alreadyReported', 'message':'Ya ha denunciado a <strong>{}.</strong>'.format(nameSeller) }),content_type="application/json")
 
-            else:
-                return HttpResponse(json.dumps({'status':'errorReported', 'message':'No puede realizar una denucia a sí mismo.'}),content_type="application/json")
-
-        except Exception as e:
-            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+            except Exception as e:
+                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+        else: 
+            return HttpResponse(json.dumps({'status':'errorReported', 'message':'No puede realizar una denucia a sí mismo.'}),content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
