@@ -56,8 +56,8 @@ function loadData(){
         success: function(data) {
             
             let url = "seller/" + convertURL(data.profilePublisher[0][1], data.profilePublisher[0][0]); 
-            commentPublisher = data.customer[0][1];
-
+            commentPublisher = data.customer[0];
+            console.log(commentPublisher);
             document.getElementById("url-seller").onclick = function(){
                 location.href = "http://localhost:8000/" + url;
             };
