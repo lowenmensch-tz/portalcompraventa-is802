@@ -136,7 +136,7 @@ class Seller:
                                     content_type="application/json"
                                 )
                     else:
-                        return HttpResponse(json.dumps({'status':'alreadyQualified', 'message':'El usuario ya ha denunciado al vendedor anteriormente'}) ,content_type="application/json")
+                        return HttpResponse(json.dumps({'status':'alreadyQualified', 'message':'El usuario ya ha calificado al vendedor anteriormente'}) ,content_type="application/json")
                 except Exception as e:
                     return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")  
                 #else:

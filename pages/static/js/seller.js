@@ -292,7 +292,7 @@ function ratingAndComment(){
             $('#calificacionmodal').modal('toggle');
 
         } else {
-            rateformError();
+            rateformError(data.message);
             ratesubmitMSG(false, data);
         }
     }
@@ -308,11 +308,12 @@ function rateformSuccess() {
     $("input").removeClass('notEmpty'); // resets the field label after submission
 }
 
-function rateformError() {
-    alert("Ya ha calificado a este vendedor anteriormente");
-    $("#rateForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-        $(this).removeClass();
-    });
+function rateformError(menjase) {
+    alert(menjase);
+    $("#rateForm")[0].reset();
+    ratesubmitMSG(true, "No puede calificar más de una vez");
+    $("input").removeClass('notEmpty');
+    $("#calificacionmodal").modal('hide')
 }
 
 function ratesubmitMSG(valid, msg) {
