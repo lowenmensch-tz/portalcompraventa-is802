@@ -72,13 +72,13 @@ class Details:
 
             try:
                 resultProduct = self.engine.transaction(sqlProduct)
-
+                cust = self.engine.transaction("SELECT nombre_completo FROM USUARIO WHERE correo = '%s'"%(email))
                 if resultProduct != []:
                     return HttpResponse(
                         json.dumps(  
                                 { 
                                     'status':'Success', 
-                                    'customer': self.engine.transaction("SELECT nombre_completo FROM USUARIO WHERE correo = '%s'"%(email))[0],
+                                    'customer': cust,
                                     'title':resultProduct[0][0], 
                                     'description':resultProduct[0][1], 
                                     'price':resultProduct[0][2], 
