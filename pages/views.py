@@ -429,6 +429,7 @@ def deleteFromWishList(request):
         Empty: El usuario no tiene artículos en su lista de favoritos.
         requestError: No se recibió una petición POST.
 """
+@csrf_exempt
 def showWishList(request):
     if request.method == 'POST':
         id_usuario = engine.getUserIDByEmail(request.session.get('email'))
