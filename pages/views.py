@@ -429,35 +429,37 @@ def deleteFromWishList(request):
         Empty: El usuario no tiene artículos en su lista de favoritos.
         requestError: No se recibió una petición POST.
 """
-@csrf_exempt
 def showWishList(request):
     if request.method == 'POST':
         id_usuario = engine.getUserIDByEmail(request.session.get('email'))
         listRaitings = []
+        listaReviews = []
 
         wishlistQuery = """SELECT FAVORITO.fk_articulo, ARTICULO.nombre, CONCAT(SUBSTRING(descripcion,1,35),'...'), CAST(FORMAT(precio, 2) AS CHAR), 
                         IMAGEN.enlace_imagen, CAST(ARTICULO.fecha_publicacion AS CHAR), ARTICULO.fk_usuario
                         FROM FAVORITO INNER JOIN ARTICULO ON
                         FAVORITO.fk_articulo = ARTICULO.id_articulo
                         INNER JOIN IMAGEN ON ARTICULO.id_articulo = IMAGEN.fk_articulo
-                        WHERE FAVORITO.fk_usuario = %s AND IMAGEN.id_imagen IN
+                        WHERE FAVORITO.fk_usuario = %s AND ARTICULO.publicado = 1 AND IMAGEN.id_imagen IN 
                         (SELECT min(id_imagen) FROM IMAGEN group by fk_articulo)
                         ORDER BY FAVORITO.id_favorito ASC;""" % (id_usuario)
         
-
         try:
             result = engine.transaction(wishlistQuery)
             if result != []:
                 for i in range(len(result)):
+                    userReviews = """SELECT COUNT(*) FROM CALIFICACION WHERE fk_usuarioCalificado = %s;""" %(result[i][6])
                     raiting = engine.raiting(result[i][6])
                     listRaitings.append(raiting)
+                    reviews = engine.transaction(userReviews)
+                    listaReviews.append(reviews)
                     #raintingQuery = """SELECT CAST(AVG(calificacion) AS CHAR) FROM CALIFICACION WHERE fk_usuarioCalificado = %s;""" % (result[i][6])
                     #raiting = engine.transaction(raintingQuery)
                     #if raiting 
                     #result[i].append(engine.transaction(raintingQuery)[0][0])
                     #listRaitings.append(engine.transaction(raintingQuery)[0][0])
                 result2 = result + listRaitings
-                return HttpResponse(json.dumps({'status':'Success', 'data':result2}),content_type="application/json")
+                return HttpResponse(json.dumps({'status':'Success', 'data':result2, 'data2':listaReviews}),content_type="application/json")
             else:
                 return HttpResponse(json.dumps({'status':'Empty', 'message':'El usuario no tiene artículos en su lista de favoritos'}),content_type="application/json")
         except Exception as e:

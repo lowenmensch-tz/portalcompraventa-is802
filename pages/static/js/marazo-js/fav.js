@@ -28,7 +28,7 @@ function getMyWishlist(){
             if (data.data == undefined){
                 $('#wishlistTable').html('NO TIENE FAVORITOS AÑADIDOS A LA LISTA AÚN');
             }else{
-                loadMyWishlist(data.data);
+                loadMyWishlist(data.data, data.data2);
             }
         }
     });
@@ -36,7 +36,7 @@ function getMyWishlist(){
 
 
 
-function loadMyWishlist(data){
+function loadMyWishlist(data, data2){
     /*
     0: id_articulo
     1: nombre
@@ -73,7 +73,7 @@ function loadMyWishlist(data){
                         <div class="product-name"><a href="details/${convertURL(data[i][1], data[i][0])}">${data[i][1]}</a></div>
                         <div id="rating${i}" class="rating rateit-small">
           
-                            <span class="pull-right">&nbsp;&nbsp;(06 reseñas)</span>
+                            <span class="pull-right">&nbsp;&nbsp;(${data2[i][0][0]} reseñas)</span>
                         </div>
                         <div class="price">HNL ${data[i][3]}</div>
                     </td>
