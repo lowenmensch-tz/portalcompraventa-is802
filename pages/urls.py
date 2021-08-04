@@ -16,6 +16,7 @@ from pages.views import logout
 from pages.views import login
 from pages.views import index
 from pages.views import user
+from pages.views import admin
 from pages.views import wishlist
 from pages.views import addWishList
 from pages.views import showWishList
@@ -57,6 +58,8 @@ path('ajax/getCategories', getCategories),
 path('user', user, name='user'),
 path('logout', logout),
 path('wishlist', wishlist),
+
+path('admin', admin, name='admin'),
 
 url(r'^seller\-product\/(\d{1,4}\-[0-9a-zA-Z-]+)$', sellerProduct.index, name='seller_product'),
 path('seller-product/ajax/deleteProductPublisher', sellerProduct.deleteProductPublisher), #elimina producto de un vendedor
