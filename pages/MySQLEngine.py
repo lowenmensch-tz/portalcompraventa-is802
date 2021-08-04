@@ -299,3 +299,28 @@ class MySQLEngine:
         result = self.transaction(sql)
 
         return result
+
+
+    """
+        Promedio de precios de productos por departamento
+    """
+    def averageProductPriceByDepartment(self):
+        
+        sql = """
+            SELECT 
+                FORMAT(AVG(a.precio), 2) AS Average,
+                d.nombre AS Departament, 
+                COUNT(a.fk_departamento) AS Cantidad
+            FROM 
+                ARTICULO AS a
+            INNER JOIN 
+                DEPARTAMENTO AS d ON a.fk_departamento = d.id_departamento
+            GROUP BY
+                a.fk_departamento
+            ORDER BY
+                d.nombre
+            ;
+            """
+
+        result = self.transaction(sql)
+        return result

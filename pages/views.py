@@ -1,3 +1,4 @@
+from pages.vwStatistics import Statistics
 from django.views.decorators.csrf import csrf_exempt # Este decorador solo es de prueba y no una solución para la cookie csrf
 
 from django.shortcuts import resolve_url
@@ -6,6 +7,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from pages.MySQLEngine import MySQLEngine
+from pages.vwStatistics import Statistics
 
 from pages.vwSellerProduct import SellerProduct
 from pages.vwUserProfile import UserProfile
@@ -25,6 +27,7 @@ sellerProduct = SellerProduct(engine)
 profile = UserProfile(engine)  #Funciones de la Vista donde se muestra la información de los artículos
 details = Details(engine)    #Funciones pertenecientes a la Vista Donde se muestra la información de los artículos
 seller = Seller(engine)     #Funciones de la vista del vendedor desde el punto de vista del cliente.   
+statistics = Statistics(engine)
 
 
 """

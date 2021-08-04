@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Productos del Vendedor</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesome-free/css/all.css' %}"> 
+
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sb-admin-2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bondiesStyles.css' %}">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+        <nav class="navbar-superior">
+			
+				<!--<h2 class="logotipo-h2">Logotipo página</h2>-->
+			
+			<!--<div class="logotipo">
+				<img src="{% static 'img/logo.png' %}" />
+				<h2>Nombre página</h2>
+			</div>-->
+			<ul class="navbar-superior-ul">
+         		<li id="registrarse" class="navbar-superior-ul-li" style="display:none;">
+					<a class="navbar-superior-ul-li-a" href="/register">Registrate</a>
+				</li>
+        		<li id="iniciar-sesion" class="navbar-superior-ul-li" style="display:none;">
+					<a class="navbar-superior-ul-li-a" href="/login">Iniciar sesión</a>
+				</li>
+				<li id="cerrar-sesion" class="navbar-superior-ul-li" style="display:none;">
+					<a class="navbar-superior-ul-li-a" href="/logout">Cerrar sesión</a>
+				</li>
+				<li id = "mi-perfil" class="navbar-superior-ul-li" style="display:none;">
+					<a class="navbar-superior-ul-li-a" href="/user">Mi Perfil</a>
+				</li>
+				<li class="navbar-superior-ul-li">
+					<a class="navbar-superior-ul-li-a" href="#">Contacto</a>
+				</li>
+				<li class="navbar-superior-ul-li">
+					<a class="navbar-superior-ul-li-a" href="#">Sobre nosotros</a>
+				</li>
+				<li class="navbar-superior-ul-li">
+					<a class="navbar-superior-ul-li-a" href="/categories">Categorias</a>
+				</li>
+				<li class="navbar-superior-ul-li">
+					<a class="navbar-superior-ul-li-a" href="/">Inicio</a>
+				</li>
+			</ul>
+	</nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800" id="name-publisher"></h1>
+                    </div>
+
+                    
+                    <!-- GRID --> 
+                    <div class="row">
+                        <div class="">
+                            <div class="card shadow h-100 py-2">
+                                <div class="card-body">
+                                    <!-- AQUI DEBEN IR LOS PRODUCTOS -->
+                                    <div class="container-fluid" id="graphQuantityProductoByDepartment">
+                                        <canvas id="myChart" width="400" height="400"></canvas>
+                                    </div>  
+                                </div> <!-- AQUI TERMINA -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Portal Compra Ventas 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Modal -->
+        <!-- Button trigger modal -->
+        {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+        </button>  {% endcomment %}
+    
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/statistics.js' %}"></script>
+
+
+</body>
+
+</html>
+{% endblock %}

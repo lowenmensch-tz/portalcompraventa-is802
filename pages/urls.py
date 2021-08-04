@@ -2,10 +2,11 @@ from pages.views import almacenarArticulo
 from pages.views import productCategories
 from pages.views import loggedInValidator
 from pages.views import loginValidation 
-from pages.views import registerUser
-from pages.views import findProducts
-from pages.views import updateUser
 from pages.views import sellerProduct
+from pages.views import findProducts
+from pages.views import registerUser
+from pages.views import updateUser
+from pages.views import statistics
 from pages.views import loadImage
 from pages.views import register
 from pages.views import details
@@ -69,6 +70,8 @@ path('seller/ajax/sellerProfileComplaint', reportSeller),
 url(r'^seller\/(\d{1,4}\-[0-9a-zA-Z-]+)$', seller.seller),
 #
 #path('seller/', seller.seller, name='seller_page'),
+path('statistics', statistics.index, name='statistics_page'),
+path('ajax/averageProductPriceByDepartment', statistics.getDataAverageProductPriceByDepartment),
 
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/productDetailsDescription$', details.productDetailsDescription),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/review$', details.review, name='review'),
