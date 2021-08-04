@@ -55,6 +55,10 @@ def user(request):
     return render(request,'user.html')
 
 @csrf_exempt
+def admin(request):
+    return render(request,'admin.html')
+
+@csrf_exempt
 def loggedInValidator(request,url):
     # print(request.session['email'])
     #del request.session['email']
