@@ -1,10 +1,39 @@
 thumbStep = -285;
 thumbTotalPages = 0;
 
+var startDate = new Date();
+startDate = 
+            startDate.toISOString().split('T')[0] 
+            + ' ' + 
+            startDate.toTimeString().split(' ')[0];
+
 window.onload = function(){
     sessionCheck();
     loadData();
 };
+
+/**
+    Cuando se recargue la página, se envía 
+    información del tiempo que estuvo el usuario
+    en el producto
+*/
+
+window.addEventListener("beforeunload", function(event) { 
+
+    
+    var endDate = new Date();
+    endDate = 
+            endDate.toISOString().split('T')[0]
+            + ' ' +
+            endDate.toTimeString().split(' ')[0];
+
+    let idProduct =  parseInt(window.location.pathname.replaceAll(/\/details\//g, "").split("-")[0]);
+    let sellerEmail =  $('#publisherEmail').val();
+    
+    addRecordVisitedProduct(startDate, endDate, idProduct, sellerEmail);
+
+});
+
 
 var comentarios;
 var count = 1;
@@ -273,4 +302,41 @@ function addWish(id_articulo){
             }
         }
     });
+}
+
+
+/**
+    Agrega un registro de una visualización de un 
+    producto realizado por un usuario a la bitácora.
+    @param {JSON} datos a enviar
+*/
+function addRecordVisitedProduct(startDate, endDate, idProduct, sellerEmail){
+
+    url = "ajax/addRecordVisitedProduct";
+
+    let fd = new FormData();
+    fd.append("startDate", startDate);
+    fd.append("endDate", endDate);
+    fd.append("idProduct", idProduct);
+    fd.append("sellerEmail", sellerEmail);
+    
+    var option = {
+        method: "POST",
+        body: fd
+    }
+
+    fetch(url, option)
+        .then(response => response.json())
+        .catch(error => console.error(error))
+        .then(response => {
+
+            if(response.status == "Success"){
+
+                alert('Registro de visualización exitoso');
+
+            }else{
+
+                alert('Error al registrar el registro');
+            }
+        });
 }

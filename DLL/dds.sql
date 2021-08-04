@@ -119,6 +119,17 @@ CREATE TABLE FAVORITO(
     PRIMARY KEY (id_favorito)
 );
 
+
+
+CREATE TABLE BITACORA(
+    id_bitacora SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL COMMENT "ID del usuario que visualiza el producto",
+    id_articulo INT NOT NULL COMMENT "ID del producto",
+    fecha_inicial DATETIME NOT NULL COMMENT "Hora en la que el usuario visita la página",
+    fecha_final DATETIME NOT NULL COMMENT "Hora en la que el usuario sale de la página"
+) COMMENT "Bitácora relacionada al Tiempo de visita de usuario con un producto";
+
+
 /*Creacion, por aparte, de las llaves foráneas, relaciones entre las tablas e indices.*/
 ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_categoria) REFERENCES CATEGORIA (id_categoria);
 ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_usuario) REFERENCES USUARIO (id_usuario);
@@ -136,3 +147,4 @@ ALTER TABLE FAVORITO ADD FOREIGN KEY (fk_usuario) REFERENCES USUARIO (id_usuario
 ALTER TABLE FAVORITO ADD FOREIGN KEY (fk_articulo) REFERENCES ARTICULO (id_articulo);
 ALTER TABLE USUARIO ADD INDEX in_contra (contrasenia);
 CREATE INDEX in_correo ON USUARIO(correo);
+CREATE INDEX find_log ON BITACORA(id_usuario, id_articulo);

@@ -13,6 +13,7 @@ from django.shortcuts import resolve_url
 from django.shortcuts import render 
 
 from pages.Tools import convertToDictionary
+from pages.Binacle import Binacle
 
 import json
 
@@ -127,10 +128,7 @@ class Details:
             try: 
                 updatedComments = self.productDetailsComments(idProduct=idProduct) 
 
-                print('Comentario actualizado: ', updatedComments)
-
                 if updatedComments:
-                    #**{ 'rating': self.engine.raiting(idUser=idUserPublication) }, # Calificación (promedio) del dueño del producto
                     return HttpResponse(json.dumps(
                                     {
                                         'status':'Success',
@@ -166,7 +164,6 @@ class Details:
 
         result = self.engine.transaction(sql) # Result viene vación incluso luego de insertar un comentario (ya se puede ingresar comentarios)
 
-        #return convertToDictionary(data=result, key=['userCommenting', 'comment'])
         return result
 
 
@@ -186,5 +183,39 @@ class Details:
 
         result = self.engine.transaction(sql)
 
-        #return convertToDictionary(data=result, key='photo')
         return result
+
+
+    """
+    """
+    @csrf_exempt
+    def log(self, request, url):
+
+        if request.method == 'POST':
+            
+            binacle = Binacle(self.engine)
+            data = {
+                "idUser":  self.engine.getUserIDByEmail( email=request.session.get('email') ),
+                "idProduct": int(request.POST.get('idProduct')), 
+                "startDate": request.POST.get('startDate'), 
+                "endDate": request.POST.get('endDate')
+            }
+
+            try: 
+                
+                if request.POST: 
+
+                    binacle.addRecordVisitedProduct(data)
+
+                    return HttpResponse(json.dumps(
+                                    {
+                                        'status':'Success',
+                                    }
+                                ), 
+                                content_type="application/json")
+
+                else: 
+                    return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
+
+            except Exception as e:
+                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")

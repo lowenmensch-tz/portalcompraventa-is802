@@ -76,6 +76,7 @@ url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/$', details.productDetails), # esta cos
 #url(r'^user\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/userProfile$', userProfile, name='user_Profile'),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/loggedValidator', loggedInValidator),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/addWishList$', addWishList),
+url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/addRecordVisitedProduct$', details.log)
 ]
 
 if settings.DEBUG:
