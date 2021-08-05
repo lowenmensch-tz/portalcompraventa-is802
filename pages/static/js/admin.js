@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$('#example').DataTable();
     $(".new-tabs a").click(function(){
     $(this).tab('show');
     });
