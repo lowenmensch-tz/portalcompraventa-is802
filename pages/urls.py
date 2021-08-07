@@ -1,3 +1,4 @@
+from pages.views import administrationComplaint
 from pages.views import almacenarArticulo 
 from pages.views import productCategories
 from pages.views import loggedInValidator
@@ -16,13 +17,12 @@ from pages.views import logout
 from pages.views import login
 from pages.views import index
 from pages.views import user
-from pages.views import admin
 from pages.views import wishlist
 from pages.views import addWishList
-from pages.views import showWishList
-from pages.views import deleteFromWishList
-from pages.views import getCategories
 from pages.views import reportSeller
+from pages.views import showWishList
+from pages.views import getCategories
+from pages.views import deleteFromWishList
 
 from django.urls import path
 
@@ -59,7 +59,8 @@ path('user', user, name='user'),
 path('logout', logout),
 path('wishlist', wishlist),
 
-path('admin', admin, name='admin'),
+path('admin', administrationComplaint.index, name='admin'),
+path('ajax/getAllDataComplaint', administrationComplaint.getAllDataComplaint, name='admin_complainst'),
 
 url(r'^seller\-product\/(\d{1,4}\-[0-9a-zA-Z-]+)$', sellerProduct.index, name='seller_product'),
 path('seller-product/ajax/deleteProductPublisher', sellerProduct.deleteProductPublisher), #elimina producto de un vendedor

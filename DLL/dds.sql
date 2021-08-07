@@ -70,6 +70,7 @@ CREATE TABLE USUARIO(
     direccion VARCHAR(100) NOT NULL,
     estado BOOL DEFAULT 0,
     fecha_creacion DATETIME NOT NULL DEFAULT NOW(),
+    tipo BIT(1) NOT NULL DEFAULT 0 COMMENT "0 vendedor/cliente | 1 administrador",
     contrasenia VARCHAR(255) NOT NULL,
     PRIMARY KEY (id_usuario)
 );
@@ -89,6 +90,10 @@ CREATE TABLE DENUNCIA(
     fk_usuarioDenunciador INT NOT NULL,
     fk_usuarioDenunciado INT NOT NULL,
     motivo ENUM('Fraude', 'Venta de productos ilegales', 'Publicidad engañosa', 'Otros') NOT NULL,
+    estado BIT(1) NOT NULL DEFAULT 0 COMMENT "0 Denuncia sin revisar | 1 Se toma una acción, ",
+    
+    UNIQUE(fk_usuarioDenunciador, fk_usuarioDenunciado),
+    
     PRIMARY KEY (id_denuncia)
 ); 
 

@@ -1,4 +1,3 @@
-from pages.vwStatistics import Statistics
 from django.views.decorators.csrf import csrf_exempt # Este decorador solo es de prueba y no una solución para la cookie csrf
 
 from django.shortcuts import resolve_url
@@ -6,11 +5,11 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
-from pages.MySQLEngine import MySQLEngine
-from pages.vwStatistics import Statistics
-
+from pages.vwAdminComplaint import AdministrationComplaint
 from pages.vwSellerProduct import SellerProduct
 from pages.vwUserProfile import UserProfile
+from pages.vwStatistics import Statistics
+from pages.MySQLEngine import MySQLEngine
 from pages.vwDetails import Details
 from pages.vwSeller import Seller
 
@@ -22,12 +21,13 @@ import pages.conexion as conexion
 
 # Create your views here.
 
-engine = MySQLEngine()            #Ejecuta statements de la base de datos. SELECT (tranaction), INSERT (dms). 
-sellerProduct = SellerProduct(engine)
-profile = UserProfile(engine)  #Funciones de la Vista donde se muestra la información de los artículos
-details = Details(engine)    #Funciones pertenecientes a la Vista Donde se muestra la información de los artículos
-seller = Seller(engine)     #Funciones de la vista del vendedor desde el punto de vista del cliente.   
+engine = MySQLEngine()       #Ejecuta statements de la base de datos. SELECT (tranaction), INSERT (dms). 
+seller = Seller(engine)       #Funciones de la vista del vendedor desde el punto de vista del cliente.   
+details = Details(engine)      #Funciones pertenecientes a la Vista Donde se muestra la información de los artículos
+profile = UserProfile(engine)   #Funciones de la Vista donde se muestra la información de los artículos
 statistics = Statistics(engine)
+sellerProduct = SellerProduct(engine)
+administrationComplaint = AdministrationComplaint(engine) #Administración de la página, estadísticas, productos, vendedores, comentarios, etc.
 
 
 """
@@ -57,9 +57,6 @@ def logout(request):
 def user(request):
     return render(request,'user.html')
 
-@csrf_exempt
-def admin(request):
-    return render(request,'admin.html')
 
 @csrf_exempt
 def loggedInValidator(request,url):
@@ -288,7 +285,6 @@ def loadImage(request):
 
             imageFiles = request.FILES
 
-            print("A VER: ",  imageFiles )
             fs = FileSystemStorage()
 
             for key in imageFiles:
@@ -296,15 +292,11 @@ def loadImage(request):
                 file = fs.save(imageFiles[key].name, imageFiles[key])
                 uploaded_file_url = fs.url(file)
 
-                print("URL: ", uploaded_file_url)
-
                 sql = """
                                      INSERT INTO IMAGEN (enlace_imagen, fk_articulo) VALUES
                                          ('%s', %s);
                                  """ % (uploaded_file_url, result[0][0])
                 
-                print(sql)
-
                 engine.dms(sql)
 
             return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")

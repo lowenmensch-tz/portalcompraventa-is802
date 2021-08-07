@@ -206,7 +206,7 @@ class MySQLEngine:
         INNER JOIN 
             USUARIO AS u ON c.fk_usuarioComentador = u.id_usuario
         WHERE
-            tipo = %s AND fk_dirigidoA = %s;
+            c.tipo = %s AND c.fk_dirigidoA = %s;
         """ % (tipo, fk_dirigidoA) # REVISAR
 
         result = self.transaction(sql) 

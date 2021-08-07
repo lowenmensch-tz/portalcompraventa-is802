@@ -14,6 +14,7 @@ SET GLOBAL log_bin_trust_function_creators = 1;
 DROP FUNCTION IF EXISTS fn_getImage;
 DROP FUNCTION IF EXISTS fn_convertDateTimeToMinutes;
 DROP FUNCTION IF EXISTS fn_getTimeElapsed;
+DROP FUNCTION IF EXISTS fn_getNameByID;
 
 -- CONCAT('url', i.fk_articulo), 
 
@@ -79,3 +80,24 @@ DELIMITER $$
     END $$
 
 DELIMITER ;
+
+
+
+DELIMITER $$ 
+
+    CREATE FUNCTION fn_getNameByID(id_usuario INT) RETURNS VARCHAR(30)
+    BEGIN 
+
+        RETURN (
+                    SELECT
+                        u.nombre_completo
+                    FROM
+                        USUARIO AS u
+                    WHERE
+                        u.id_usuario = id_usuario
+            )
+        ;
+    END $$
+
+DELIMITER ; 
+

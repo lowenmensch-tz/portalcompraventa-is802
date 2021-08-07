@@ -159,7 +159,7 @@ class Details:
         INNER JOIN 
             USUARIO AS u ON c.fk_usuarioComentador = u.id_usuario
         WHERE
-            tipo = 2 AND fk_dirigidoA = %s 
+            c.tipo = 2 AND c.fk_dirigidoA = %s 
         """ % (idProduct) # REVISAR
 
         result = self.engine.transaction(sql) # Result viene vación incluso luego de insertar un comentario (ya se puede ingresar comentarios)
