@@ -103,7 +103,7 @@ def loginValidation (request):
     if request.method == 'POST':
         email, password, remember = request.POST.get('email'), request.POST.get('password'), request.POST.get('remember')
         database, cursor = conexion.conectar()
-        query = "SELECT COUNT(*) FROM USUARIO WHERE correo = '%s' AND contrasenia='%s';" % (email,password)
+        query = "SELECT COUNT(*) FROM USUARIO WHERE correo = '%s' AND contrasenia='%s' AND estado = 1;" % (email,password)
         #id = "SELECT id_usuario FROM USUARIO WHERE correo = '%s';" % (email)
 
         try:
@@ -211,6 +211,7 @@ def findProducts(request):
                             WHERE (fk_categoria like '%s' AND precio BETWEEN '%s' AND '%s')
                             AND (fk_departamento  like '%s' AND fk_municipio like '%s') AND publicado = 1
                             AND id_imagen IN (SELECT min(id_imagen) FROM IMAGEN group by fk_articulo)
+                            AND ARTICULO.fk_usuario IN (SELECT user.id_usuario FROM USUARIO AS user WHERE user.estado = 1)
                             ORDER BY fecha_publicacion %s, precio %s;""" % (categoria, preciomin, preciomax, departamento, municipio, fechaPublicacion, priceOrder)
         try:
             cursor.execute(articulosQuery)

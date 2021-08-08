@@ -29,6 +29,7 @@ class AdministrationComplaint:
         self.engine = engine
         self.sql = """
                     SELECT
+                        d.id_denuncia AS ID,
                         fn_getNameByID(d.fk_usuarioDenunciado) ReportedUser,
                         fn_getNameByID(d.fk_usuarioDenunciador) AS UserMakeReport,
                         c.comentario AS Comment,
@@ -132,6 +133,139 @@ class AdministrationComplaint:
                         )
                 else:
                     return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
+            except Exception as e:
+                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+
+    @csrf_exempt
+    def getDataOfAComplaint(self, request): 
+        """
+            Obtiene la información de una denuncia, asociada a una única persona
+        """
+        
+        if request.method == 'POST':
+
+            idComplaint = int(request.POST.get('idComplaint'))
+
+            sql = """
+                    SELECT
+                        COUNT(*)
+                    FROM 
+                        DENUNCIA AS d
+                    GROUP BY
+                        d.fk_usuarioDenunciado
+                    HAVING
+                        d.fk_usuarioDenunciado = (
+                            SELECT
+                                fk_usuarioDenunciado
+                            FROM
+                                DENUNCIA
+                            WHERE
+                                id_denuncia = %s
+                        );
+            """%(idComplaint)
+
+            try:
+                
+                result = self.engine.transaction( sql )[0][0]
+
+                if result:
+                    return HttpResponse(
+                        json.dumps(  
+                                { 
+                                    'status':'Success', 
+                                    'numberOfComplainst': result
+                                }),content_type="application/json"
+                        )
+                else:
+                    return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
+            except Exception as e:
+                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+
+    @csrf_exempt
+    def updateUserStatusReported(self, request): 
+        """
+            Actualiza el estado de una denuncia
+            - 0: Rechazada, ninguna acción 
+            - 1: Aceptada, damos de baja a un usuario 
+                    - Se cambia el estado de la entidad USUARIO
+                        - No puede acceder al sistema
+                        - No se pueden visualizar sus productos
+                        - Sus comentarios desaparecen
+        """
+        
+        if request.method == 'POST':
+
+            idComplaint = int(request.POST.get('idComplaint'))
+            state  = int(request.POST.get('state')) #Estado de la denuncia
+            deleteUser = int(request.POST.get('deleteUser')) # 0 Desestimar denuncia | 1 Dar de baja al usuario denunciado
+            
+            print("Respuesta desde el SERVER: ", request.POST)
+            
+            sqlSelect = """
+                SELECT
+                    fk_usuarioDenunciado
+                FROM
+                    DENUNCIA
+                WHERE
+                    id_denuncia = %s
+            """%(idComplaint)
+
+            
+            message = ""
+
+            try:
+                
+                if deleteUser: #1 Dar de baja al usuario denunciado
+
+                    idReportedUser = self.engine.transaction( sqlSelect )[0][0]   
+
+                    sqlUpdateComplaint = """
+                            UPDATE DENUNCIA 
+                            SET estado = %s
+                            WHERE fk_usuarioDenunciado = %s
+                            """%(state, idReportedUser)
+                    
+                    # 0 Dado de baja
+                    sqlUpdateStateUser = """
+                            UPDATE USUARIO
+                            SET estado = %s
+                            WHERE id_usuario = %s
+                            """%(0, idReportedUser)
+                    
+                    self.engine.dms( sqlUpdateComplaint )        #Cambia el estado de la denuncia
+                    self.engine.dms( sqlUpdateStateUser )       #Cambia el estado del usuario denunciado; ya no será visible en el sistema, no podrá acceder, no podrá comentar
+
+                    message = "El usuario <strong>{}</strong> ha sido dado de baja".format( 
+                                                        self.engine.transaction( 
+                                                                    "SELECT nombre_completo FROM USUARIO WHERE id_usuario = %s"%(idReportedUser) 
+                                                                )[0][0] 
+                                                            )
+
+                else:         #0 Desestimar denuncia
+
+                    sqlUpdateComplaint = """
+                            UPDATE DENUNCIA 
+                            SET estado = %s
+                            WHERE id_denuncia = %s
+                            """%(state, idComplaint)
+
+                    self.engine.dms( sqlUpdateComplaint )        #Cambia el estado de la denuncia
+
+                    message = "La denuncia se ha atendido de forma satisfactoria"
+
+                return HttpResponse(
+                        json.dumps(  
+                                { 
+                                    'status':'Success',
+                                    'message':message
+                                }),content_type="application/json"
+                        )
             except Exception as e:
                 return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
         else:

@@ -105,13 +105,13 @@
                     <b></b>
                     <a href="/logout">
                         <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-                        <span class="title">Sign Out</span>
+                        <span class="title">Cerrar sesión</span>
                     </a>
                 </li>
             </ul>
             <div class="container tab-content special">
                 <div id="home" class="tab-pane fade in active">
-                    <h3>Denuncias</h3>
+                    <h3>Denuncias sin revisar</h3>
                     <div class="container">
                         <table id="example" class="display" style="width:100%">
                             <thead>
@@ -190,7 +190,7 @@
                                                 placeholder="Address">
                                                 <div class="help-block with-errors"></div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">Actualizar Datos</button>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" disabled>Actualizar Datos</button> 
                                         <div class="form-message">
                                             <div id="umsgSubmit" class="h3 text-center hidden"></div>
                                         </div>
@@ -226,20 +226,32 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Denuncia</h5>
+                <h1 class="modal-title" id="exampleModalLongTitle">Denuncia</h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body" id="modal-body">
-                <h1>Aqui va el contenido de la denuncia</h1>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
+
+    <!-- Modal: Mensaje satisfactorio -->
+    <div class="modal fade" id="modalChangeUserState" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header alert" role="alert" id="classModalChangeUserState">
+                    <h5 class="modal-title" id="titleModalChangeUserState"></h5> 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body" id="modal-text-content"></div>
+            </div>
+        </div>
+    </div> 
 
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
