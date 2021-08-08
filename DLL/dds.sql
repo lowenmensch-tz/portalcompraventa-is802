@@ -134,6 +134,11 @@ CREATE TABLE BITACORA(
     fecha_final DATETIME NOT NULL COMMENT "Hora en la que el usuario sale de la página"
 ) COMMENT "Bitácora relacionada al Tiempo de visita de usuario con un producto";
 
+CREATE TABLE TIEMPO_PUBLICADO(
+	tipo_publicación VARCHAR(10),
+    tiempo_semanas INT
+);
+
 
 /*Creacion, por aparte, de las llaves foráneas, relaciones entre las tablas e indices.*/
 ALTER TABLE ARTICULO ADD FOREIGN KEY (fk_categoria) REFERENCES CATEGORIA (id_categoria);
