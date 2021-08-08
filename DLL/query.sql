@@ -89,3 +89,36 @@ LIMIT 1
 --
 -- Name: Top 10 de los mejores vendedores por categoría
 --
+
+
+--
+-- Name: Para visualizar la wea de las denuncias
+--
+SELECT 
+    d.id_denuncia AS ID, 
+    fn_getNameByID(d.fk_usuarioDenunciado) ReportedUser, 
+    IF(d.estado=1, "Revisada", "Sin revisar") AS UserStateComplaint, 
+    fn_getNameByID(d.fk_usuarioDenunciador) AS UserMakeReport, 
+    CONCAT(SUBSTRING(c.comentario, 1, 20), "...") AS Comment, 
+    CAST(c.fecha_publicacion AS CHAR) AS Date, 
+    d.motivo AS Reason, 
+    (
+        SELECT 
+            IF(user.estado=1, "Activo", "Inactivo") AS UserState
+        FROM 
+            USUARIO AS user
+        WHERE
+            user.id_usuario = d.fk_usuarioDenunciado
+    ) AS UserState
+FROM 
+    COMENTARIO AS c, DENUNCIA AS d 
+WHERE 
+        c.tipo = 3 
+    AND 
+        d.fk_usuarioDenunciador = c.fk_usuarioComentador  
+    AND 
+        d.fk_usuarioDenunciado  = c.fk_dirigidoA  
+ORDER BY 
+    d.id_denuncia DESC LIMIT 3;
+
+SELECT d.id_denuncia AS ID, fn_getNameByID(d.fk_usuarioDenunciado) ReportedUser, fn_getNameByID(d.fk_usuarioDenunciador) AS UserMakeReport, IF(d.estado=1, "Revisada", "Sin revisar") AS UserStateComplaint, CONCAT(SUBSTRING(c.comentario, 1, 20), "...") AS Comment, CAST(c.fecha_publicacion AS CHAR) AS Date, d.motivo AS Reason, (         SELECT              IF(user.estado=1, "Activo", "Inactivo") AS UserState         FROM              USUARIO AS user         WHERE             user.id_usuario = d.fk_usuarioDenunciado     ) AS UserState FROM      COMENTARIO AS c, DENUNCIA AS d  WHERE c.tipo = 3      AND          d.fk_usuarioDenunciador = c.fk_usuarioComentador       AND          d.fk_usuarioDenunciado  = c.fk_dirigidoA   ORDER BY      d.id_denuncia DESC LIMIT 3; 

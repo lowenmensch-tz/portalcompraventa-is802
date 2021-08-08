@@ -146,8 +146,18 @@ class MySQLEngine:
             INNER JOIN 
                 USUARIO AS u ON a.fk_usuario = u.id_usuario
             WHERE 
-                u.correo = '%s' AND 
-                a.publicado = 1
+                    u.correo = '%s' 
+                AND 
+                    a.publicado = 1
+                AND 
+                    a.fk_usuario IN (
+                        SELECT
+                            user.id_usuario
+                        FROM
+                            USUARIO AS user
+                        WHERE
+                            user.estado = 1
+                    );
             ORDER BY
                 a.fecha_publicacion DESC;
             """%(email)
@@ -177,7 +187,16 @@ class MySQLEngine:
             INNER JOIN 
                 USUARIO AS u ON a.fk_usuario = u.id_usuario
             WHERE 
-                u.correo = '%s';
+                    u.correo = '%s'
+                AND 
+                    a.fk_usuario IN (
+                        SELECT
+                            user.id_usuario
+                        FROM
+                            USUARIO AS user
+                        WHERE
+                            user.estado = 1
+                    );
             """%(email)
 
         result = self.transaction(sql)
@@ -206,7 +225,11 @@ class MySQLEngine:
         INNER JOIN 
             USUARIO AS u ON c.fk_usuarioComentador = u.id_usuario
         WHERE
-            c.tipo = %s AND c.fk_dirigidoA = %s;
+                c.tipo = %s 
+            AND 
+                c.fk_dirigidoA = %s
+            AND
+                u.estado = 1;
         """ % (tipo, fk_dirigidoA) # REVISAR
 
         result = self.transaction(sql) 
@@ -270,8 +293,18 @@ class MySQLEngine:
             INNER JOIN 
                 CATEGORIA AS c ON a.fk_categoria = c.id_categoria
             WHERE 
-                a.id_articulo = %s AND 
-                a.publicado = 1
+                    a.id_articulo = %s 
+                AND 
+                    a.publicado = 1
+                AND 
+                    a.fk_usuario IN (
+                        SELECT
+                            user.id_usuario
+                        FROM
+                            USUARIO AS user
+                        WHERE
+                            user.estado = 1
+                    );
             """%(id)
 
         result = self.transaction(sql)
@@ -293,7 +326,16 @@ class MySQLEngine:
             INNER JOIN
                 ARTICULO AS a ON u.id_usuario = a.fk_usuario
             WHERE 
-                a.id_articulo = %s;
+                    a.id_articulo = %s
+                AND 
+                    a.fk_usuario IN (
+                        SELECT
+                            user.id_usuario
+                        FROM
+                            USUARIO AS user
+                        WHERE
+                            user.estado = 1
+                    );
             """ % (idProduct)
 
         result = self.transaction(sql)
