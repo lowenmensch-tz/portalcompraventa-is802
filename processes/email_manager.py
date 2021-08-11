@@ -118,7 +118,6 @@ class EmailManager:
 
     def sendEmails(self):
 
-        
         emails = self.gatherEmails()
         catPerUser = self.categoriesPerUser()
         products = self.gatherLatestsProducts()
@@ -229,9 +228,5 @@ class EmailManager:
                     session.quit() # Cerrar la conexión 
                     print('Email Enviado con éxito')
                 except:
-                    print('Algo salió mal')
+                    print('Algo salió mal al enviar los correos')
 
-
-
-email = EmailManager()
-email.sendEmails()
