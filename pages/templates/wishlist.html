@@ -29,6 +29,7 @@
 <!-- <link rel="stylesheet" href="assets/css/animate.min.css"> -->
 <link rel="stylesheet" href="{% static 'css/marazo-css/rateit.css' %}">
 <link rel="stylesheet" href="{% static 'css/marazo-css/modal.css' %}">
+<link rel="stylesheet" href="{% static 'css/marazo-css/favorite.css' %}">
 
 <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.min.css"> -->
 
@@ -53,10 +54,10 @@
 			</div>-->
 
 			<ul class="navbar-superior-ul">
-        <li id="registrarse" class="navbar-superior-ul-li" style="display:none;">
+        		<li id="registrarse" class="navbar-superior-ul-li" style="display:none;">
 					<a class="navbar-superior-ul-li-a" href="/register">Registrate</a>
 				</li>
-        <li id="iniciar-sesion" class="navbar-superior-ul-li" style="display:none;">
+        		<li id="iniciar-sesion" class="navbar-superior-ul-li" style="display:none;">
 					<a class="navbar-superior-ul-li-a" href="/login">Iniciar sesión</a>
 				</li>
 				<li id="cerrar-sesion" class="navbar-superior-ul-li" style="display:none;">
@@ -82,78 +83,159 @@
 
 
 
+
 <div class="body-content">
 	<div class="container">
-		<div class="my-wishlist-page">
-			<div class="row">
+					<div id="sidebar" style="margin-top: 2.4%"> 
+		<div class="toogle-btn">
+		<span>&#9776;</span>
+		</div>
+		<ul>
+			<li>
+				<img src="" alt="" class="logo">
+			</li>
+			<li><h3>Preferencias</h3></li>
+			<li class="fav">Favoritos</li>
+			<li class="categorias">Categorias</li>
+		</ul>
+		</div>
+		<div id="contenedor" class="my-wishlist-page" style="margin-left:18%; margin-top:5%;">
+
+			<div class="row" style="margin-top:-4%;">
 				<div class="col-md-12 my-wishlist">
-	<div class="table-responsive">
+					<div class="table-responsive" style="margin-top:5%;">
+					
+						<div id="conten_categorias" class="active">
+							<h2 class="title_categories">Mis Categorias</h2>
+							<hr width=450 style="float: left;">
 
-		<table class="table" id="wishlistTable">
-
-			<thead>
-				<tr>
-					<th colspan="4" class="heading-title">Mis Favoritos</th>
-				</tr>
-			</thead>
-
-			<!--<tbody id="tabla-articulos">
-
-				<tr>
-					<td class="col-md-2 col-sm-6 col-xs-6"><img src="assets/images/products/p1.jpg" alt="imga"></td>
-					<td class="col-md-7 col-sm-6 col-xs-6">
-						<div class="product-name"><a href="#">Nombre del Producto</a></div>
-						<div class="rating">
-							<i class="fa fa-star rate"></i>
-							<i class="fa fa-star rate"></i>
-							<i class="fa fa-star rate"></i>
-							<i class="fa fa-star rate"></i>
-							<i class="fa fa-star non-rate"></i>
-							<span class="review">( 06 Reseñas )</span>
+							<ul id="suscrito" class="etiquetas">
+							<h5 id="msgNoSuscrito" style="display:none;">NO ESTÁ SUSCRITO A ALGUNA DE LAS CATEGORIAS AÚN</h5>
+							{% comment %} <li><a data-toggle="modal" data-target="#delete-categorie" href="#delete-categorie" class="etiqueta">Hogar</a></li>
+							<li><a data-toggle="modal" data-target="#delete-categorie" href="#delete-categorie" class="etiqueta">Vehículos</a></li>
+							<li><a data-toggle="modal" data-target="#delete-categorie" href="#delete-categorie" class="etiqueta">Futuros padres</a></li> {% endcomment %}
+							</ul>
+							<div style="margin-botton:15%;">
+							<h3>Subscribirse a una nueva categoria</h3>
+							<hr width=450 style="float: left;">
+							</div>
+							<ul id="nosuscrito" class="etiquetas">
+							{% comment %} <li><a data-toggle="modal" data-target="#add-categorie" href="#add-categorie" class="etiqueta2">Moda</a></li>
+							<li><a data-toggle="modal" data-target="#add-categorie" href="#add-categorie" class="etiqueta2">Inmuebles</a></li>
+							<li><a data-toggle="modal" data-target="#add-categorie" href="#add-categorie" class="etiqueta2">Electrónica</a></li> {% endcomment %}
+							</ul>
 						</div>
-						<div class="price">HNL 400.00</div>
-					</td>
+						<table class="table" id="wishlistTable">
+							{% comment %} <thead>
+							<tr>
+								<th colspan="4" class="heading-title">Mis Categorias</th>
+							</tr>
+							</thead> {% endcomment %}
+						
+								
+							
+							{% comment %} <thead>
+								<tr>
+									<th colspan="4" class="heading-title">Mis Favoritos</th>
+								</tr>
+							</thead> {% endcomment %}
 
-					<td class="col-md-2 ">
-						 <a href="#" class="btn-upper btn btn-primary">Add to cart</a>
-					</td> 
+							<!--<tbody id="tabla-articulos">
 
-					<td class="col-md-1 close-btn">
-						<a onclick="deleteItem(this);" ><i class="fa fa-times"></i></a>
-					</td>
+								<tr>
+									<td class="col-md-2 col-sm-6 col-xs-6"><img src="assets/images/products/p1.jpg" alt="imga"></td>
+									<td class="col-md-7 col-sm-6 col-xs-6">
+										<div class="product-name"><a href="#">Nombre del Producto</a></div>
+										<div class="rating">
+											<i class="fa fa-star rate"></i>
+											<i class="fa fa-star rate"></i>
+											<i class="fa fa-star rate"></i>
+											<i class="fa fa-star rate"></i>
+											<i class="fa fa-star non-rate"></i>
+											<span class="review">( 06 Reseñas )</span>
+										</div>
+										<div class="price">HNL 400.00</div>
+									</td>
+
+									<td class="col-md-2 ">
+										<a href="#" class="btn-upper btn btn-primary">Add to cart</a>
+									</td> 
+
+									<td class="col-md-1 close-btn">
+										<a onclick="deleteItem(this);" ><i class="fa fa-times"></i></a>
+									</td>
           
-				</tr>
+								</tr>
 
-			</tbody>-->
+							</tbody>-->
 
-    <!-- Modal -->
-        <div class="modal fade" id="delete-wishlist" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">¿Deseas eliminar el artículo?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-              	<h5>Si aceptas se removerá el artículo de tu lista de favoritos</h5>
-              </div>
-              <div class="modal-footer">
-                <div id="Modal-wishlist">
-              		
-              	</div>
-              </div>
-            </div>
-          </div>
-        </div>
+							<!-- Modal -->
+							<div class="modal fade" id="delete-wishlist" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+								<div class="modal-header">								
+									<h5 class="modal-title" id="exampleModalLongTitle">¿Deseas eliminar el artículo?</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-5%;">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<h5>Si aceptas se removerá el artículo de tu lista de favoritos</h5>
+								</div>
+								<div class="modal-footer">
+									<div id="Modal-wishlist">
+										
+									</div>
+								</div>
+								</div>
+							</div>
+							</div>
 
-		</table>
+						</table>
+			</div>
+{% comment %} </div>			</div><!-- /.row -->
+		</div><!-- /.sigin-in--> {% endcomment %}
+						<div class="modal fade" id="add-categorie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLongTitle">¿Desea suscribirse a esta categoria?</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-5%;">
+									<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div id = "mensajeModalAdd" class="modal-body">
+									{% comment %} <h5>Si aceptas <b>recibiras</b> semanalmente correos con la información de productos más recientes en esta categoria.</h5> {% endcomment %}
+								</div>
+								<div class="modal-footer">
+									<div id="Modal-categorie-add">
+										<button class="btn btn-primary" data-dismiss="modal">Aceptar</button>&nbsp;<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
 
-	</div>
-</div>			</div><!-- /.row -->
-		</div><!-- /.sigin-in-->
-
+						<div class="modal fade" id="delete-categorie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLongTitle">¿Desea eliminar su suscripción a esta categoria?</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-5%;">
+									<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div id="mensajeModalDelete" class="modal-body">
+									{% comment %} <h5>Si aceptas se <b>dejaran</b> de enviar correos con la información de los productos más recientes en esta categoria.</h5> {% endcomment %}
+								</div>
+								<div class="modal-footer">
+									<div id="Modal-categorie-delete">
+										{% comment %} <button class="btn btn-primary" data-dismiss="modal">Aceptar</button>&nbsp;<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> {% endcomment %}
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
 
 
 <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->

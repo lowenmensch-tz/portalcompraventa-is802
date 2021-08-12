@@ -23,6 +23,9 @@ from pages.views import reportSeller
 from pages.views import showWishList
 from pages.views import getCategories
 from pages.views import deleteFromWishList
+from pages.views import getUserCategories
+from pages.views import deleteUserCategories
+from pages.views import addUserCategories
 
 from django.conf.urls import handler404
 from pages.views import notFound
@@ -59,6 +62,9 @@ path('ajax/deleteFromWishList', deleteFromWishList, name = 'delete_From_Wish_Lis
 path('user-profile', profile.userProfile, name='user_profile'),
 path('ajax/updateUser', updateUser, name='update_User'),
 path('ajax/getCategories', getCategories),
+path('ajax/getUserCategories', getUserCategories),
+path('ajax/deleteUserCategories', deleteUserCategories),
+path('ajax/addUserCategories', addUserCategories),
 
 
 #path('ajax/userProfile', userProfile, name='user_Profile'),

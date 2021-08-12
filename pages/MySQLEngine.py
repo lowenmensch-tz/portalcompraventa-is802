@@ -366,3 +366,12 @@ class MySQLEngine:
 
         result = self.transaction(sql)
         return result
+    
+    """
+    Categorias de los artículos
+    """
+    def categories(self, id_usuario=0):
+        allCategories="SELECT id_categoria, nombre FROM CATEGORIA;" # Muestra todas las categorias
+
+        result = self.transaction(allCategories)
+        return result

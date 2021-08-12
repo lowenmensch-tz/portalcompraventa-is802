@@ -32,28 +32,28 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        {% comment %} <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> {% endcomment %}
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            {% comment %} <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Nombre de la Empresa<sup></sup></div>
-            </a>
+            </a> {% endcomment %}
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            {% comment %} <hr class="sidebar-divider my-0"> {% endcomment %}
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            {% comment %} <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Usuario</span></a>
-            </li>
+            </li> {% endcomment %}
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            {% comment %} <hr class="sidebar-divider"> {% endcomment %}
 
             <!-- Heading 
             <div class="sidebar-heading">
@@ -61,19 +61,19 @@
             </div> -->
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Mis productos</span></a>
-            </li>
+            </li> {% endcomment %}
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
                 <a class="nav-link" onclick="logout();">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Cerrar Sesion</span></a>
             </li>
-        </ul>
+        </ul> {% endcomment %}
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -124,7 +124,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top:5%">
                         <h1 class="h3 mb-0 text-gray-800">Mi Perfil</h1>
                             <a href="/wishlist" style="margin-left:65%;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Mi lista de deseo</a>
                             <a data-toggle="modal" data-target="#logoutModal" href="#logoutModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Agregar Nuevo Producto
