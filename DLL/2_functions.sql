@@ -115,7 +115,7 @@ DELIMITER $$
                     FROM 
                         BITACORA
                     WHERE
-                        WEEK(fecha_inicial) = WEEK(CURRENT_DATE) 
+                        WEEK(fecha_inicial) = WEEK(CURRENT_DATE) - week
                     GROUP BY
                         WEEK(fecha_inicial)
                 )
