@@ -1,0 +1,127 @@
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Error 404</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sb-admin-2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bondiesStyles.css' %}">
+
+    <style type="text/css">
+        *{
+            transition: all 0.6s;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body{
+            font-family: 'Lato', sans-serif;
+            color: #888;
+            margin: 0;
+        }
+
+        #main{
+            display: table;
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .fof{
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .fof h1{
+            font-size: 21vh;
+            display: inline-block;
+            padding-right: 5vw;
+            animation: type .5s alternate infinite;
+        }
+
+        @keyframes type{
+            from{box-shadow: inset -3px 0px 0px #888;}
+            to{box-shadow: inset -3px 0px 0px transparent;}
+        }
+    </style>
+
+</head>
+
+<body class="bg-gradient-primary">
+
+ <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <nav class="navbar-superior">
+                        
+                            <!--<h2 class="logotipo-h2">Logotipo página</h2>-->
+                        
+                        <!--<div class="logotipo">
+                            <img src="{% static 'img/logo.png' %}" />
+                            <h2>Nombre página</h2>
+                        </div>-->
+                        <ul class="navbar-superior-ul">
+                            <li id="registrarse" class="navbar-superior-ul-li" style="display:none;">
+                                <a class="navbar-superior-ul-li-a" href="/register">Registrate</a>
+                            </li>
+                            <li id="iniciar-sesion" class="navbar-superior-ul-li" style="display:none;">
+                                <a class="navbar-superior-ul-li-a" href="/login">Iniciar sesión</a>
+                            </li>
+                            <li id="cerrar-sesion" class="navbar-superior-ul-li" style="display:none;">
+                                <a class="navbar-superior-ul-li-a" href="/logout">Cerrar sesión</a>
+                            </li>
+                            <li id = "mi-perfil" class="navbar-superior-ul-li" style="display:none;">
+                                <a class="navbar-superior-ul-li-a" href="/user">Mi Perfil</a>
+                            </li>
+                            <li class="navbar-superior-ul-li">
+                                <a class="navbar-superior-ul-li-a" href="#">Contacto</a>
+                            </li>
+                            <li class="navbar-superior-ul-li">
+                                <a class="navbar-superior-ul-li-a" href="#">Sobre nosotros</a>
+                            </li>
+                            <li class="navbar-superior-ul-li">
+                                <a class="navbar-superior-ul-li-a" href="/categories">Categorias</a>
+                            </li>
+                            <li class="navbar-superior-ul-li">
+                                <a class="navbar-superior-ul-li-a" href="/">Inicio</a>
+                            </li>
+                        </ul>
+                </nav>
+
+                <div id="main">
+                    <div class="fof">
+                            <h1>Error 404</h1>
+                            <p style="font-size:4vh">Página no encontrada</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}

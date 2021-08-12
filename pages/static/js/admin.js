@@ -4,6 +4,8 @@
 
 $(document).ready(function(){
 	
+	sessionCheck(); 
+	
 	$('#example').DataTable();
 	
 	if( document.getElementById("complaintContainer").className == "list active"){ 
@@ -330,6 +332,29 @@ function updateUserStatusReported(){
 			getAllDataComplaintNotChecked();
 
 		});
+}
+
+
+/**
+ * 
+*/
+function sessionCheck(){
+ 
+	var response;
+    $.ajax({
+        type: "GET",
+        url: "ajax/loggedValidatorAdmin",
+        success: function(data) {
+            response = data.logged;
+            console.log(response);
+
+            if (response == 'true'){
+                
+            }else{
+                window.location.href = "login";
+            }
+        }
+    });
 }
 
 

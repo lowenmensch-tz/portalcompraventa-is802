@@ -1,9 +1,12 @@
+from django.http.response import HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt # Este decorador solo es de prueba y no una solución para la cookie csrf
 
 from django.shortcuts import resolve_url
 from django.shortcuts import render 
 
 from django.http import HttpResponse
+
+from django.views.defaults import page_not_found
 
 from pages.vwAdminComplaint import AdministrationComplaint
 from pages.vwSellerProduct import SellerProduct
@@ -46,6 +49,13 @@ def index(request):
 def logout(request):
     del request.session['email']
     return render(request,'index.html')
+
+
+def notFound(request, exception):
+    
+    #return page_not_found(request,'404.html')
+    return HttpResponseNotFound(request,'404.html')
+
 
 """
     Devuelve la vista de perfil de usuario.

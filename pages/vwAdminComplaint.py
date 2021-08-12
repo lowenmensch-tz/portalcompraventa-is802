@@ -270,3 +270,38 @@ class AdministrationComplaint:
                 return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
         else:
             return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+
+
+    @csrf_exempt
+    def loggedInValidator(self, request):
+        
+        sql = """
+                SELECT
+                    COUNT(*)
+                FROM
+                    USUARIO
+                WHERE
+                    '%s' IN (
+                        SELECT
+                            correo
+                        FROM
+                            USUARIO 
+                        WHERE
+                            tipo = 1
+                        )
+            """%(request.session.get('email'))
+        
+        try: 
+
+
+            if self.engine.transaction( sql )[0][0]:
+                return  HttpResponse(json.dumps({'status':'Success','logged':'true'}),content_type="application/json")
+        
+            else:
+                return  HttpResponse(json.dumps({'status':'Success','logged':'false'}),content_type="application/json")
+        
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+            
+

@@ -24,16 +24,20 @@ from pages.views import showWishList
 from pages.views import getCategories
 from pages.views import deleteFromWishList
 
+from django.conf.urls import handler404
+from pages.views import notFound
+
 from django.urls import path
 
 from django.conf.urls.static import static
 
-from django.conf.urls import include
+from django.conf.urls import handler400, include
 from django.conf.urls import url
 
 from django.conf import settings
 
 
+handler404 = notFound
 
 urlpatterns = [
 path('', index, name='index_page'),
@@ -62,11 +66,11 @@ path('user', user, name='user'),
 path('logout', logout),
 path('wishlist', wishlist),
 
-
 path('admin', administrationComplaint.index, name='admin'),
 path('ajax/getAllDataComplaintNotChecked', administrationComplaint.getAllDataComplaintNotChecked), #Denuncias aun NO revisadas
-path('ajax/updateUserStatusReported', administrationComplaint.updateUserStatusReported),    #Actualiza el estado de una denuncia asociada a un usuario
-path('ajax/getDataOfAComplaint', administrationComplaint.getDataOfAComplaint),          #Obtiene los datos de una denuncia asociado a un usuario
+path('ajax/updateUserStatusReported', administrationComplaint.updateUserStatusReported),          #Actualiza el estado de una denuncia asociada a un usuario
+path('ajax/getDataOfAComplaint', administrationComplaint.getDataOfAComplaint),                   #Obtiene los datos de una denuncia asociado a un usuario
+path('ajax/loggedValidatorAdmin', administrationComplaint.loggedInValidator),                   #Validador de inicio de sesion para administracion
 
 
 url(r'^seller\-product\/(\d{1,4}\-[0-9a-zA-Z-]+)$', sellerProduct.index, name='seller_product'),

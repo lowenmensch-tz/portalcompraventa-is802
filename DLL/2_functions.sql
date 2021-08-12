@@ -1,6 +1,6 @@
 /*
     @author  kenneth.cruz@unah.hn
-    @version 0.1.0
+    @version 0.1.3
     @date 07/23/2021
 */
 
@@ -15,6 +15,7 @@ DROP FUNCTION IF EXISTS fn_getImage;
 DROP FUNCTION IF EXISTS fn_convertDateTimeToMinutes;
 DROP FUNCTION IF EXISTS fn_getTimeElapsed;
 DROP FUNCTION IF EXISTS fn_getNameByID;
+DROP FUNCTION IF EXISTS fn_getCountReviewsWeek;
 
 -- CONCAT('url', i.fk_articulo), 
 
@@ -101,3 +102,24 @@ DELIMITER $$
 
 DELIMITER ; 
 
+
+
+DELIMITER $$
+
+    CREATE FUNCTION fn_getCountReviewsWeek(week INT) RETURNS INT
+    BEGIN
+
+        RETURN (
+                    SELECT
+                        COUNT(*)
+                    FROM 
+                        BITACORA
+                    WHERE
+                        WEEK(fecha_inicial) = WEEK(CURRENT_DATE) 
+                    GROUP BY
+                        WEEK(fecha_inicial)
+                )
+        ;
+    END $$
+
+DELIMITER ;
