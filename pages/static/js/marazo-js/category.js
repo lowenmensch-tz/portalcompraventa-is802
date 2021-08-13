@@ -491,7 +491,7 @@ function getIconById(iconDictionary, iconId){
 function loadCategories(data){
     for (i=0; i<(data.length); i++){
         document.getElementById('contentCategorias').innerHTML += `<li class="dropdown menu-item"> <a style="cursor: pointer;" 
-        onclick="changeCategory(this);" class="dropdown-toggle" data-category=${data[i][0]} data-toggle="dropdown"><i class="icon ${getIconById(iconDictionary, data[i][1]).icon}" 
+        onclick="changeCategory(this);" class="dropdown-toggle" data-category=${data[i][0]} data-toggle="dropdown"><i class="icon fa fa-dot-circle-o" 
         aria-hidden="true"></i>${data[i][1]}</a></li>`
     }
 }
