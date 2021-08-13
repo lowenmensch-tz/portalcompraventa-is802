@@ -58,6 +58,7 @@ CREATE TABLE IMAGEN(
 CREATE TABLE CATEGORIA(
 	id_categoria INT NOT NULL AUTO_INCREMENT UNIQUE,
     nombre VARCHAR(35) NOT NULL,
+    estado BIT(1) NOT NULL DEFAULT 1 COMMENT "0 eliminado | 1 disponible",
     PRIMARY KEY (id_categoria)
 );
 

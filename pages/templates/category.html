@@ -61,12 +61,12 @@
 				<li id = "mi-perfil" class="navbar-superior-ul-li" style="display:none;">
 					<a class="navbar-superior-ul-li-a" href="/user">Mi Perfil</a>
 				</li>
-				<li class="navbar-superior-ul-li">
+				{% comment %} <li class="navbar-superior-ul-li">
 					<a class="navbar-superior-ul-li-a" href="#">Contacto</a>
 				</li>
 				<li class="navbar-superior-ul-li">
 					<a class="navbar-superior-ul-li-a" href="#">Sobre nosotros</a>
-				</li>
+				</li> {% endcomment %}
 				<li class="navbar-superior-ul-li">
 					<a class="navbar-superior-ul-li-a" href="/categories">Categorias</a>
 				</li>
@@ -85,8 +85,8 @@
         <div class="side-menu animate-dropdown outer-bottom-xs">
           <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categorías</div>
           <nav class="yamm megamenu-horizontal">
-            <ul class="nav">
-              <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=1 data-toggle="dropdown"><i class="icon fa fa-bed" aria-hidden="true"></i>Inmuebles</a></li>
+            <ul id="contentCategorias" class="nav">
+              {% comment %} <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=1 data-toggle="dropdown"><i class="icon fa fa-bed" aria-hidden="true"></i>Inmuebles</a></li>
               <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=2 data-toggle="dropdown"><i class="icon fa fa-car" aria-hidden="true"></i>Vehículos</a></li>
               <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=3 data-toggle="dropdown"><i class="icon fa fa-home" aria-hidden="true"></i>Hogar</a></li>
               <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=4 data-toggle="dropdown"><i class="icon fa fa-shopping-bag"></i>Moda</a></li>
@@ -95,7 +95,7 @@
               <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=7 data-toggle="dropdown"><i class="icon fa fa-laptop"></i>Electrónica</a></li>
               <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=8 data-toggle="dropdown"><i class="icon fa fa-wrench"></i>Servicios</a></li>
               <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=9 data-toggle="dropdown"><i class="icon fa fa-money"></i>Negocios</a>
-              <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=10 data-toggle="dropdown"><i class="icon fa fa-briefcase"></i>Empleo</a>
+              <li class="dropdown menu-item"> <a style="cursor: pointer;" onclick="changeCategory(this);" class="dropdown-toggle" data-category=10 data-toggle="dropdown"><i class="icon fa fa-briefcase"></i>Empleo</a> {% endcomment %}
             </ul>
             <!-- /.nav -->
           </nav>

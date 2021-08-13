@@ -507,10 +507,10 @@ def getUserCategories(request):
     if request.method == 'POST':
         id_usuario = engine.getUserIDByEmail(request.session.get('email'))
         
-        subscribedQuery = """SELECT id_categoria, nombre FROM CATEGORIA WHERE id_categoria IN
+        subscribedQuery = """SELECT id_categoria, nombre FROM CATEGORIA WHERE estado = 1 AND id_categoria IN
                         (SELECT fk_categoria FROM SUSCRIPCION WHERE fk_usuario = %s);""" % (id_usuario)
         
-        notSubscribedQuery = """SELECT id_categoria, nombre FROM CATEGORIA WHERE id_categoria NOT IN 
+        notSubscribedQuery = """SELECT id_categoria, nombre FROM CATEGORIA WHERE estado = 1 AND id_categoria NOT IN 
                             (SELECT fk_categoria FROM SUSCRIPCION WHERE fk_usuario = %s);""" % (id_usuario)
 
         try:
@@ -573,7 +573,56 @@ def addUserCategories(request):
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
+"""
+    Elimina una categoria y los productos a los que pertenece
+    @param request: Se espera recibir el id de la categoria a eliminar.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion.
+        
+        Success: La ejecución fue exitosa y se elimino la categoria.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def deleteCategories(request):
+    if request.method == 'POST':
+        id_categoria = request.POST.get('id_categoria')
 
+        deleteCategoriaQuery = "UPDATE CATEGORIA SET estado = 0 WHERE id_categoria = %s;" % (id_categoria)
+
+        updateArticlesQuery = "UPDATE ARTICULO SET publicado = 0 WHERE fk_categoria = %s;" % (id_categoria)
+
+        try:
+            engine.dms(deleteCategoriaQuery)
+            engine.dms(updateArticlesQuery)
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Agrega una categoria
+    @param request: Se espera recibir el nombre de la categoria a agregar.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion.
+        
+        Success: La ejecución fue exitosa y se agregó la categoria.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def addCategories(request):
+    if request.method == 'POST':
+        nombreCategoria = request.POST.get('nombreCategoria')
+
+        addCategoriaQuery = "INSERT INTO CATEGORIA (nombre) VALUES ('%s');" % (nombreCategoria)
+
+        try:
+            engine.dms(addCategoriaQuery)
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
 """
     Recibe la petición para realizar una denuncia.

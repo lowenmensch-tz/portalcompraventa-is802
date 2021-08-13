@@ -257,14 +257,6 @@ class MySQLEngine:
 
         return result
 
-    """
-        Categorias de los artículos
-    """
-    def categories(self):
-        sql="SELECT id_categoria, nombre FROM CATEGORIA;"
-
-        result = self.transaction(sql)
-        return result
 
     """
         Obtiene la descripción de un producto a partir de su id.
@@ -368,10 +360,10 @@ class MySQLEngine:
         return result
     
     """
-    Categorias de los artículos
+    Muestra las categorias disponibles
     """
     def categories(self, id_usuario=0):
-        allCategories="SELECT id_categoria, nombre FROM CATEGORIA;" # Muestra todas las categorias
+        allCategories="SELECT id_categoria, nombre FROM CATEGORIA WHERE estado = 1;" # Muestra todas las categorias
 
         result = self.transaction(allCategories)
         return result
