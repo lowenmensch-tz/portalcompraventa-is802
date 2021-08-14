@@ -3,10 +3,15 @@ currentPriceOrder = 'ASC';
 currentMinPrice = 10;
 currentMaxPrice = 100000;
 currentPage = 1;
+iconDictionary = [{id : 'Inmuebles', icon: 'icon fa fa-bed'}, {id:'Vehículos', icon:'icon fa fa-car'}, {id:'Hogar', icon:'icon fa fa-home'},
+                {id: 'Moda', icon:'fa fa-shopping-bag'}, {id:'Futuros Padres', icon:'fa fa-futbol-o'},{id:'Mascotas', icon:'fa fa-paw'}, {id:'Electrónica', icon:'fa fa-laptop'},
+                {id:'Servicios', icon:'fa fa-wrench'}, {id:'Negocios', icon:'fa fa-money'}, {id:'Empleo', icon:'fa fa-briefcase'}];
 
 window.onload = function(){
     gatherProducts();
     sessionCheck2();
+    getCategories();
+    //obtenerIcono();
 };
 
 /* * * * * * * * * * * * * * * * *
@@ -461,4 +466,32 @@ function addWish(id_articulo){
             }
         }
     });
+}
+
+function getCategories(){
+    $.ajax({
+        type: "POST",
+        url: "ajax/getCategories",
+        data: {},
+        success: function(data){
+            
+            if (data.status == "Success"){
+                loadCategories(data.data);
+            }else{
+                alert('No existen categorias');
+            }
+        }
+    });
+}
+
+function getIconById(iconDictionary, iconId){
+    return iconDictionary.find(icon => icon.id === iconId);
+}
+
+function loadCategories(data){
+    for (i=0; i<(data.length); i++){
+        document.getElementById('contentCategorias').innerHTML += `<li class="dropdown menu-item"> <a style="cursor: pointer;" 
+        onclick="changeCategory(this);" class="dropdown-toggle" data-category=${data[i][0]} data-toggle="dropdown"><i class="icon fa fa-dot-circle-o" 
+        aria-hidden="true"></i>${data[i][1]}</a></li>`
+    }
 }

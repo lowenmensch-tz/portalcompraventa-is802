@@ -1,29 +1,53 @@
 window.onload = function(){
-    /*loadMyWishlist();*/
     getMyWishlist()
     sessionCheck2();
+    getAllCategories();
     
 };
 var articulo;
 var id_articulo;
+var categoria;
+var id_categoria;
+var nombreCate;
+var contadorMisCategorias;
+var contadorDisponibles;
+
 function setArticulo(articulo, id_articulo){
     document.querySelector("#Modal-wishlist").innerHTML = '<button class="btn btn-primary" onclick="deleteItem();" data-dismiss="modal">Aceptar</button>&nbsp;<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>';
     this.articulo = articulo;
     this.id_articulo = id_articulo;
+
 }
+function setCategoria(id_categoria, nombreCate){
+    console.log('estoy en la funcion');
+    document.querySelector("#mensajeModalDelete").innerHTML = `<h5>Se <b>dejaran</b> de enviar correos con la información de los productos más recientes en la categoria <b>${nombreCate}</b>.</h5>`;
+    document.querySelector('#Modal-categorie-delete').innerHTML = '<button class="btn btn-primary" onclick="deleteCategorie();" data-dismiss="modal">Aceptar</button>&nbsp;<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>';
+    this.id_categoria = id_categoria;
+
+}
+function setCategoriaDelete(id_categoria, nombreCate){
+    document.querySelector("#mensajeModalAdd").innerHTML = `<h5>Se <b>enviaran</b> correos con la información de los productos más recientes en la categoria <b>${nombreCate}</b>.</h5>`;
+    document.querySelector('#Modal-categorie-add').innerHTML = '<button class="btn btn-primary" onclick="addCategorie();" data-dismiss="modal">Aceptar</button>&nbsp;<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>';
+    this.id_categoria = id_categoria;
+}
+
 function getArticulo(){
     return this.articulo;
 }
 function getId_Articulo(){
     return this.id_articulo;
 }
+function getId_Categoria(){
+    return this.id_categoria;
+}
+
 
 function getMyWishlist(){
     $.ajax({
         type: "POST",
         url: "ajax/showWishList",
         success: function(data) {
-            console.log(data);
+            //console.log(data);
 
             if (data.data == undefined){
                 $('#wishlistTable').html('NO TIENE FAVORITOS AÑADIDOS A LA LISTA AÚN');
@@ -33,8 +57,6 @@ function getMyWishlist(){
         }
     });
 }
-
-
 
 function loadMyWishlist(data, data2){
     /*
@@ -46,26 +68,16 @@ function loadMyWishlist(data, data2){
     5: fecha_publicación
     6: id_usuario publicador*/
 
-    /* nombreProducto = 'Tanque para Padres';
-    arreglo = [
-        ['Galaxy S20','https://www.65ymas.com/uploads/s1/31/00/99/los-tele-fonos-mo-viles-ma-s-innovadores-de-este-2020-samsung-galaxy-s20-y-s20.jpeg','Celular1',9000.00],
-        ['Redmi','https://i.blogs.es/1593fb/diseno-xiaomi-redmi/450_1000.jpg','El mejor celular del mundo mundial', 5000.00],
-        ['Nokia 3000','https://i.blogs.es/b54f0b/nokia-1110/1366_2000.jpg','Nokia',100.00],
-        ['Iphone 9','https://m.media-amazon.com/images/I/61CnvZzhNOL._AC_SX466_.jpg', 'iPhone', 18000.00]
-    ]*/
-    //Petición al back
-    // $.ajax({
-    //     type: "POST",
-    //     url: "",
-    //     data: {var1:nombreProducto},
-
-    //     success: function(data) {
-    //        console.log('success');
-    //     }
-    // });
+    document.getElementById('wishlistTable').innerHTML +=`
+        <thead>
+        <tr>
+            <th colspan="4" class="heading-title">Mis Favoritos</th>
+        </tr>
+        </thead>`
 
     for (i=0; i<((data.length)/2);i++){
         document.getElementById('wishlistTable').innerHTML += `
+
             <tbody id="articulo${i}">
                 <tr>
                     <td class="col-md-2 col-sm-6 col-xs-6"><img src='${data[i][4]}'></td>
@@ -90,7 +102,6 @@ function loadMyWishlist(data, data2){
             
         `
         $(`#rating${i}`).rateit({max: 5, step: 1, value : parseFloat(data[i+(data.length/2)]), resetable : false , readonly : true});
-        //document.getElementById(`#rating${i}`).rateit({max: 5, step: 1, value : parseFloat(3.5), resetable : false , readonly : true});
     }
 
     b = document.getElementById('wishlistTable');
@@ -100,9 +111,107 @@ function loadMyWishlist(data, data2){
 
 
 function deleteItem(){
-
     deleteFromWishlist(getId_Articulo());
     b.removeChild(getArticulo());
+}
+
+function deleteCategorie(){
+    deleteFromCategorie(getId_Categoria());
+    $(`#categoriesusc${getId_Categoria()}`).css({'display':'none'});
+    $(`#categorienos${getId_Categoria()}`).css({'display':''});
+}
+
+function addCategorie(){
+    addFromCategorie(getId_Categoria());
+    $(`#categoriesusc${getId_Categoria()}`).css({'display':''});
+    $(`#categorienos${getId_Categoria()}`).css({'display':'none'});
+    $("#msgNoSuscrito").css({'display':'none'});
+}
+
+function deleteFromCategorie(id_categoria){
+    $.ajax({
+        type: "POST",
+        url: "ajax/deleteUserCategories",
+        data: {'id_categoria': id_categoria},
+        success: function(data){
+            if (data.status == "Success"){
+                console.log("Suscripcion eliminada con exito");
+            }else{
+                console.log("La suscripcion no pudo ser eliminada");
+
+            }
+        }
+    });
+}
+
+function addFromCategorie(id_categoria){
+    $.ajax({
+        type: "POST",
+        url: "ajax/addUserCategories",
+        data: {'id_categoria': id_categoria},
+        success: function(data){
+            if (data.status == "Success") {
+                console.log("Suscripcion agregada con exito")
+            }else{
+                console.log("La suscripcion no pudo ser agregada")
+            }
+        } 
+    });
+}
+
+function getAllCategories(){
+    $.ajax({
+        type: "POST",
+        url: "ajax/getCategories",
+        data: {},
+        success: function(data){
+            if (data.status == "Success"){
+                for (i=0; i<((data.data).length); i++){
+                    //nombre = data.data[i][1];
+                    document.getElementById('suscrito').innerHTML += `<li id=categoriesusc${data.data[i][0]} style="display:none;"><a data-toggle="modal" data-target="#delete-categorie" href="#delete-categorie" 
+                    class="etiqueta" onclick="setCategoria(${data.data[i][0]},'${data.data[i][1]}');">${data.data[i][1]}</a></li>`
+
+                    document.getElementById('nosuscrito').innerHTML += `<li id=categorienos${data.data[i][0]} style="display:none;"><a data-toggle="modal" data-target="#add-categorie" href="#add-categorie" 
+                    class="etiqueta2" onclick="setCategoriaDelete(${data.data[i][0]},'${data.data[i][1]}');">${data.data[i][1]}</a></li>`
+                }
+                
+                $.ajax({
+                    type: "POST",
+                    url: "ajax/getUserCategories",
+                    success: function(data){
+                        if (data.status == "Success"){
+                            console.log('###### Suscrito a ########')
+                            console.log(data.data1)
+                            console.log('###### NO suscrito a ########')
+                            console.log(data.data2)
+                            //loadMyCategories(data.data1, data.data2)
+                            for (i=0; i<((data.data1).length); i++){
+                                $(`#categoriesusc${data.data1[i][0]}`).css({'display':''});
+                                
+                            }
+                            
+                            for (i=0; i<((data.data2).length); i++){
+                                $(`#categorienos${data.data2[i][0]}`).css({'display':''});
+                            }
+                            
+                        }else if (data.status == "Empty"){
+                            console.log("No esta suscrito a ninguna categoria")
+                            $("#msgNoSuscrito").css({'display':''});
+                            for (i=0; i<((data.data2).length); i++){
+                                $(`#categorienos${data.data2[i][0]}`).css({'display':''});
+                            }
+                                                        
+                        }
+                    }
+                });
+                
+
+            }else{
+                document.getElementById('suscrito').innerHTML = 'No existen categorias en el sistema';
+                document.getElementById('nosuscrito').innerHTML = 'No existen categorias en el sistema';
+            }
+        }
+    });
 }
 
 function deleteFromWishlist(id_articulo){
@@ -111,7 +220,7 @@ function deleteFromWishlist(id_articulo){
         url: "ajax/deleteFromWishList",
         data: {'id_articulo': id_articulo},
         success: function(data) {
-            console.log(data);
+            //console.log(data);
 
             if (data.status == "Success"){
                 console.log("Articulo borrado con exito");
@@ -127,38 +236,20 @@ function convertURL(nameProduct, idProduct){
     return  idProduct.toString() + '-' + nameProduct.toLowerCase().replaceAll(/ /g,'-').replaceAll(/[^\w-]+/g,'');
 }
 
-/*function modal(number_id){
-}*/
-    
-if(document.getElementById("btnModal")){
-    var modal = document.getElementById("tvesModal");
-    var btn = document.getElementById("btnModal");
-    var span = document.getElementsByClassName("close")[0];
-    var body = document.getElementsByTagName("body")[0];
 
-    btn.onclick = function() {
-        modal.style.display = "block";
+const btnToggle = document.querySelector('.toogle-btn');
+btnToggle.addEventListener('click', function (){
+    document.getElementById('sidebar').classList.toggle('active');
+});
 
-        body.style.position = "static";
-        body.style.height = "100%";
-        body.style.overflow = "hidden";
-    }
+const btnFav = document.querySelector('.fav');
+btnFav.addEventListener('click', function(){
+    document.getElementById('conten_categorias').classList.add('active');
+    document.getElementById('wishlistTable').classList.remove("active");
+});
 
-    span.onclick = function() {
-        modal.style.display = "none";
-
-        body.style.position = "inherit";
-        body.style.height = "auto";
-        body.style.overflow = "visible";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-
-            body.style.position = "inherit";
-            body.style.height = "auto";
-            body.style.overflow = "visible";
-        }
-    }
-}
+const btncategories = document.querySelector('.categorias');
+btncategories.addEventListener('click', function(){
+    document.getElementById('wishlistTable').classList.add('active');
+    document.getElementById('conten_categorias').classList.remove("active"); 
+});

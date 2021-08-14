@@ -1,22 +1,14 @@
-/*
-
-*/
-
 $(document).ready(function(){
 	
 	sessionCheck(); 
 	
-	$('#example').DataTable();
-	
 	if( document.getElementById("complaintContainer").className == "list active"){ 
 		getAllDataComplaintNotChecked();
 	}
-
+	$('#example2').DataTable();
+	$('#productTable').DataTable();
     $(".new-tabs a").click(function(){
-    	
 		$(this).tab('show');
-
-
     });
 
 });
@@ -30,7 +22,6 @@ menuToggle.onclick = function(){
 	menuToggle.classList.toggle('active');
 	navigation.classList.toggle('active');
     special.classList.toggle('active');
-
 }
 
 /*let list = document.querySelectorAll('.list');
@@ -90,7 +81,7 @@ function getAllDataComplaintNotChecked(){
 
 			if(response.status == "Success"){
 				
-
+				document.getElementById("tbodyDataComplainst").innerHTML = "";
 				for(let index = 0; index < response.data.length; index++){
 					
 					document.getElementById("tbodyDataComplainst").innerHTML += `
@@ -107,6 +98,9 @@ function getAllDataComplaintNotChecked(){
 					`;
 
 				}
+				//Añadir obligatoriamente para que los estilos no exploten
+				$('#example').DataTable();
+				$('.sorting').trigger( "click" );
 			}
 		});
 }
@@ -125,7 +119,6 @@ function showModal(object){
 function hideModal(id){
 	$(id).modal("hide");	
 }
-
 
 function drawFormInModal(){
 	
@@ -365,4 +358,73 @@ function drawModalAlert(title, content, className, id){
 	document.getElementById("modal-text-content").innerHTML = `<p>${content}</p>`;
 	$(id).modal('show');
 
+}
+
+function getCategories(){
+
+	var categoriesTable = document.getElementById("tbodyDataCategory");
+
+    $.ajax({
+        type: "POST",
+        url: "ajax/getCategories",
+        data: {},
+        success: function(data){
+
+            if (data.status == "Success"){
+                //loadCategories(data.data);
+
+				categoriesTable.innerHTML ="";
+                for(let index = 0; index < data.data.length; index++){
+					categoriesTable.innerHTML += `
+						<tr id="${data.data[index][0]}">
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[index][0]}</td>
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[index][1]}</td>
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px" onclick="deleteCategory(${data.data[index][0]});">X</button></td>
+						</tr>	
+					`;
+
+				}
+				$('#categoryTable').DataTable();
+				$('.sorting').trigger( "click" );
+            }else{
+                alert('Usted ha eliminado todas las categorias');
+            }
+        }
+    });
+}
+
+function addCategory(){
+	var name = $("#ACname").val();
+
+	$.ajax({
+        type: "POST",
+        url: "ajax/addCategories",
+        data: { 'nombreCategoria': name },
+        success: function(data){
+		console.log(data);
+            if (data.status == "Success"){
+                alert("La categoria se añadio correctamente");
+            }else{
+                alert('Usted ha eliminado todas las categorias');
+            }
+        }
+    });
+}
+
+function deleteCategory(id){
+
+	$.ajax({
+        type: "POST",
+        url: "ajax/deleteCategories",
+        data: { 'id_categoria': id },
+        success: function(data){
+		console.log(data);
+            if (data.status == "Success"){
+                alert("La categoria se elimino correctamente");
+                getCategories();
+            }else{
+                alert('Ya no hay categorias disponibles');
+            }
+        }
+    });
 }

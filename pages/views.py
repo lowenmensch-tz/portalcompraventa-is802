@@ -491,7 +491,189 @@ def getCategories(request):
         except Exception as e:
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
 
+"""
+    Obtiene las categorias a las que esta suscrito y a las que no esta suscrito un usuario
+    @param request: No se espera recibir nada.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion más los artículos a los que un
+                        usuario esta suscrito y a las que no esta suscrito:
+        
+        Success: La ejecución fue exitosa y se envian las categorias.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+        Empty: El usuario no esta suscrito a ninguna categoria aún.
+"""
+@csrf_exempt
+def getUserCategories(request):
+    if request.method == 'POST':
+        id_usuario = engine.getUserIDByEmail(request.session.get('email'))
+        
+        subscribedQuery = """SELECT id_categoria, nombre FROM CATEGORIA WHERE estado = 1 AND id_categoria IN
+                        (SELECT fk_categoria FROM SUSCRIPCION WHERE fk_usuario = %s);""" % (id_usuario)
+        
+        notSubscribedQuery = """SELECT id_categoria, nombre FROM CATEGORIA WHERE estado = 1 AND id_categoria NOT IN 
+                            (SELECT fk_categoria FROM SUSCRIPCION WHERE fk_usuario = %s);""" % (id_usuario)
 
+        try:
+            subscribed = engine.transaction(subscribedQuery)
+            notSubscribed = engine.transaction(notSubscribedQuery)
+            if subscribed != []:
+                return HttpResponse(json.dumps({'status':'Success', 'data1':subscribed, 'data2':notSubscribed}),content_type="application/json")
+            else:
+                return HttpResponse(json.dumps({'status':'Empty', 'data2':notSubscribed}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Elimina la suscripcion de un usuario a una categoria
+    @param request: Se espera recibir el id de la categoria a eliminar.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion.
+        
+        Success: La ejecución fue exitosa y se eliminó la suscripción.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def deleteUserCategories(request):
+    if request.method == 'POST':
+        id_usuario = engine.getUserIDByEmail(request.session.get('email'))
+        id_categoria = request.POST.get('id_categoria')
+
+        deleteCategorieQuery = "DELETE FROM SUSCRIPCION WHERE fk_usuario = %s AND fk_categoria = %s;" % (id_usuario,id_categoria)
+        try:
+            engine.dms(deleteCategorieQuery)
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Agrega la suscripcion de un usuario a una categoria
+    @param request: Se espera recibir el id de la categoria a suscribirse.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion.
+        
+        Success: La ejecución fue exitosa y se agregó la suscripción.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def addUserCategories(request):
+    if request.method == 'POST':
+        id_usuario = engine.getUserIDByEmail(request.session.get('email'))
+        id_categoria = request.POST.get('id_categoria')
+
+        addCategorieQuery = "INSERT INTO SUSCRIPCION (fk_usuario, fk_categoria) values (%s,%s)" % (id_usuario,id_categoria)
+        try:
+            engine.dms(addCategorieQuery)
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Elimina una categoria y los productos a los que pertenece
+    @param request: Se espera recibir el id de la categoria a eliminar.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion.
+        
+        Success: La ejecución fue exitosa y se elimino la categoria.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def deleteCategories(request):
+    if request.method == 'POST':
+        id_categoria = request.POST.get('id_categoria')
+
+        deleteCategoriaQuery = "UPDATE CATEGORIA SET estado = 0 WHERE id_categoria = %s;" % (id_categoria)
+
+        updateArticlesQuery = "UPDATE ARTICULO SET publicado = 0 WHERE fk_categoria = %s;" % (id_categoria)
+
+        try:
+            engine.dms(deleteCategoriaQuery)
+            engine.dms(updateArticlesQuery)
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Agrega una categoria
+    @param request: Se espera recibir el nombre de la categoria a agregar.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion.
+        
+        Success: La ejecución fue exitosa y se agregó la categoria.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def addCategories(request):
+    if request.method == 'POST':
+        nombreCategoria = request.POST.get('nombreCategoria')
+
+        addCategoriaQuery = "INSERT INTO CATEGORIA (nombre) VALUES ('%s');" % (nombreCategoria)
+
+        try:
+            engine.dms(addCategoriaQuery)
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Devuelve todos los productos existentes, cuyo estado de publicado es 1.
+    @param request: No se espera recibir ningún parametro.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion y la información de nombre del
+                          artículo, nombre del usuario que publicó el artículo y la categoría a la que pertenece.
+        
+        Success: La ejecución fue exitosa y se devuelve un arreglo con la información mencionada anteriormente.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def getArticles(request):
+    if request.method == 'POST':
+        
+        getArticulosQuery = """SELECT ARTICULO.id_articulo, CONCAT(SUBSTRING(ARTICULO.nombre,1,27),'...'),
+                            USUARIO.nombre_completo, CATEGORIA.nombre FROM
+                            ARTICULO INNER JOIN USUARIO ON ARTICULO.fk_usuario = USUARIO.id_usuario
+                            INNER JOIN CATEGORIA ON ARTICULO.fk_categoria = CATEGORIA.id_categoria 
+                            WHERE ARTICULO.publicado = 1;"""
+
+        try:
+            result = engine.transaction(getArticulosQuery)
+            return HttpResponse(json.dumps({'status':'Success', 'data': result}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
+    Da de baja a el artículo especificado.
+    @param request: Se espera recibir el id_del artículo a dar de baja.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion.
+        
+        Success: La ejecución fue exitosa y se dió de baja al artículo.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def deleteArticle(request):
+    if request.method == 'POST':
+        id_articulo = request.POST.get('id_articulo')        
+        deleteArticuloQuery = "UPDATE ARTICULO SET publicado = 0 WHERE id_articulo = %s;" % (id_articulo)
+
+        try:
+            engine.dms(deleteArticuloQuery)
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
 """
     Recibe la petición para realizar una denuncia.
