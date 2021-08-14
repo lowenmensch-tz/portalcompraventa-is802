@@ -198,6 +198,8 @@ display: none;
  	width: 87%!important;
  	border: 5px solid #4e73df;
  	transition: 0.5s;
+ 	overflow-y: auto;
+ 	padding-bottom: 5rem;
 }
 
 .special.active
