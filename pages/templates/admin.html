@@ -103,7 +103,7 @@
                 <li class="list">
                     <b></b>
                     <b></b>
-                    <a data-toggle="tab" href="#menu5" id="productsTab">
+                    <a data-toggle="tab" href="#menu5" id="productsTab" onclick="getArticulos();">
                         <span class="icon"><ion-icon name="storefront-outline"></ion-icon></span>
                         <span class="title">Productos</span>
                     </a>
@@ -321,12 +321,12 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbodyDataProduct">
-                                    <tr>
+                                    {% comment %} <tr>
                                         <td>Yefri</td>
                                         <td>Cama King Size</td>
                                         <td>Hogar</td>
                                         <td><button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px">X</button></td>
-                                    </tr>
+                                    </tr> {% endcomment %}
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -389,6 +389,28 @@
                             </div>
                         </form>
                     </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal dar de baja a un anuncio/artículo -->
+    <div class="modal fade" id="delete-articulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Dar de baja al anuncio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-5%;">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="mensajeDelete" class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <div id="modal-article-delete">
+                    
+                </div>
+            </div>
             </div>
         </div>
     </div>
