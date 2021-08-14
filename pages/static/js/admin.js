@@ -1,15 +1,24 @@
 $(document).ready(function(){
 	
 	sessionCheck(); 
+
+	//Dado que getCategories es un trigguer en el tab, en el momento
+	//de recargar no estaban los datos asi que la llamamos en el ready
+	getCategories();
 	
 	if( isActive("complaintContainer") ){ 
 		getAllDataComplaintNotChecked();
 	}
 
 	$('#example2').DataTable();
-	/*$('#productTable').DataTable();*/
+	$('#productTable').DataTable();
+
+
     $(".new-tabs a").click(function(){
 		$(this).tab('show');
+
+		//Se usa localstorage para almacenar la tab actual al recargar
+		localStorage.setItem('lastTab', $(this).attr('href'));
 
 		//Denuncias sin revisar
 		if( this.parentNode.id == "complaintContainer" ){ 
@@ -23,6 +32,13 @@ $(document).ready(function(){
 		
 
     });
+
+    //Aqui accedemos al localstorage almacenado anteriormente
+    //para desplazarnos al tab en el que estabamos
+    var lastTab = localStorage.getItem('lastTab');
+    if (lastTab) {
+        $('[href="' + lastTab + '"]').tab('show');
+    }
 
 });
 
@@ -436,6 +452,7 @@ function addCategory(){
 		console.log(data);
             if (data.status == "Success"){
                 alert("La categoria se añadio correctamente");
+                window.location.reload();
             }else{
                 alert('Usted ha eliminado todas las categorias');
             }
@@ -453,7 +470,8 @@ function deleteCategory(id){
 		console.log(data);
             if (data.status == "Success"){
                 alert("La categoria se elimino correctamente");
-                getCategories();
+                window.location.reload();
+
             }else{
                 alert('Ya no hay categorias disponibles');
             }
