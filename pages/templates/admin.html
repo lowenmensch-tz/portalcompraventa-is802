@@ -100,6 +100,14 @@
                         <span class="title">Categorias</span>
                     </a>
                 </li>
+                <li class="list">
+                    <b></b>
+                    <b></b>
+                    <a data-toggle="tab" href="#menu5" id="productsTab">
+                        <span class="icon"><ion-icon name="storefront-outline"></ion-icon></span>
+                        <span class="title">Productos</span>
+                    </a>
+                </li>
                 <!--<li class="list">
                     <b></b>
                     <b></b>
@@ -268,7 +276,7 @@
                             
                         </div>
                         <div class="card-body">
-                            <div class="form-container">
+                            <div class="container">
 
                                 <div class="container ">
                                     <a data-toggle="modal" data-target="#AddCategoryModal" href="#AddCategoryModal" class="d-none d-sm-inline-block btn btn-sm btn-success">Agregar Nueva Categoria</a>
@@ -276,8 +284,8 @@
                                     <table id="categoryTable" class="display" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>Id</th>
                                                 <th>Category</th>
-                                                <th>Icon</th>
                                                 <th>Edit</th>
                                             </tr>
                                         </thead>
@@ -286,8 +294,8 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <th>Id</th>
                                                 <th>Category</th>
-                                                <th>Icon</th>
                                                 <th>Edit</th>
                                             </tr>
                                         </tfoot>
@@ -297,6 +305,41 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="menu5" class="tab-pane fade">
+                    <h3>Administrar productos</h3>
+                    <hr>
+                    <div class="container">
+                        <div class="container ">
+                            <table id="productTable" class="display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Articulo</th>
+                                        <th>Categoria</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyDataProduct">
+                                    <tr>
+                                        <td>Yefri</td>
+                                        <td>Cama King Size</td>
+                                        <td>Hogar</td>
+                                        <td><button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px">X</button></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Icon</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="toggle">

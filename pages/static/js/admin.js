@@ -6,6 +6,7 @@ $(document).ready(function(){
 		getAllDataComplaintNotChecked();
 	}
 	$('#example2').DataTable();
+	$('#productTable').DataTable();
     $(".new-tabs a").click(function(){
 		$(this).tab('show');
     });
@@ -97,6 +98,7 @@ function getAllDataComplaintNotChecked(){
 					`;
 
 				}
+				//Añadir obligatoriamente para que los estilos no exploten
 				$('#example').DataTable();
 				$('.sorting').trigger( "click" );
 			}
@@ -375,9 +377,9 @@ function getCategories(){
                 for(let index = 0; index < data.data.length; index++){
 					categoriesTable.innerHTML += `
 						<tr id="${data.data[index][0]}">
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[index][0]}</td>
 							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[index][1]}</td>
-							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">icon</td>
-							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px" onclick="deleteCategory();">X</button></td>
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px" onclick="deleteCategory(${data.data[index][0]});">X</button></td>
 						</tr>	
 					`;
 
@@ -397,11 +399,10 @@ function addCategory(){
 	$.ajax({
         type: "POST",
         url: "ajax/addCategories",
-        data: { 'name': name },
+        data: { 'nombreCategoria': name },
         success: function(data){
 		console.log(data);
             if (data.status == "Success"){
-
                 alert("La categoria se añadio correctamente");
             }else{
                 alert('Usted ha eliminado todas las categorias');
@@ -410,20 +411,19 @@ function addCategory(){
     });
 }
 
-function deleteCategory(){
-	var name = $("#ACname").val();
+function deleteCategory(id){
 
 	$.ajax({
         type: "POST",
         url: "ajax/deleteCategories",
-        data: { 'id': 11},
+        data: { 'id_categoria': id },
         success: function(data){
 		console.log(data);
             if (data.status == "Success"){
-
-                alert("La categoria se añadio correctamente");
+                alert("La categoria se elimino correctamente");
+                getCategories();
             }else{
-                alert('Usted ha eliminado todas las categorias');
+                alert('Ya no hay categorias disponibles');
             }
         }
     });
