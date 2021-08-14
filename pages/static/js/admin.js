@@ -7,7 +7,7 @@ $(document).ready(function(){
 	}
 
 	$('#example2').DataTable();
-	$('#productTable').DataTable();
+	/*$('#productTable').DataTable();*/
     $(".new-tabs a").click(function(){
 		$(this).tab('show');
 
@@ -25,6 +25,20 @@ $(document).ready(function(){
     });
 
 });
+
+var id_articulo;
+
+function setArticulo(nombreArticulo, id_articulo){
+    document.querySelector("#modal-article-delete").innerHTML = `<button id="deleteModal${id_articulo}"  class="btn btn-primary" onclick="deleteArticulo();" data-dismiss="modal">Aceptar</button>&nbsp;<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>`;
+    document.querySelector("#mensajeDelete").innerHTML = `<h5><b>Eliminar</b> anuncio <b>${nombreArticulo}</b>.</h5>`;
+    this.id_articulo = id_articulo;
+
+}
+
+function getId_Articulo(){
+    return this.id_articulo;
+}
+
 
 let menuToggle = document.querySelector('.toggle');
 let navigation = document.querySelector('.navigation');
@@ -442,6 +456,65 @@ function deleteCategory(id){
                 getCategories();
             }else{
                 alert('Ya no hay categorias disponibles');
+            }
+        }
+    });
+}
+
+/*
+Información de los artículos:
+0 = id del artículo
+1 = Nombre artículo
+2 = Nombre usuario
+3 = Categoria
+*/ 
+
+
+function getArticulos(){
+    $.ajax({
+        type: "POST",
+        url: "ajax/getArticles",
+        data: {},
+        success: function(data){
+
+            if (data.status == "Success"){
+				document.getElementById("tbodyDataProduct").innerHTML = "";
+				for (i=0; i<((data.data).length);i++){
+					document.getElementById("tbodyDataProduct").innerHTML += `
+					<tr id="articulo${data.data[i][0]}">
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][2]}</td>
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][1]}</td>
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][3]}</td>
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" 
+							style="height:2rem; padding-top:0.1px" data-toggle="modal" data-target="#delete-articulo" href="#delete-articulo" onclick="setArticulo('${(data.data[i][1]).replace(/["']/g, "")}',${data.data[i][0]});">X</button></td>
+					</tr>`
+				}
+				$('#productTable').DataTable();
+				$('.sorting').trigger( "click" );
+
+            }else{
+                console.log('Error no se cargaron los artículos')
+            }
+        }
+    });
+}
+
+function deleteArticulo(id_articulo = getId_Articulo()){
+    $.ajax({
+        type: "POST",
+        url: "ajax/deleteArticle",
+        data: {'id_articulo': id_articulo},
+        success: function(data){
+
+            if (data.status == "Success"){
+				var table = $('#productTable').DataTable();
+					 
+				table.row(`#articulo${id_articulo}`).remove().draw( false );
+				
+				/*getArticulos();*/
+                /*alert('Se dió de baja al artículo con éxito');*/
+            }else{
+                console.log('Error no se cargaron los artículos')
             }
         }
     });
