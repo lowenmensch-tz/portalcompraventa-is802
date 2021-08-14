@@ -28,6 +28,8 @@ from pages.views import deleteUserCategories
 from pages.views import addUserCategories
 from pages.views import deleteCategories
 from pages.views import addCategories
+from pages.views import getArticles
+from pages.views import deleteArticle
 
 from django.conf.urls import handler404
 from pages.views import notFound
@@ -69,6 +71,8 @@ path('ajax/deleteUserCategories', deleteUserCategories),
 path('ajax/addUserCategories', addUserCategories),
 path('ajax/deleteCategories', deleteCategories),
 path('ajax/addCategories', addCategories),
+path('ajax/getArticles', getArticles),
+path('ajax/deleteArticle', deleteArticle),
 
 
 #path('ajax/userProfile', userProfile, name='user_Profile'),
