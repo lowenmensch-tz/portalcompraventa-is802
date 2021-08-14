@@ -52,3 +52,21 @@ CREATE VIEW vw_dailyReviews AS
         fn_getCountReviewsWeek(1) AS lastWeek,
         fn_getCountReviewsWeek(0) AS CurrentWeek
     ;
+
+
+--
+-- Lista de todos los productos con sus visualizaciones
+--
+
+CREATE VIEW vw_viewsByProduct AS
+    SELECT
+        a.fk_categoria AS id_categoria,
+        COUNT(b.id_articulo) AS Views,
+        b.id_articulo AS id_articulo
+    FROM 
+        BITACORA AS b, ARTICULO AS a
+    WHERE
+        b.id_articulo = a.id_articulo
+    GROUP BY
+        a.fk_categoria, b.id_articulo
+;

@@ -11,6 +11,8 @@ from django.http import HttpResponse
 from django.shortcuts import resolve_url
 from django.shortcuts import render 
 
+import re
+
 from datetime import timedelta
 from datetime import datetime
 
@@ -54,17 +56,63 @@ class Statistics:
 
 
     @csrf_exempt
-    def getDailyReviews(self, request):
+    def statistics(self, request):
         """
-            Obtiene la cantidad de visitas de todos los 
-            productos durante las últimas 4 semanas 
+          
             @param request: <HttpRequest>
             @return: <HttpResponse>
         """
 
         if request.method == 'POST':
 
-            sql="""
+            try: 
+
+                #if resultDailyReviews: 
+
+                return HttpResponse(json.dumps(
+                                {
+                                    'status':'Success',
+                                    'dailyReviews': self.getDailyReviews(),
+                                    'categoryReviews': self.getTopFiveCategoryReviews(), 
+                                    'countProductsByCategory': self.getCountProductsByCategory(),
+                                    'percentageVisitsCategory': self.getPercentageVisitsCategory(), 
+                                    'mostViewedProductByCategory': self.mostViewedProductByCategory()
+                                }
+                            ), 
+                            content_type="application/json")
+
+                #else: 
+                #    return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
+
+            except Exception as e:
+                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+
+
+    def processData(self, result, l1=0, l2=5):
+        """
+            Procesa los datos de la consulta
+            @param result: <list>
+            @param l1: <int> Limite inferior 
+            @param l2: <int> Limite superior  
+            @return: <list>
+        """
+        labels = []
+        data = []
+
+        for row in result:
+            labels.append(row[0])
+            
+            if re.search(r'\%', str(row[-1])): 
+                data.append(float(row[-1].replace('%', '').strip()))
+            else:
+                data.append( row[-1] )
+
+        return [labels[l1:l2], data[l1:l2]]
+
+
+    def getCategoryReviews(self):
+        
+        sql="""
                     SELECT 
                         Category, 
                         CONCAT(CAST(FORMAT(DurationTime, 2) AS CHAR), 's'), 
@@ -76,67 +124,102 @@ class Statistics:
                     ;
                 """
             
-            try: 
-                result = self.engine.transaction(sql)
-                resultDailyReviews = self.engine.transaction(sql="SELECT * FROM vw_dailyReviews;")[0]
-                resultCategoryReviews = result[0:5]
-                labels = [self.getNameMonth(3), self.getNameMonth(2), self.getNameMonth(1), self.getNameMonth()]
-
-                if resultDailyReviews: 
-
-                    return HttpResponse(json.dumps(
-                                    {
-                                        'status':'Success',
-                                        'dailyReviews': [labels, resultDailyReviews],
-                                        'categoryReviews': resultCategoryReviews, 
-                                        'percentageVisitsCategory': self.processData(result)
-                                    }
-                                ), 
-                                content_type="application/json")
-
-                else: 
-                    return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
-
-            except Exception as e:
-                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+        result = self.engine.transaction(sql)
+        return result
 
 
-    def processData(self, result):
+    def getTopFiveCategoryReviews(self):
         """
-            Procesa los datos de la consulta
-            @param data: <list>
+            Primeras cinco categorias con mayores visitas
+        """
+        return self.getCategoryReviews()[0:5]
+
+
+    def getPercentageVisitsCategory(self):
+        """
+
+        """
+        result = self.getCategoryReviews()
+        return self.processData(result)
+
+
+    def getDailyReviews(self):
+        """
+            Obtiene la cantidad de visitas de todos los 
+            productos durante las últimas 4 semanas 
+        """
+        
+        resultDailyReviews = self.engine.transaction(sql="SELECT * FROM vw_dailyReviews;")[0]
+        labels = [self.getNameMonth(3), self.getNameMonth(2), self.getNameMonth(1), self.getNameMonth()]
+
+        return [labels, resultDailyReviews]
+
+
+    def getCountProductsByCategory(self):
+        """
+            Obtiene la cantidad de productos por categoría
+        """
+
+        sql = """
+                    SELECT 
+                        c.nombre AS Category, 
+                        TotProduct.TotProduct AS TotalProducts
+                    FROM
+                        CATEGORIA AS c
+                    INNER JOIN 
+                        (
+                            SELECT
+                                a.fk_categoria AS id,
+                                COUNT(a.id_articulo) AS TotProduct
+                            FROM
+                                ARTICULO AS a
+                            GROUP BY
+                                a.fk_categoria
+                        ) AS TotProduct ON c.id_categoria = TotProduct.id;
+            """
+
+        result = self.engine.transaction(sql)
+
+        return self.processData(result, 0, -1)
+
+
+
+    def mostViewedProductByCategory(self):
+        """
+            Obtiene los productos más visitados por categoría
             @return: <list>
         """
-        labels = []
-        data = []
-
-        for row in result:
-            labels.append(row[0])
-            data.append(float(row[-1].replace('%', '').strip()))
-
-        return [labels[0:5], data[0:5]]
-
-
-    def getDataAverageProductPriceByDepartment(self):
         
-        result = self.engine.averageProductPriceByDepartment()
-        labels = []
-        data = []
+        sql= """
+            --
+            -- group-identifier, max-value-in-group
+            --
 
-        for index in range(len(result)):
-            
-            labels.append( result[index][1] )
-            data.append( float(result[index][0].replace(',','')) )
+            SELECT 
+                CATEGORIA.nombre AS CategoryName,
+                TopProduct.MostViewedProduct AS MostViewedProduct, 
+                ARTICULO.nombre AS ProductName
+                
+            FROM
+                vw_viewsByProduct
+            INNER JOIN 
+                (
+                    SELECT 
+                        views.id_categoria AS id_categoria,
+                        MAX(views.Views) AS MostViewedProduct
+                    FROM
+                        vw_viewsByProduct AS views
+                    GROUP BY
+                        views.id_categoria
+                ) TopProduct ON 
+                                TopProduct.id_categoria = vw_viewsByProduct.id_categoria
+                            AND 
+                                TopProduct.MostViewedProduct = vw_viewsByProduct.Views
+            INNER JOIN 
+                CATEGORIA ON TopProduct.id_categoria = CATEGORIA.id_categoria
+            INNER JOIN
+                ARTICULO ON vw_viewsByProduct.id_articulo = ARTICULO.id_articulo;
+            """
         
-        if result: 
-
-            return HttpResponse(json.dumps(
-                            {
-                                'status':'Success',
-                                'labels':labels,
-                                'data': data
-                            }
-                        ), 
-                        content_type="application/json")
-
-
+        result = self.engine.transaction(sql)
+        return result

@@ -2,13 +2,26 @@ $(document).ready(function(){
 	
 	sessionCheck(); 
 	
-	if( document.getElementById("complaintContainer").className == "list active"){ 
+	if( isActive("complaintContainer") ){ 
 		getAllDataComplaintNotChecked();
 	}
+
 	$('#example2').DataTable();
 	$('#productTable').DataTable();
     $(".new-tabs a").click(function(){
 		$(this).tab('show');
+
+		//Denuncias sin revisar
+		if( this.parentNode.id == "complaintContainer" ){ 
+			getAllDataComplaintNotChecked();
+		}
+		//Estadísticas
+		else if ( this.parentNode.id == "statisticsContainer" ){
+			//console.log("Estamos en la pantalla de las estadísticas bb");
+			loadDataStatistics();
+		}
+		
+
     });
 
 });
@@ -41,7 +54,7 @@ for (let i=0; i<list.length; i++){
 	}
 }*/
 
-var container = document.getElementById("complaintContainer");
+/*var container = document.getElementById("complaintContainer");
 
 container.onclick = function(){
 	
@@ -49,6 +62,11 @@ container.onclick = function(){
 
 	getAllDataComplaintNotChecked();
 
+}*/
+
+
+function isActive(id){
+	return (document.getElementById(id).className = "list active")? true: false;
 }
 
 

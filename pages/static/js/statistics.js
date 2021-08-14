@@ -1,17 +1,10 @@
 /**
- * Ready de la función 
-*/
-window.onload = function() {
-    loadData();
-}
-
-
-/**
- * 
+ * Función asínica que se ejecuta cada vez que se carga la página
+ * trae toda la información necesaria para mostrar las estadísticas
  * */
-function loadData(){
+function loadDataStatistics(){
 
-    var url = "ajax/averageProductPriceByDepartment";
+    var url = "ajax/statistics";
 
     var option = {
         method: "POST"
@@ -26,7 +19,7 @@ function loadData(){
                 //console.log(response.labels);
                 //console.log(response.data);
                 
-                var gridProduct = document.getElementById("graphQuantityProductoByDepartment");
+                var gridProduct = document.getElementById("drawStatistics");
                 
                 for (let i = 0; i < 3; i++) { //Cantidad de filas
             
@@ -39,48 +32,36 @@ function loadData(){
                     `; 
                 }
                 
-                document.getElementById("rows-product-0").innerHTML += `
-                    <div class="col col-lg-4"">
-                        <div class="card">
-                            <div class="card-header">    
-                                <canvas id="myChart-daily-reviews" width="400" height="400"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                //dailyReviews
+                innerCanvas("rows-product-0", "myChart-daily-reviews", 4);
+                
+                //percentageVisitsCategory
+                innerCanvas("rows-product-0", "myChart-percentage-visits-category", 4);
 
-                document.getElementById("rows-product-0").innerHTML += `
-                    <div class="col col-lg-4"">
-                        <div class="card">
-                            <div class="card-header">    
-                                <p>Top 5 categorías más visitadas</p>
-                                <table class="table table-striped table-dark" id="category-reviews">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Categoría</th>
-                                        <th scope="col">Tiempo promedio</th>
-                                        <th scope="col">Visitas</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="category-reviews-body">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                //categoryReviews
+                innerTable(
+                            "rows-product-1", 
+                            "category-reviews", 
+                            "category-reviews-body", 
+                            "Top 5 categorías más visitadas", 
+                            ["Categoría", "Tiempo promedio", "Visitas"]
+                        );
 
-                document.getElementById("rows-product-0").innerHTML += `
-                    <div class="col col-lg-4"">
-                        <div class="card">
-                            <div class="card-header">    
-                                <canvas id="myChart-percentage-visits-category" width="400" height="400"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                //mostViewedProductByCategory
+                innerTable(
+                    "rows-product-1", 
+                    "most-viewed-product", 
+                    "most-viewed-product-body", 
+                    "Producto más visitado por categoría", 
+                    ["Categoría", "Visitas", "Nombre del producto"]
+                );
 
 
+                //countProductsByCategory
+                innerCanvas("rows-product-2", "myChart-count-products-by-category", 8);
+
+
+                //dailyReviews
                 drawGraph(
                             response.dailyReviews[0], //labels
                             response.dailyReviews[1], //data
@@ -90,11 +71,16 @@ function loadData(){
                             ['rgba(75, 192, 192)'][0], 
                             'Visitas de las últimas semanas'
                         );
-                drawTable(response.categoryReviews);
+                //categoryReviews
+                drawTable(
+                            response.categoryReviews, 
+                            "category-reviews",
+                            "category-reviews-body"
+                        );
                 
                 console.log(response);
 
-                
+                //percentageVisitsCategory
                 drawGraph(
                     response.percentageVisitsCategory[0], //labels
                     response.percentageVisitsCategory[1], //data
@@ -114,18 +100,95 @@ function loadData(){
                         'rgb(255, 205, 86)',
                         'rgb(75, 192, 192)',
                         'rgb(54, 162, 235)'
-                    ], 
-                    'Categorías'
+                    ] 
                 );
 
-            }
-        });
+                //mostViewedProductByCategory
+                drawTable(
+                    response.mostViewedProductByCategory,
+                    "most-viewed-product",
+                    "most-viewed-product-body"
+                );
+
+                //countProductsByCategory
+                drawGraph(
+                    response.countProductsByCategory[0], //labels
+                    response.countProductsByCategory[1], //data
+                    "myChart-count-products-by-category", 
+                    'bar', 
+                    [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    [      
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)'
+                    ] 
+                );
+
+                //Añadir obligatoriamente para que los estilos no exploten
+				$('#example').DataTable();
+				$('.sorting').trigger( "click" );
+
+            } //SUCCESS
+
+        }); //end fetch
 }
 
 
-function drawTable(data){
-    var table = document.getElementById("category-reviews");
-    var tbody = document.getElementById("category-reviews-body");
+function innerTable(idRow, tableId, tbodyId, title, data) {
+
+    document.getElementById(idRow).innerHTML += `
+        <div class="col col-lg-4"">
+            <div class="card">
+                <div class="card-header">    
+                    <p>${title}</p>
+                    <table class="table table-striped table-dark" id="${tableId}">
+                        <thead>
+                        <tr>
+                            <th scope="col">${data[0]}</th>
+                            <th scope="col">${data[1]}</th>
+                            <th scope="col">${data[2]}</th>
+                        </tr>
+                        </thead>
+                        <tbody id="${tbodyId}">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+`;
+    
+}
+
+
+function innerCanvas(idRow, idCanvas, largeColumn) {
+    
+    document.getElementById(idRow).innerHTML += `
+        <div class="col col-lg-${largeColumn}">
+            <div class="card">
+                <div class="card-header">    
+                    <canvas id="${idCanvas}" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+`;
+}
+
+
+function drawTable(data, tableId, tbodyId){
+    var table = document.getElementById(tableId);
+    var tbody = document.getElementById(tbodyId);
 
     for (let index = 0; index < data.length; index++) {
 
@@ -144,7 +207,7 @@ function drawTable(data){
 /**
  * Dibuja el gráfico
  * */
-function drawGraph(labels, data, idGraph, type, backgroundColor, borderColor, title){
+function drawGraph(labels, data, idGraph, type, backgroundColor, borderColor){
 
     var ctx = document.getElementById(idGraph).getContext('2d');
     var myChart = new Chart(ctx, {

@@ -103,7 +103,7 @@ url(r'^seller\/(\d{1,4}\-[0-9a-zA-Z-]+)$', seller.seller),
 #path('seller/', seller.seller, name='seller_page'),
 path('statistics', statistics.index, name='statistics_page'),
 #path('ajax/averageProductPriceByDepartment', statistics.getDataAverageProductPriceByDepartment),
-path('ajax/averageProductPriceByDepartment', statistics.getDailyReviews),
+path('ajax/statistics', statistics.statistics),
 
 
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/productDetailsDescription$', details.productDetailsDescription),
