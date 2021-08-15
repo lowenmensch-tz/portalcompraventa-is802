@@ -217,8 +217,8 @@ function getArticulos(){
 
 function getCategories(){
 
-	var categoriesTable = document.getElementById("tbodyDataCategory");
-    categoriesTable.innerHTML = "";
+	//var categoriesTable = document.getElementById("tbodyDataCategory");
+    //categoriesTable.innerHTML = "";
 
     $.ajax({
         type: "POST",
@@ -229,17 +229,19 @@ function getCategories(){
             if (data.status == "Success"){
                 //loadCategories(data.data);
 
-				categoriesTable.innerHTML ="";
-                console.log(data.data);
+				//categoriesTable.innerHTML ="";
+                $("#categoryTable tbody").html('');
+
+                //console.log(data.data);
                 for(let index = 0; index < data.data.length; index++){
                     //console.log(data.data[index][0]);
-					categoriesTable.innerHTML += `
+					$("#categoryTable tbody").append(`
 						<tr id="${data.data[index][0]}">
 							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[index][0]}</td>
 							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[index][1]}</td>
 							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px" onclick="deleteCategoryProcess(${data.data[index][0]});">X</button></td>
 						</tr>	
-					`;
+					`);
 
 				}
 
@@ -283,13 +285,18 @@ function addCategory(){
         data: { 'nombreCategoria': name },
         success: function(data){
             if (data.status == "Success"){
+                console.log(data.categoryID[0]);
                 $("#modalAlertAddCategory").modal("show");
                 //window.location.reload();
                 //$('#tbodyDataCategory').DataTable().destroy();
                 
-                setTimeout(function(){
-                    window.location.reload();
-                }, 1000);
+                $("#categoryTable tbody").append(`
+                    <tr id="${data.categoryID}">
+                        <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.categoryID}</td>
+                        <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${name}</td>
+                        <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px" onclick="deleteCategoryProcess(${data.categoryID});">X</button></td>
+                    </tr>	
+				`);
 
             }else{
                 alert('Usted ha eliminado todas las categorias');
@@ -315,9 +322,9 @@ function deleteCategory(){
                 $("#modalConfirmDeleteCategory").modal("hide");
                 $("#modalAlertDeleteCategory").modal("show");
                 
-                setTimeout(function(){
-                    window.location.reload();
-                }, 1000);
+                console.log('Simon');
+                var table = $('#categoryTable').DataTable();	 
+				table.row(`#${id_category}`).remove().draw( false );
 
             }else{
                 alert('Ya no hay categorias disponibles');
@@ -325,7 +332,6 @@ function deleteCategory(){
         }
     });
 }
-
 
 function deleteArticulo(id_articulo = getId_Articulo()){
     $.ajax({
