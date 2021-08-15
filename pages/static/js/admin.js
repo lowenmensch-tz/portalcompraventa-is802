@@ -32,7 +32,9 @@ $(document).ready(function(){
 		else if ( this.parentNode.id == "statisticsContainer" ){
 			//console.log("Estamos en la pantalla de las estadísticas bb");
 			loadDataStatistics();
-		}
+		}else if (this.parentNode.id == "categoriesTab"){
+            getCategories();
+        }
 		
 
     });
@@ -147,6 +149,7 @@ function getCategories(){
 
 				categoriesTable.innerHTML ="";
                 for(let index = 0; index < data.data.length; index++){
+                    //console.log(data.data[index][0]);
 					categoriesTable.innerHTML += `
 						<tr id="${data.data[index][0]}">
 							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[index][0]}</td>
@@ -156,7 +159,30 @@ function getCategories(){
 					`;
 
 				}
-				$('#categoryTable').DataTable();
+
+                if ( $.fn.dataTable.isDataTable( '#categoryTable' ) ) {
+                    console.log('La tabla ya ha sido instanciada');
+                }else{
+                    $('#categoryTable').DataTable(
+                        {
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_ entradas",
+                                "zeroRecords": "No se encontraron entradas - Lo sentimos",
+                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                "infoEmpty": "No hay registros disponibles",
+                                "search": "Buscar: ",
+                                "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+                                "paginate": {
+                                    "first":      "Primero",
+                                    "last":       "último",
+                                    "next":       "Siguiente",
+                                    "previous":   "Previo"
+                                }
+                            }
+                        }
+                    );
+                }
+
 				$('.sorting').trigger( "click" );
             }else{
                 alert('Usted ha eliminado todas las categorias');
@@ -173,7 +199,6 @@ function addCategory(){
         url: "ajax/addCategories",
         data: { 'nombreCategoria': name },
         success: function(data){
-		console.log(data);
             if (data.status == "Success"){
                 alert("La categoria se añadio correctamente");
                 window.location.reload();
@@ -211,7 +236,6 @@ Información de los artículos:
 3 = Categoria
 */ 
 
-
 function getArticulos(){
     $.ajax({
         type: "POST",
@@ -231,7 +255,30 @@ function getArticulos(){
 							style="height:2rem; padding-top:0.1px" data-toggle="modal" data-target="#delete-articulo" href="#delete-articulo" onclick="setArticulo('${(data.data[i][1]).replace(/["']/g, "")}',${data.data[i][0]});">X</button></td>
 					</tr>`
 				}
-				$('#productTable').DataTable();
+
+                if ( $.fn.dataTable.isDataTable( '#productTable' ) ) {
+                    console.log('La tabla ya ha sido instanciada');
+                }else{
+                    $('#productTable').DataTable(
+                        {
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_ entradas",
+                                "zeroRecords": "No se encontraron entradas - Lo sentimos",
+                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                "infoEmpty": "No hay registros disponibles",
+                                "search": "Buscar: ",
+                                "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+                                "paginate": {
+                                    "first":      "Primero",
+                                    "last":       "último",
+                                    "next":       "Siguiente",
+                                    "previous":   "Previo"
+                                }
+                            }
+                        }
+                    );
+                }
+
 				$('.sorting').trigger( "click" );
 
             }else{

@@ -38,7 +38,29 @@
                 populateTable(table, response.data);
                 
 				//Añadir obligatoriamente para que los estilos no exploten
-				$('#example').DataTable();
+				if ( $.fn.dataTable.isDataTable( '#example' ) ) {
+                    console.log('La tabla ya ha sido instanciada');
+                }else{
+                    $('#example').DataTable(
+                        {
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_ entradas",
+                                "zeroRecords": "No se encontraron entradas - Lo sentimos",
+                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                "infoEmpty": "No hay registros disponibles",
+                                "search": "Buscar: ",
+                                "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+                                "paginate": {
+                                    "first":      "Primero",
+                                    "last":       "último",
+                                    "next":       "Siguiente",
+                                    "previous":   "Previo"
+                                }
+                            }
+                        }
+                    );
+                }
+
 				$('.sorting').trigger( "click" );
 			}
 		});
@@ -102,7 +124,30 @@ function populateTable(table, data){
                 populateTable(table, response.data);
 			
 				//Añadir obligatoriamente para que los estilos no exploten
-				$('#example2').DataTable();
+
+				if ( $.fn.dataTable.isDataTable( '#example2' ) ) {
+                    console.log('La tabla ya ha sido instanciada');
+                }else{
+                    $('#example2').DataTable(
+                        {
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_ entradas",
+                                "zeroRecords": "No se encontraron entradas - Lo sentimos",
+                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                "infoEmpty": "No hay registros disponibles",
+                                "search": "Buscar: ",
+                                "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+                                "paginate": {
+                                    "first":      "Primero",
+                                    "last":       "último",
+                                    "next":       "Siguiente",
+                                    "previous":   "Previo"
+                                }
+                            }
+                        }
+                    );
+                }
+				
 				$('.sorting').trigger( "click" );
 			}
 		});
