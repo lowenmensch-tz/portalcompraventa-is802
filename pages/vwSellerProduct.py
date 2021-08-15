@@ -114,6 +114,8 @@ class SellerProduct:
     @csrf_exempt
     def getDetailProduct(self, request):
 
+
+        print(request.POST.get('idProduct'))
         idProduct = int( request.POST.get('idProduct') )
 
         if request.method:

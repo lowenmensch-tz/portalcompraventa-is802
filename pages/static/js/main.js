@@ -106,8 +106,12 @@ $(function() {
             data: data,
             success: function(text) {
                 if (text.status == "Success") {
-                    //lformSuccess();
-                    window.location.replace("/");
+                    
+                    if(text.admin){
+                        window.location.replace("admin");
+                    }else{
+                        window.location.replace("/");
+                    }
                 } else if (text.status == "Failed"){
                     document.getElementById("loginCatchError").innerHTML = "Usuario o Contraseña no Válida";
                     document.getElementById("loginCatchError").style.display = "block";
