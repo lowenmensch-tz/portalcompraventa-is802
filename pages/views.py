@@ -120,16 +120,13 @@ def loginValidation (request):
             cursor.execute(query)
             result = cursor.fetchall()
             cursor.close()
+            isAdmin = 1 if engine.transaction("SELECT COUNT(*) FROM USUARIO WHERE correo = '%s' AND tipo = 1;"%(email.strip()))[0][0] else 0
 
             if result[0][0] == 1:
-
-                # cursor.execute(id)
-                # result = cursor.fetchone()
-
+                
                 request.session['email'] = email
-                # request.session['userId'] = result[0]
 
-                return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+                return HttpResponse(json.dumps({'status':'Success', 'admin':isAdmin}),content_type="application/json")
             else:
                 return HttpResponse(json.dumps({'status':'Failed'}),content_type="application/json")
         except Exception as e:

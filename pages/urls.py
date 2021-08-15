@@ -85,7 +85,8 @@ path('ajax/getAllDataComplaintNotChecked', administrationComplaint.getAllDataCom
 path('ajax/getAllDataComplaintChecked', administrationComplaint.getAllDataComplaintChecked),       #Denuncias revisadas
 path('ajax/updateUserStatusReported', administrationComplaint.updateUserStatusReported),          #Actualiza el estado de una denuncia asociada a un usuario
 path('ajax/getDataOfAComplaint', administrationComplaint.getDataOfAComplaint),                   #Obtiene los datos de una denuncia asociado a un usuario
-path('ajax/loggedValidatorAdmin', administrationComplaint.loggedInValidator),                   #Validador de inicio de sesion para administracion
+path('ajax/loggedValidatorAdmin', administrationComplaint.loggedInValidator),
+path('ajax/getDetailProduct', sellerProduct.getDetailProduct),                                                      #Validador de inicio de sesion para administracion
 
 
 url(r'^seller\-product\/(\d{1,4}\-[0-9a-zA-Z-]+)$', sellerProduct.index, name='seller_product'),
