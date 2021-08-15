@@ -13,6 +13,12 @@ $(document).ready(function(){
 
     //Alert Mensaje satisfactorio para la eliminacion de un articulo
     drawAlertMessage("modalAlertAddCategory", "alert-success", "Bien hecho!", "Se ha <strong>agregado una categoría</strong> de forma satisfactoria");
+
+    //Alert Mensaje satisfactorio al dar de baja una denuncia
+    drawAlertMessage("modalAlertComplaintSuccess", "alert-success", "Bien hecho!", "El usuario <strong>ha sido dado de baja</strong> de forma satisfactoria");
+
+    //Alert Mensaje De alerta al dar de alta una denuncia
+    drawAlertMessage("modalAlertComplaintDanger", "alert-danger", "Advertencia", "La denuncia <strong>no ha sido procesada</strong>"+"\n" + "<strong>Por favor, revise los campos e intente nuevamente</strong>");
 	
 	//Dado que getCategories es un trigguer en el tab, en el momento
 	//de recargar no estaban los datos asi que la llamamos en el ready
@@ -21,7 +27,7 @@ $(document).ready(function(){
 	if( isActive("complaintContainer") ){ 
 		getAllDataComplaintNotChecked();
 	}
-
+    
 	//$('#example2').DataTable();
 	/*$('#productTable').DataTable();*/
 
@@ -34,11 +40,11 @@ $(document).ready(function(){
 
 		//Denuncias sin revisar
 		if( this.parentNode.id == "complaintContainer" ){ 
-			getAllDataComplaintNotChecked();
+            getAllDataComplaintNotChecked();
 		}
 		//Denuncias revisadas
 		else if( this.parentNode.id == "complaintContainerChecked" ){
-			getAllDataComplaintChecked();
+            getAllDataComplaintChecked();
 		}
 		//Estadísticas
 		else if ( this.parentNode.id == "statisticsContainer" ){
@@ -113,7 +119,7 @@ container.onclick = function(){
 
 
 function isActive(id){
-	return (document.getElementById(id).className = "list active")? true: false;
+	return (document.getElementById(id).className == "list active")? true: false;
 }
 
 
@@ -143,6 +149,87 @@ function sessionCheck(){
         }
     });
 }
+
+/*
+Información de los artículos:
+0 = id del artículo
+1 = Nombre artículo
+2 = Nombre usuario
+3 = Categoria
+*/ 
+function getArticulos(){
+    
+    $("#productTable tbody").html("");
+
+    var url = "ajax/getArticles";
+    var option = { method: 'POST' };
+
+    fetch(url, option)
+        .then(response => response.json())
+        .catch(error => console.log(error))
+        .then(response => {
+
+            if (response.status == "Success"){
+
+                for (let i = 0; i < response.data.length; i++){
+
+                    $("#productTable tbody").append(`
+                            <tr id="articulo${response.data[i][0]}">
+                                <td onclick="drawModalDeleteProduct(${response.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${response.data[i][2]}</td>
+                                <td onclick="drawModalDeleteProduct(${response.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${response.data[i][1]}</td>
+                                <td onclick="drawModalDeleteProduct(${response.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${response.data[i][3]}</td>
+                                <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" 
+                                style="height:2rem; padding-top:0.1px" data-toggle="modal" data-target="#delete-articulo" href="#delete-articulo" onclick="setArticulo('${(response.data[i][1]).replace(/["']/g, "")}',${response.data[i][0]});">X</button></td>
+                            </tr>	
+                        `);
+                } //end for    
+
+                $("#productTable").DataTable({
+                    language: {
+                        decimal: "",
+                        emptyTable: "No hay información",
+                        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+                        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+                        infoPostFix: "",
+                        thousands: ",",
+                        lengthMenu: "Mostrar _MENU_ Entradas",
+                        loadingRecords: "Cargando...",
+                        processing: "Procesando...",
+                        search: "Buscar:",
+                        zeroRecords: "Sin resultados encontrados",
+                        paginate: {
+                            first: "Primero",
+                            last: "Ultimo",
+                            next: "Siguiente",
+                            previous: "Anterior",
+                        },
+                    },
+                });
+            }
+        });
+        
+
+    /*
+        url: "ajax/getArticles",
+        data: {},
+        success: function(data){
+
+            if (data.status == "Success"){
+				document.getElementById("tbodyDataProduct").innerHTML = "";
+				for (i=0; i<((data.data).length);i++){
+					document.getElementById("tbodyDataProduct").innerHTML += `
+					<tr id="articulo${data.data[i][0]}">
+							<td onclick="drawModalDeleteProduct(${data.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][2]}</td>
+							<td onclick="drawModalDeleteProduct(${data.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][1]}</td>
+							<td onclick="drawModalDeleteProduct(${data.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][3]}</td>
+							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" 
+							style="height:2rem; padding-top:0.1px" data-toggle="modal" data-target="#delete-articulo" href="#delete-articulo" onclick="setArticulo('${(data.data[i][1]).replace(/["']/g, "")}',${data.data[i][0]});">X</button></td>
+					</tr>`
+				}
+    */
+}
+
 
 function getCategories(){
 
@@ -232,43 +319,6 @@ function deleteCategory(){
     });
 }
 
-/*
-Información de los artículos:
-0 = id del artículo
-1 = Nombre artículo
-2 = Nombre usuario
-3 = Categoria
-*/ 
-
-
-function getArticulos(){
-    $.ajax({
-        type: "POST",
-        url: "ajax/getArticles",
-        data: {},
-        success: function(data){
-
-            if (data.status == "Success"){
-				document.getElementById("tbodyDataProduct").innerHTML = "";
-				for (i=0; i<((data.data).length);i++){
-					document.getElementById("tbodyDataProduct").innerHTML += `
-					<tr id="articulo${data.data[i][0]}">
-							<td onclick="drawModalDeleteProduct(${data.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][2]}</td>
-							<td onclick="drawModalDeleteProduct(${data.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][1]}</td>
-							<td onclick="drawModalDeleteProduct(${data.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][3]}</td>
-							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" 
-							style="height:2rem; padding-top:0.1px" data-toggle="modal" data-target="#delete-articulo" href="#delete-articulo" onclick="setArticulo('${(data.data[i][1]).replace(/["']/g, "")}',${data.data[i][0]});">X</button></td>
-					</tr>`
-				}
-				$('#productTable').DataTable();
-				$('.sorting').trigger( "click" );
-
-            }else{
-                console.log('Error no se cargaron los artículos')
-            }
-        }
-    });
-}
 
 function deleteArticulo(id_articulo = getId_Articulo()){
     $.ajax({

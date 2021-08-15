@@ -291,34 +291,19 @@ function updateUserStatusReported(){
 			if(response.status == "Success"){
 
 				hideModal("#complaintModal");
-				drawModalAlert("Mensaje satisfactorio", response.message, "alert-success", "#modalChangeUserState");
+				$("#modalAlertComplaintSuccess").modal("show");
 
 			}
 			else{
 
 				hideModal("#complaintModal");
-				drawModalAlert(
-								"Advertencia", 
-								"La denuncia <strong>no ha sido</strong> procesada" + "\n" + "<strong>" + response.errorMessage + "</strong>", 
-								"alert-danger", 
-								"#modalChangeUserState"
-							);
+				$("#modalAlertComplaintDanger").modal("show");
 
 			}
 
 			getAllDataComplaintNotChecked();
 
 		});
-}
-
-
-function drawModalAlert(title, content, className, id){
-
-	document.getElementById("classModalChangeUserState").classList.add(className);
-	document.getElementById("titleModalChangeUserState").innerHTML = title;
-	document.getElementById("modal-text-content").innerHTML = `<p>${content}</p>`;
-	$(id).modal('show');
-
 }
 
 
