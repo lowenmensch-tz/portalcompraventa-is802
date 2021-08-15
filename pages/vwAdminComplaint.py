@@ -65,6 +65,8 @@ class AdministrationComplaint:
                 
                 result = self.engine.transaction( self.sql.replace(";", " AND d.estado = 1;") )
 
+                print(result)
+
                 if result:
                     return HttpResponse(
                         json.dumps(  
