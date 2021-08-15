@@ -64,6 +64,16 @@ $(document).ready(function(){
         $('[href="' + lastTab + '"]').tab('show');
     }
 
+    let menuToggle = document.querySelector('.toggle');
+    let navigation = document.querySelector('.navigation');
+    let special = document.querySelector('.special');
+
+    menuToggle.onclick = function(){
+        menuToggle.classList.toggle('active');
+        navigation.classList.toggle('active');
+        special.classList.toggle('active');
+    }
+
 });
 
 var id_articulo;
@@ -80,17 +90,6 @@ function getId_Articulo(){
     return this.id_articulo;
 }
 
-
-let menuToggle = document.querySelector('.toggle');
-let navigation = document.querySelector('.navigation');
-let special = document.querySelector('.special');
-
-menuToggle.onclick = function(){
-
-	menuToggle.classList.toggle('active');
-	navigation.classList.toggle('active');
-    special.classList.toggle('active');
-}
 
 /*let list = document.querySelectorAll('.list');
 
