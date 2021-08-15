@@ -184,6 +184,7 @@ function getArticulos(){
                         `);
                 } //end for    
                 $("#productTable").DataTable();
+				$('.sorting').trigger( "click" );
             }
         });
         
