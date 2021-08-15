@@ -96,9 +96,6 @@ function populateTable(table, data){
 
 			if(response.status == "Success"){
 
-                console.log("DATA: Denuncia revisada");
-                console.log(response);
-				
                 populateTable(table, response.data);
 			
 				//Añadir obligatoriamente para que los estilos no exploten
@@ -217,8 +214,6 @@ function showButton(){
  * Carga la información de un usuario en el formulario de denuncias
 */
 function loadDataInModal(tr){
-	
-	console.log( tr.id );
 	
 	var url = "ajax/getDataOfAComplaint";
 	var fd = new FormData();
