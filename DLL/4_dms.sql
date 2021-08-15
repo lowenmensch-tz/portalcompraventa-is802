@@ -512,10 +512,10 @@ INSERT INTO ARTICULO (nombre, precio, descripcion, publicado, fecha_publicacion,
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO SUSCRIPCION (fk_usuario,fk_categoria) VALUES
-(1,2),
-(2,2),
-(3,1);
+-- INSERT INTO SUSCRIPCION (fk_usuario,fk_categoria) VALUES
+-- (1,2),
+-- (2,2),
+-- (3,1);
 
 INSERT INTO CALIFICACION (fk_usuarioCalificador,fk_usuarioCalificado,calificacion) VALUES
 (1,2,40),

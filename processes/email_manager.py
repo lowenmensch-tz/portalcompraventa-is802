@@ -69,7 +69,8 @@ class EmailManager:
                     SELECT DISTINCT SUSCRIPCION.fk_categoria 
                     FROM SUSCRIPCION 
                     INNER JOIN USUARIO ON SUSCRIPCION.fk_usuario = USUARIO.id_usuario 
-                    WHERE USUARIO.correo = '%s';
+                    INNER JOIN CATEGORIA ON SUSCRIPCION.fk_categoria = CATEGORIA.id_categoria
+                    WHERE USUARIO.correo = '%s' AND CATEGORIA.estado = 1;
                 """
         for email in emails:
             subscription = [sub[0] for sub in (sql.transaction(query % (email)))]
