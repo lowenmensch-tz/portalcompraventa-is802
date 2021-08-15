@@ -82,6 +82,7 @@ path('wishlist', wishlist),
 
 path('admin', administrationComplaint.index, name='admin'),
 path('ajax/getAllDataComplaintNotChecked', administrationComplaint.getAllDataComplaintNotChecked), #Denuncias aun NO revisadas
+path('ajax/getAllDataComplaintChecked', administrationComplaint.getAllDataComplaintChecked),       #Denuncias revisadas
 path('ajax/updateUserStatusReported', administrationComplaint.updateUserStatusReported),          #Actualiza el estado de una denuncia asociada a un usuario
 path('ajax/getDataOfAComplaint', administrationComplaint.getDataOfAComplaint),                   #Obtiene los datos de una denuncia asociado a un usuario
 path('ajax/loggedValidatorAdmin', administrationComplaint.loggedInValidator),                   #Validador de inicio de sesion para administracion

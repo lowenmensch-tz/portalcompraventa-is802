@@ -35,7 +35,7 @@ class AdministrationComplaint:
                         c.comentario AS Comment,
                         CAST(c.fecha_publicacion AS CHAR) AS Date,
                         d.motivo AS Reason,
-                        IF(d.estado=0, "Sín revisar", "Ejecutada") AS Status 
+                        IF(d.estado=0, "Sín revisar", "Revisado") AS Status 
                     FROM
                         COMENTARIO AS c, DENUNCIA AS d
                     WHERE
@@ -50,36 +50,6 @@ class AdministrationComplaint:
     @csrf_exempt
     def index(self, request):
         return render(request,'admin.html')
-
-
-    @csrf_exempt
-    def getAllDataComplaint(self, request): 
-        """
-            Obtiene la información de todas las denuncias
-        """
-        
-        if request.method == 'POST':
-
-            try:
-                
-                result = self.engine.transaction(self.sql)
-
-                print(result)
-
-                if result:
-                    return HttpResponse(
-                        json.dumps(  
-                                { 
-                                    'status':'Success', 
-                                    'data': result
-                                }),content_type="application/json"
-                        )
-                else:
-                    return HttpResponse(json.dumps({'status':'Empty', 'message':'No se encontraron articulos'}),content_type="application/json")
-            except Exception as e:
-                return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
-        else:
-            return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
 
     @csrf_exempt

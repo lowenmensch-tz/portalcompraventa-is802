@@ -52,6 +52,7 @@
     <div class="container">
         <div class="navigation">
             <ul class="new-tabs">
+                <!-- Denuncias NO Revisadas -->
                 <li class="list active" id="complaintContainer">
                     <b></b>
                     <b></b>
@@ -60,7 +61,8 @@
                         <span class="title">Denuncias</span>
                     </a>
                 </li>
-                <li class="list">
+                <!-- Denuncias Revisadas -->
+                <li class="list" id="complaintContainerChecked"> 
                     <b></b>
                     <b></b>
                     <a data-toggle="tab" href="#complaintchkd">
@@ -76,6 +78,7 @@
                         <span class="title">Perfil</span>
                     </a>
                 </li>
+                <!-- Estadísticas -->
                 <li class="list" id="statisticsContainer">
                     <b></b>
                     <b></b>
@@ -184,15 +187,7 @@
                                 </tr>
                             </thead>
                             <tbody id="tbodyDataComplainstChkd">
-                                
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
+                              
                                 
                             </tbody>
                             <tfoot>
@@ -453,6 +448,7 @@
     <script src="{% static 'js/navbar.js' %}" type="text/javascript"></script>
 	<script type="text/javascript" src="{% static 'js/admin.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/statistics.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/complaints.js' %}"></script>
     
 </body>
 </html>
