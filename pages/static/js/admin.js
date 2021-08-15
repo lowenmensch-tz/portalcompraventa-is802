@@ -185,30 +185,34 @@ function getArticulos(){
                             </tr>	
                         `);
                 } //end for    
-                $("#productTable").DataTable();
+
+                if ( $.fn.dataTable.isDataTable( '#productTable' ) ) {
+                    console.log('La tabla ya ha sido instanciada');
+                }else{
+                    $('#productTable').DataTable(
+                        {
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_ entradas",
+                                "zeroRecords": "No se encontraron entradas - Lo sentimos",
+                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                "infoEmpty": "No hay registros disponibles",
+                                "search": "Buscar: ",
+                                "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+                                "paginate": {
+                                    "first":      "Primero",
+                                    "last":       "último",
+                                    "next":       "Siguiente",
+                                    "previous":   "Previo"
+                                }
+                            }
+                        }
+                    );
+                }
+
 				$('.sorting').trigger( "click" );
             }
         });
         
-
-    /*
-        url: "ajax/getArticles",
-        data: {},
-        success: function(data){
-
-            if (data.status == "Success"){
-				document.getElementById("tbodyDataProduct").innerHTML = "";
-				for (i=0; i<((data.data).length);i++){
-					document.getElementById("tbodyDataProduct").innerHTML += `
-					<tr id="articulo${data.data[i][0]}">
-							<td onclick="drawModalDeleteProduct(${data.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][2]}</td>
-							<td onclick="drawModalDeleteProduct(${data.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][1]}</td>
-							<td onclick="drawModalDeleteProduct(${data.data[i][0]})" style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[i][3]}</td>
-							<td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" 
-							style="height:2rem; padding-top:0.1px" data-toggle="modal" data-target="#delete-articulo" href="#delete-articulo" onclick="setArticulo('${(data.data[i][1]).replace(/["']/g, "")}',${data.data[i][0]});">X</button></td>
-					</tr>`
-				}
-    */
 }
 
 
