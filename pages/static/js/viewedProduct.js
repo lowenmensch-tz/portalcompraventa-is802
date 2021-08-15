@@ -128,11 +128,18 @@ function drawFormDeleteProductInModal(){
                     
                 </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-danger btn-user btn-block btn-rounded mb-4" onclick="$('#modalConfirmDeleteProduct').modal('show');">Eliminar Producto</button>
+                        <button type="button" class="btn btn-danger btn-user btn-block btn-rounded mb-4" onclick="confirmDeleteProduct();">Eliminar Producto</button>
                     </div>
                     <!-- <button type="button" class="btn btn-danger btn-user btn-block" onclick="updateProduct(this)">Actualizar Datos</button> -->
             </div> 
     `;
+}
+
+
+function confirmDeleteProduct(){
+    
+    $('#modalDeleteProduct').modal('hide');
+    $('#modalConfirmDeleteProduct').modal('show');
 }
 
 
