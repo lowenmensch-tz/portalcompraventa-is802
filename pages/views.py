@@ -676,6 +676,31 @@ def deleteArticle(request):
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
 
 """
+    Devuelve todos los municipios.
+    @param request: No se espera recibir ningún parametro.
+    @return HttpResponse: Devuelve una respuesta Http con un JSON que contiene el estado de la peticion y la información de los municipios
+                          por departamento.
+        
+        Success: La ejecución fue exitosa y se devuelve un arreglo con la información mencionada anteriormente.
+        dbError: Ha ocurrido un error al intentar conectarse a la base de datos.
+        requestError: No se recibió una petición POST.
+"""
+@csrf_exempt
+def getMunicipios(request):
+    if request.method == 'POST':
+        firstMunicipio = request.POST.get('firstMunicipio')
+        lastMunicipio = request.POST.get('lastMunicipio')
+        getMunicipiosQuery = "SELECT * FROM MUNICIPIO WHERE id_municipio BETWEEN %s AND %s;" % (firstMunicipio, lastMunicipio)
+
+        try:
+            result = engine.transaction(getMunicipiosQuery)
+            return HttpResponse(json.dumps({'status':'Success', 'data': result}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+"""
     Recibe la petición para realizar una denuncia.
 
     @param request: Se espera recibir el id del usuario que está siendo denunciado.

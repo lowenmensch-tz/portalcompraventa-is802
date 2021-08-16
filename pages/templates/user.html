@@ -316,7 +316,7 @@
                     </div>
                     <div class="form-group">
                         <select style="display: none;" id="Pmunicipio" class="form-control form-control-select dropdown-toggle">
-                          <option value="00" selected> Municipio</option>
+                          {% comment %} <option value="00" selected> Municipio</option> {% endcomment %}
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -327,16 +327,16 @@
                     </div>
                     <div class="form-group">
                         <select id="Pcategoria" class="form-control form-control-select dropdown-toggle" required>
-                            <option value="00" selected>Categoria</option>
-                          <option value="2"> Vehiculos</option>
-                          <option value="3">Hogar</option>
-                          <option value="4">Moda</option>
-                          <option value="5">Futuros Padres</option>
-                          <option value="6">Mascotas</option>
-                          <option value="7">Electrónica</option>
-                          <option value="8">Servicios</option>
-                          <option value="9">Negocios</option>
-                          <option value="10">Empleo</option>
+                            {% comment %}<option value="00" selected>Categoria</option>
+                            <option value="2"> Vehiculos</option>
+                            <option value="3">Hogar</option>
+                            <option value="4">Moda</option>
+                            <option value="5">Futuros Padres</option>
+                            <option value="6">Mascotas</option>
+                            <option value="7">Electrónica</option>
+                            <option value="8">Servicios</option>
+                            <option value="9">Negocios</option>
+                            <option value="10">Empleo</option> {% endcomment %}
                         </select>
                         <div class="help-block with-errors"></div>
                     </div>

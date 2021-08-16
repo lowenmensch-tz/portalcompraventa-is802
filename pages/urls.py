@@ -30,6 +30,7 @@ from pages.views import deleteCategories
 from pages.views import addCategories
 from pages.views import getArticles
 from pages.views import deleteArticle
+from pages.views import getMunicipios
 from pages.views import updateTime
 from pages.views import getTime
 
@@ -75,6 +76,7 @@ path('ajax/deleteCategories', deleteCategories),
 path('ajax/addCategories', addCategories),
 path('ajax/getArticles', getArticles),
 path('ajax/deleteArticle', deleteArticle),
+path('ajax/getMunicipios', getMunicipios),
 
 
 #path('ajax/userProfile', userProfile, name='user_Profile'),

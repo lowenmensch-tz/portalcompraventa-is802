@@ -3,9 +3,6 @@ currentPriceOrder = 'ASC';
 currentMinPrice = 10;
 currentMaxPrice = 100000;
 currentPage = 1;
-iconDictionary = [{id : 'Inmuebles', icon: 'icon fa fa-bed'}, {id:'Vehículos', icon:'icon fa fa-car'}, {id:'Hogar', icon:'icon fa fa-home'},
-                {id: 'Moda', icon:'fa fa-shopping-bag'}, {id:'Futuros Padres', icon:'fa fa-futbol-o'},{id:'Mascotas', icon:'fa fa-paw'}, {id:'Electrónica', icon:'fa fa-laptop'},
-                {id:'Servicios', icon:'fa fa-wrench'}, {id:'Negocios', icon:'fa fa-money'}, {id:'Empleo', icon:'fa fa-briefcase'}];
 
 window.onload = function(){
     gatherProducts();
@@ -165,63 +162,136 @@ var Pagination = {
 
 function mostrarMunicipios(){
     var municipio = $('#deptoDropdown').val();
+    var firstMunicipio;
+    var lastMunicipio;
     Pagination.page = 1;
-    if (municipio==06){
-        $('#municipioDropdown').html('');
-        $('#municipioDropdown').append(`
-            <option value="00" selected> Municipio</option>
-            <option value="29">San Pedro Sula</option>
-            <option value="30">Choloma</option>
-            <option value="31">La Lima</option>
-            <option value="32">Omoa</option>
-            <option value="33">Pimienta</option>
-            <option value="34">Potrerillos</option>
-            <option value="35">Puerto Cortés</option>
-            <option value="36">San Antonio de Córtes</option>
-            <option value="37">San Francisco de Yojoa</option>
-            <option value="38">San Manuel</option>
-            <option value="39">Santa Cruz de Yojoa</option>
-            <option value="40">Villanueva</option>
-        `);
-        $('#municipioDropdown').show();
-    }else if(municipio==08){
-        $('#municipioDropdown').html('');
-        $('#municipioDropdown').append(`
-            <option value="00" selected> Municipio</option>
-            <option value="01">Distrito Central</option>
-            <option value="02">Alubarén</option>
-            <option value="03">Cantarranas</option>
-            <option value="04">Cedros</option>
-            <option value="05">Curarén</option>
-            <option value="06">El Porvenir</option>
-            <option value="07">Guaimaca</option>
-            <option value="08">La Libertad</option>
-            <option value="09">La Venta</option>
-            <option value="10">Lepaterique</option>
-            <option value="11">Maraita</option>
-            <option value="12">Marale</option>
-            <option value="13">Nueva Armenia</option>
-            <option value="14">Ojojona</option>
-            <option value="15">Orica</option>
-            <option value="16">Reitoca</option>
-            <option value="17">Sabanagrande</option>
-            <option value="18">San Antonio de Oriente</option>
-            <option value="19">San Buenaventura</option>
-            <option value="20">San Ignacio</option>
-            <option value="21">San Miguelito</option>
-            <option value="22">Santa Ana</option>
-            <option value="23">Santa Lucía</option>
-            <option value="24">Talanga</option>
-            <option value="25">Tatumbla</option>
-            <option value="26">Valle de Ángeles</option>
-            <option value="27">Vallecillo</option>
-            <option value="28">Villa de San Francisco</option>
-        `);
-        $('#municipioDropdown').show();
-    }else{
-        $('#municipioDropdown').hide(); 
+    switch(municipio){
+        case "1":
+            firstMunicipio = 42;
+            lastMunicipio = 49;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "2":
+            firstMunicipio = 104;
+            lastMunicipio = 119;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "3":
+            firstMunicipio = 50;
+            lastMunicipio = 59;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "4":
+            firstMunicipio = 60;
+            lastMunicipio = 80;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "5":
+            firstMunicipio = 81;
+            lastMunicipio = 103;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "6":
+            firstMunicipio = 29;
+            lastMunicipio = 41;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "7":
+            firstMunicipio = 120;
+            lastMunicipio = 138;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "8":
+            firstMunicipio = 1;
+            lastMunicipio = 28;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "9":
+            firstMunicipio = 139;
+            lastMunicipio = 144;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "10":
+            firstMunicipio = 145;
+            lastMunicipio = 161;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "11":
+            firstMunicipio = 162;
+            lastMunicipio = 165;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "12":
+            firstMunicipio = 166;
+            lastMunicipio = 184;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "13":
+            firstMunicipio = 185;
+            lastMunicipio = 211;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "14":
+            firstMunicipio = 212;
+            lastMunicipio = 227;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "15":
+            firstMunicipio = 228;
+            lastMunicipio = 250;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "16":
+            firstMunicipio = 251;
+            lastMunicipio = 278;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "17":
+            firstMunicipio = 279;
+            lastMunicipio = 287;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "18":
+            firstMunicipio = 288;
+            lastMunicipio = 299;
+            getherMunicipio(firstMunicipio, lastMunicipio);
+            break;
+        case "00":
+            console.log(municipio);
+            $('#municipioDropdown').hide();
+            document.getElementById('municipioDropdown').innerHTML = "";
+            document.getElementById('municipioDropdown').innerHTML = "<option value='00' selected> Municipio</option>";
+            //document.getElementById('municipioDropdown').innerHTML = "<option value='00' selected> Municipio</option>";
+            break;
+        default:
+            //alert('Sorry debe seleccionar un departamento');
+            document.getElementById('municipioDropdown').innerHTML = "";
+            document.getElementById('municipioDropdown').innerHTML = "<option value='00' selected> Municipio</option>";
     }
     gatherProducts();
+}
+
+function getherMunicipio(firstMunicipio, lastMunicipio){
+    $('#municipioDropdown').show();
+    $.ajax({
+        type: "POST",
+        url: "ajax/getMunicipios",
+        data: {'firstMunicipio': firstMunicipio, 'lastMunicipio':lastMunicipio},
+        success: function(data){
+            
+            if (data.status == "Success"){
+                document.getElementById('municipioDropdown').innerHTML = "";
+                document.getElementById('municipioDropdown').innerHTML = "<option value='00' selected> Municipio</option>";
+                for(i=0;i<(data.data).length;i++){
+                    document.getElementById('municipioDropdown').innerHTML +=`
+                        <option value="${data.data[i][0]}">${data.data[i][1]}</option>
+                    `
+                }
+            }else{
+                alert('Sorry no existen municipios');
+            }
+        }
+    });
 }
 
 function changeCategory(category){
