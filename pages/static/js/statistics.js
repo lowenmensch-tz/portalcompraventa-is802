@@ -25,19 +25,25 @@ function loadDataStatistics(){
                 for (let i = 0; i < 3; i++) { //Cantidad de filas
             
                     gridProduct.innerHTML += `
-                        <div class="container-fluid" style="margin-left:25em">
-                            <div class="row align-items-end" id="rows-product-${i}">
+                        <div class="container">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="" id="rows-product-${i}">
+                                </div>
                             </div>
                         </div>
-                        <div style="height:100px;"></div>
+                        <div style="height:50px;"></div>
                     `; 
+
                 }
                 
                 //dailyReviews
-                innerCanvas("rows-product-0", "myChart-daily-reviews", 4);
+                innerCanvas("rows-product-2", "myChart-daily-reviews", 6);
                 
                 //percentageVisitsCategory
-                innerCanvas("rows-product-0", "myChart-percentage-visits-category", 4);
+                innerCanvas("rows-product-1", "myChart-percentage-visits-category", 6);
+
+                //countProductsByCategory
+                innerCanvas("rows-product-0", "myChart-count-products-by-category", 6);
 
                 //categoryReviews
                 innerTable(
@@ -50,17 +56,12 @@ function loadDataStatistics(){
 
                 //mostViewedProductByCategory
                 innerTable(
-                    "rows-product-1", 
+                    "rows-product-0", 
                     "most-viewed-product", 
                     "most-viewed-product-body", 
                     "Producto más visitado por categoría", 
                     ["Categoría", "Visitas", "Nombre del producto"]
                 );
-
-
-                //countProductsByCategory
-                innerCanvas("rows-product-2", "myChart-count-products-by-category", 8);
-
 
                 //dailyReviews
                 drawGraph(
@@ -71,12 +72,6 @@ function loadDataStatistics(){
                             ['rgba(75, 192, 192, 0.2)'][0],
                             ['rgba(75, 192, 192)'][0], 
                             title='Visitas de las últimas semanas'
-                        );
-                //categoryReviews
-                drawTable(
-                            response.categoryReviews, 
-                            "category-reviews",
-                            "category-reviews-body"
                         );
                 
                 console.log(response);
@@ -103,13 +98,6 @@ function loadDataStatistics(){
                         'rgb(54, 162, 235)'
                     ],
                     title = "Categorías más visitadas"
-                );
-
-                //mostViewedProductByCategory
-                drawTable(
-                    response.mostViewedProductByCategory,
-                    "most-viewed-product",
-                    "most-viewed-product-body"
                 );
 
                 //countProductsByCategory
@@ -139,6 +127,20 @@ function loadDataStatistics(){
                     title = "Cantidad de Productos por Categorías"
                 );
 
+                                //categoryReviews
+                drawTable(
+                            response.categoryReviews, 
+                            "category-reviews",
+                            "category-reviews-body"
+                        );
+
+                //mostViewedProductByCategory
+                drawTable(
+                    response.mostViewedProductByCategory,
+                    "most-viewed-product",
+                    "most-viewed-product-body"
+                );
+
                 //Añadir obligatoriamente para que los estilos no exploten
 				$('#example').DataTable();
 				$('.sorting').trigger( "click" );
@@ -152,7 +154,7 @@ function loadDataStatistics(){
 function innerTable(idRow, tableId, tbodyId, title, data) {
 
     document.getElementById(idRow).innerHTML += `
-        <div class="col col-lg-4"">
+        <div class="col-sm-12 col-md-12 col-lg-6"">
             <div class="card">
                 <div class="card-header">    
                     <strong><h4>${title}</h4></strong>

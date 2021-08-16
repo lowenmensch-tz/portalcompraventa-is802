@@ -12,13 +12,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Portal Compra - Venta | Register</title>
+    <title>TraderZone - Registro</title>
+
+    <!--TraderZone favicon-->
+    <link rel="shortcut icon" href="{% static 'img/traderzone/TRADERZONEICONOSCIAN.ico' %}">
+    
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/sb-admin-2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sb-admin-2.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bondiesStyles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/errorMessages.css' %}">
 
@@ -32,8 +36,10 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-6">
+                                <img src="{% static 'img/traderzone/TRADERZONEbannerblack.png' %}" style="background-position: center;background-size: cover; width: 100%;margin-top: -8rem;margin-bottom: -12rem;">
+                    </div>
+                    <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">¡Crea tu Cuenta!</h1>
@@ -106,7 +112,7 @@
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
                                         <input type="checkbox" class="custom-control-input" id="rcustomCheck" name="rcustomCheck" required>
-                                        <label class="custom-control-label" for="rcustomCheck">Está de acuerdo con nuestros <a href="#">términos y condiciones</a></label>
+                                        <label class="custom-control-label" for="rcustomCheck">Está de acuerdo con nuestros <a href="terms">términos y condiciones</a></label>
                                     </div>
                                     <div class="help-block with-errors"></div>
                                 </div>

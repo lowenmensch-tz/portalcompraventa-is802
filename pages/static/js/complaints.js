@@ -147,7 +147,6 @@ function populateTable(idTable, data){
                         }
                     );
                 }
-				
 				$('.sorting').trigger( "click" );
 			}
 		});
@@ -344,6 +343,9 @@ function updateUserStatusReported(){
 				$("#modalAlertComplaintSuccess").modal("show");
 
 				$("#example").DataTable();
+
+				$("#example2").DataTable().row.add(this.tr).draw();
+
 				$("#example").DataTable().row(this.tr).remove();
 
 				//Se manda a llamar el otro TABLE
@@ -358,7 +360,7 @@ function updateUserStatusReported(){
 			}
 
 			getAllDataComplaintNotChecked();
-
+			getAllDataComplaintChecked();
 		});
 }
 

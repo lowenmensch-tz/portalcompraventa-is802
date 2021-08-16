@@ -67,6 +67,10 @@ def notFound(request, exception):
 def user(request):
     return render(request,'user.html')
 
+@csrf_exempt
+def terms(request):
+    return render(request,'terms.html')
+
 
 @csrf_exempt
 def loggedInValidator(request,url):

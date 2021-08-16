@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TraderZone - Página principal</title>
+
+    <!--TraderZone favicon-->
+    <link rel="shortcut icon" href="{% static 'img/traderzone/TRADERZONEICONOSCIAN.ico' %}">
+
+    <!-- Custom fonts for this template-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesome-free/css/all.css' %}"> 
+
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sb-admin-2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bondiesStyles.css' %}">
+
+</head>
+
+<body id="page-top">
+
+        <!-- Preloader -->
+    <div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+            	<nav class="navbar-superior">
+        			<!--<h2 id="logotipo-h2">Logotipo página</h2>-->
+        			
+        			<!--<div id="logotipo">
+        				<img src="{% static 'img/logo.png' %}" />
+        				<h2>Nombre página</h2>
+        			</div>-->
+        			<ul class="navbar-superior-ul">
+                        <li id="registrarse" class="navbar-superior-ul-li" style="display:none;">
+        					<a class="navbar-superior-ul-li-a" href="/register">Registrate</a>
+        				</li>
+                        <li id="iniciar-sesion" class="navbar-superior-ul-li" style="display:none;">
+        					<a class="navbar-superior-ul-li-a" href="/login">Iniciar sesión</a>
+        				</li>
+        				<li id="cerrar-sesion" class="navbar-superior-ul-li" style="display:none;">
+        					<a class="navbar-superior-ul-li-a" href="/logout">Cerrar sesión</a>
+        				</li>
+        				<li id = "mi-perfil" class="navbar-superior-ul-li" style="display:none;">
+        					<a class="navbar-superior-ul-li-a" href="/user">Mi Perfil</a>
+        				</li>
+        				{% comment %} <li class="navbar-superior-ul-li">
+        					<a class="navbar-superior-ul-li-a" href="#">Contacto</a>
+        				</li>
+        				<li class="navbar-superior-ul-li">
+        					<a class="navbar-superior-ul-li-a" href="#">Sobre nosotros</a>
+        				</li> {% endcomment %}
+        				<li class="navbar-superior-ul-li">
+        					<a class="navbar-superior-ul-li-a" href="/categories">Categorias</a>
+        				</li>
+        				<li class="navbar-superior-ul-li">
+        					<a class="navbar-superior-ul-li-a" href="/">Inicio</a>
+        				</li>
+        			</ul>
+            	</nav>
+                <!-- End of Topbar -->
+
+                <div class="container" style="margin-top:5rem; color: #3a3a3e;">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h1>Terminos y condiciones</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <p class="p">
+                                Esta página web es propiedad y está operado por Trader Zone. Estos Términos establecen los términos y condiciones bajo los cuales se puede usar nuestra página web y servicios ofrecidos por nosotros. Esta página web ofrece a los visitantes un espacio para la publicación de artículos donde solo se pone a disposición los datos de contacto del vendedor, el sitio web no está involucrado en la transacción monetaria, intercambio de artículos o de cualquier otro método de pago entre el usuario que ha publicado el anuncio y el usuario que adquiere dicho producto o servicio. Al acceder o usar la página web de nuestro servicio, usted aprueba que haya leído, entendido y aceptado estar sujeto a estos Términos:
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h3>I. Opciones de los usuarios</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <p class="p">
+                                La página no se hace responsable por cualquier tipo de estafa que reciban los usuarios por parte de otros usuarios, como método para solventar estas situaciones se pone a disposición la herramienta de denuncia al vendedor donde se especifica el motivo de la denuncia y un texto explicando la situación del porqué se está denunciando a un vendedor. El administrador o administradores de la página revisan diariamente las denuncias realizadas para estimar o desestimar la denuncia, en caso de que la denuncia sea aprobada se procederá a dar de baja a el vendedor denunciado, dando de baja también a los artículos que el usuario denunciado haya publicado y en caso de que la denuncia sea desestimada se procederá a ignorar la denuncia sin tener efecto en los perfiles del usuario denunciado ni del usuario denunciador.
+                                En nuestro sitio web se incorpora la posibilidad de opinar sobre el servicio/producto publicitado y sobre el usuario publicador. Trader Zone no se hace responsable de las opiniones o comentarios realizadas por el usuario obligándose este último a no publicar comentarios o acciones: (i) difamatorios, inexactos, falsos, abusivos, injuriosos, obscenos, irreverentes, ofensivos, insultantes, tácita o expresamente sexuales, amenazantes, acosadores, racistas, sexistas, discriminatorios por cualquier motivo, que atenten contra la moral, el orden público, los derechos fundamentales, las libertades públicas, el honor, la intimidad o la imagen de terceros y, en general, la normativa vigente; y/o ilegales o infractores de derechos de terceros; (ii) transmisores de correo basura, “SPAM”, mensajes con fines comerciales, o mailings masivos no solicitados, falsos, engañosos o que promuevan actividades ilegales o conducta grosera, amenazante, obscena, difamatoria o injuriosa; (iii) que suministren información práctica sobre actividades ilegales; (iv) que conlleven cualquier actividad publicitaria o comercial, incluso aunque no haya contraprestación monetaria; (v) que contengan datos de carácter personal sobre terceras personas que requieran el consentimiento del titular de los derechos. El usuario responderá frente a Trader Zone o frente a cualquier tercero, de cualesquiera daños y/o perjuicios que pudieran causarse como consecuencia del incumplimiento de dichas obligaciones. El sitio web puede permitir la emisión y publicación de opiniones, positivas o negativas. Trader Zone no interviene las opiniones de los usuarios. No obstante, no publicará o eliminará las opiniones que no cumplan con las condiciones anteriores, no haciéndose responsable ni garantizando la veracidad y exactitud de las opiniones que puedan exponerse por los usuarios en la página.
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h3>II. Suscripción a Categorías</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <p class="p">
+                                Al suscribirse a una de las categorías acepta recibir de vez en cuando nuestros mensajes y materiales de promoción, por correo electrónico o cualquier otro formulario de contacto que nos proporcione (incluido su número de teléfono para llamadas o mensajes de texto). Si no desea recibir dichos materiales o avisos de promociones, puede eliminar la suscripción a la o las categorías.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h3>III. Baja de anuncios, categorías o usuarios</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <p class="p">
+                                Podemos, sin aviso previo, cambiar los servicios; dejar de proporcionar los servicios o cualquier característica de los servicios que ofrecemos; o crear límites para los servicios. Podemos  suspender de manera permanente o temporal el acceso a los servicios sin previo aviso ni responsabilidad por cualquier motivo, o sin ningún motivo. Esto puede darse cuando se decide eliminar una categoría, cuando esto sucede automáticamente todos los anuncios pertenecientes a dicha categoría se dan de baja dejando de aparecer entre los anuncios visibles para los usuarios. Existe un tiempo definido durante el cual un producto o servicio puede permanecer publicado en la página web, este tiempo es definido y modificable por parte del administrador o administradores de la página, cuando un anuncio ha cumplido con el tiempo estipulado para permanecer publicado este automáticamente es dado de baja y deja de aparecer dentro de los anuncios publicados tanto desde la página de artículos publicados por el usuario como de la página de Categorías donde se encuentran los anuncios generales. El administrador o administradores tienen la facultad de eliminar cualquier anuncio en caso de que así se considere necesario sin previo aviso hacia el usuario.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h3>IV. Derechos de propiedad</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <p class="p">
+                                El Servicio y todos los materiales incluidos o transferidos, incluyendo, sin limitación, código fuente (HTML y Javascript), imágenes, texto, gráficos, logotipos, patentes, marcas registradas, marcas de servicio, derechos de autor, fotografías, audio, videos y todos los Derechos de Propiedad Intelectual relacionados con ellos, son la propiedad exclusiva de Trader Zone. Salvo que se indique explícitamente en este documento, no se considerará que nada en estos Términos crea una licencia en o bajo ninguno de dichos Derechos de Propiedad Intelectual, y usted acepta no vender, licenciar, alquilar, modificar, distribuir, copiar, reproducir, transmitir, exhibir públicamente, realizar públicamente, publicar, adaptar, editar o crear trabajos derivados de los mismos.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <h3>V. Términos legales</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <p class="p">
+                                Usted acuerda indemnizar y eximir de responsabilidad a Trader Zone de cualquier demanda, pérdida, responsabilidad, reclamación o gasto (incluidos los honorarios de abogados) que terceros realicen en su contra como consecuencia de, o derivado de, o en relación con su uso de la página web o cualquiera de los servicios ofrecidos en la página web. En la máxima medida permitida por la ley aplicable, en ningún caso el Trader Zone será responsable por daños indirectos, punitivos, incidentales, especiales, consecuentes o ejemplares, incluidos, entre otros, daños por pérdida de beneficios, buena voluntad, uso, datos u otras pérdidas intangibles, que surjan de o estén relacionadas con el uso o la imposibilidad de utilizar el servicio. 
+                                Estos Términos, los derechos y recursos provistos aquí, y todos y cada uno de los reclamos y disputas relacionados con este y / o los servicios, se regirán, interpretarán y aplicarán en todos los aspectos única y exclusivamente de conformidad con las leyes sustantivas internas del estado de Honduras, sin respeto a sus principios de conflicto de leyes. Todos los reclamos y disputas se presentarán y usted acepta que sean decididos exclusivamente por un tribunal de jurisdicción competente ubicada en Tegucigalpa. La aplicación de la Convención de Contratos de las Naciones Unidas para la Venta Internacional de Bienes queda expresamente excluida.
+                                Podemos terminar o suspender de manera permanente o temporal su acceso al servicio sin previo aviso y responsabilidad por cualquier razón, incluso si a nuestra sola determinación usted viola alguna disposición de estos Términos o cualquier ley o regulación aplicable. Puede descontinuar el uso y solicitar cancelar su cuenta y / o cualquier servicio en cualquier momento.
+                                Nos reservamos el derecho de modificar estos términos de vez en cuando a nuestra entera discreción. Por lo tanto, debe revisar estas páginas periódicamente. Cuando cambiemos los Términos de una manera material, le notificaremos que se han realizado cambios importantes en los Términos. El uso continuado de la página web o nuestro servicio después de dicho cambio constituye su aceptación de los nuevos Términos. Si no acepta alguno de estos términos o cualquier versión futura de los Términos, no use o  acceda (o continúe accediendo) a la página web o al servicio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End of Main Content -->
+            
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; TraderZone 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}" type="text/javascript"></script>
+</body>
+
+</html>
+{% endblock %}

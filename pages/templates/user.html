@@ -11,7 +11,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>TraderZone - Mi Perfil</title>
+
+    <!--TraderZone favicon-->
+    <link rel="shortcut icon" href="{% static 'img/traderzone/TRADERZONEICONOSCIAN.ico' %}">
 
     <!-- Custom fonts for this template-->
     <link
@@ -28,53 +31,18 @@
 
 <body id="page-top">
 
+        <!-- Preloader -->
+    <div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+
     <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
-        {% comment %} <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"> {% endcomment %}
-
-            <!-- Sidebar - Brand -->
-            {% comment %} <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Nombre de la Empresa<sup></sup></div>
-            </a> {% endcomment %}
-
-            <!-- Divider -->
-            {% comment %} <hr class="sidebar-divider my-0"> {% endcomment %}
-
-            <!-- Nav Item - Dashboard -->
-            {% comment %} <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Usuario</span></a>
-            </li> {% endcomment %}
-
-            <!-- Divider -->
-            {% comment %} <hr class="sidebar-divider"> {% endcomment %}
-
-            <!-- Heading 
-            <div class="sidebar-heading">
-                Interfaz
-            </div> -->
-
-            <!-- Nav Item - Charts -->
-            {% comment %} <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Mis productos</span></a>
-            </li> {% endcomment %}
-
-            <!-- Nav Item - Tables -->
-            {% comment %} <li class="nav-item">
-                <a class="nav-link" onclick="logout();">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Cerrar Sesion</span></a>
-            </li>
-        </ul> {% endcomment %}
-        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -253,7 +221,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Portal Compra Ventas 2021</span>
+                        <span>Copyright &copy; TraderZone 2021</span>
                     </div>
                 </div>
             </footer>

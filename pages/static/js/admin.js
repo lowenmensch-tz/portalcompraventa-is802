@@ -1,3 +1,14 @@
+$(window).on('load', function() {
+        var preloaderFadeOutTime = 500;
+        function hidePreloader() {
+            var preloader = $('.spinner-wrapper');
+            setTimeout(function() {
+                preloader.fadeOut(preloaderFadeOutTime);
+            }, 500);
+        }
+        hidePreloader();
+    });
+
 $(document).ready(function(){
 	
 	sessionCheck(); 
@@ -38,9 +49,6 @@ $(document).ready(function(){
     $(".new-tabs a").click(function(){
 		$(this).tab('show');
 
-		//Se usa localstorage para almacenar la tab actual al recargar
-		localStorage.setItem('lastTab', $(this).attr('href'));
-
 		//Denuncias sin revisar
 		if( this.parentNode.id == "complaintContainer" ){ 
             getAllDataComplaintNotChecked();
@@ -62,10 +70,6 @@ $(document).ready(function(){
 
     //Aqui accedemos al localstorage almacenado anteriormente
     //para desplazarnos al tab en el que estabamos
-    var lastTab = localStorage.getItem('lastTab');
-    if (lastTab) {
-        $('[href="' + lastTab + '"]').tab('show');
-    }
 
     let menuToggle = document.querySelector('.toggle');
     let navigation = document.querySelector('.navigation');

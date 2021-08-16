@@ -16,6 +16,7 @@ from pages.views import seller
 from pages.views import logout
 from pages.views import login
 from pages.views import index
+from pages.views import terms
 from pages.views import user
 from pages.views import wishlist
 from pages.views import addWishList
@@ -51,6 +52,7 @@ handler404 = notFound
 
 urlpatterns = [
 path('', index, name='index_page'),
+path('terms', terms, name='terms'),
 path('login', login, name='login_page'),
 path('ajax/loginValidation', loginValidation, name='login_validation'),
 path('register', register, name='register_page'),
