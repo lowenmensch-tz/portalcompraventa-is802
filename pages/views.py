@@ -612,10 +612,13 @@ def addCategories(request):
         nombreCategoria = request.POST.get('nombreCategoria')
 
         addCategoriaQuery = "INSERT INTO CATEGORIA (nombre) VALUES ('%s');" % (nombreCategoria)
+        lastID = "SELECT MAX(id_categoria) FROM CATEGORIA;"
 
         try:
             engine.dms(addCategoriaQuery)
-            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+            catID = engine.transaction(lastID)
+            print("\n\n\n%s\n\n\n"%catID)
+            return HttpResponse(json.dumps({'status':'Success','categoryID':catID}),content_type="application/json")
         except Exception as e:
             return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
     else:
