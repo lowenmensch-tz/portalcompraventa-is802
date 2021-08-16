@@ -65,8 +65,6 @@ class AdministrationComplaint:
                 
                 result = self.engine.transaction( self.sql.replace(";", " AND d.estado = 1;") )
 
-                print(result)
-
                 if result:
                     return HttpResponse(
                         json.dumps(  
@@ -176,8 +174,6 @@ class AdministrationComplaint:
             idComplaint = int(request.POST.get('idComplaint'))
             state  = int(request.POST.get('state')) #Estado de la denuncia
             deleteUser = int(request.POST.get('deleteUser')) # 0 Desestimar denuncia | 1 Dar de baja al usuario denunciado
-            
-            print("Respuesta desde el SERVER: ", request.POST)
             
             sqlSelect = """
                 SELECT

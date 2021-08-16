@@ -5,6 +5,10 @@
  */
 
 
+// tr del table example
+var tr;
+
+
 /**
  * 
  * Obtiene los datos de todas las denuncias no revisadas
@@ -20,9 +24,6 @@
  * */
  function getAllDataComplaintNotChecked(){
 
-    var table = document.getElementById("tbodyDataComplainst");
-    table.innerHTML = "";
-
 	var url = "ajax/getAllDataComplaintNotChecked";
 	var option = {
 		method: "POST"
@@ -35,7 +36,7 @@
 
 			if(response.status == "Success"){
 				
-                populateTable(table, response.data);
+                populateTable("example", response.data);
                 
 				//Añadir obligatoriamente para que los estilos no exploten
 				if ( $.fn.dataTable.isDataTable( '#example' ) ) {
@@ -62,19 +63,21 @@
                 }
 
 				$('.sorting').trigger( "click" );
+
+				getAllDataComplaintChecked();
 			}
 		});
 }
 
 
-function populateTable(table, data){
+function populateTable(idTable, data){
     
-    table.innerHTML = "";
+	$(`#${idTable} tbody`).html("");
     for(let index = 0; index < data.length; index++){
         
-        table.innerHTML += `
+		$(`#${idTable} tbody`).append(`
 
-                <tr onclick="showModal(this)" id="${data[index][0]}">
+                <tr onclick="showModal(this)" id="${idTable}-${data[index][0]}">
                     <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data[index][1]}</td>
                     <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data[index][2]}</td>
                     <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data[index][3]}</td>
@@ -83,7 +86,7 @@ function populateTable(table, data){
                     <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data[index][6]}</td>
                 </tr>
                 
-        `;
+        `);
 
     }
 }
@@ -104,8 +107,8 @@ function populateTable(table, data){
  * */
  function getAllDataComplaintChecked(){
 
-	var table = document.getElementById("tbodyDataComplainstChkd");
-
+	$("#example2 tbody").html("");
+	
 	var url = "ajax/getAllDataComplaintChecked";
 	var option = {
 		method: "POST"
@@ -118,7 +121,7 @@ function populateTable(table, data){
 
 			if(response.status == "Success"){
 
-                populateTable(table, response.data);
+                populateTable("example2", response.data);
 			
 				//Añadir obligatoriamente para que los estilos no exploten
 
@@ -258,12 +261,14 @@ function showButton(){
 /**
  * Carga la información de un usuario en el formulario de denuncias
 */
-function loadDataInModal(tr){
+function loadDataInModal(){
+	
+	var idComplainst = parseInt(this.tr.id.replace(/(example2)|(example)/i, "").replace(/[-]/i, ''));
 	
 	var url = "ajax/getDataOfAComplaint";
 	var fd = new FormData();
-
-	fd.append("idComplaint", tr.id);
+	
+	fd.append( "idComplaint", idComplainst );
 	
 	var option = {
 		method: "POST",
@@ -277,14 +282,14 @@ function loadDataInModal(tr){
 			
 			if(response.status == "Success"){
 			
-				document.getElementById("reportedUser").value = tr.getElementsByTagName("td")[0].innerHTML;
-				document.getElementById("userMakeReport").value = tr.getElementsByTagName("td")[1].innerHTML;
-				document.getElementById("comment").value = tr.getElementsByTagName("td")[2].innerHTML;
-				document.getElementById("date").value = tr.getElementsByTagName("td")[3].innerHTML;
-				document.getElementById("reason").value = tr.getElementsByTagName("td")[4].innerHTML;
+				document.getElementById("reportedUser").value = this.tr.getElementsByTagName("td")[0].innerHTML;
+				document.getElementById("userMakeReport").value = this.tr.getElementsByTagName("td")[1].innerHTML;
+				document.getElementById("comment").value = this.tr.getElementsByTagName("td")[2].innerHTML;
+				document.getElementById("date").value = this.tr.getElementsByTagName("td")[3].innerHTML;
+				document.getElementById("reason").value = this.tr.getElementsByTagName("td")[4].innerHTML;
 				document.getElementById("numberOfComplainst").value = response.numberOfComplainst;
 
-				document.getElementById("ochurus").innerHTML = tr.id;
+				document.getElementById("ochurus").innerHTML = idComplainst;
 				
 				if (tr.getElementsByTagName("td")[5].innerHTML.trim() == "Sín revisar") {
 					document.getElementById("radio-complaint-0").checked = true; ;
@@ -338,6 +343,12 @@ function updateUserStatusReported(){
 				hideModal("#complaintModal");
 				$("#modalAlertComplaintSuccess").modal("show");
 
+				$("#example").DataTable();
+				$("#example").DataTable().row(this.tr).remove();
+
+				//Se manda a llamar el otro TABLE
+				getAllDataComplaintChecked();
+
 			}
 			else{
 
@@ -353,9 +364,9 @@ function updateUserStatusReported(){
 
 
 function showModal(object){
-
+	this.tr = object;
 	$("#complaintModal").modal("show");
 	drawFormInModal();
-	loadDataInModal(object);
+	loadDataInModal();
 
 }
