@@ -746,3 +746,33 @@ def reportSeller(request, url=''):
             return HttpResponse(json.dumps({'status':'errorReported', 'message':'No puede realizar una denucia a sí mismo.'}),content_type="application/json")
     else:
         return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+@csrf_exempt
+def updateTime(request):
+    if request.method == 'POST':
+        productTime = request.POST.get('producto')  
+        serviceTime = request.POST.get('servicio')       
+        sqlProduct = "UPDATE TIEMPO_PUBLICADO SET tiempo_semanas = %s WHERE tipo_publicación = 'Producto';" % (productTime)
+        sqlService = "UPDATE TIEMPO_PUBLICADO SET tiempo_semanas = %s WHERE tipo_publicación = 'Servicio';" % (serviceTime)
+        try:
+            engine.dms(sqlProduct)
+            engine.dms(sqlService)
+
+            return HttpResponse(json.dumps({'status':'Success'}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")
+
+@csrf_exempt
+def getTime(request):
+    if request.method == 'POST':
+        sql = "SELECT tiempo_semanas FROM TIEMPO_PUBLICADO;"
+        try:
+            result = engine.transaction(sql)
+            
+            return HttpResponse(json.dumps({'status':'Success','time':result}),content_type="application/json")
+        except Exception as e:
+            return HttpResponse(json.dumps({'status':'dbError', 'errorType':type(e), 'errorMessage':type(e).__name__}),content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({'status':'requestError', 'errorMessage':("Expected method POST, %s method received" % request.method)}),content_type="application/json")

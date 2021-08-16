@@ -30,6 +30,8 @@ from pages.views import deleteCategories
 from pages.views import addCategories
 from pages.views import getArticles
 from pages.views import deleteArticle
+from pages.views import updateTime
+from pages.views import getTime
 
 from django.conf.urls import handler404
 from pages.views import notFound
@@ -107,6 +109,9 @@ path('statistics', statistics.index, name='statistics_page'),
 #path('ajax/averageProductPriceByDepartment', statistics.getDataAverageProductPriceByDepartment),
 path('ajax/statistics', statistics.statistics),
 
+#Tiempo de productos y servicios
+path('ajax/updateTime', updateTime),
+path('ajax/getTime',getTime),
 
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/productDetailsDescription$', details.productDetailsDescription),
 url(r'^details\/(\d{1,4}\-[0-9a-zA-Z-]+)/ajax/review$', details.review, name='review'),
