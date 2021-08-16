@@ -22,6 +22,8 @@ $(document).ready(function(){
 	
 	//Dado que getCategories es un trigguer en el tab, en el momento
 	//de recargar no estaban los datos asi que la llamamos en el ready
+    getAllDataComplaintChecked();
+    loadDataStatistics();
     getCategories();
 
 	if( isActive("complaintContainer") ){ 
@@ -418,3 +420,4 @@ function drawModalConfirm(idModalFade, idModalBody, nameFunctionOK, nameFunction
         </div> 
     `;
 }
+

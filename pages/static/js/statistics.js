@@ -20,15 +20,16 @@ function loadDataStatistics(){
                 //console.log(response.data);
                 
                 var gridProduct = document.getElementById("drawStatistics");
-                
+                gridProduct.innerHTML = '';
+
                 for (let i = 0; i < 3; i++) { //Cantidad de filas
             
                     gridProduct.innerHTML += `
-                        <div class="container-fluid">
+                        <div class="container-fluid" style="margin-left:25em">
                             <div class="row align-items-end" id="rows-product-${i}">
                             </div>
                         </div>
-                        <br>
+                        <div style="height:100px;"></div>
                     `; 
                 }
                 
@@ -69,7 +70,7 @@ function loadDataStatistics(){
                             "line", 
                             ['rgba(75, 192, 192, 0.2)'][0],
                             ['rgba(75, 192, 192)'][0], 
-                            'Visitas de las últimas semanas'
+                            title='Visitas de las últimas semanas'
                         );
                 //categoryReviews
                 drawTable(
@@ -100,7 +101,8 @@ function loadDataStatistics(){
                         'rgb(255, 205, 86)',
                         'rgb(75, 192, 192)',
                         'rgb(54, 162, 235)'
-                    ] 
+                    ],
+                    title = "Categorías más visitadas"
                 );
 
                 //mostViewedProductByCategory
@@ -133,7 +135,8 @@ function loadDataStatistics(){
                         'rgb(54, 162, 235)',
                         'rgb(153, 102, 255)',
                         'rgb(201, 203, 207)'
-                    ] 
+                    ], 
+                    title = "Cantidad de Productos por Categorías"
                 );
 
                 //Añadir obligatoriamente para que los estilos no exploten
@@ -152,7 +155,8 @@ function innerTable(idRow, tableId, tbodyId, title, data) {
         <div class="col col-lg-4"">
             <div class="card">
                 <div class="card-header">    
-                    <p>${title}</p>
+                    <strong><h4>${title}</h4></strong>
+                    <hr>
                     <table class="table table-striped table-dark" id="${tableId}">
                         <thead>
                         <tr>
@@ -207,7 +211,7 @@ function drawTable(data, tableId, tbodyId){
 /**
  * Dibuja el gráfico
  * */
-function drawGraph(labels, data, idGraph, type, backgroundColor, borderColor){
+function drawGraph(labels, data, idGraph, type, backgroundColor, borderColor,title="Hola"){
 
     var ctx = document.getElementById(idGraph).getContext('2d');
     var myChart = new Chart(ctx, {
@@ -215,7 +219,7 @@ function drawGraph(labels, data, idGraph, type, backgroundColor, borderColor){
         data: {
             labels: labels,
             datasets: [{
-                label: 'Visitas al sitio en las últimas semanas',
+                label: title,
                 data: data,
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,
