@@ -25,6 +25,7 @@ $(document).ready(function(){
     getAllDataComplaintChecked();
     loadDataStatistics();
     getCategories();
+    getArticulos();
 
 	if( isActive("complaintContainer") ){ 
 		getAllDataComplaintNotChecked();
@@ -217,10 +218,28 @@ function getArticulos(){
 }
 
 
+function loadCategoriesTime(){
+    $.ajax({
+        type: "POST",
+        url: "ajax/getTime",
+        data: {},
+        success: function(data){
+
+            if (data.status == "Success"){
+                $("#tiempoProducto").val(data.time[0][0]);
+                $("#tiempoServicio").val(data.time[1][0]);
+            }else{
+                alert("No se pudieron obtener los tiempos correctamente");
+            }
+        }
+    });
+}
+
 function getCategories(){
 
 	//var categoriesTable = document.getElementById("tbodyDataCategory");
     //categoriesTable.innerHTML = "";
+    loadCategoriesTime();
 
     $.ajax({
         type: "POST",
@@ -421,3 +440,21 @@ function drawModalConfirm(idModalFade, idModalBody, nameFunctionOK, nameFunction
     `;
 }
 
+function tiempoCategoria(){
+    var producto = $("#tiempoProducto").val();
+    var servicio = $("#tiempoServicio").val();
+
+    $.ajax({
+        type: "POST",
+        url: "ajax/updateTime",
+        data: data = { "producto": producto,"servicio": servicio },
+        success: function(data){
+
+            if (data.status == "Success"){
+                alert("Se actualizó el tiempo de duracion de los productos y servicios");
+            }else{
+                alert("No se actualizó el tiempo de duracion de los productos y servicios");
+            }
+        }
+    });
+}
