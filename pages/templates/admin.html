@@ -56,7 +56,7 @@
                     <a class="navbar-superior-ul-li-a" href="#">Sobre nosotros</a>
                 </li> 
                 <li class="navbar-superior-ul-li">
-                    <a class="navbar-superior-ul-li-a" href="/categories">Categorias</a>
+                    <a class="navbar-superior-ul-li-a" href="/categories">categorías</a>
                 </li>
                 <li class="navbar-superior-ul-li">
                     <a class="navbar-superior-ul-li-a" href="/">Inicio</a>
@@ -99,7 +99,7 @@
                     <b></b>
                     <a data-toggle="tab" href="#menu4" id="categoriesTab" onclick="getCategories();">
                         <span class="icon"><ion-icon name="copy-outline"></ion-icon></span>
-                        <span class="title">Categorias</span>
+                        <span class="title">Categorías</span>
                     </a>
                 </li>
                 <li class="list">
@@ -139,7 +139,7 @@
                                     <th>Usuario que reportó</th>
                                     <th>Comentario</th>
                                     <th>Fecha</th>
-                                    <th>Razon</th>
+                                    <th>Razón</th>
                                     <th>Estado</th>
                                 </tr>
                             </thead>
@@ -163,7 +163,7 @@
                                     <th>Usuario que reportó</th>
                                     <th>Comentario</th>
                                     <th>Fecha</th>
-                                    <th>Razon</th>
+                                    <th>Razón</th>
                                     <th>Estado</th>
                                 </tr>
                             </tfoot>
@@ -181,7 +181,7 @@
                                     <th>Usuario que reportó</th>
                                     <th>Comentario</th>
                                     <th>Fecha</th>
-                                    <th>Razon</th>
+                                    <th>Razón</th>
                                     <th>Estado</th>
                                 </tr>
                             </thead>
@@ -195,7 +195,7 @@
                                     <th>Usuario que reportó</th>
                                     <th>Comentario</th>
                                     <th>Fecha</th>
-                                    <th>Razon</th>
+                                    <th>Razón</th>
                                     <th>Estado</th>
                                 </tr>
                             </tfoot>
@@ -221,7 +221,7 @@
 
                 </div>
                 <div id="menu4" class="tab-pane fade">
-                    <h3>Administrar categorias</h3>
+                    <h3>Administrar Categorías</h3>
                     <hr>
                     <div class="card">
                         <div class="card-header">
@@ -231,13 +231,13 @@
                             <div class="container">
 
                                 <div class="container ">
-                                    <a data-toggle="modal" data-target="#AddCategoryModal" href="#AddCategoryModal" class="d-none d-sm-inline-block btn btn-sm btn-success">Agregar Nueva Categoria</a>
+                                    <a data-toggle="modal" data-target="#AddCategoryModal" href="#AddCategoryModal" class="d-none d-sm-inline-block btn btn-sm btn-success">Agregar Nueva Categoría</a>
                                     <br><br>
                                     <table id="categoryTable" class="display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Categoria</th>
+                                                <th>Categoría</th>
                                                 <th>Editar</th>
                                             </tr>
                                         </thead>
@@ -247,7 +247,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Categoria</th>
+                                                <th>Categoría</th>
                                                 <th>Editar</th>
                                             </tr>
                                         </tfoot>
@@ -265,7 +265,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-6">
                                     <div class="form-group">
-                                        <label class="custom-label">Tiempo limite en los productos (semanas)</label>
+                                        <label class="custom-label">Tiempo límite en los productos (semanas)</label>
                                         <select id="tiempoProducto" class="form-control form-control-select dropdown-toggle" required>
                                             <option value="00" selected>Semanas...</option>
                                             <option value="1">1</option>
@@ -325,7 +325,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-12 col-lg-6">
                                     <div class="form-group">
-                                        <label class="custom-label">Tiempo limite en los servicios (semanas)</label>
+                                        <label class="custom-label">Tiempo límite en los servicios (semanas)</label>
                                         <select id="tiempoServicio" class="form-control form-control-select dropdown-toggle" required>
                                             <option value="00" selected>Semanas...</option>
                                             <option value="1">1</option>
@@ -400,8 +400,8 @@
                                 <thead>
                                     <tr>
                                         <th>Usuario</th>
-                                        <th>Articulo</th>
-                                        <th>Categoria</th>
+                                        <th>Artículo</th>
+                                        <th>Categoría</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
@@ -416,8 +416,8 @@
                                 <tfoot>
                                     <tr>
                                         <th>Usuario</th>
-                                        <th>Articulo</th>
-                                        <th>Categoria</th>
+                                        <th>Artículo</th>
+                                        <th>Categoría</th>
                                         <th>Editar</th>
                                     </tr>
                                 </tfoot>
@@ -460,12 +460,12 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="titleModalChangeUserState">Añadir Categoria</h4> 
+                    <h4 class="modal-title" id="titleModalChangeUserState">Añadir Categoría</h4> 
                 </div>
                     <div class="modal-body" id="modal-text-content">
                         <form class="user" id="AddCategoryForm" name="AddCategoryForm">
                             <div class="form-group">
-                                <label class="custom-label">Nombre de la categoria</label>
+                                <label class="custom-label">Nombre de la categoría</label>
                                 <input type="text" class="form-control form-control-user" id="ACname"
                                     placeholder="Nombre de la Categoria" required>
                             </div>

@@ -20,13 +20,13 @@ function setArticulo(articulo, id_articulo){
 }
 function setCategoria(id_categoria, nombreCate){
     console.log('estoy en la funcion');
-    document.querySelector("#mensajeModalDelete").innerHTML = `<h5>Se <b>dejaran</b> de enviar correos con la información de los productos más recientes en la categoria <b>${nombreCate}</b>.</h5>`;
+    document.querySelector("#mensajeModalDelete").innerHTML = `<h5>Se <b>dejaran</b> de enviar correos con la información de los productos más recientes en la categoría <b>${nombreCate}</b>.</h5>`;
     document.querySelector('#Modal-categorie-delete').innerHTML = '<button class="btn btn-primary" onclick="deleteCategorie();" data-dismiss="modal">Aceptar</button>&nbsp;<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>';
     this.id_categoria = id_categoria;
 
 }
 function setCategoriaDelete(id_categoria, nombreCate){
-    document.querySelector("#mensajeModalAdd").innerHTML = `<h5>Se <b>enviaran</b> correos con la información de los productos más recientes en la categoria <b>${nombreCate}</b>.</h5>`;
+    document.querySelector("#mensajeModalAdd").innerHTML = `<h5>Se <b>enviaran</b> correos con la información de los productos más recientes en la categoría <b>${nombreCate}</b>.</h5>`;
     document.querySelector('#Modal-categorie-add').innerHTML = '<button class="btn btn-primary" onclick="addCategorie();" data-dismiss="modal">Aceptar</button>&nbsp;<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>';
     this.id_categoria = id_categoria;
 }
@@ -195,7 +195,7 @@ function getAllCategories(){
                             }
                             
                         }else if (data.status == "Empty"){
-                            console.log("No esta suscrito a ninguna categoria")
+                            //console.log("No esta suscrito a ninguna categoría")
                             $("#msgNoSuscrito").css({'display':''});
                             for (i=0; i<((data.data2).length); i++){
                                 $(`#categorienos${data.data2[i][0]}`).css({'display':''});
@@ -207,8 +207,8 @@ function getAllCategories(){
                 
 
             }else{
-                document.getElementById('suscrito').innerHTML = 'No existen categorias en el sistema';
-                document.getElementById('nosuscrito').innerHTML = 'No existen categorias en el sistema';
+                document.getElementById('suscrito').innerHTML = 'No existen categorías en el sistema';
+                document.getElementById('nosuscrito').innerHTML = 'No existen categorías en el sistema';
             }
         }
     });

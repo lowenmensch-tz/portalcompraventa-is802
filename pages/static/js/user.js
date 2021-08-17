@@ -577,7 +577,7 @@ function getCategories(){
             if (data.status == "Success"){
                 console.log(data.data);
                 document.getElementById('Pcategoria').innerHTML = '';
-                document.getElementById('Pcategoria').innerHTML = '<option value="00" selected>Categoria</option>';
+                document.getElementById('Pcategoria').innerHTML = '<option value="00" selected>Categoría</option>';
                 for(i=0; i<(data.data).length; i++){
                     document.getElementById('Pcategoria').innerHTML += `<option value="${data.data[i][0]}"> ${data.data[i][1]}</option>`
                 }
