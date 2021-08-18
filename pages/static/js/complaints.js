@@ -87,7 +87,6 @@ function populateTable(idTable, data){
                 </tr>
                 
         `);
-
     }
 }
 

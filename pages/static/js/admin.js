@@ -42,10 +42,6 @@ if( isActive("complaintContainer") ){
     getAllDataComplaintNotChecked();
 }
 
-//$('#example2').DataTable();
-/*$('#productTable').DataTable();*/
-
-
 $(".new-tabs a").click(function(){
     $(this).tab('show');
 
@@ -262,13 +258,18 @@ $.ajax({
             //console.log(data.data);
             for(let index = 0; index < data.data.length; index++){
                 //console.log(data.data[index][0]);
-                $("#categoryTable tbody").append(`
+
+                if(data.data[index][0] == 8) {
+                    //pass
+                } else {
+                    $("#categoryTable tbody").append(`
                     <tr id="${data.data[index][0]}">
                         <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[index][0]}</td>
                         <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.data[index][1]}</td>
                         <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px" onclick="deleteCategoryProcess(${data.data[index][0]});">X</button></td>
-                    </tr>	
+                    </tr>   
                 `);
+                }
 
             }
 
@@ -312,18 +313,16 @@ $.ajax({
     data: { 'nombreCategoria': name },
     success: function(data){
         if (data.status == "Success"){
-            console.log(data.categoryID[0]);
             $("#modalAlertAddCategory").modal("show");
             //window.location.reload();
             //$('#tbodyDataCategory').DataTable().destroy();
-            
-            $("#categoryTable tbody").append(`
-                <tr id="${data.categoryID}">
-                    <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${data.categoryID}</td>
-                    <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${name}</td>
-                    <td style="max-width: 40px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px" onclick="deleteCategoryProcess(${data.categoryID});">X</button></td>
-                </tr>	
-            `);
+
+            $("#categoryTable").DataTable().row.add( [
+            `${data.categoryID}`,
+            `${name}`,
+            `<button type="button" class="btn btn-sm btn-danger" style="height:2rem; padding-top:0.1px" onclick="deleteCategoryProcess(${data.categoryID});">X</button>`
+            ] ).node().id = `${data.categoryID}`;
+            $("#categoryTable").DataTable().draw( false );
 
         }else{
             alert('Usted ha eliminado todas las categorias');
@@ -348,10 +347,8 @@ $.ajax({
         if (data.status == "Success"){
             $("#modalConfirmDeleteCategory").modal("hide");
             $("#modalAlertDeleteCategory").modal("show");
-            
-            console.log('Simon');
-            var table = $('#categoryTable').DataTable();	 
-            table.row(`#${id_category}`).remove().draw( false );
+            	 
+            $('#categoryTable').DataTable().row(`#${id_category}`).remove().draw( false );
 
         }else{
             alert('Ya no hay categorias disponibles');
