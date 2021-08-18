@@ -111,8 +111,8 @@ class EmailManager:
         categoryIds = [category[0] for category in sql.transaction(categoryIds)]
 
         for category in categoryIds:
-            products = sql.transaction(productsQuery % (category,'2021-08-06','2021-08-08'))
-            #products = sql.transaction(productsQuery % (category,minDate,maxDate))
+            #products = sql.transaction(productsQuery % (category,'2021-08-06','2021-08-08'))
+            products = sql.transaction(productsQuery % (category,minDate,maxDate))
             result[category] = products
 
         return result
