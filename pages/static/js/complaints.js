@@ -287,6 +287,7 @@ function loadDataInModal(){
 				document.getElementById("date").value = this.tr.getElementsByTagName("td")[3].innerHTML;
 				document.getElementById("reason").value = this.tr.getElementsByTagName("td")[4].innerHTML;
 				document.getElementById("numberOfComplainst").value = response.numberOfComplainst;
+				console.log(document.getElementById("reportedUser").value);
 
 				document.getElementById("ochurus").innerHTML = idComplainst;
 				
@@ -326,6 +327,7 @@ function updateUserStatusReported(){
 	fd.append("state", 1); // 1 - REVISADO
 
 	(radio) ? fd.append("deleteUser", radio) : fd.append("deleteUser", radio);	// ¿Damos de baja al usuario? 
+	fd.append("reportedUser",document.getElementById("reportedUser").value);
 
 	var option = {
 		method: "POST",

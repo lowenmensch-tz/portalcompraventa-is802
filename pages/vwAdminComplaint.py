@@ -174,6 +174,7 @@ class AdministrationComplaint:
             idComplaint = int(request.POST.get('idComplaint'))
             state  = int(request.POST.get('state')) #Estado de la denuncia
             deleteUser = int(request.POST.get('deleteUser')) # 0 Desestimar denuncia | 1 Dar de baja al usuario denunciado
+            reportedUser = request.POST.get('reportedUser')
             
             sqlSelect = """
                 SELECT
@@ -205,9 +206,12 @@ class AdministrationComplaint:
                             SET estado = %s
                             WHERE id_usuario = %s
                             """%(0, idReportedUser)
+
+                    sqlUpdateArticlesUser = """UPDATE ARTICULO SET publicado = 0 WHERE fk_usuario IN (SELECT id_usuario FROM USUARIO WHERE nombre_completo = '%s');""" % (reportedUser)
                     
                     self.engine.dms( sqlUpdateComplaint )        #Cambia el estado de la denuncia
                     self.engine.dms( sqlUpdateStateUser )       #Cambia el estado del usuario denunciado; ya no será visible en el sistema, no podrá acceder, no podrá comentar
+                    self.engine.dms( sqlUpdateArticlesUser )
 
                     message = "El usuario <strong>{}</strong> ha sido dado de baja".format( 
                                                         self.engine.transaction( 
